@@ -1,0 +1,2527 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps customers API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: customers
+paths:
+  /app/{app_id}/customer/{customer_id}/license-download:
+    get:
+      security:
+      - api_key: []
+      description: 'Retrieve the license for a specific customer and app, returning it as a YAML file suitable for use with KOTS installations.
+
+        The license includes all entitlements and metadata required for installation and updates.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - text/yaml
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Download a customer license file as YAML.
+      operationId: downloadLicense
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/downloadLicenseResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/customers:
+    get:
+      security:
+      - api_key: []
+      description: 'Return a paginated list of customers for a specific app, with optional filtering by name, test status, and expiration.
+
+        Includes customer metadata and instance information.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: List customers for an app.
+      operationId: listAppCustomers
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: integer
+        format: int64
+        default: 20
+        x-go-name: PageSize
+        description: Page size
+        name: pageSize
+        in: query
+      - type: integer
+        format: int64
+        x-go-name: CurrentPage
+        description: Current page
+        name: currentPage
+        in: query
+      - type: string
+        x-go-name: SortColumn
+        description: Sort column
+        name: sortColumn
+        in: query
+      - type: boolean
+        x-go-name: SortDesc
+        description: Sort descending
+        name: sortDesc
+        in: query
+      - type: string
+        x-go-name: CustomerName
+        description: filter by customer name
+        name: customerName
+        in: query
+      - type: boolean
+        name: IncludeTest
+        in: query
+      - type: string
+        format: date-time
+        name: ExpiresBefore
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listCustomersResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/trials:
+    get:
+      security:
+      - api_key: []
+      description: 'Return a paginated list of trial signups for a specific app,
+
+        with email, company, and status information.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/*/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: List all trial signups for an app.
+      operationId: listPendingTrials
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: integer
+        format: int64
+        default: 20
+        x-go-name: PageSize
+        description: Page size
+        name: pageSize
+        in: query
+      - type: integer
+        format: int64
+        x-go-name: CurrentPage
+        description: Current page
+        name: currentPage
+        in: query
+      - type: string
+        x-go-name: SortColumn
+        description: Sort column
+        name: sortColumn
+        in: query
+      - type: boolean
+        x-go-name: SortDesc
+        description: Sort descending
+        name: sortDesc
+        in: query
+      - type: boolean
+        description: 'Filter for verification status: "true" for verified, "false" for unverified, omit for all'
+        name: Verified
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listPendingTrialsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /customer:
+    post:
+      security:
+      - api_key: []
+      description: 'Create a new customer and license for a specified app, with options for channel assignment, license type, expiration, and feature flags.
+
+        The created customer will be available for management and download.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/create'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Create a KOTS customer.
+      operationId: createCustomer
+      parameters:
+      - description: Customer create parameters.
+        name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - name
+          - app_id
+          properties:
+            app_id:
+              description: App to which the customer is associated.
+              type: string
+              x-go-name: AppID
+            channel_id:
+              description: Channel to which the customer license is associated. This is the default channel for the customer.
+              type: string
+              x-go-name: ChannelID
+            custom_id:
+              description: Custom ID that can be used in external systems.
+              type: string
+              x-go-name: CustomID
+            email:
+              description: Email address of the customer that is to be created
+              type: string
+              x-go-name: Email
+            entitlementValues:
+              type: array
+              items:
+                $ref: '#/definitions/EntitlementValue'
+              x-go-name: EntitlementValues
+            expires_at:
+              type: string
+              x-go-name: ExpiresAtStr
+            is_airgap_enabled:
+              type: boolean
+              x-go-name: IsAirgapEnabled
+            is_dev_mode_enabled:
+              type: boolean
+              x-go-name: IsDevModeEnabled
+            is_disaster_recovery_supported:
+              type: boolean
+              x-go-name: IsDisasterRecoverySupported
+            is_embedded_cluster_download_enabled:
+              type: boolean
+              x-go-name: IsEmbeddedClusterDownloadEnabled
+            is_embedded_cluster_multinode_enabled:
+              type: boolean
+              x-go-name: IsEmbeddedClusterMultiNodeEnabled
+            is_geoaxis_supported:
+              type: boolean
+              x-go-name: IsGeoaxisSupported
+            is_gitops_supported:
+              type: boolean
+              x-go-name: IsGitopsSupported
+            is_helm_airgap_enabled:
+              type: boolean
+              x-go-name: IsHelmAirgapEnabled
+            is_helm_install_enabled:
+              type: boolean
+              x-go-name: IsHelmInstallEnabled
+            is_identity_service_supported:
+              type: boolean
+              x-go-name: IsIdentityServiceSupported
+            is_installer_support_enabled:
+              type: boolean
+              x-go-name: IsInstallerSupportEnabled
+            is_kots_install_enabled:
+              type: boolean
+              x-go-name: IsKotsInstallEnabled
+            is_kurl_install_enabled:
+              type: boolean
+              x-go-name: IsKurlInstallEnabled
+            is_snapshot_supported:
+              type: boolean
+              x-go-name: IsSnapshotSupported
+            is_support_bundle_upload_enabled:
+              type: boolean
+              x-go-name: IsSupportBundleUploadEnabled
+            name:
+              description: Name of the customer that is to be created.
+              type: string
+              x-go-name: Name
+            saml_allowed:
+              description: 'SAML configuration - vendors can enable/disable SAML for customers
+
+                Customers configure their IdP details via market-api'
+              type: boolean
+              x-go-name: SamlAllowed
+            type:
+              $ref: '#/definitions/LicenseType'
+      responses:
+        '201':
+          $ref: '#/responses/getCustomerResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /customer-entitlements/{customer_id}:
+    get:
+      security:
+      - api_key: []
+      description: 'Retrieve the entitlement values for a specific customer and app, including all custom and default entitlements assigned to the customer.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Get customer entitlements.
+      operationId: getCustomerEntitlements
+      parameters:
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getCustomerEntitlementsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /customer/{customer_id}:
+    get:
+      security:
+      - api_key: []
+      description: 'Retrieve the details of a specific customer, including metadata, license, and instance information.
+
+        Optionally, channel details can be excluded from the response.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Get a customer.
+      operationId: getCustomer
+      parameters:
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getCustomerResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: 'Update the details, license, and channel assignments for an existing customer.
+
+        Supports changing metadata, license type, expiration, entitlements, and feature flags.
+
+        Parameters that are not provided are reset to default values.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Update a customer.
+      operationId: updateCustomer
+      parameters:
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      - description: Update customer parameters.
+        name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - name
+          - app_id
+          properties:
+            app_id:
+              description: App to which the channel is associated.
+              type: string
+              x-go-name: AppID
+            channel_id:
+              description: The channel id to which the customer is associated. This is the default channel for the customer.
+              type: string
+              x-go-name: ChannelID
+            custom_id:
+              description: Custom ID that can be used in external systems.
+              type: string
+              x-go-name: CustomID
+            email:
+              description: Email of the customer that is to be updated
+              type: string
+              x-go-name: Email
+            entitlementValues:
+              description: Applies only to the currently selected app
+              type: array
+              items:
+                $ref: '#/definitions/EntitlementValue'
+              x-go-name: EntitlementValues
+            expires_at:
+              description: Format is YYYY-MM-DD, e.g. 2021-02-24
+              type: string
+              x-go-name: ExpiresAtStr
+            is_airgap_enabled:
+              type: boolean
+              x-go-name: IsAirgapEnabled
+            is_dev_mode_enabled:
+              type: boolean
+              x-go-name: IsDevModeEnabled
+            is_disaster_recovery_supported:
+              type: boolean
+              x-go-name: IsDisasterRecoverySupported
+            is_embedded_cluster_download_enabled:
+              type: boolean
+              x-go-name: IsEmbeddedClusterDownloadEnabled
+            is_embedded_cluster_multinode_enabled:
+              type: boolean
+              x-go-name: IsEmbeddedClusterMultiNodeEnabled
+            is_enterprise_portal_enabled:
+              type: boolean
+              x-go-name: IsEnterprisePortalEnabled
+            is_geoaxis_supported:
+              type: boolean
+              x-go-name: IsGeoaxisSupported
+            is_gitops_supported:
+              type: boolean
+              x-go-name: IsGitopsSupported
+            is_helm_airgap_enabled:
+              type: boolean
+              x-go-name: IsHelmAirgapEnabled
+            is_helm_install_enabled:
+              type: boolean
+              x-go-name: IsHelmInstallEnabled
+            is_identity_service_supported:
+              type: boolean
+              x-go-name: IsIdentityServiceSupported
+            is_kots_install_enabled:
+              type: boolean
+              x-go-name: IsKotsInstallEnabled
+            is_kurl_install_enabled:
+              type: boolean
+              x-go-name: IsKurlInstallEnabled
+            is_snapshot_supported:
+              type: boolean
+              x-go-name: IsSnapshotSupported
+            is_support_bundle_upload_enabled:
+              type: boolean
+              x-go-name: IsSupportBundleUploadEnabled
+            name:
+              description: Name of the customer that is to be updated.
+              type: string
+              x-go-name: Name
+            saml_allowed:
+              description: 'SAML configuration - vendors can enable/disable SAML for customers
+
+                Customers configure their IdP details via market-api'
+              type: boolean
+              x-go-name: SamlAllowed
+            type:
+              $ref: '#/definitions/LicenseType'
+      responses:
+        '200':
+          $ref: '#/responses/getCustomerResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Permanently delete a customer, removing all their data including licenses and access to associated resources.
+
+        This action is irreversible. For temporary deactivation, use the archive endpoint instead.
+
+
+        Safety Restriction: Only development customers (type: "dev") can be deleted.
+
+        Attempting to delete customers of other types (prod, trial, community, test) will return a 400 Bad Request error.
+
+
+        Required RBAC Policy: kots/license/[:customerid]/delete
+
+        and kots/app/[:appid]/license/[:customerid]/delete'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Delete a customer.
+      operationId: deleteCustomer
+      parameters:
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    patch:
+      security:
+      - api_key: []
+      description: 'Apply partial updates to a customer''s details, license, channels, and entitlements.
+
+        Only the fields provided in the request body will be updated.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Patch a customer.
+      operationId: patchCustomer
+      parameters:
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      - description: Patch customer parameters.
+        name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            add_channels:
+              description: Channels this customer will be assigned to.
+              type: array
+              items:
+                $ref: '#/definitions/CustomerChannel'
+              x-go-name: AddChannels
+            add_entitlements:
+              description: List of entitlements to add for the customer.
+              type: array
+              items:
+                $ref: '#/definitions/CustomerEntitlement'
+              x-go-name: AddEntitlements
+            custom_id:
+              description: Custom ID that can be used in external systems.
+              type: string
+              x-go-name: CustomID
+            email:
+              description: Email of the customer that is to be updated
+              type: string
+              x-go-name: Email
+            expires_at:
+              description: Format is YYYY-MM-DD, e.g. 2021-02-24
+              type: string
+              x-go-name: ExpiresAtStr
+            is_airgap_enabled:
+              type: boolean
+              x-go-name: IsAirgapEnabled
+            is_dev_mode_enabled:
+              type: boolean
+              x-go-name: IsDevModeEnabled
+            is_disaster_recovery_supported:
+              type: boolean
+              x-go-name: IsDisasterRecoverySupported
+            is_embedded_cluster_download_enabled:
+              type: boolean
+              x-go-name: IsEmbeddedClusterDownloadEnabled
+            is_embedded_cluster_multinode_enabled:
+              type: boolean
+              x-go-name: IsEmbeddedClusterMultiNodeEnabled
+            is_enterprise_portal_enabled:
+              type: boolean
+              x-go-name: IsEnterprisePortalEnabled
+            is_geoaxis_supported:
+              type: boolean
+              x-go-name: IsGeoaxisSupported
+            is_gitops_supported:
+              type: boolean
+              x-go-name: IsGitopsSupported
+            is_helm_airgap_enabled:
+              type: boolean
+              x-go-name: IsHelmAirgapEnabled
+            is_helm_install_enabled:
+              type: boolean
+              x-go-name: IsHelmInstallEnabled
+            is_identity_service_supported:
+              type: boolean
+              x-go-name: IsIdentityServiceSupported
+            is_kots_install_enabled:
+              type: boolean
+              x-go-name: IsKotsInstallEnabled
+            is_kurl_install_enabled:
+              type: boolean
+              x-go-name: IsKurlInstallEnabled
+            is_security_center_enabled:
+              type: boolean
+              x-go-name: IsSecurityCenterEnabled
+            is_snapshot_supported:
+              type: boolean
+              x-go-name: IsSnapshotSupported
+            is_support_bundle_upload_enabled:
+              type: boolean
+              x-go-name: IsSupportBundleUploadEnabled
+            name:
+              description: Name of the customer that is to be updated.
+              type: string
+              x-go-name: Name
+            remove_channels:
+              description: Channels this customer will be removed from.
+              type: array
+              items:
+                type: string
+              x-go-name: RemoveChannels
+            remove_entitlements:
+              description: List of entitlement names to remove from the customer. Default values will be used.
+              type: array
+              items:
+                type: string
+              x-go-name: RemoveEntitlements
+            remove_expires_at:
+              type: boolean
+              x-go-name: RemoveExpiresAt
+            saml_allowed:
+              description: SAML configuration - vendors can enable/disable SAML for customers
+              type: boolean
+              x-go-name: SamlAllowed
+            type:
+              $ref: '#/definitions/LicenseType'
+      responses:
+        '200':
+          $ref: '#/responses/getCustomerResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /customer/{customer_id}/airgap/password:
+    post:
+      security:
+      - api_key: []
+      description: 'Generate a new password (or set a provided one) for accessing the customer''s airgap download portal.
+
+
+        Required RBAC Policy: kots/license/[:licenseid]/airgap/password'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Regenerate the airgap password used to access the customer's download portal.
+      operationId: postAirgapPassword
+      parameters:
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            password:
+              type: string
+              x-go-name: Password
+      responses:
+        '200':
+          $ref: '#/responses/postAirgapPasswordResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /customer/{customer_id}/archive:
+    post:
+      security:
+      - api_key: []
+      description: 'Deactivate a customer, revoking their license and access to associated resources.
+
+        Useful for offboarding or suspending customers without deleting their data.
+
+
+        Required RBAC Policy: kots/license/[:customerid]/archive
+
+        and kots/app/[:appid]/license/[:customerid]/archive'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Archive a customer.
+      operationId: archiveCustomer
+      parameters:
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /customer/{customer_id}/unarchive:
+    post:
+      security:
+      - api_key: []
+      description: 'Restore a previously archived customer, making their license and associated data active again.
+
+        Useful for re-enabling access for customers who were previously deactivated.
+
+
+        Required RBAC Policy: kots/license/[:customerid]/unarchive
+
+        and kots/app/[:appid]/license/[:customerid]/unarchive'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Unarchive a customer.
+      operationId: unarchiveCustomer
+      parameters:
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /customers:
+    get:
+      security:
+      - api_key: []
+      description: 'Return a paginated list of all customers accessible to the team, with optional filtering and sorting.
+
+        Includes metadata and license information for each customer.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: List all customers.
+      operationId: listCustomers
+      parameters:
+      - type: integer
+        format: int64
+        default: 20
+        x-go-name: PageSize
+        description: Page size
+        name: pageSize
+        in: query
+      - type: integer
+        format: int64
+        x-go-name: CurrentPage
+        description: Current page
+        name: currentPage
+        in: query
+      - type: string
+        x-go-name: SortColumn
+        description: Sort column
+        name: sortColumn
+        in: query
+      - type: boolean
+        x-go-name: SortDesc
+        description: Sort descending
+        name: sortDesc
+        in: query
+      - type: boolean
+        name: IncludeTest
+        in: query
+      - type: string
+        format: date-time
+        name: ExpiresBefore
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listCustomersResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /customers/search:
+    post:
+      security:
+      - api_key: []
+      description: 'Search for customers within a team using flexible query parameters, including name, type, channel, and status.
+
+        Supports pagination, sorting, and filtering by customer attributes.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customers
+      summary: Search all customers for a given team context.
+      operationId: searchTeamCustomers
+      parameters:
+      - description: 'Search customers parameters.
+
+          At least one of the following flags is **required**: `include_inactive`, `include_active`.
+
+          At least one of the following flags is **required**: `include_dev`, `include_trial`, `include_paid`, `include_community`, `include_test`.'
+        name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            adoption_rate_filter:
+              type: string
+              x-go-name: AdoptionRateFilter
+            app_id:
+              description: The app id to limit search. If not provided, customers for all apps will be searched.
+              type: string
+              x-go-name: AppID
+            channel_names:
+              description: Restrict search to customers in the specified channels.
+              type: array
+              items:
+                type: string
+              x-go-name: ChannelNames
+            expires_before:
+              type: string
+              format: date-time
+              x-go-name: ExpiresBefore
+            include_active:
+              description: When set to true, active customers will be included in the search results. Default is false.
+              type: boolean
+              x-go-name: IncludeActive
+            include_archived:
+              description: When set to true, archived customers will be included in the search results. Default is false.
+              type: boolean
+              x-go-name: IncludeArchived
+            include_community:
+              description: When set to true, community customers will be included in the search results. Default is false.
+              type: boolean
+              x-go-name: IncludeCommunity
+            include_dev:
+              description: When set to true, dev customers will be included in the search results. Default is false.
+              type: boolean
+              x-go-name: IncludeDev
+            include_inactive:
+              description: When set to true, inactive customers will be included in the search results. Default is false.
+              type: boolean
+              x-go-name: IncludeInactive
+            include_paid:
+              description: When set to true, paid customers will be included in the search results. Default is false.
+              type: boolean
+              x-go-name: IncludePaid
+            include_test:
+              description: When set to true, test customers will be included in the search results. Default is false.
+              type: boolean
+              x-go-name: IncludeTest
+            include_trial:
+              description: When set to true, trial customers will be included in the search results. Default is false.
+              type: boolean
+              x-go-name: IncludeTrial
+            instance_preview:
+              description: When set to true, more detailed information for active and inactive customer instances will be provided in the search results. If false, active and inactive instances will be combined into a single list. Default is false.
+              type: boolean
+              x-go-name: InstancePreview
+            license_or_service_account:
+              description: 'Search by license ID or Enterprise Portal service account token.
+
+                When provided, this will find the specific customer associated with the license ID or service account token.
+
+                This field accepts both actual license IDs and Enterprise Portal service account tokens as license substitutes.'
+              type: string
+              x-go-name: LicenseOrServiceAccount
+            max_instances:
+              description: The maximum number of instances to return for each customer. Default is 3.
+              type: integer
+              format: int64
+              x-go-name: MaxInstances
+            offset:
+              description: The number of pages to skip.
+              type: integer
+              format: int64
+              x-go-name: Offset
+            page_size:
+              description: The number of customers to return per page.
+              type: integer
+              format: int64
+              x-go-name: PageSize
+            query:
+              description: 'The search query.
+
+                By default this value will be used to search customers by name.
+
+                When value is in the key:value format, it can be used to search specific fields.
+
+                The following fields are supported.
+
+                `name`: search by customer name. For example name:acme. This search is fuzzy and case insensitive.
+
+                `type`: search by customer type. Possible values are prod, trial, dev, and community. For example type:trial.
+
+                `airgap`: search by airgap status. Possible values are true and false. For example airgap:true.
+
+                `channels`.name: search by channel name. For example channels.name:stable. This search is fuzzy and case insensitive.
+
+                `customId`: search by custom id. For example customId:123. This is an exact match search.
+
+                `email`: search by customer email. For example email:bob@replicated.com. This is an exact match search.'
+              type: string
+              x-go-name: Query
+            sort_direction:
+              description: The sort direction. Possible values are `asc` and `desc`. Default is `desc` if `sort_field` is specified.
+              type: string
+              x-go-name: SortDirection
+            sort_field:
+              description: The field to sort by. Possible values are `expiresAt`, `createdAt`, `name`, `type`. There is no default value.
+              type: string
+              x-go-name: SortField
+      responses:
+        '200':
+          $ref: '#/responses/searchTeamCustomersResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+definitions:
+  InstallationTypeKurl:
+    type: object
+    properties:
+      installerVersion:
+        type: string
+        x-go-name: InstallerVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  CustomerAdoption:
+    type: object
+    properties:
+      channelId:
+        type: string
+        x-go-name: ChannelID
+      count:
+        type: integer
+        format: int64
+        x-go-name: Count
+      percent:
+        type: number
+        format: double
+        x-go-name: Percent
+      releaseSequence:
+        type: integer
+        format: int64
+        x-go-name: ReleaseSequence
+      semver:
+        type: string
+        x-go-name: Semver
+      totalOnChannel:
+        type: integer
+        format: int64
+        x-go-name: TotalOnChannel
+      versionsFromLatest:
+        type: integer
+        format: int64
+        x-go-name: VersionsFromLatest
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
+  InstallerTypeEmbeddedCluster:
+    type: object
+    properties:
+      proxyRegistryDomain:
+        type: string
+        x-go-name: ProxyRegistryDomain
+      replicatedAppDomain:
+        type: string
+        x-go-name: ReplicatedAppDomain
+      replicatedRegistryDomain:
+        type: string
+        x-go-name: ReplicatedRegistryDomain
+      version:
+        type: string
+        x-go-name: InstallerVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  InstanceTag:
+    type: object
+    properties:
+      instanceId:
+        type: string
+        x-go-name: InstanceId
+      key:
+        type: string
+        x-go-name: Key
+      origin:
+        type: string
+        x-go-name: Origin
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  Customer:
+    type: object
+    properties:
+      actions:
+        $ref: '#/definitions/CustomerActions'
+      activeInstances:
+        $ref: '#/definitions/InstancePreview'
+      airgap:
+        type: boolean
+        x-go-name: IsAirgapEnabled
+      airgapDownloadedAt:
+        type: string
+        format: date-time
+        x-go-name: AirgapDownloadedAt
+      airgapDownloadedChannelId:
+        type: string
+        x-go-name: AirgapDownloadedChannelID
+      airgapDownloadedChannelSequence:
+        type: integer
+        format: int64
+        x-go-name: AirgapDownloadedChannelSequence
+      airgapDownloadedReleaseLabel:
+        type: string
+        x-go-name: AirgapDownloadedReleaseLabel
+      airgapDownloadedReleaseSequence:
+        type: integer
+        format: int64
+        x-go-name: AirgapDownloadedReleaseSequence
+      appType:
+        type: string
+        x-go-name: AppType
+      channels:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerChannelWithDetail'
+        x-go-name: Channels
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      createdBy:
+        $ref: '#/definitions/Actor'
+      customId:
+        type: string
+        x-go-name: CustomID
+      downloadPortalUrl:
+        type: string
+        x-go-name: DownloadPortalURL
+      email:
+        type: string
+        x-go-name: Email
+      enterprise_portal:
+        $ref: '#/definitions/EnterprisePortalInfo'
+      entitlements:
+        $ref: '#/definitions/EntitlementValues'
+      esInstances:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerESInstance'
+        x-go-name: ESInstances
+      expiresAt:
+        type: string
+        format: date-time
+        x-go-name: ExpiresAt
+      id:
+        type: string
+        x-go-name: ID
+      inactiveInstances:
+        $ref: '#/definitions/InstancePreview'
+      installationId:
+        type: string
+        x-go-name: InstallationID
+      installationVersion:
+        type: string
+        x-go-name: InstallationVersion
+      installedReleaseLabel:
+        type: string
+        x-go-name: InstalledReleaseLabel
+      installedReleaseSequence:
+        type: integer
+        format: int64
+        x-go-name: InstalledReleaseSequence
+      instances:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerInstance'
+        x-go-name: Instances
+      isArchived:
+        type: boolean
+        x-go-name: IsArchived
+      isDevModeEnabled:
+        type: boolean
+        x-go-name: IsDevModeEnabled
+      isDisasterRecoverySupported:
+        type: boolean
+        x-go-name: IsDisasterRecoverySupported
+      isEmbeddedClusterDownloadEnabled:
+        type: boolean
+        x-go-name: IsEmbeddedClusterDownloadEnabled
+      isEmbeddedClusterMultiNodeEnabled:
+        type: boolean
+        x-go-name: IsEmbeddedClusterMultiNodeEnabled
+      isEnterprisePortalEnabled:
+        type: boolean
+        x-go-name: IsEnterprisePortalEnabled
+      isGeoaxisSupported:
+        type: boolean
+        x-go-name: IsGeoaxisSupported
+      isGitopsSupported:
+        type: boolean
+        x-go-name: IsGitopsSupported
+      isHelmAirgapEnabled:
+        type: boolean
+        x-go-name: IsHelmAirgapEnabled
+      isHelmInstallEnabled:
+        type: boolean
+        x-go-name: IsHelmInstallEnabled
+      isIdentityServiceSupported:
+        type: boolean
+        x-go-name: IsIdentityServiceSupported
+      isInstallerSupportEnabled:
+        type: boolean
+        x-go-name: IsInstallerSupportEnabled
+      isInstancesLimited:
+        type: boolean
+        x-go-name: IsInstancesLimited
+      isKotsInstallEnabled:
+        type: boolean
+        x-go-name: IsKotsInstallEnabled
+      isKurlInstallEnabled:
+        type: boolean
+        x-go-name: IsKurlInstallEnabled
+      isSecurityCenterEnabled:
+        type: boolean
+        x-go-name: IsSecurityCenterEnabled
+      isSnapshotSupported:
+        type: boolean
+        x-go-name: IsSnapshotSupported
+      isSupportBundleUploadEnabled:
+        type: boolean
+        x-go-name: IsSupportBundleUploadEnabled
+      lastActive:
+        type: string
+        format: date-time
+        x-go-name: LastActive
+      lowercaseName:
+        description: Lowercase fields for ES customer sorting
+        type: string
+        x-go-name: LowercaseName
+      name:
+        type: string
+        x-go-name: Name
+      pinnedChannelSequence:
+        type: integer
+        format: int64
+        x-go-name: PinnedChannelSequence
+      samlAllowed:
+        description: SAML configuration
+        type: boolean
+        x-go-name: SamlAllowed
+      shipInstallStatus:
+        $ref: '#/definitions/ShipInstallStatus'
+      teamId:
+        type: string
+        x-go-name: TeamID
+      type:
+        $ref: '#/definitions/LicenseType'
+      updatedAt:
+        type: string
+        format: date-time
+        x-go-name: UpdatedAt
+      updatedBy:
+        $ref: '#/definitions/Actor'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  InstancePreview:
+    type: object
+    properties:
+      instances:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerInstance'
+        x-go-name: Instances
+      moreAvailable:
+        type: boolean
+        x-go-name: MoreAvailable
+      totalCount:
+        type: integer
+        format: int64
+        x-go-name: TotalCount
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  CustomerEntitlement:
+    type: object
+    properties:
+      name:
+        type: string
+        x-go-name: Name
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
+  EnterprisePortalInfo:
+    description: EnterprisePortalInfo contains Enterprise Portal status and timestamps for a customer
+    type: object
+    properties:
+      access_granted_at:
+        type: string
+        format: date-time
+        x-go-name: AccessGrantedAt
+      access_granted_by:
+        description: AccessGrantedBy is the email address of the first user who activated EP access for this customer.
+        type: string
+        x-go-name: AccessGrantedBy
+      access_method:
+        type: string
+        x-go-name: AccessMethod
+      access_milestones:
+        description: AccessMilestones maps license_type → first access info for that license type.
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/EPAccessMilestoneInfo'
+        x-go-name: AccessMilestones
+      enabled:
+        type: boolean
+        x-go-name: Enabled
+      first_invite_sent_at:
+        type: string
+        format: date-time
+        x-go-name: FirstInviteSentAt
+      first_software_pulled_asset_type:
+        description: 'FirstSoftwarePulledAssetType is the type of asset pulled first.
+
+          Possible values: "helm_chart", "embedded_cluster_bundle", "proxy_image".'
+        type: string
+        x-go-name: FirstSoftwarePulledAssetType
+      first_software_pulled_asset_version:
+        description: FirstSoftwarePulledAssetVersion is the version/tag of the asset pulled first.
+        type: string
+        x-go-name: FirstSoftwarePulledAssetVersion
+      first_software_pulled_at:
+        description: 'FirstSoftwarePulledAt is the timestamp of the customer''s first completed software pull
+
+          (Helm chart, Embedded Cluster bundle, or proxy registry image). Null for customers
+
+          whose first pull occurred before this feature was introduced (forward-only tracking).'
+        type: string
+        format: date-time
+        x-go-name: FirstSoftwarePulledAt
+      last_software_pulled_asset_type:
+        description: LastSoftwarePulledAssetType is the type of the most recently pulled asset.
+        type: string
+        x-go-name: LastSoftwarePulledAssetType
+      last_software_pulled_asset_version:
+        description: LastSoftwarePulledAssetVersion is the version/tag of the most recently pulled asset.
+        type: string
+        x-go-name: LastSoftwarePulledAssetVersion
+      last_software_pulled_at:
+        description: 'LastSoftwarePulledAt is the timestamp of the customer''s most recent completed software pull.
+
+          Overwritten on every pull. Null until the customer''s first pull after this feature was introduced.'
+        type: string
+        format: date-time
+        x-go-name: LastSoftwarePulledAt
+      software_pull_milestones:
+        description: SoftwarePullMilestones maps license_type → first pull info for that license type.
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/SoftwarePullMilestoneInfo'
+        x-go-name: SoftwarePullMilestones
+      total_active_users:
+        type: integer
+        format: int64
+        x-go-name: TotalActiveUsers
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  CustomerInstance:
+    type: object
+    properties:
+      active:
+        type: boolean
+        x-go-name: Active
+      appStatus:
+        type: string
+        x-go-name: AppStatus
+      client:
+        type: string
+        x-go-name: Client
+      cloud:
+        type: string
+        x-go-name: Cloud
+      clusterId:
+        type: string
+        x-go-name: ClusterID
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      embeddedClusterVersion:
+        type: string
+        x-go-name: EmbeddedClusterVersion
+      instanceId:
+        type: string
+        x-go-name: InstanceID
+      isAirgap:
+        type: boolean
+        x-go-name: IsAirgap
+      isArchived:
+        type: boolean
+        x-go-name: IsArchived
+      isDummyInstance:
+        type: boolean
+        x-go-name: IsDummyInstance
+      isEmbeddedCluster:
+        type: boolean
+        x-go-name: IsEmbeddedCluster
+      isKurl:
+        type: boolean
+        x-go-name: IsKurl
+      k8sVersion:
+        type: string
+        x-go-name: K8sVersion
+      kotsVersion:
+        type: string
+        x-go-name: KotsVersion
+      kurlNodeCountReady:
+        type: integer
+        format: int64
+        x-go-name: KurlNodeCountReady
+      kurlNodeCountTotal:
+        type: integer
+        format: int64
+        x-go-name: KurlNodeCountTotal
+      lastActive:
+        type: string
+        format: date-time
+        x-go-name: LastActive
+      licenseId:
+        type: string
+        x-go-name: LicenseID
+      replicatedSdkVersion:
+        type: string
+        x-go-name: ReplicatedSDKVersion
+      securitySummary:
+        $ref: '#/definitions/InstanceSecuritySummary'
+      serviceAccountId:
+        type: string
+        x-go-name: ServiceAccountID
+      tags:
+        $ref: '#/definitions/InstanceTags'
+      versionHistory:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerInstanceVersionHistory'
+        x-go-name: VersionHistory
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  CustomerChannel:
+    type: object
+    properties:
+      channel_id:
+        type: string
+        x-go-name: ID
+      is_default_for_customer:
+        type: boolean
+        x-go-name: IsDefault
+      pinned_channel_sequence:
+        type: integer
+        format: int64
+        x-go-name: PinnedChannelSequence
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  LicenseType:
+    type: string
+    title: Can be set to "dev", "trial", "prod", "community", "test", or "paid"
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  ImageVulnCounts:
+    type: object
+    properties:
+      counts:
+        $ref: '#/definitions/VulnCounts'
+      digest:
+        type: string
+        x-go-name: Digest
+      digest_first_seen_at:
+        type: string
+        x-go-name: DigestFirstSeenAt
+      image_size_bytes:
+        type: integer
+        format: int64
+        x-go-name: ImageSizeBytes
+      input:
+        type: string
+        x-go-name: Input
+      installation_phase:
+        description: 'InstallationPhase indicates the Embedded Cluster phase for the image ("", "online", or "airgap").
+
+          Application images have the phase "".
+
+          Infrastructure images used for Embedded Cluster in both online and airgap have the phase "online" or "airgap".
+
+          Infrastructure images used for Embedded Cluster only in airgap have the phase "airgap".'
+        type: string
+        x-go-name: InstallationPhase
+      last_scanned_at:
+        type: string
+        x-go-name: LastScannedAt
+      not_found:
+        type: boolean
+        x-go-name: NotFound
+      sbom_status:
+        description: SBOM status tracking
+        type: string
+        x-go-name: SBOMStatus
+      sbom_status_message:
+        type: string
+        x-go-name: SBOMStatusMessage
+      sbom_status_updated_at:
+        type: string
+        x-go-name: SBOMStatusUpdatedAt
+      scan_status:
+        description: Scan status tracking
+        type: string
+        x-go-name: ScanStatus
+      scan_status_message:
+        type: string
+        x-go-name: ScanStatusMessage
+      scan_status_updated_at:
+        type: string
+        x-go-name: ScanStatusUpdatedAt
+      scanned_images:
+        description: Scan completeness tracking
+        type: integer
+        format: int64
+        x-go-name: ScannedImages
+      total_images:
+        type: integer
+        format: int64
+        x-go-name: TotalImages
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  EntitlementValues:
+    type: array
+    items:
+      $ref: '#/definitions/EntitlementValue'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  SoftwarePullMilestoneInfo:
+    type: object
+    title: SoftwarePullMilestoneInfo is the per-license-type software pull milestone exposed in the API.
+    properties:
+      asset_type:
+        type: string
+        x-go-name: AssetType
+      asset_version:
+        type: string
+        x-go-name: AssetVersion
+      first_pulled_at:
+        type: string
+        format: date-time
+        x-go-name: FirstPulledAt
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  InstallerTypeKotsConfig:
+    type: object
+    properties:
+      apiVersion:
+        type: string
+        x-go-name: APIVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  LintResult:
+    type: object
+    properties:
+      isLintingComplete:
+        type: boolean
+        x-go-name: IsLintingComplete
+      lintExpressions:
+        type: array
+        items:
+          $ref: '#/definitions/LintExpression'
+        x-go-name: LintExpressions
+    x-go-package: github.com/replicatedhq/vandoor/pkg/lint
+  ESCustomer:
+    type: object
+    properties:
+      actions:
+        $ref: '#/definitions/CustomerActions'
+      activeInstances:
+        $ref: '#/definitions/InstancePreview'
+      airgap:
+        type: boolean
+        x-go-name: IsAirgapEnabled
+      airgapDownloadedAt:
+        type: string
+        format: date-time
+        x-go-name: AirgapDownloadedAt
+      airgapDownloadedChannelId:
+        type: string
+        x-go-name: AirgapDownloadedChannelID
+      airgapDownloadedChannelSequence:
+        type: integer
+        format: int64
+        x-go-name: AirgapDownloadedChannelSequence
+      airgapDownloadedReleaseLabel:
+        type: string
+        x-go-name: AirgapDownloadedReleaseLabel
+      airgapDownloadedReleaseSequence:
+        type: integer
+        format: int64
+        x-go-name: AirgapDownloadedReleaseSequence
+      airgapInstancesCount:
+        type: integer
+        format: int64
+        x-go-name: AirgapInstancesCount
+      appType:
+        type: string
+        x-go-name: AppType
+      channels:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerChannelWithDetail'
+        x-go-name: Channels
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      createdBy:
+        $ref: '#/definitions/Actor'
+      customId:
+        type: string
+        x-go-name: CustomID
+      downloadPortalUrl:
+        type: string
+        x-go-name: DownloadPortalURL
+      email:
+        type: string
+        x-go-name: Email
+      enterprise_portal:
+        $ref: '#/definitions/EnterprisePortalInfo'
+      entitlements:
+        $ref: '#/definitions/EntitlementValues'
+      esInstances:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerESInstance'
+        x-go-name: ESInstances
+      expiresAt:
+        type: string
+        format: date-time
+        x-go-name: ExpiresAt
+      id:
+        type: string
+        x-go-name: ID
+      inactiveInstances:
+        $ref: '#/definitions/InstancePreview'
+      inactiveInstancesCount:
+        type: integer
+        format: int64
+        x-go-name: InactiveInstancesCount
+      installationId:
+        type: string
+        x-go-name: InstallationID
+      installationVersion:
+        type: string
+        x-go-name: InstallationVersion
+      installedReleaseLabel:
+        type: string
+        x-go-name: InstalledReleaseLabel
+      installedReleaseSequence:
+        type: integer
+        format: int64
+        x-go-name: InstalledReleaseSequence
+      instances:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerInstance'
+        x-go-name: Instances
+      isActive:
+        type: boolean
+        x-go-name: IsActive
+      isArchived:
+        type: boolean
+        x-go-name: IsArchived
+      isDevModeEnabled:
+        type: boolean
+        x-go-name: IsDevModeEnabled
+      isDisasterRecoverySupported:
+        type: boolean
+        x-go-name: IsDisasterRecoverySupported
+      isEmbeddedClusterDownloadEnabled:
+        type: boolean
+        x-go-name: IsEmbeddedClusterDownloadEnabled
+      isEmbeddedClusterMultiNodeEnabled:
+        type: boolean
+        x-go-name: IsEmbeddedClusterMultiNodeEnabled
+      isEnterprisePortalEnabled:
+        type: boolean
+        x-go-name: IsEnterprisePortalEnabled
+      isGeoaxisSupported:
+        type: boolean
+        x-go-name: IsGeoaxisSupported
+      isGitopsSupported:
+        type: boolean
+        x-go-name: IsGitopsSupported
+      isHelmAirgapEnabled:
+        type: boolean
+        x-go-name: IsHelmAirgapEnabled
+      isHelmInstallEnabled:
+        type: boolean
+        x-go-name: IsHelmInstallEnabled
+      isIdentityServiceSupported:
+        type: boolean
+        x-go-name: IsIdentityServiceSupported
+      isInstallerSupportEnabled:
+        type: boolean
+        x-go-name: IsInstallerSupportEnabled
+      isInstancesLimited:
+        type: boolean
+        x-go-name: IsInstancesLimited
+      isKotsInstallEnabled:
+        type: boolean
+        x-go-name: IsKotsInstallEnabled
+      isKurlInstallEnabled:
+        type: boolean
+        x-go-name: IsKurlInstallEnabled
+      isSecurityCenterEnabled:
+        type: boolean
+        x-go-name: IsSecurityCenterEnabled
+      isSnapshotSupported:
+        type: boolean
+        x-go-name: IsSnapshotSupported
+      isSupportBundleUploadEnabled:
+        type: boolean
+        x-go-name: IsSupportBundleUploadEnabled
+      lastActive:
+        type: string
+        format: date-time
+        x-go-name: LastActive
+      lowercaseName:
+        description: Lowercase fields for ES customer sorting
+        type: string
+        x-go-name: LowercaseName
+      name:
+        type: string
+        x-go-name: Name
+      onlineActiveInstancesCount:
+        description: Server-computed instance counts for hybrid view
+        type: integer
+        format: int64
+        x-go-name: OnlineActiveInstancesCount
+      pinnedChannelSequence:
+        type: integer
+        format: int64
+        x-go-name: PinnedChannelSequence
+      samlAllowed:
+        description: SAML configuration
+        type: boolean
+        x-go-name: SamlAllowed
+      shipInstallStatus:
+        $ref: '#/definitions/ShipInstallStatus'
+      teamId:
+        type: string
+        x-go-name: TeamID
+      totalInstancesCount:
+        type: integer
+        format: int64
+        x-go-name: TotalInstancesCount
+      type:
+        $ref: '#/definitions/LicenseType'
+      updatedAt:
+        type: string
+        format: date-time
+        x-go-name: UpdatedAt
+      updatedBy:
+        $ref: '#/definitions/Actor'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer
+  InstallerTypeHelm:
+    type: object
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  GitHubRef:
+    type: object
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  InstallerTypeReplicatedSDK:
+    type: object
+    properties:
+      sdkVersion:
+        type: string
+        x-go-name: SDKVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  CustomHostnameOverrides:
+    type: object
+    properties:
+      downloadPortal:
+        $ref: '#/definitions/CustomHostnameOverride'
+      proxy:
+        $ref: '#/definitions/CustomHostnameOverride'
+      registry:
+        $ref: '#/definitions/CustomHostnameOverride'
+      replicatedApp:
+        $ref: '#/definitions/CustomHostnameOverride'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  TrialSignupVerification:
+    type: object
+    properties:
+      appId:
+        type: string
+        x-go-name: AppID
+      company:
+        type: string
+        x-go-name: Company
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      customFields:
+        type: object
+        additionalProperties:
+          type: string
+        x-go-name: CustomFields
+      email:
+        type: string
+        x-go-name: Email
+      expiresAt:
+        type: string
+        format: date-time
+        x-go-name: ExpiresAt
+      teamId:
+        type: string
+        x-go-name: TeamID
+      updatedAt:
+        type: string
+        format: date-time
+        x-go-name: UpdatedAt
+      verifiedAt:
+        type: string
+        format: date-time
+        x-go-name: VerifiedAt
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models
+  InstallerTypePreflight:
+    type: object
+    properties:
+      apiVersion:
+        type: string
+        x-go-name: APIVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  HelmInstallabilityIssue:
+    type: object
+    properties:
+      message:
+        type: string
+        x-go-name: Message
+      resources:
+        type: array
+        items:
+          $ref: '#/definitions/HelmUnavailableResource'
+        x-go-name: Resources
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  CustomerInstanceVersionHistory:
+    type: object
+    properties:
+      clusterId:
+        type: string
+        x-go-name: ClusterID
+      downstreamChannelId:
+        type: string
+        x-go-name: DownstreamChannelID
+      downstreamReleaseSequence:
+        type: integer
+        format: int64
+        x-go-name: DownstreamReleaseSequence
+      instanceId:
+        type: string
+        x-go-name: InstanceID
+      intervalLast:
+        type: string
+        format: date-time
+        x-go-name: IntervalLast
+      intervalStart:
+        type: string
+        format: date-time
+        x-go-name: IntervalStart
+      nativeHelmCount:
+        type: integer
+        format: int32
+        x-go-name: NativeHelmCount
+      replHelmCount:
+        type: integer
+        format: int32
+        x-go-name: ReplHelmCount
+      versionLabel:
+        type: string
+        x-go-name: VersionLabel
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  InstanceTags:
+    type: array
+    items:
+      $ref: '#/definitions/InstanceTag'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  CustomHostnameOverride:
+    type: object
+    properties:
+      hostname:
+        type: string
+        x-go-name: Hostname
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  KotsChannelRelease:
+    type: object
+    properties:
+      airgapBuildError:
+        type: string
+        x-go-name: AirgapBuildError
+      airgapBuildStatus:
+        type: string
+        x-go-name: AirgapBuildStatus
+      airgapBundleImages:
+        type: array
+        items:
+          type: string
+        x-go-name: AirgapBundleImages
+      channelIcon:
+        type: string
+        x-go-name: ChannelIcon
+      channelId:
+        type: string
+        x-go-name: ChannelID
+      channelName:
+        type: string
+        x-go-name: ChannelName
+      channelSequence:
+        type: integer
+        format: int64
+        x-go-name: ChannelSequence
+      created:
+        type: string
+        format: date-time
+        x-go-name: Created
+      createdBy:
+        $ref: '#/definitions/Actor'
+      customResourceError:
+        type: string
+        x-go-name: CustomResourceError
+      customResourceWarnings:
+        type: array
+        items:
+          type: string
+        x-go-name: CustomResourceWarnings
+      demotedAt:
+        type: string
+        format: date-time
+        x-go-name: DemotedAt
+      embeddedClusterVersion:
+        type: string
+        x-go-name: EmbeddedClusterVersion
+      hasECInstaller:
+        type: boolean
+        x-go-name: HasECInstaller
+      hasKurlInstaller:
+        type: boolean
+        x-go-name: HasKurlInstaller
+      imageSecurityInfo:
+        type: array
+        items:
+          $ref: '#/definitions/ImageVulnCounts'
+        x-go-name: ImageSecurityInfo
+      imageSecuritySums:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/ImageVulnCounts'
+        x-go-name: ImageSecuritySums
+      installationTypes:
+        $ref: '#/definitions/InstallationTypes'
+      isDemoted:
+        type: boolean
+        x-go-name: IsDemoted
+      isRequired:
+        type: boolean
+        x-go-name: IsRequired
+      kurlInstallerID:
+        type: string
+        x-go-name: KurlInstallerID
+      lintResult:
+        $ref: '#/definitions/LintResult'
+      proxyRegistryDomain:
+        type: string
+        x-go-name: ProxyRegistryDomain
+      registrySecret:
+        type: string
+        x-go-name: RegistrySecret
+      releaseNotes:
+        type: string
+        x-go-name: ReleaseNotes
+      releasedAt:
+        type: string
+        format: date-time
+        x-go-name: ReleasedAt
+      replicatedRegistryDomain:
+        type: string
+        x-go-name: ReplicatedRegistryDomain
+      semver:
+        type: string
+        x-go-name: Semver
+      sequence:
+        type: integer
+        format: int64
+        x-go-name: Sequence
+      updated:
+        type: string
+        format: date-time
+        x-go-name: Updated
+      updatedBy:
+        $ref: '#/definitions/Actor'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  InstallationTypes:
+    type: object
+    properties:
+      embeddedCluster:
+        $ref: '#/definitions/InstallerTypeEmbeddedCluster'
+      helm:
+        $ref: '#/definitions/InstallerTypeHelm'
+      helmInstallabilityIssue:
+        $ref: '#/definitions/HelmInstallabilityIssue'
+      kots:
+        $ref: '#/definitions/InstallerTypeKots'
+      kotsConfig:
+        $ref: '#/definitions/InstallerTypeKotsConfig'
+      kurl:
+        $ref: '#/definitions/InstallationTypeKurl'
+      preflight:
+        $ref: '#/definitions/InstallerTypePreflight'
+      replicatedSDK:
+        $ref: '#/definitions/InstallerTypeReplicatedSDK'
+      supportBundle:
+        $ref: '#/definitions/InstallerTypeSupportBundle'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  VulnCounts:
+    type: object
+    properties:
+      critical:
+        type: integer
+        format: int64
+        x-go-name: Critical
+      high:
+        type: integer
+        format: int64
+        x-go-name: High
+      low:
+        type: integer
+        format: int64
+        x-go-name: Low
+      medium:
+        type: integer
+        format: int64
+        x-go-name: Medium
+      total:
+        type: integer
+        format: int64
+        x-go-name: Total
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  Actor:
+    type: object
+    properties:
+      description:
+        type: string
+        x-go-name: Description
+      id:
+        type: string
+        x-go-name: ID
+      link:
+        type: string
+        x-go-name: Link
+      timestamp:
+        type: string
+        format: date-time
+        x-go-name: Timestamp
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+  TotalActiveInactiveCustomers:
+    type: object
+    properties:
+      activeCustomers:
+        type: integer
+        format: int64
+        x-go-name: ActiveCustomers
+      inactiveCustomers:
+        type: integer
+        format: int64
+        x-go-name: InactiveCustomers
+      totalCustomers:
+        type: integer
+        format: int64
+        x-go-name: TotalCustomers
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
+  HelmChart:
+    type: object
+    properties:
+      error:
+        type: string
+        x-go-name: Error
+      hasPreflightSpec:
+        type: boolean
+        x-go-name: HasPreflightSpec
+      isKotsInstallerOnly:
+        type: boolean
+        x-go-name: IsKotsInstallerOnly
+      name:
+        type: string
+        x-go-name: Name
+      version:
+        type: string
+        x-go-name: Version
+      weight:
+        type: integer
+        format: int64
+        x-go-name: Weight
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  InstallerTypeKots:
+    type: object
+    properties:
+      minKotsVersion:
+        type: string
+        x-go-name: MinKotsVersion
+      targetKotsVersion:
+        type: string
+        x-go-name: TargetKotsVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  HelmUnavailableResource:
+    type: object
+    properties:
+      filePath:
+        type: string
+        x-go-name: FilePath
+      identifier:
+        type: string
+        x-go-name: Identifier
+      kind:
+        type: string
+        x-go-name: Kind
+      name:
+        type: string
+        x-go-name: Name
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  EntitlementValue:
+    type: object
+    properties:
+      isDefault:
+        type: boolean
+        x-go-name: IsDefault
+      name:
+        type: string
+        x-go-name: Name
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  ExtraLintRules:
+    type: object
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  CustomerActions:
+    type: object
+    properties:
+      shipApply:
+        type: string
+        x-go-name: ShipApply
+      shipApplyDocker:
+        type: string
+        x-go-name: ShipApplyDocker
+      shipInitCloud:
+        type: string
+        x-go-name: ShipInitCloud
+      shipInitHomebrew:
+        type: string
+        x-go-name: ShipInitHomebrew
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  InstanceSecuritySummary:
+    description: InstanceSecuritySummary represents aggregated security information for an instance
+    type: object
+    properties:
+      imageCount:
+        type: integer
+        format: int64
+        x-go-name: ImageCount
+      lastScannedAt:
+        type: string
+        format: date-time
+        x-go-name: LastScannedAt
+      vulnerabilityCounts:
+        $ref: '#/definitions/VulnCounts'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  EPAccessMilestoneInfo:
+    type: object
+    title: EPAccessMilestoneInfo is the per-license-type EP access milestone exposed in the API.
+    properties:
+      access_granted_at:
+        type: string
+        format: date-time
+        x-go-name: AccessGrantedAt
+      access_method:
+        type: string
+        x-go-name: AccessMethod
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  ShipInstallStatus:
+    type: object
+    properties:
+      status:
+        type: string
+        x-go-name: Status
+      updatedAt:
+        type: string
+        format: date-time
+        x-go-name: UpdatedAt
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
+  InstallerTypeSupportBundle:
+    type: object
+    properties:
+      apiVersion:
+        type: string
+        x-go-name: APIVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  CustomerChannelWithDetail:
+    type: object
+    properties:
+      adoptionRate:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerAdoption'
+        x-go-name: AdoptionRate
+      airgapDiffBundlesEnabled:
+        type: boolean
+        x-go-name: AirgapDiffBundlesEnabled
+      airgapDockerRegistryFormatEnabled:
+        type: boolean
+        x-go-name: AirgapDockerRegistryFormatEnabled
+      allowPublishableKey:
+        type: boolean
+        x-go-name: AllowPublishableKey
+      appId:
+        type: string
+        x-go-name: AppID
+      appName:
+        type: string
+        x-go-name: AppName
+      appSlug:
+        type: string
+        x-go-name: AppSlug
+      buildAirgapAutomatically:
+        type: boolean
+        x-go-name: BuildAirgapAutomatically
+      channelIcon:
+        type: string
+        x-go-name: ChannelIcon
+      channelSequence:
+        type: integer
+        format: int64
+        x-go-name: ChannelSequence
+      channelSlug:
+        type: string
+        x-go-name: Slug
+      channel_id:
+        type: string
+        x-go-name: ID
+      chartReleases:
+        description: ChartReleases is a map of chart name -> []string of version labels
+        type: array
+        items:
+          $ref: '#/definitions/HelmChart'
+        x-go-name: ChartReleases
+      created:
+        type: string
+        format: date-time
+        x-go-name: Created
+      currentVersion:
+        type: string
+        x-go-name: CurrentVersion
+      customHostnameOverrides:
+        $ref: '#/definitions/CustomHostnameOverrides'
+      customers:
+        $ref: '#/definitions/TotalActiveInactiveCustomers'
+      description:
+        type: string
+        x-go-name: Description
+      embeddedClusterInstallCommand:
+        type: string
+        x-go-name: EmbeddedClusterInstallCommand
+      enterprisePartnerChannelID:
+        type: string
+        x-go-name: EnterprisePartnerChannelID
+      existingClusterInstallCommand:
+        type: string
+        x-go-name: ExistingClusterInstallCommand
+      extraLintRules:
+        type: array
+        items:
+          $ref: '#/definitions/ExtraLintRules'
+        x-go-name: ExtraLintRules
+      gitHubRef:
+        $ref: '#/definitions/GitHubRef'
+      hasKurlInstaller:
+        description: swager:ignore
+        type: boolean
+        x-go-name: HasKurlInstaller
+      hasV1Beta3PreflightSpec:
+        description: 'HasV1Beta3PreflightSpec is true when the channel''s current release has an external
+
+          troubleshoot.sh/v1beta3 Preflight spec (distinct from a chart-embedded one). Only v1beta3 sets it.'
+        type: boolean
+        x-go-name: HasV1Beta3PreflightSpec
+      id:
+        type: string
+        x-go-name: ID
+      isArchived:
+        type: boolean
+        x-go-name: IsArchived
+      isDefault:
+        type: boolean
+        x-go-name: IsDefault
+      isHelmOnly:
+        type: boolean
+        x-go-name: IsHelmOnly
+      is_default_for_customer:
+        type: boolean
+        x-go-name: IsDefault
+      latestChannelSequence:
+        type: integer
+        format: int64
+        x-go-name: LatestChannelSequence
+      name:
+        type: string
+        x-go-name: Name
+      numActiveInstances:
+        type: integer
+        format: int64
+        x-go-name: NumActiveInstances
+      numReleases:
+        type: integer
+        format: int32
+        x-go-name: NumReleases
+      pinned_channel_sequence:
+        type: integer
+        format: int64
+        x-go-name: PinnedChannelSequence
+      releaseNotes:
+        type: string
+        x-go-name: ReleaseNotes
+      releaseSequence:
+        type: integer
+        format: int64
+        x-go-name: ReleaseSequence
+      releases:
+        type: array
+        items:
+          $ref: '#/definitions/KotsChannelRelease'
+        x-go-name: Releases
+      replicatedRegistryDomain:
+        type: string
+        x-go-name: ReplicatedRegistryDomain
+      semverRequired:
+        type: boolean
+        x-go-name: SemverRequired
+      semverWarning:
+        type: string
+        x-go-name: SemverWarning
+      targetKotsVersion:
+        type: string
+        x-go-name: TargetKotsVersion
+      updated:
+        type: string
+        format: date-time
+        x-go-name: Updated
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  CustomerESInstance:
+    type: object
+    title: Instance data saved in ES along with customer license. Only active instances are saved.
+    properties:
+      clusterId:
+        type: string
+        x-go-name: ClusterID
+      downstreamChannelId:
+        type: string
+        x-go-name: DownstreamChannelID
+      downstreamChannelName:
+        type: string
+        x-go-name: DownstreamChannelName
+      downstreamChannelSequence:
+        type: integer
+        format: int64
+        x-go-name: DownstreamChannelSequence
+      installedReleaseLabel:
+        type: string
+        x-go-name: InstalledReleaseLabel
+      instanceId:
+        type: string
+        x-go-name: InstanceID
+      tags:
+        $ref: '#/definitions/InstanceTags'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  LintExpression:
+    type: object
+    properties:
+      message:
+        type: string
+        x-go-name: Message
+      path:
+        type: string
+        x-go-name: Path
+      rule:
+        type: string
+        x-go-name: Rule
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/release
+responses:
+  postAirgapPasswordResponse:
+    description: PostAirgapPasswordResponse contains the returned password
+    schema:
+      type: object
+      required:
+      - password
+      properties:
+        password:
+          type: string
+          x-go-name: Password
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  getCustomerResponse:
+    description: GetCustomerResponse represents a customer.
+    schema:
+      type: object
+      properties:
+        customer:
+          $ref: '#/definitions/Customer'
+  downloadLicenseResponse:
+    description: DownloadLicenseResponse contains the license yaml
+    schema:
+      type: string
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+  getCustomerEntitlementsResponse:
+    description: GetCustomerEntitlementsResponse represents a customer.
+    schema:
+      type: object
+      properties:
+        entitlements:
+          type: array
+          items:
+            $ref: '#/definitions/EntitlementValue'
+          x-go-name: Entitlements
+  listCustomersResponse:
+    description: ListCustomersResponse contains the JSON customers list
+    schema:
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: '#/definitions/Customer'
+          x-go-name: Customers
+        totalCustomers:
+          type: integer
+          format: int64
+          x-go-name: TotalCustomers
+  listPendingTrialsResponse:
+    description: ListPendingTrialsResponse contains the JSON pending trials list
+    schema:
+      type: object
+      properties:
+        pendingTrials:
+          type: array
+          items:
+            $ref: '#/definitions/TrialSignupVerification'
+          x-go-name: PendingTrials
+        totalCount:
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+  responseNoContent:
+    description: On success, no payload returned
+  searchTeamCustomersResponse:
+    description: SearchTeamCustomersResponse contains the list of licenses
+    schema:
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: '#/definitions/ESCustomer'
+          x-go-name: Customers
+        query:
+          type: string
+          x-go-name: Query
+        total_hits:
+          type: integer
+          format: int64
+          x-go-name: TotalHits
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

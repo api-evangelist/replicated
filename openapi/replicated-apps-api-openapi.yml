@@ -1,0 +1,2090 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: apps
+paths:
+  /app:
+    post:
+      security:
+      - api_key: []
+      description: 'Create a new app for the team with the provided name.
+
+        The app will be available for further configuration and channel management.
+
+
+        Required RBAC Policy: kots/app/create'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Create an app.
+      operationId: createApp
+      parameters:
+      - description: App create parameters.
+        name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - name
+          properties:
+            name:
+              description: Name of the app that is to be created.
+              type: string
+              x-go-name: Name
+      responses:
+        '201':
+          $ref: '#/responses/getAppResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /app/{app_id}:
+    get:
+      security:
+      - api_key: []
+      description: 'Retrieve the details of a specific app, including its metadata and a list of associated channels.
+
+
+        Required RBAC Policy: kots/app/[:appid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Get an app.
+      operationId: getAppProperties
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getAppResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Delete the specified app from the team.
+
+        The app and all its associated resources will be removed.
+
+
+        Required RBAC Policy: kots/app/[:appid]/delete'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Delete an app.
+      operationId: deleteApp
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '201':
+          $ref: '#/responses/responseOk'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /app/{app_id}/builtin-license-field/{field_name}:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/builtin-licensefields/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Set a builtin license field value override for a given app and named field.
+      operationId: setBuiltinLicenseFieldOverride
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: FieldName
+        description: Field name
+        name: field_name
+        in: path
+        required: true
+      - name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - value
+          properties:
+            is_locked:
+              description: Whether the field should be locked. Optional.
+              type: boolean
+              x-go-name: IsLocked
+            value:
+              description: Value of the builtin license field that is to be overridden. Allows empty string.
+              type: string
+              x-go-name: Value
+      responses:
+        '200':
+          $ref: '#/responses/setBuiltinLicenseFieldOverrideResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/builtin-licensefields/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Delete a builtin license field override for a given app and named field.
+      operationId: deleteBuiltinLicenseFieldOverride
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: FieldName
+        description: Field name
+        name: field_name
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/builtin-license-fields:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/license/create'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: List builtin license fields for a given appId, with overrides applied.
+      operationId: listBuiltinLicenseFields
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listBuiltinLicenseFieldsResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/builtin-licensefields/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Delete all of the builtin license field overrides for a given app and revert to the builtin defaults.
+      operationId: deleteBuiltinLicenseFieldsOverrides
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/customer_instances:
+    get:
+      security:
+      - api_key: []
+      description: 'Generate and return a report of all customer instances for a specific app, in either CSV or JSON format.
+
+        Includes instance metadata and supports filtering by customer IDs and archived status.
+
+
+        Required RBAC Policy: kots/app/[:appid]/read (app-level gate; results are also
+
+        filtered per-customer by kots/app/[:appid]/license/[:licenseid]/read)'
+      produces:
+      - file
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Export customer instances for an app as CSV or JSON.
+      operationId: listAppCustomerInstances
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: SortColumn
+        description: Sort column
+        name: sortColumn
+        in: query
+      - type: boolean
+        x-go-name: SortDesc
+        description: Sort descending
+        name: sortDesc
+        in: query
+      - type: string
+        x-go-name: Format
+        description: 'Format to export: csv or json'
+        name: format
+        in: query
+      - type: array
+        items:
+          type: string
+        x-go-name: CustomerIds
+        description: Comma separated array of customer ids
+        name: customerIds
+        in: query
+      - type: boolean
+        name: IncludeArchived
+        in: query
+      - type: string
+        description: Customer-level filters
+        name: Query
+        in: query
+      - type: boolean
+        name: IncludeActive
+        in: query
+      - type: boolean
+        name: IncludeInactive
+        in: query
+      - type: boolean
+        name: IncludeArchivedCustomers
+        in: query
+      - type: string
+        name: LicenseType
+        in: query
+      - type: string
+        name: ChannelName
+        in: query
+      - type: string
+        name: AdoptionRateFilter
+        in: query
+      - type: boolean
+        description: Instance-level filters
+        name: IncludeArchivedInstances
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listAppCustomerInstancesResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/customers_csv:
+    get:
+      security:
+      - api_key: []
+      description: 'Generate and return a CSV report of all customers for a specific app, including metadata and instance information.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - file
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Get customer report in CSV format.
+      operationId: listAppCustomersCsv
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: SortColumn
+        description: Sort column
+        name: sortColumn
+        in: query
+      - type: boolean
+        x-go-name: SortDesc
+        description: Sort descending
+        name: sortDesc
+        in: query
+      - type: string
+        x-go-name: CustomerName
+        description: filter by customer name
+        name: customerName
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listAppCustomersCsvResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+  /app/{app_id}/events:
+    get:
+      security:
+      - api_key: []
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Get instance events in JSON format.
+      operationId: listAppInstanceEvents
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: array
+        items:
+          type: string
+        x-go-name: CustomerIds
+        description: Comma separated array of customer ids
+        name: customerIds
+        in: query
+      - type: array
+        items:
+          type: string
+        x-go-name: InstanceIds
+        name: instanceIds
+        in: query
+      - type: array
+        items:
+          type: string
+        x-go-name: EventTypes
+        name: eventTypes
+        in: query
+      - type: string
+        format: date-time
+        x-go-name: Before
+        name: before
+        in: query
+      - type: string
+        format: date-time
+        x-go-name: After
+        name: after
+        in: query
+      - type: string
+        name: Format
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listAppInstanceEventsResponse'
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/images:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/image/list'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Lists all registry images for an app by ID.
+      operationId: listAppImages
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listImagesResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/images/delete:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/image/delete'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Deletes registry images for an app by ID.
+      operationId: deleteAppImages
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: Image references to delete
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - imageRefs
+          properties:
+            imageRefs:
+              description: Image references to delete
+              type: array
+              items:
+                type: string
+              x-go-name: ImageRefs
+              example:
+              - myapp/myimage:1.0.0
+              - myapp/myimage:2.0.0
+      responses:
+        '200':
+          $ref: '#/responses/responseOk'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/license-field:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/licensefields/create'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Create a license field for a given app.
+      operationId: createLicenseField
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - name
+          - type
+          - title
+          - hidden
+          properties:
+            default:
+              description: Default value of the entitlement field that is to be created.
+              type: string
+              x-go-name: Default
+            enumOptions:
+              description: Enum options for the entitlement field (only for Enum type).
+              type: array
+              items:
+                type: string
+              x-go-name: EnumOptions
+            hidden:
+              description: Hidden flag of the entitlement field that is to be created.
+              type: boolean
+              x-go-name: Hidden
+            name:
+              description: Name of the entitlement field that is to be created.
+              type: string
+              x-go-name: Name
+            required:
+              description: Required flag of the entitlement field that is to be created.
+              type: boolean
+              x-go-name: Required
+            title:
+              description: Title of the entitlement field that is to be created.
+              type: string
+              x-go-name: Title
+            type:
+              description: Type of the entitlement field that is to be created.
+              type: string
+              x-go-name: Type
+      responses:
+        '200':
+          $ref: '#/responses/createLicenseFieldResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/license-field/{license_field_name}:
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/licensefields/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Update a license field for a given appId and licenseFieldName.
+      operationId: editLicenseField
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: LicenseFieldName
+        description: Field name
+        name: license_field_name
+        in: path
+        required: true
+      - name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - title
+          - default
+          - hidden
+          - required
+          properties:
+            default:
+              description: Optional default value for this licensefield.
+              type: string
+              x-go-name: Default
+            enumOptions:
+              description: Enum options for the entitlement field (only for Enum type).
+              type: array
+              items:
+                type: string
+              x-go-name: EnumOptions
+            hidden:
+              description: Indicates if this field will be visible from the on-premise license screen.
+              type: boolean
+              x-go-name: Hidden
+            required:
+              description: Indicates if this field will be required from the on-premise license screen.
+              type: boolean
+              x-go-name: Required
+            title:
+              description: Title of custom license field to display.
+              type: string
+              x-go-name: Title
+      responses:
+        '200':
+          $ref: '#/responses/editLicenseFieldResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/licensefields/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Delete a field for a given app and named field.
+      operationId: deleteLicenseField
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: LicenseFieldName
+        description: Field name
+        name: license_field_name
+        in: path
+        required: true
+      - type: boolean
+        x-go-name: PreserveFields
+        description: Field name
+        name: preserve_fields
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/deleteLicenseFieldResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/license-fields:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/licensefields/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: List license fields for a given appId.
+      operationId: listLicenseFields
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listLicenseFieldsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/rename:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Rename the app.
+      operationId: renameApp
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: App rename parameters.
+        name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - name
+          properties:
+            name:
+              description: New name of the app.
+              type: string
+              x-go-name: Name
+      responses:
+        '200':
+          $ref: '#/responses/responseOk'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '429':
+          $ref: '#/responses/responseErrTooManyRequests'
+  /app/{app_id}/security-center-settings:
+    get:
+      security:
+      - api_key: []
+      description: 'Get the security center configuration settings for the specified app.
+
+
+        Required RBAC Policy: kots/app/[:appid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Get app security center settings.
+      operationId: getSecurityCenterSettings
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getSecurityCenterSettingsResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: 'Update the security center configuration settings for the specified app.
+
+
+        Required RBAC Policy: kots/app/[:appid]/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Update app security center settings.
+      operationId: updateSecurityCenterSettings
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: Security center settings configuration
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - enabled
+          properties:
+            enabled:
+              description: Whether security center is enabled
+              type: boolean
+              x-go-name: Enabled
+      responses:
+        '200':
+          $ref: '#/responses/getSecurityCenterSettingsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/trial-signup:
+    put:
+      security:
+      - api_key: []
+      description: 'Enable or disable trial signup for the specified app.
+
+
+        Required RBAC Policy: kots/app/[:appid]/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Update app trial signup setting.
+      operationId: updateAppTrialSignup
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: Trial signup configuration
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - enabled
+          properties:
+            enabled:
+              description: Whether trial signup is enabled for this app
+              type: boolean
+              x-go-name: Enabled
+      responses:
+        '200':
+          $ref: '#/responses/getAppResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/trial-signup-settings:
+    get:
+      security:
+      - api_key: []
+      description: 'Get the trial signup configuration settings for the specified app.
+
+
+        Required RBAC Policy: kots/app/[:appid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Get app trial signup settings.
+      operationId: getTrialSignupSettings
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getTrialSignupSettingsResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: 'Update the trial signup configuration settings for the specified app.
+
+
+        Required RBAC Policy: kots/app/[:appid]/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: Update app trial signup settings.
+      operationId: updateTrialSignupSettings
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: Trial signup settings configuration
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - defaultChannelId
+          - expirationDays
+          - helmInstallEnabled
+          - embeddedClusterEnabled
+          - isHelmAirgapEnabled
+          - supportBundleUploadEnabled
+          - licenseType
+          properties:
+            customSignupFields:
+              description: Custom signup fields for the enterprise portal signup form
+              type: array
+              items:
+                $ref: '#/definitions/CustomSignupFieldDefinition'
+              x-go-name: CustomSignupFields
+            defaultChannelId:
+              description: Default channel ID for trial signups
+              type: string
+              x-go-name: DefaultChannelID
+            domainFilterDomains:
+              description: List of domains to block or allow
+              type: array
+              items:
+                type: string
+              x-go-name: DomainFilterDomains
+            domainFilterMode:
+              description: 'Domain filter mode: off, block, or allow'
+              type: string
+              x-go-name: DomainFilterMode
+            domainFilterUseDefaultBlocklist:
+              description: Whether to include the default consumer domain blocklist
+              type: boolean
+              x-go-name: DomainFilterUseDefaultBlock
+            embeddedClusterEnabled:
+              description: Whether embedded cluster is enabled
+              type: boolean
+              x-go-name: EmbeddedClusterEnabled
+            expirationDays:
+              description: Number of days until trial expires (max 90)
+              type: integer
+              format: int64
+              x-go-name: ExpirationDays
+            helmInstallEnabled:
+              description: Whether helm install is enabled
+              type: boolean
+              x-go-name: HelmInstallEnabled
+            isHelmAirgapEnabled:
+              description: Whether helm airgap is enabled
+              type: boolean
+              x-go-name: IsHelmAirgapEnabled
+            licenseType:
+              description: 'License type: trial or community'
+              type: string
+              x-go-name: LicenseType
+            supportBundleUploadEnabled:
+              description: Whether support bundle upload is enabled
+              type: boolean
+              x-go-name: SupportBundleUploadEnabled
+            termsAndConditionsUrl:
+              description: Terms and conditions URL (optional, must be HTTPS)
+              type: string
+              x-go-name: TermsAndConditionsURL
+      responses:
+        '200':
+          $ref: '#/responses/getTrialSignupSettingsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /apps:
+    get:
+      security:
+      - api_key: []
+      description: 'Return a list of all apps accessible to the authenticated team, including their metadata and associated channels.
+
+        Optionally, channels can be excluded from the response using the excludeChannels query parameter.
+
+
+        Required RBAC Policy: kots/app/[:appid]/read and kots/app/[:appid]/channel/[:channelid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - apps
+      summary: List apps for a team.
+      operationId: apps
+      responses:
+        '200':
+          $ref: '#/responses/listAppsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+definitions:
+  AppWithChannels:
+    type: object
+    properties:
+      activeEnterprisePortalTemplate:
+        type: string
+        x-go-name: ActiveEnterprisePortalTemplate
+      askAiEnabled:
+        type: boolean
+        x-go-name: AskAiEnabled
+      channels:
+        type: array
+        items:
+          $ref: '#/definitions/Channel'
+        x-go-name: Channels
+      created:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      defaultFromEmail:
+        type: string
+        x-go-name: DefaultFromEmail
+      description:
+        type: string
+        x-go-name: Description
+      downloadPortalFqdnOverride:
+        type: string
+        x-go-name: DownloadPortalFQDNOverride
+      emailVerifiedAt:
+        type: string
+        format: date-time
+        x-go-name: EmailVerifiedAt
+      hideSupportBundleUploadEnabled:
+        type: boolean
+        x-go-name: HideSupportBundleUploadEnabled
+      iconUrl:
+        type: string
+        x-go-name: IconURL
+      id:
+        type: string
+        x-go-name: ID
+      isArchived:
+        type: boolean
+        x-go-name: IsArchived
+      isKotsApp:
+        type: boolean
+        x-go-name: IsKotsApp
+      name:
+        type: string
+        x-go-name: Name
+      publicKeyPem:
+        type: string
+        x-go-name: PublicKeyPEM
+      renamedAt:
+        type: string
+        format: date-time
+        x-go-name: RenamedAt
+      securityCenterEnabled:
+        type: boolean
+        x-go-name: SecurityCenterEnabled
+      slug:
+        type: string
+        x-go-name: Slug
+      supportBundleUploadEnabled:
+        type: boolean
+        x-go-name: SupportBundleUploadEnabled
+      teamId:
+        type: string
+        x-go-name: TeamID
+      trialSignupEnabled:
+        type: boolean
+        x-go-name: TrialSignupEnabled
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/apps
+  InstallationTypeKurl:
+    type: object
+    properties:
+      installerVersion:
+        type: string
+        x-go-name: InstallerVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  CustomerAdoption:
+    type: object
+    properties:
+      channelId:
+        type: string
+        x-go-name: ChannelID
+      count:
+        type: integer
+        format: int64
+        x-go-name: Count
+      percent:
+        type: number
+        format: double
+        x-go-name: Percent
+      releaseSequence:
+        type: integer
+        format: int64
+        x-go-name: ReleaseSequence
+      semver:
+        type: string
+        x-go-name: Semver
+      totalOnChannel:
+        type: integer
+        format: int64
+        x-go-name: TotalOnChannel
+      versionsFromLatest:
+        type: integer
+        format: int64
+        x-go-name: VersionsFromLatest
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
+  InstallerTypeEmbeddedCluster:
+    type: object
+    properties:
+      proxyRegistryDomain:
+        type: string
+        x-go-name: ProxyRegistryDomain
+      replicatedAppDomain:
+        type: string
+        x-go-name: ReplicatedAppDomain
+      replicatedRegistryDomain:
+        type: string
+        x-go-name: ReplicatedRegistryDomain
+      version:
+        type: string
+        x-go-name: InstallerVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  ImageVulnCounts:
+    type: object
+    properties:
+      counts:
+        $ref: '#/definitions/VulnCounts'
+      digest:
+        type: string
+        x-go-name: Digest
+      digest_first_seen_at:
+        type: string
+        x-go-name: DigestFirstSeenAt
+      image_size_bytes:
+        type: integer
+        format: int64
+        x-go-name: ImageSizeBytes
+      input:
+        type: string
+        x-go-name: Input
+      installation_phase:
+        description: 'InstallationPhase indicates the Embedded Cluster phase for the image ("", "online", or "airgap").
+
+          Application images have the phase "".
+
+          Infrastructure images used for Embedded Cluster in both online and airgap have the phase "online" or "airgap".
+
+          Infrastructure images used for Embedded Cluster only in airgap have the phase "airgap".'
+        type: string
+        x-go-name: InstallationPhase
+      last_scanned_at:
+        type: string
+        x-go-name: LastScannedAt
+      not_found:
+        type: boolean
+        x-go-name: NotFound
+      sbom_status:
+        description: SBOM status tracking
+        type: string
+        x-go-name: SBOMStatus
+      sbom_status_message:
+        type: string
+        x-go-name: SBOMStatusMessage
+      sbom_status_updated_at:
+        type: string
+        x-go-name: SBOMStatusUpdatedAt
+      scan_status:
+        description: Scan status tracking
+        type: string
+        x-go-name: ScanStatus
+      scan_status_message:
+        type: string
+        x-go-name: ScanStatusMessage
+      scan_status_updated_at:
+        type: string
+        x-go-name: ScanStatusUpdatedAt
+      scanned_images:
+        description: Scan completeness tracking
+        type: integer
+        format: int64
+        x-go-name: ScannedImages
+      total_images:
+        type: integer
+        format: int64
+        x-go-name: TotalImages
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  InstallerTypeKotsConfig:
+    type: object
+    properties:
+      apiVersion:
+        type: string
+        x-go-name: APIVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  LintResult:
+    type: object
+    properties:
+      isLintingComplete:
+        type: boolean
+        x-go-name: IsLintingComplete
+      lintExpressions:
+        type: array
+        items:
+          $ref: '#/definitions/LintExpression'
+        x-go-name: LintExpressions
+    x-go-package: github.com/replicatedhq/vandoor/pkg/lint
+  Image:
+    type: object
+    properties:
+      name:
+        type: string
+        x-go-name: Name
+      versions:
+        type: array
+        items:
+          type: string
+        x-go-name: Versions
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/images
+  InstallerTypeHelm:
+    type: object
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  GitHubRef:
+    type: object
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  EntitlementField:
+    type: object
+    properties:
+      default:
+        type: string
+        x-go-name: Default
+      enumOptions:
+        type: array
+        items:
+          type: string
+        x-go-name: EnumOptions
+      hidden:
+        type: boolean
+        x-go-name: Hidden
+      name:
+        type: string
+        x-go-name: Name
+      required:
+        type: boolean
+        x-go-name: Required
+      title:
+        type: string
+        x-go-name: Title
+      type:
+        $ref: '#/definitions/EntitlementValueType'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  InstallerTypeReplicatedSDK:
+    type: object
+    properties:
+      sdkVersion:
+        type: string
+        x-go-name: SDKVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  CustomHostnameOverrides:
+    type: object
+    properties:
+      downloadPortal:
+        $ref: '#/definitions/CustomHostnameOverride'
+      proxy:
+        $ref: '#/definitions/CustomHostnameOverride'
+      registry:
+        $ref: '#/definitions/CustomHostnameOverride'
+      replicatedApp:
+        $ref: '#/definitions/CustomHostnameOverride'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  CustomSignupFieldDefinition:
+    type: object
+    properties:
+      key:
+        type: string
+        x-go-name: Key
+      label:
+        type: string
+        x-go-name: Label
+      placeholder:
+        type: string
+        x-go-name: Placeholder
+      required:
+        type: boolean
+        x-go-name: Required
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models
+  InstallerTypePreflight:
+    type: object
+    properties:
+      apiVersion:
+        type: string
+        x-go-name: APIVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  HelmInstallabilityIssue:
+    type: object
+    properties:
+      message:
+        type: string
+        x-go-name: Message
+      resources:
+        type: array
+        items:
+          $ref: '#/definitions/HelmUnavailableResource'
+        x-go-name: Resources
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  CustomHostnameOverride:
+    type: object
+    properties:
+      hostname:
+        type: string
+        x-go-name: Hostname
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  KotsChannelRelease:
+    type: object
+    properties:
+      airgapBuildError:
+        type: string
+        x-go-name: AirgapBuildError
+      airgapBuildStatus:
+        type: string
+        x-go-name: AirgapBuildStatus
+      airgapBundleImages:
+        type: array
+        items:
+          type: string
+        x-go-name: AirgapBundleImages
+      channelIcon:
+        type: string
+        x-go-name: ChannelIcon
+      channelId:
+        type: string
+        x-go-name: ChannelID
+      channelName:
+        type: string
+        x-go-name: ChannelName
+      channelSequence:
+        type: integer
+        format: int64
+        x-go-name: ChannelSequence
+      created:
+        type: string
+        format: date-time
+        x-go-name: Created
+      createdBy:
+        $ref: '#/definitions/Actor'
+      customResourceError:
+        type: string
+        x-go-name: CustomResourceError
+      customResourceWarnings:
+        type: array
+        items:
+          type: string
+        x-go-name: CustomResourceWarnings
+      demotedAt:
+        type: string
+        format: date-time
+        x-go-name: DemotedAt
+      embeddedClusterVersion:
+        type: string
+        x-go-name: EmbeddedClusterVersion
+      hasECInstaller:
+        type: boolean
+        x-go-name: HasECInstaller
+      hasKurlInstaller:
+        type: boolean
+        x-go-name: HasKurlInstaller
+      imageSecurityInfo:
+        type: array
+        items:
+          $ref: '#/definitions/ImageVulnCounts'
+        x-go-name: ImageSecurityInfo
+      imageSecuritySums:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/ImageVulnCounts'
+        x-go-name: ImageSecuritySums
+      installationTypes:
+        $ref: '#/definitions/InstallationTypes'
+      isDemoted:
+        type: boolean
+        x-go-name: IsDemoted
+      isRequired:
+        type: boolean
+        x-go-name: IsRequired
+      kurlInstallerID:
+        type: string
+        x-go-name: KurlInstallerID
+      lintResult:
+        $ref: '#/definitions/LintResult'
+      proxyRegistryDomain:
+        type: string
+        x-go-name: ProxyRegistryDomain
+      registrySecret:
+        type: string
+        x-go-name: RegistrySecret
+      releaseNotes:
+        type: string
+        x-go-name: ReleaseNotes
+      releasedAt:
+        type: string
+        format: date-time
+        x-go-name: ReleasedAt
+      replicatedRegistryDomain:
+        type: string
+        x-go-name: ReplicatedRegistryDomain
+      semver:
+        type: string
+        x-go-name: Semver
+      sequence:
+        type: integer
+        format: int64
+        x-go-name: Sequence
+      updated:
+        type: string
+        format: date-time
+        x-go-name: Updated
+      updatedBy:
+        $ref: '#/definitions/Actor'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  InstallationTypes:
+    type: object
+    properties:
+      embeddedCluster:
+        $ref: '#/definitions/InstallerTypeEmbeddedCluster'
+      helm:
+        $ref: '#/definitions/InstallerTypeHelm'
+      helmInstallabilityIssue:
+        $ref: '#/definitions/HelmInstallabilityIssue'
+      kots:
+        $ref: '#/definitions/InstallerTypeKots'
+      kotsConfig:
+        $ref: '#/definitions/InstallerTypeKotsConfig'
+      kurl:
+        $ref: '#/definitions/InstallationTypeKurl'
+      preflight:
+        $ref: '#/definitions/InstallerTypePreflight'
+      replicatedSDK:
+        $ref: '#/definitions/InstallerTypeReplicatedSDK'
+      supportBundle:
+        $ref: '#/definitions/InstallerTypeSupportBundle'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  VulnCounts:
+    type: object
+    properties:
+      critical:
+        type: integer
+        format: int64
+        x-go-name: Critical
+      high:
+        type: integer
+        format: int64
+        x-go-name: High
+      low:
+        type: integer
+        format: int64
+        x-go-name: Low
+      medium:
+        type: integer
+        format: int64
+        x-go-name: Medium
+      total:
+        type: integer
+        format: int64
+        x-go-name: Total
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  Actor:
+    type: object
+    properties:
+      description:
+        type: string
+        x-go-name: Description
+      id:
+        type: string
+        x-go-name: ID
+      link:
+        type: string
+        x-go-name: Link
+      timestamp:
+        type: string
+        format: date-time
+        x-go-name: Timestamp
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+  TotalActiveInactiveCustomers:
+    type: object
+    properties:
+      activeCustomers:
+        type: integer
+        format: int64
+        x-go-name: ActiveCustomers
+      inactiveCustomers:
+        type: integer
+        format: int64
+        x-go-name: InactiveCustomers
+      totalCustomers:
+        type: integer
+        format: int64
+        x-go-name: TotalCustomers
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
+  HelmChart:
+    type: object
+    properties:
+      error:
+        type: string
+        x-go-name: Error
+      hasPreflightSpec:
+        type: boolean
+        x-go-name: HasPreflightSpec
+      isKotsInstallerOnly:
+        type: boolean
+        x-go-name: IsKotsInstallerOnly
+      name:
+        type: string
+        x-go-name: Name
+      version:
+        type: string
+        x-go-name: Version
+      weight:
+        type: integer
+        format: int64
+        x-go-name: Weight
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  HelmUnavailableResource:
+    type: object
+    properties:
+      filePath:
+        type: string
+        x-go-name: FilePath
+      identifier:
+        type: string
+        x-go-name: Identifier
+      kind:
+        type: string
+        x-go-name: Kind
+      name:
+        type: string
+        x-go-name: Name
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  ExtraLintRules:
+    type: object
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  TrialSignupSettings:
+    type: object
+    properties:
+      appId:
+        type: string
+        x-go-name: AppID
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      customSignupFields:
+        type: array
+        items:
+          $ref: '#/definitions/CustomSignupFieldDefinition'
+        x-go-name: CustomSignupFields
+      defaultChannelId:
+        type: string
+        x-go-name: DefaultChannelID
+      domainFilterDomains:
+        type: array
+        items:
+          type: string
+        x-go-name: DomainFilterDomains
+      domainFilterMode:
+        type: string
+        x-go-name: DomainFilterMode
+      domainFilterUseDefaultBlocklist:
+        type: boolean
+        x-go-name: DomainFilterUseDefaultBlock
+      embeddedClusterEnabled:
+        type: boolean
+        x-go-name: EmbeddedClusterEnabled
+      expirationDays:
+        type: integer
+        format: int64
+        x-go-name: ExpirationDays
+      helmInstallEnabled:
+        type: boolean
+        x-go-name: HelmInstallEnabled
+      isHelmAirgapEnabled:
+        type: boolean
+        x-go-name: IsHelmAirgapEnabled
+      licenseType:
+        type: string
+        x-go-name: LicenseType
+      supportBundleUploadEnabled:
+        type: boolean
+        x-go-name: SupportBundleUploadEnabled
+      termsAndConditionsUrl:
+        type: string
+        x-go-name: TermsAndConditionsURL
+      updatedAt:
+        type: string
+        format: date-time
+        x-go-name: UpdatedAt
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models
+  InstallerTypeKots:
+    type: object
+    properties:
+      minKotsVersion:
+        type: string
+        x-go-name: MinKotsVersion
+      targetKotsVersion:
+        type: string
+        x-go-name: TargetKotsVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  Channel:
+    type: object
+    properties:
+      adoptionRate:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerAdoption'
+        x-go-name: AdoptionRate
+      airgapDiffBundlesEnabled:
+        type: boolean
+        x-go-name: AirgapDiffBundlesEnabled
+      airgapDockerRegistryFormatEnabled:
+        type: boolean
+        x-go-name: AirgapDockerRegistryFormatEnabled
+      allowPublishableKey:
+        type: boolean
+        x-go-name: AllowPublishableKey
+      appId:
+        type: string
+        x-go-name: AppID
+      appName:
+        type: string
+        x-go-name: AppName
+      appSlug:
+        type: string
+        x-go-name: AppSlug
+      buildAirgapAutomatically:
+        type: boolean
+        x-go-name: BuildAirgapAutomatically
+      channelIcon:
+        type: string
+        x-go-name: ChannelIcon
+      channelSequence:
+        type: integer
+        format: int64
+        x-go-name: ChannelSequence
+      channelSlug:
+        type: string
+        x-go-name: Slug
+      chartReleases:
+        description: ChartReleases is a map of chart name -> []string of version labels
+        type: array
+        items:
+          $ref: '#/definitions/HelmChart'
+        x-go-name: ChartReleases
+      created:
+        type: string
+        format: date-time
+        x-go-name: Created
+      currentVersion:
+        type: string
+        x-go-name: CurrentVersion
+      customHostnameOverrides:
+        $ref: '#/definitions/CustomHostnameOverrides'
+      customers:
+        $ref: '#/definitions/TotalActiveInactiveCustomers'
+      description:
+        type: string
+        x-go-name: Description
+      embeddedClusterInstallCommand:
+        type: string
+        x-go-name: EmbeddedClusterInstallCommand
+      enterprisePartnerChannelID:
+        type: string
+        x-go-name: EnterprisePartnerChannelID
+      existingClusterInstallCommand:
+        type: string
+        x-go-name: ExistingClusterInstallCommand
+      extraLintRules:
+        type: array
+        items:
+          $ref: '#/definitions/ExtraLintRules'
+        x-go-name: ExtraLintRules
+      gitHubRef:
+        $ref: '#/definitions/GitHubRef'
+      hasKurlInstaller:
+        description: swager:ignore
+        type: boolean
+        x-go-name: HasKurlInstaller
+      hasV1Beta3PreflightSpec:
+        description: 'HasV1Beta3PreflightSpec is true when the channel''s current release has an external
+
+          troubleshoot.sh/v1beta3 Preflight spec (distinct from a chart-embedded one). Only v1beta3 sets it.'
+        type: boolean
+        x-go-name: HasV1Beta3PreflightSpec
+      id:
+        type: string
+        x-go-name: ID
+      isArchived:
+        type: boolean
+        x-go-name: IsArchived
+      isDefault:
+        type: boolean
+        x-go-name: IsDefault
+      isHelmOnly:
+        type: boolean
+        x-go-name: IsHelmOnly
+      latestChannelSequence:
+        type: integer
+        format: int64
+        x-go-name: LatestChannelSequence
+      name:
+        type: string
+        x-go-name: Name
+      numActiveInstances:
+        type: integer
+        format: int64
+        x-go-name: NumActiveInstances
+      numReleases:
+        type: integer
+        format: int32
+        x-go-name: NumReleases
+      releaseNotes:
+        type: string
+        x-go-name: ReleaseNotes
+      releaseSequence:
+        type: integer
+        format: int64
+        x-go-name: ReleaseSequence
+      releases:
+        type: array
+        items:
+          $ref: '#/definitions/KotsChannelRelease'
+        x-go-name: Releases
+      replicatedRegistryDomain:
+        type: string
+        x-go-name: ReplicatedRegistryDomain
+      semverRequired:
+        type: boolean
+        x-go-name: SemverRequired
+      semverWarning:
+        type: string
+        x-go-name: SemverWarning
+      targetKotsVersion:
+        type: string
+        x-go-name: TargetKotsVersion
+      updated:
+        type: string
+        format: date-time
+        x-go-name: Updated
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  BuiltInDefaultLicenseField:
+    type: object
+    properties:
+      FieldName:
+        type: string
+      is_default:
+        type: boolean
+        x-go-name: IsDefault
+      is_hidden:
+        type: boolean
+        x-go-name: IsHidden
+      is_locked:
+        type: boolean
+        x-go-name: IsLocked
+      is_required:
+        type: boolean
+        x-go-name: IsRequired
+      title:
+        type: string
+        x-go-name: Title
+      type:
+        type: string
+        x-go-name: Type
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/app/types
+  InstallerTypeSupportBundle:
+    type: object
+    properties:
+      apiVersion:
+        type: string
+        x-go-name: APIVersion
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+  EntitlementValueType:
+    type: string
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  LintExpression:
+    type: object
+    properties:
+      message:
+        type: string
+        x-go-name: Message
+      path:
+        type: string
+        x-go-name: Path
+      rule:
+        type: string
+        x-go-name: Rule
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/release
+responses:
+  getAppResponse:
+    description: GetAppResponse represents an app.
+    schema:
+      type: object
+      properties:
+        app:
+          $ref: '#/definitions/AppWithChannels'
+  getSecurityCenterSettingsResponse:
+    description: SecurityCenterSettingsResponse contains the security center settings for an app
+    schema:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          x-go-name: Enabled
+  listAppsResponse:
+    description: ListAppsResponse contains the JSON apps list
+    schema:
+      type: object
+      properties:
+        apps:
+          type: array
+          items:
+            $ref: '#/definitions/AppWithChannels'
+          x-go-name: Apps
+  deleteLicenseFieldResponse:
+    description: DeleteLicenseFieldResponse contains the response from deleting a license field
+  editLicenseFieldResponse:
+    description: EditLicenseFieldResponse contains the license fields
+    schema:
+      $ref: '#/definitions/EntitlementField'
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  listBuiltinLicenseFieldsResponse:
+    description: ListBuiltinLicenseFieldsResponse contains the list of builtin license fields, with overrides applied
+    schema:
+      type: object
+      properties:
+        builtin_license_fields:
+          type: array
+          items:
+            $ref: '#/definitions/BuiltInDefaultLicenseField'
+          x-go-name: BuiltinLicenseFields
+  listAppCustomerInstancesResponse:
+    description: ListAppCustomerInstancesResponse contains the list of customers
+    headers:
+      ContentDisposition:
+        type: string
+        description: 'Required: true
+
+          In: header'
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+  responseErrTooManyRequests:
+    description: Return if the caller is being rate limited
+  createLicenseFieldResponse:
+    description: CreateLicenseFieldResponse contains the response of all license fields
+    schema:
+      $ref: '#/definitions/EntitlementField'
+  responseOk:
+    description: On success
+  listAppCustomersCsvResponse:
+    description: ListAppCustomersCsvResponse contains the list of customers
+    headers:
+      ContentDisposition:
+        type: string
+        description: 'Required: true
+
+          In: header'
+  getTrialSignupSettingsResponse:
+    description: TrialSignupSettingsResponse contains the trial signup settings for an app
+    schema:
+      type: object
+      properties:
+        settings:
+          $ref: '#/definitions/TrialSignupSettings'
+  responseNoContent:
+    description: On success, no payload returned
+  setBuiltinLicenseFieldOverrideResponse:
+    description: SetBuiltinLicenseFieldOverrideResponse contains the response of the builtin license field override
+    schema:
+      type: object
+      properties:
+        builtin_license_field:
+          $ref: '#/definitions/BuiltInDefaultLicenseField'
+  listAppInstanceEventsResponse:
+    description: ListAppInstanceEventsResponse contains the list of instance events
+    schema:
+      type: array
+      items:
+        type: object
+        properties:
+          appId:
+            type: string
+            x-go-name: AppId
+          customerId:
+            type: string
+            x-go-name: CustomerId
+          fieldName:
+            type: string
+            x-go-name: FieldName
+          instanceId:
+            type: string
+            x-go-name: InstanceId
+          isCustom:
+            type: string
+            x-go-name: IsCustom
+          newValue:
+            type: string
+            x-go-name: NewValue
+          previousValue:
+            type: string
+            x-go-name: PreviousValue
+          reportedAt:
+            type: string
+            x-go-name: ReportedAt
+  listLicenseFieldsResponse:
+    description: ListLicenseFieldsResponse contains the list of license fields
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/EntitlementField'
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  listImagesResponse:
+    description: ListImagesResponse represents a list of images.
+    schema:
+      type: object
+      properties:
+        images:
+          type: array
+          items:
+            $ref: '#/definitions/Image'
+          x-go-name: Images
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

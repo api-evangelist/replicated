@@ -1,0 +1,1059 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps notifications API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: notifications
+paths:
+  /notification_email/resend_verification:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/subscriptions/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: Resend verification email for an unverified email address.
+      operationId: resendVerificationEmail
+      parameters:
+      - description: Email address to resend verification for
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            emailAddress:
+              type: string
+              x-go-name: EmailAddress
+      responses:
+        '200':
+          $ref: '#/responses/resendVerificationEmail'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /notification_email/verify:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/subscriptions/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: Verify an email address using a verification code.
+      operationId: verifyEmail
+      parameters:
+      - description: Email address and verification code to verify
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            emailAddress:
+              type: string
+              x-go-name: EmailAddress
+            verificationCode:
+              type: string
+              x-go-name: VerificationCode
+      responses:
+        '200':
+          $ref: '#/responses/verifyEmail'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /notification_event/{event_id}/retry:
+    post:
+      security:
+      - api_key: []
+      description: 'Immediately retry a failed notification event, including permanently failed events.
+
+
+        Required RBAC Policy: team/[:teamid]/notification/write'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: Retry a notification event.
+      operationId: retryNotificationEvent
+      parameters:
+      - type: string
+        x-go-name: EventID
+        description: Event identifier
+        name: event_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/responseOk'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /notification_event_types:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/types/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: Search notification event types.
+      operationId: searchNotificationEventTypes
+      parameters:
+      - type: string
+        x-go-name: Q
+        description: Search query matching key, display name, description, or category.
+        name: q
+        in: query
+      - type: integer
+        format: int64
+        x-go-name: Limit
+        description: Optional maximum number of results to return. Must be between 1 and 100.
+        name: limit
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/searchNotificationEventTypesResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /notification_events:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/events/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: List team notification delivery events.
+      operationId: listNotificationEvents
+      parameters:
+      - type: integer
+        format: int64
+        default: 20
+        x-go-name: PageSize
+        description: Page size
+        name: pageSize
+        in: query
+      - type: integer
+        format: int64
+        x-go-name: CurrentPage
+        description: Current page
+        name: currentPage
+        in: query
+      - type: string
+        x-go-name: Type
+        description: Filter by type prefix (e.g. customer., instance., release.)
+        name: type
+        in: query
+      - type: array
+        items:
+          type: string
+        x-go-name: EventTypes
+        description: Filter by event types
+        name: event_types
+        in: query
+      - type: string
+        x-go-name: SubscriptionID
+        description: Filter by subscription ID
+        name: subscription_id
+        in: query
+      - type: string
+        x-go-name: SubscriptionType
+        description: 'Filter by subscription type: "personal" shows only the current user''s events, "team" shows all team events'
+        name: subscription_type
+        in: query
+      - type: string
+        x-go-name: StartTimeStr
+        description: Filter events after this time (ISO 8601 format)
+        name: start_time
+        in: query
+      - type: string
+        x-go-name: EndTimeStr
+        description: Filter events before this time (ISO 8601 format)
+        name: end_time
+        in: query
+      - type: string
+        x-go-name: Search
+        description: Search term to filter events by content
+        name: search
+        in: query
+      - type: string
+        x-go-name: Status
+        description: 'Filter by computed status: success, pending, or failed'
+        name: status
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listNotificationEventsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /notification_subscription:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/subscriptions/create'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: 'Create a new notification subscription.
+
+        Note: The webhook secret is stored but never returned in API responses for security.'
+      operationId: createNotificationSubscription
+      parameters:
+      - description: Create notification subscription parameters
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            customHeaders:
+              type: array
+              items:
+                $ref: '#/definitions/CustomHeaderInput'
+              x-go-name: CustomHeaders
+            emailAddress:
+              type: string
+              x-go-name: EmailAddress
+            eventConfigs:
+              type: array
+              items:
+                $ref: '#/definitions/NotificationEventConfig'
+              x-go-name: EventConfigs
+            events:
+              type: array
+              items:
+                type: string
+              x-go-name: Events
+            failureContact:
+              type: string
+              x-go-name: FailureContact
+            isEnabled:
+              type: boolean
+              x-go-name: IsEnabled
+            name:
+              type: string
+              x-go-name: Name
+            webhookSecret:
+              type: string
+              x-go-name: WebhookSecret
+            webhookUrl:
+              type: string
+              x-go-name: WebhookURL
+      responses:
+        '201':
+          $ref: '#/responses/createNotificationSubscription'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /notification_subscription/{id}:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/subscriptions/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: Retrieve a single notification subscription.
+      operationId: getNotificationSubscription
+      parameters:
+      - type: string
+        x-go-name: ID
+        description: Notification subscription ID
+        name: id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getNotificationSubscription'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/subscriptions/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: Update a notification subscription.
+      operationId: updateNotificationSubscription
+      parameters:
+      - type: string
+        x-go-name: ID
+        description: Notification subscription ID
+        name: id
+        in: path
+        required: true
+      - description: Update notification subscription parameters
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            customHeaders:
+              type: array
+              items:
+                $ref: '#/definitions/CustomHeaderInput'
+              x-go-name: CustomHeaders
+            emailAddress:
+              type: string
+              x-go-name: EmailAddress
+            eventConfigs:
+              type: array
+              items:
+                $ref: '#/definitions/NotificationEventConfig'
+              x-go-name: EventConfigs
+            events:
+              type: array
+              items:
+                type: string
+              x-go-name: Events
+            failureContact:
+              type: string
+              x-go-name: FailureContact
+            isEnabled:
+              type: boolean
+              x-go-name: IsEnabled
+            name:
+              type: string
+              x-go-name: Name
+            webhookSecret:
+              type: string
+              x-go-name: WebhookSecret
+            webhookUrl:
+              type: string
+              x-go-name: WebhookURL
+      responses:
+        '200':
+          $ref: '#/responses/updateNotificationSubscription'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/subscriptions/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: Remove a notification subscription.
+      operationId: deleteNotificationSubscription
+      parameters:
+      - type: string
+        x-go-name: ID
+        description: Notification subscription ID
+        name: id
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /notification_subscription/{id}/events:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/subscriptions/read'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: List all events for a notification subscription.
+      operationId: listNotificationSubscriptionEvents
+      parameters:
+      - type: string
+        x-go-name: ID
+        description: The ID of the notification subscription
+        name: id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listNotificationSubscriptionEvents'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /notification_subscriptions:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/subscriptions/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: List all notification subscriptions for the current team.
+      operationId: listNotificationSubscriptions
+      responses:
+        '200':
+          $ref: '#/responses/listNotificationSubscriptions'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /notification_webhook/test:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/notifications/subscriptions/create'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - notifications
+      summary: Test a webhook endpoint by sending a sample payload.
+      operationId: testWebhook
+      parameters:
+      - description: Test webhook parameters
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            customHeaders:
+              type: array
+              items:
+                $ref: '#/definitions/CustomHeaderInput'
+              x-go-name: CustomHeaders
+            eventType:
+              type: string
+              x-go-name: EventType
+            webhookSecret:
+              type: string
+              x-go-name: WebhookSecret
+            webhookUrl:
+              type: string
+              x-go-name: WebhookURL
+      responses:
+        '200':
+          $ref: '#/responses/testWebhookResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+definitions:
+  PayloadField:
+    description: Fields are returned as an ordered slice to preserve display order in the UI.
+    type: object
+    title: PayloadField describes a single field in the webhook payload's "data" object.
+    properties:
+      description:
+        type: string
+        x-go-name: Description
+      key:
+        type: string
+        x-go-name: Key
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/events
+  NotificationEventAttempt:
+    description: NotificationEventAttempt represents a delivery attempt for a notification event
+    type: object
+    properties:
+      attemptedAt:
+        type: string
+        format: date-time
+        x-go-name: AttemptedAt
+      durationMs:
+        type: integer
+        format: int64
+        x-go-name: DurationMs
+      errorMessage:
+        type: string
+        x-go-name: ErrorMessage
+      eventId:
+        type: string
+        x-go-name: EventID
+      id:
+        type: string
+        x-go-name: ID
+      requestBody:
+        type: object
+        x-go-name: RequestBody
+      requestHeaders:
+        type: object
+        x-go-name: RequestHeaders
+      responseBody:
+        type: string
+        x-go-name: ResponseBody
+      responseHeaders:
+        type: object
+        x-go-name: ResponseHeaders
+      statusCode:
+        type: integer
+        format: int64
+        x-go-name: StatusCode
+      success:
+        type: boolean
+        x-go-name: Success
+    x-go-package: github.com/replicatedhq/vandoor/pkg/notifications
+  TestWebhookResponseBody:
+    description: TestWebhookResponseBody contains the result of a webhook test
+    type: object
+    properties:
+      durationMs:
+        type: integer
+        format: int64
+        x-go-name: DurationMs
+      error:
+        type: string
+        x-go-name: Error
+      statusCode:
+        type: integer
+        format: int64
+        x-go-name: StatusCode
+      success:
+        type: boolean
+        x-go-name: Success
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/notifications
+  SearchNotificationEventTypesResponse:
+    description: SearchNotificationEventTypesResponse is the response for searching event types
+    type: object
+    properties:
+      eventTypes:
+        type: array
+        items:
+          $ref: '#/definitions/EventTypeResponse'
+        x-go-name: EventTypes
+      total:
+        type: integer
+        format: int64
+        x-go-name: Total
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/notifications
+  NotificationSubscription:
+    description: NotificationSubscription represents a notification subscription
+    type: object
+    properties:
+      activeMutesCount:
+        type: integer
+        format: int64
+        x-go-name: ActiveMutesCount
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      createdBy:
+        $ref: '#/definitions/Actor'
+      customHeaders:
+        type: array
+        items:
+          $ref: '#/definitions/CustomHeaderMasked'
+        x-go-name: CustomHeaders
+      deletedAt:
+        type: string
+        format: date-time
+        x-go-name: DeletedAt
+      emailAddress:
+        type: string
+        x-go-name: EmailAddress
+      emailVerified:
+        type: boolean
+        x-go-name: EmailVerified
+      eventConfigs:
+        type: array
+        items:
+          $ref: '#/definitions/NotificationEventConfig'
+        x-go-name: EventConfigs
+      failureContact:
+        type: string
+        x-go-name: FailureContact
+      id:
+        type: string
+        x-go-name: ID
+      isEnabled:
+        type: boolean
+        x-go-name: IsEnabled
+      name:
+        type: string
+        x-go-name: Name
+      readonly:
+        type: boolean
+        x-go-name: Readonly
+      requiresVerification:
+        type: boolean
+        x-go-name: RequiresVerification
+      teamId:
+        type: string
+        x-go-name: TeamID
+      updatedAt:
+        type: string
+        format: date-time
+        x-go-name: UpdatedAt
+      userId:
+        type: string
+        x-go-name: UserID
+      webhookUrl:
+        type: string
+        x-go-name: WebhookURL
+    x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
+  FilterField:
+    description: FilterField represents a filter field for an event type
+    type: object
+    properties:
+      key:
+        type: string
+        x-go-name: Key
+      label:
+        type: string
+        x-go-name: Label
+      options:
+        type: array
+        items:
+          $ref: '#/definitions/Option'
+        x-go-name: Options
+      placeholder:
+        type: string
+        x-go-name: Placeholder
+      required:
+        type: boolean
+        x-go-name: Required
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/events
+  Actor:
+    type: object
+    properties:
+      description:
+        type: string
+        x-go-name: Description
+      id:
+        type: string
+        x-go-name: ID
+      link:
+        type: string
+        x-go-name: Link
+      timestamp:
+        type: string
+        format: date-time
+        x-go-name: Timestamp
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+  Option:
+    description: Option represents an option for select/multiselect fields
+    type: object
+    properties:
+      appId:
+        type: string
+        x-go-name: AppID
+      label:
+        type: string
+        x-go-name: Label
+      metricType:
+        type: string
+        x-go-name: MetricType
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/events
+  CustomHeaderInput:
+    description: CustomHeaderInput represents a custom HTTP header provided by the user (name + plaintext value)
+    type: object
+    properties:
+      name:
+        type: string
+        x-go-name: Name
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
+  CustomHeaderMasked:
+    description: CustomHeaderMasked represents a custom HTTP header with its value masked for API responses
+    type: object
+    properties:
+      maskedValue:
+        type: string
+        x-go-name: MaskedValue
+      name:
+        type: string
+        x-go-name: Name
+    x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
+  NotificationEventConfig:
+    description: NotificationEventConfig represents an event configuration within a subscription
+    type: object
+    properties:
+      eventType:
+        type: string
+        x-go-name: EventType
+      filters:
+        type: object
+        additionalProperties: {}
+        x-go-name: Filters
+    x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
+  NotificationEventWithAttempts:
+    description: NotificationEventWithAttempts includes event details and all delivery attempts
+    type: object
+    properties:
+      attempts:
+        type: array
+        items:
+          $ref: '#/definitions/NotificationEventAttempt'
+        x-go-name: Attempts
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      eventData:
+        type: object
+        x-go-name: EventData
+      eventType:
+        type: string
+        x-go-name: EventType
+      id:
+        type: string
+        x-go-name: ID
+      lastError:
+        type: string
+        x-go-name: LastError
+      nextRetryAt:
+        type: string
+        format: date-time
+        x-go-name: NextRetryAt
+      payload:
+        type: object
+        x-go-name: Payload
+      payloadType:
+        type: string
+        x-go-name: PayloadType
+      retryCount:
+        type: integer
+        format: int64
+        x-go-name: RetryCount
+      sentAt:
+        type: string
+        format: date-time
+        x-go-name: SentAt
+      status:
+        description: Computed fields
+        type: string
+        x-go-name: Status
+      subscriptionId:
+        type: string
+        x-go-name: NotificationSubscriptionID
+    x-go-package: github.com/replicatedhq/vandoor/pkg/notifications
+  TeamNotificationEventWithAttempts:
+    description: 'TeamNotificationEventWithAttempts includes notification event details, attempts, and subscription metadata
+
+      for team-wide listing.'
+    type: object
+    properties:
+      attempts:
+        type: array
+        items:
+          $ref: '#/definitions/NotificationEventAttempt'
+        x-go-name: Attempts
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      createdByUserId:
+        description: Subscription metadata (from notification_subscription)
+        type: string
+        x-go-name: CreatedByUserID
+      eventData:
+        type: object
+        x-go-name: EventData
+      eventType:
+        type: string
+        x-go-name: EventType
+      id:
+        type: string
+        x-go-name: ID
+      lastError:
+        type: string
+        x-go-name: LastError
+      nextRetryAt:
+        type: string
+        format: date-time
+        x-go-name: NextRetryAt
+      payload:
+        type: object
+        x-go-name: Payload
+      payloadType:
+        type: string
+        x-go-name: PayloadType
+      retryCount:
+        type: integer
+        format: int64
+        x-go-name: RetryCount
+      sentAt:
+        type: string
+        format: date-time
+        x-go-name: SentAt
+      status:
+        description: Computed fields
+        type: string
+        x-go-name: Status
+      subscriptionDeletedAt:
+        type: string
+        format: date-time
+        x-go-name: SubscriptionDeletedAt
+      subscriptionId:
+        type: string
+        x-go-name: NotificationSubscriptionID
+    x-go-package: github.com/replicatedhq/vandoor/pkg/notifications
+  EventTypeResponse:
+    description: EventTypeResponse represents the JSON response for an event type
+    type: object
+    properties:
+      category:
+        type: string
+        x-go-name: Category
+      description:
+        type: string
+        x-go-name: Description
+      displayName:
+        type: string
+        x-go-name: DisplayName
+      filters:
+        type: array
+        items:
+          $ref: '#/definitions/FilterField'
+        x-go-name: Filters
+      key:
+        type: string
+        x-go-name: Key
+      webhookPayloadFormat:
+        type: array
+        items:
+          $ref: '#/definitions/PayloadField'
+        x-go-name: WebhookPayloadFormat
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/notifications
+responses:
+  verifyEmail:
+    description: VerifyEmailResponse indicates success or failure
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+        success:
+          type: boolean
+          x-go-name: Success
+  resendVerificationEmail:
+    description: ResendVerificationEmailResponse indicates success or failure
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+        success:
+          type: boolean
+          x-go-name: Success
+  getNotificationSubscription:
+    description: GetNotificationSubscriptionResponse contains a single notification subscription
+    schema:
+      $ref: '#/definitions/NotificationSubscription'
+  createNotificationSubscription:
+    description: CreateNotificationSubscriptionResponse contains the created notification subscription
+    schema:
+      $ref: '#/definitions/NotificationSubscription'
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  listNotificationEventsResponse:
+    description: ListNotificationEventsResponse contains the JSON response for listing notification events.
+    schema:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/definitions/TeamNotificationEventWithAttempts'
+          x-go-name: Events
+        totalCount:
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  searchNotificationEventTypesResponse:
+    description: ''
+    schema:
+      $ref: '#/definitions/SearchNotificationEventTypesResponse'
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+  listNotificationSubscriptions:
+    description: ListNotificationSubscriptionsResponse contains a list of notification subscriptions
+    schema:
+      type: object
+      properties:
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/definitions/NotificationSubscription'
+          x-go-name: Subscriptions
+        totalCount:
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+  updateNotificationSubscription:
+    description: UpdateNotificationSubscriptionResponse contains the updated notification subscription
+    schema:
+      $ref: '#/definitions/NotificationSubscription'
+  testWebhookResponse:
+    description: ''
+    schema:
+      $ref: '#/definitions/TestWebhookResponseBody'
+  responseOk:
+    description: On success
+  responseNoContent:
+    description: On success, no payload returned
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  listNotificationSubscriptionEvents:
+    description: ListNotificationSubscriptionEventsResponse contains the notification events
+    schema:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/definitions/NotificationEventWithAttempts'
+          x-go-name: Events
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

@@ -1,0 +1,318 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps policy API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: policy
+paths:
+  /policies:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/policy/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - policy
+      summary: List RBAC policies.
+      operationId: listPolicies
+      responses:
+        '200':
+          $ref: '#/responses/listPoliciesResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /policy:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/policy/create'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - policy
+      summary: Create a RBAC policy.
+      operationId: createPolicy
+      parameters:
+      - description: JSON payload
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - name
+          - description
+          - definition
+          properties:
+            definition:
+              type: string
+              x-go-name: Definition
+            description:
+              type: string
+              x-go-name: Description
+            name:
+              type: string
+              x-go-name: Name
+      responses:
+        '200':
+          $ref: '#/responses/createPolicyResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /policy/{policyId}:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/policy/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - policy
+      summary: Get a RBAC policy.
+      operationId: getPolicy
+      parameters:
+      - type: string
+        x-go-name: PolicyId
+        description: PolicyID is the ID of the policy to get
+        name: policyId
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getPolicyResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/policy/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - policy
+      summary: Update a RBAC policy.
+      operationId: updatePolicy
+      parameters:
+      - type: string
+        x-go-name: PolicyID
+        description: PolicyID is the ID of the policy to update
+        name: policyId
+        in: path
+        required: true
+      - description: Body contains the update payload
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - name
+          - definition
+          properties:
+            definition:
+              type: string
+              x-go-name: Definition
+            description:
+              description: Optional
+              type: string
+              x-go-name: Description
+            name:
+              type: string
+              x-go-name: Name
+      responses:
+        '200':
+          $ref: '#/responses/updatePolicyResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/policy/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - policy
+      summary: Delete a RBAC policy.
+      operationId: deletePolicy
+      parameters:
+      - type: string
+        x-go-name: PolicyID
+        description: PolicyID is the ID of the policy to delete
+        name: policyId
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+definitions:
+  Policy:
+    type: object
+    properties:
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      definition:
+        type: string
+        x-go-name: Definition
+      description:
+        type: string
+        x-go-name: Description
+      id:
+        type: string
+        x-go-name: ID
+      modifiedAt:
+        type: string
+        format: date-time
+        x-go-name: ModifiedAt
+      name:
+        type: string
+        x-go-name: Name
+      readOnly:
+        type: boolean
+        x-go-name: ReadOnly
+      teamId:
+        type: string
+        x-go-name: TeamID
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models
+responses:
+  updatePolicyResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        policy:
+          $ref: '#/definitions/Policy'
+  responseNoContent:
+    description: On success, no payload returned
+  listPoliciesResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        policies:
+          type: array
+          items:
+            $ref: '#/definitions/Policy'
+          x-go-name: Policies
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  createPolicyResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        policy:
+          $ref: '#/definitions/Policy'
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+  getPolicyResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        policy:
+          $ref: '#/definitions/Policy'
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

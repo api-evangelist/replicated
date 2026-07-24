@@ -1,0 +1,284 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps clusterAddons API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: clusterAddons
+paths:
+  /cluster/{cluster_id}/addons:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]/addon/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusterAddons
+      summary: Lists addons for all clusters.
+      operationId: listClusterAddons
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listClusterAddonsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}/addons/objectstore:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]/addon/create/objectstore'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusterAddons
+      summary: Adds an object store addon to a cluster.
+      operationId: createClusterAddonObjectStore
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            bucket:
+              type: string
+              x-go-name: BucketDeprecated
+            bucket_prefix:
+              type: string
+              x-go-name: BucketPrefix
+      responses:
+        '201':
+          $ref: '#/responses/createClusterAddonObjectStoreResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}/addons/{addon_id}:
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]/addon/[:addonid]/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusterAddons
+      summary: Deletes an addon from a cluster.
+      operationId: deleteClusterAddon
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: AddonID
+        description: Cluster addon identifier
+        name: addon_id
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+definitions:
+  ClusterAddon:
+    type: object
+    properties:
+      cluster_guid:
+        type: string
+        x-go-name: ClusterGUID
+      cluster_id:
+        type: string
+        x-go-name: ClusterShortID
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      guid:
+        type: string
+        x-go-name: GUID
+      id:
+        type: string
+        x-go-name: ShortID
+      object_store:
+        $ref: '#/definitions/ClusterAddonObjectStore'
+      port:
+        $ref: '#/definitions/ClusterAddonPort'
+      ready_at:
+        type: string
+        format: date-time
+        x-go-name: ReadyAt
+      status:
+        $ref: '#/definitions/ClusterAddonStatus'
+      terminated_at:
+        type: string
+        format: date-time
+        x-go-name: TerminatedAt
+      total_credits:
+        type: integer
+        format: int64
+        x-go-name: TotalCredits
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ClusterAddonStatus:
+    type: string
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ClusterAddonPort:
+    type: object
+    properties:
+      is_wildcard:
+        type: boolean
+        x-go-name: IsWildcard
+      name:
+        type: string
+        x-go-name: Name
+      protocol_http:
+        type: boolean
+        x-go-name: ProtocolHTTP
+      protocol_https:
+        type: boolean
+        x-go-name: ProtocolHTTPS
+      protocol_ws:
+        type: boolean
+        x-go-name: ProtocolWS
+      protocol_wss:
+        type: boolean
+        x-go-name: ProtocolWSS
+      upstream_port:
+        type: integer
+        format: int64
+        x-go-name: UpstreamPort
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ClusterAddonObjectStore:
+    type: object
+    properties:
+      bucket_name:
+        type: string
+        x-go-name: BucketName
+      bucket_prefix:
+        type: string
+        x-go-name: BucketPrefix
+      service_account_name:
+        type: string
+        x-go-name: ServiceAccountName
+      service_account_name_read_only:
+        type: string
+        x-go-name: ServiceAccountNameReadOnly
+      service_account_namespace:
+        type: string
+        x-go-name: ServiceAccountNamespace
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+responses:
+  responseNoContent:
+    description: On success, no payload returned
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  createClusterAddonObjectStoreResponse:
+    description: CreateClusterAddonObjectStoreResponse contains the response to a create cluster object store addon request
+    schema:
+      type: object
+      properties:
+        addon:
+          $ref: '#/definitions/ClusterAddon'
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  listClusterAddonsResponse:
+    description: ListClusterAddonsResponse contains the response to a list clusters addons request
+    schema:
+      type: object
+      properties:
+        addons:
+          type: array
+          items:
+            $ref: '#/definitions/ClusterAddon'
+          x-go-name: Addons
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

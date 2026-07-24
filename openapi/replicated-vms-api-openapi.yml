@@ -1,0 +1,916 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps vms API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: vms
+paths:
+  /vm:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/vm/create'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - vms
+      summary: Create a test vm.
+      operationId: createVM
+      parameters:
+      - name: Body
+        in: body
+        schema:
+          $ref: '#/definitions/CreateVMParametersBody'
+      - type: boolean
+        name: DryRun
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/createVMDryRunResponse'
+        '201':
+          $ref: '#/responses/createVMResponse'
+        '400':
+          $ref: '#/responses/createVMErrorResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /vm/versions:
+    get:
+      security:
+      - api_key: []
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - vms
+      summary: List vm versions.
+      operationId: listVMVersions
+      responses:
+        '200':
+          $ref: '#/responses/listVMVersionsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /vm/{vm_id}:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/vm/[:vmid]'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - vms
+      summary: Get the details for a test vm.
+      operationId: getVM
+      parameters:
+      - type: string
+        x-go-name: VMID
+        description: VM identifier
+        name: vm_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getVMResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/vm/[:vmid]/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - vms
+      summary: Delete a test vm.
+      operationId: deleteVM
+      parameters:
+      - type: string
+        x-go-name: VMID
+        description: VM identifier
+        name: vm_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/deleteVMResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /vm/{vm_id}/port:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/vm/[:vmid]/port/expose'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - vms
+      summary: Exposes a port on a vm.
+      operationId: createVMPort
+      parameters:
+      - type: string
+        x-go-name: VMID
+        description: VM identifier
+        name: vm_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - port
+          - protocols
+          properties:
+            is_wildcard:
+              description: IsWildcard
+              type: boolean
+              x-go-name: IsWildcard
+            port:
+              description: Port Number
+              type: integer
+              format: int64
+              x-go-name: Port
+            protocols:
+              description: Protocols
+              type: array
+              items:
+                $ref: '#/definitions/PortProtocol'
+              x-go-name: Protocols
+      responses:
+        '201':
+          $ref: '#/responses/createVMPortResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /vm/{vm_id}/ports:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/vm/[:vmid]/port/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - vms
+      summary: Lists ports for a vm.
+      operationId: listVMPorts
+      parameters:
+      - type: string
+        x-go-name: VMID
+        description: VM identifier
+        name: vm_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listVMPortsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /vm/{vm_id}/tags:
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/vm/tag/update'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - vms
+      summary: Update the tags for a vm.
+      operationId: updateVMTags
+      parameters:
+      - type: string
+        x-go-name: VMID
+        description: VM identifier
+        name: vm_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            tags:
+              type: array
+              items:
+                $ref: '#/definitions/Tag'
+              x-go-name: Tags
+      responses:
+        '201':
+          $ref: '#/responses/updateVMTagsResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /vm/{vm_id}/ttl:
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/vm/ttl/update'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - vms
+      summary: Update ttl for a VM.
+      operationId: updateVMTTL
+      parameters:
+      - type: string
+        x-go-name: VMID
+        description: VM identifier
+        name: vm_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            ttl:
+              type: string
+              x-go-name: TTL
+      responses:
+        '200':
+          $ref: '#/responses/updateVMTTLResponse'
+        '400':
+          $ref: '#/responses/updateVMTTLErrorResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /vms:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/vm/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - vms
+      summary: List test vms.
+      operationId: listVMs
+      responses:
+        '200':
+          $ref: '#/responses/listVMsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+definitions:
+  VMAddonStatus:
+    type: string
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  InstanceTypeSpec:
+    type: object
+    properties:
+      memory_gib:
+        type: integer
+        format: int64
+        x-go-name: MemoryGiB
+      vcpus:
+        type: integer
+        format: int64
+        x-go-name: VCPUs
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+  VMValidationError:
+    type: object
+    properties:
+      errors:
+        type: array
+        items:
+          type: string
+        x-go-name: Errors
+      supported_distributions:
+        type: array
+        items:
+          $ref: '#/definitions/VMSupportedDistributionAndVersions'
+        x-go-name: SupportedDistributions
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  VMSupportedDistributionAndVersions:
+    type: object
+    properties:
+      instance_type_details:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/InstanceTypeSpec'
+        x-go-name: InstanceTypeDetails
+      instance_types:
+        type: array
+        items:
+          type: string
+        x-go-name: InstanceTypes
+      short_name:
+        type: string
+        x-go-name: ShortName
+      status:
+        $ref: '#/definitions/VMDistributionStatus'
+      version_details:
+        type: array
+        items:
+          $ref: '#/definitions/VMSupportedVersion'
+        x-go-name: VersionDetails
+      versions:
+        type: array
+        items:
+          type: string
+        x-go-name: Versions
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  VMPort:
+    type: object
+    properties:
+      addon_guid:
+        type: string
+        x-go-name: AddonGUID
+      addon_id:
+        type: string
+        x-go-name: AddonShortID
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      exposed_ports:
+        type: array
+        items:
+          $ref: '#/definitions/VMExposedPort'
+        x-go-name: ExposedPorts
+      hostname:
+        type: string
+        x-go-name: Hostname
+      port_name:
+        type: string
+        x-go-name: PortName
+      state:
+        $ref: '#/definitions/VMAddonStatus'
+      upstream_port:
+        type: integer
+        format: int64
+        x-go-name: UpstreamPort
+      vm_guid:
+        type: string
+        x-go-name: VMGUID
+      vm_id:
+        type: string
+        x-go-name: VMShortID
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  VMExposedPort:
+    type: object
+    properties:
+      exposed_port:
+        type: integer
+        format: int64
+        x-go-name: ExposedPort
+      protocol:
+        $ref: '#/definitions/PortProtocol'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  PortProtocol:
+    type: string
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+  VM:
+    type: object
+    properties:
+      actor:
+        $ref: '#/definitions/Actor'
+      addons:
+        type: array
+        items:
+          $ref: '#/definitions/VMAddon'
+        x-go-name: Addons
+      assigned_at:
+        type: string
+        format: date-time
+        x-go-name: AssignedAt
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      credits_per_hour:
+        type: integer
+        format: int64
+        x-go-name: CreditsPerHour
+      direct_ssh_endpoint:
+        type: string
+        x-go-name: DirectSSHEndpoint
+      direct_ssh_port:
+        type: integer
+        format: int64
+        x-go-name: DirectSSHPort
+      disk_gib:
+        type: integer
+        format: int64
+        x-go-name: DiskGiB
+      distribution:
+        type: string
+        x-go-name: Distribution
+      expires_at:
+        type: string
+        format: date-time
+        x-go-name: ExpiresAt
+      flat_fee:
+        type: integer
+        format: int64
+        x-go-name: FlatFee
+      guid:
+        type: string
+        x-go-name: GUID
+      id:
+        type: string
+        x-go-name: ShortID
+      instance_type:
+        type: string
+        x-go-name: InstanceType
+      last_scheduling_status:
+        type: string
+        x-go-name: LastSchedulingStatus
+      name:
+        type: string
+        x-go-name: Name
+      network_id:
+        type: string
+        x-go-name: NetworkID
+      overlayfs:
+        type: boolean
+        x-go-name: Overlayfs
+      rbac_policy_id:
+        type: string
+        x-go-name: RBACPolicyID
+      running_at:
+        type: string
+        format: date-time
+        x-go-name: RunningAt
+      status:
+        $ref: '#/definitions/VMStatus'
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+        x-go-name: Tags
+      team_id:
+        type: string
+        x-go-name: TeamID
+      total_credits:
+        type: integer
+        format: int64
+        x-go-name: TotalCredits
+      ttl:
+        type: string
+        x-go-name: TTL
+      version:
+        type: string
+        x-go-name: Version
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  Actor:
+    type: object
+    properties:
+      description:
+        type: string
+        x-go-name: Description
+      id:
+        type: string
+        x-go-name: ID
+      link:
+        type: string
+        x-go-name: Link
+      timestamp:
+        type: string
+        format: date-time
+        x-go-name: Timestamp
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+  VMAddon:
+    type: object
+    properties:
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      guid:
+        type: string
+        x-go-name: GUID
+      id:
+        type: string
+        x-go-name: ShortID
+      port:
+        $ref: '#/definitions/VMAddonPort'
+      ready_at:
+        type: string
+        format: date-time
+        x-go-name: ReadyAt
+      status:
+        $ref: '#/definitions/VMAddonStatus'
+      terminated_at:
+        type: string
+        format: date-time
+        x-go-name: TerminatedAt
+      total_credits:
+        type: integer
+        format: int64
+        x-go-name: TotalCredits
+      vm_guid:
+        type: string
+        x-go-name: VMGUID
+      vm_id:
+        type: string
+        x-go-name: VMShortID
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  VMDistributionStatus:
+    type: object
+    properties:
+      enabled:
+        type: boolean
+        x-go-name: Enabled
+      status:
+        type: string
+        x-go-name: Status
+      status_message:
+        type: string
+        x-go-name: StatusMessage
+      versions:
+        type: string
+        x-go-name: Versions
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  CreateVMParametersBody:
+    type: object
+    properties:
+      anthropic_api_key:
+        description: OpenClaw VM credentials — required when Distribution == "openclaw"
+        type: string
+        x-go-name: AnthropicAPIKey
+      count:
+        type: integer
+        format: int64
+        x-go-name: Count
+      disk_gib:
+        type: integer
+        format: int64
+        x-go-name: DiskGiB
+      distribution:
+        type: string
+        x-go-name: Distribution
+      instance_type:
+        type: string
+        x-go-name: InstanceType
+      name:
+        type: string
+        x-go-name: Name
+      network_id:
+        type: string
+        x-go-name: NetworkID
+      network_policy:
+        type: string
+        x-go-name: NetworkPolicy
+      overlayfs:
+        description: 'Overlayfs enables overlay filesystem management for the VM rootfs on the host.
+
+          Gated by the cmx_overlayfs feature flag.'
+        type: boolean
+        x-go-name: Overlayfs
+      public_keys:
+        type: array
+        items:
+          type: string
+        x-go-name: PublicKeys
+      rbac_policy_id:
+        description: 'RBACPolicyID is the ID of an existing RBAC policy to assign to the VM.
+
+          When set, OIDC client credentials are generated and injected into the VM via
+
+          the Firecracker metadata service (MMDS), enabling the replicated CLI inside
+
+          the VM to authenticate with vendor-api automatically.'
+        type: string
+        x-go-name: RBACPolicyID
+      replicated_api_key:
+        description: 'ReplicatedAPIKey is a vendor-api token for the replicated CLI inside the VM.
+
+          Required for openclaw VMs when rbac_policy_id is not set. Mutually exclusive
+
+          with rbac_policy_id — exactly one must be provided for openclaw VMs.'
+        type: string
+        x-go-name: ReplicatedAPIKey
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+        x-go-name: Tags
+      telegram_bot_token:
+        type: string
+        x-go-name: TelegramBotToken
+      telegram_user_id:
+        type: string
+        x-go-name: TelegramUserID
+      ttl:
+        type: string
+        x-go-name: TTL
+      version:
+        type: string
+        x-go-name: Version
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/vm
+  Tag:
+    type: object
+    properties:
+      key:
+        type: string
+        x-go-name: Key
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+  VMAddonPort:
+    type: object
+    properties:
+      name:
+        type: string
+        x-go-name: Name
+      protocol_http:
+        type: boolean
+        x-go-name: ProtocolHTTP
+      protocol_https:
+        type: boolean
+        x-go-name: ProtocolHTTPS
+      protocol_ws:
+        type: boolean
+        x-go-name: ProtocolWS
+      protocol_wss:
+        type: boolean
+        x-go-name: ProtocolWSS
+      upstream_port:
+        type: integer
+        format: int64
+        x-go-name: UpstreamPort
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  VMSupportedVersion:
+    type: object
+    properties:
+      version:
+        type: string
+        x-go-name: Version
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  VMStatus:
+    type: string
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+  CreateVMError:
+    type: object
+    properties:
+      maxDiskGiB:
+        type: integer
+        format: int64
+        x-go-name: MaxDiskGiB
+      maxMemoryGiB:
+        type: integer
+        format: int64
+        x-go-name: MaxMemoryGiB
+      maxVCPUs:
+        type: integer
+        format: int64
+        x-go-name: MaxVCPUs
+      message:
+        type: string
+        x-go-name: Message
+      validationError:
+        $ref: '#/definitions/VMValidationError'
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/vm
+responses:
+  updateVMTagsResponse:
+    description: UpdateVMTagsResponse contains the response to update a vm tags
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        vm:
+          $ref: '#/definitions/VM'
+  createVMDryRunResponse:
+    description: CreateVMDryRunResponse contains the response to a dry run of creating a vm
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: '#/definitions/CreateVMError'
+        total_cost:
+          type: integer
+          format: int64
+          x-go-name: TotalCost
+        ttl:
+          type: string
+          x-go-name: TTL
+  createVMErrorResponse:
+    description: CreateVMErrorResponse contains error information
+    schema:
+      $ref: '#/definitions/CreateVMError'
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  listVMPortsResponse:
+    description: ListVMPortsResponse contains the response to a list vm [prts] request
+    schema:
+      type: object
+      properties:
+        addons:
+          type: array
+          items:
+            $ref: '#/definitions/VMAddon'
+          x-go-name: Addons
+        ports:
+          type: array
+          items:
+            $ref: '#/definitions/VMPort'
+          x-go-name: Ports
+  getVMResponse:
+    description: GetVMResponse contains the response to get vm details
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        vm:
+          $ref: '#/definitions/VM'
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  deleteVMResponse:
+    description: DeleteVMResponse contains the response to delete a vm
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+  listVMsResponse:
+    description: ListVMsResponse contains the response to list vms
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        totalVMs:
+          type: integer
+          format: int64
+          x-go-name: TotalVMs
+        vms:
+          type: array
+          items:
+            $ref: '#/definitions/VM'
+          x-go-name: VMs
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+  createVMResponse:
+    description: CreateVMResponse contains the response to create a vm
+    schema:
+      type: object
+      properties:
+        vms:
+          type: array
+          items:
+            $ref: '#/definitions/VM'
+          x-go-name: VMs
+  updateVMTTLResponse:
+    description: UpdateVMTTLResponse contains the response to update a VM ttl
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        vm:
+          $ref: '#/definitions/VM'
+  listVMVersionsResponse:
+    description: ListVMVersionsResponse contains the response to list clusters
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        vm-versions:
+          type: array
+          items:
+            $ref: '#/definitions/VMSupportedDistributionAndVersions'
+          x-go-name: VMs
+  updateVMTTLErrorResponse:
+    description: UpdateVMTTLErrorResponse contains error information
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  createVMPortResponse:
+    description: CreateVMPortResponse contains the response to a create vm port request
+    schema:
+      type: object
+      properties:
+        addon:
+          $ref: '#/definitions/VMAddon'
+        port:
+          $ref: '#/definitions/VMPort'
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

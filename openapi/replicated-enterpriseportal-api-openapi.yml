@@ -1,0 +1,3093 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps enterprisePortal API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: enterprisePortal
+paths:
+  /app/{app_id}/enterprise-portal/access:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/enterprise-portal/access/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Get download portal access settings
+      operationId: getEnterprisePortalAccess
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getEnterprisePortalAccessResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/{app_id}/enterprise-portal/access/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Update download portal access settings
+      operationId: updateEnterprisePortalAccess
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: JSON input
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            auto_invite_to_ep_on_create:
+              description: 'Whether to automatically invite the customer email to Enterprise Portal on customer creation.
+
+                Requires download_portal_disabled to be true.'
+              type: boolean
+              x-go-name: AutoInviteToEpOnCreate
+            download_portal_disabled:
+              description: Whether the download portal is disabled. When set to false, auto_invite_to_ep_on_create is automatically disabled.
+              type: boolean
+              x-go-name: DownloadPortalDisabled
+      responses:
+        '200':
+          $ref: '#/responses/updateEnterprisePortalAccessResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/branding:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/enterprise-portal/branding/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Get custom branding for the enterprise portal
+      operationId: getEnterprisePortalBranding
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getEnterprisePortalBrandingResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/{app_id}/enterprise-portal/branding/update'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Update custom branding for the enterprise portal
+      operationId: updateEnterprisePortalBranding
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: Update custom branding for the enterprise portal
+        name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - branding
+          properties:
+            activeEnterprisePortalTemplate:
+              description: 'Active default template name: "docs", "custom", or empty'
+              type: string
+              x-go-name: ActiveEnterprisePortalTemplate
+            branding:
+              description: Branding object that will be parsed by the enterprise portal
+              type: string
+              x-go-name: Branding
+      responses:
+        '200':
+          $ref: '#/responses/getEnterprisePortalBrandingResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/content-repos/{repo_id}/template-updates/acknowledge:
+    post:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Mark pending upstream content template updates reviewed for the current user.
+      operationId: acknowledgeContentTemplateUpdates
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: RepoID
+        description: Content repository identifier
+        name: repo_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/acknowledgeContentTemplateUpdatesResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/content-settings:
+    put:
+      description: 'Required RBAC Policy: kots/app/[:appId]/enterprise-portal/documentation/update'
+      tags:
+      - enterprisePortal
+      summary: Update Enterprise Portal content settings for an app.
+      operationId: updateEnterprisePortalContentSettings
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            hide_unmatched_content_versions:
+              type: boolean
+              x-go-name: HideUnmatchedContentVersions
+      responses:
+        '200':
+          $ref: '#/responses/updateContentSettingsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/content-versions/pin:
+    post:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: 'Creates a virtual content branch row that pins a release version label to
+
+        the content of an existing real branch.'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Pin a release version label to an existing content branch
+      operationId: createContentVersionPin
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: JSON input
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - version_label
+          properties:
+            replace_existing:
+              description: 'When true, an existing pin row with the same version_label is
+
+                removed before the new one is created. Used by `--replace` from the
+
+                CLI and the Edit affordance in the vendor portal.'
+              type: boolean
+              x-go-name: ReplaceExisting
+            source_branch_pattern:
+              description: 'Semver-shaped pattern resolved server-side to the highest matching
+
+                branch (e.g. "1.x.x", "1.2.x"). Mutually exclusive with
+
+                source_version_id.'
+              type: string
+              x-go-name: SourceBranchPattern
+            source_version_id:
+              description: 'ID of the existing content version whose content is pinned. Mutually
+
+                exclusive with source_branch_pattern.'
+              type: string
+              x-go-name: SourceVersionID
+            version_label:
+              description: Release version label to pin
+              type: string
+              x-go-name: VersionLabel
+      responses:
+        '200':
+          $ref: '#/responses/createContentVersionPinResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/content-versions/{version_id}:
+    delete:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: 'Removes a content version row and its pages, toc, and theme.
+
+        Mainly used to remove pin rows. Real-branch rows can be deleted too —
+
+        they''ll be recreated (empty) on the next sync.'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Delete a content version
+      operationId: deleteContentVersion
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: VersionID
+        description: Content version identifier
+        name: version_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/deleteContentVersionResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/content-versions/{version_id}/dismiss-notice:
+    post:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Clear the sync notice for a content version.
+      operationId: dismissContentVersionNotice
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: VersionID
+        description: Content version identifier
+        name: version_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/dismissContentVersionNoticeResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/customer-allowed-domains:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy:
+
+        kots/app/[:appid]/enterprise-portal/customer-allowed-domains/read
+
+        kots/app/[:appid]/license/[:customer_id]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: List customer allowed domains for the enterprise portal
+      operationId: listCustomerAllowedDomains
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: FilterCustomerID
+        description: Filter by customer ID
+        name: customer_id
+        in: query
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listCustomerAllowedDomainsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy:
+
+        kots/app/[:appid]/enterprise-portal/customer-allowed-domains/create
+
+        kots/app/[:appid]/license/[:customer_id]/read'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Create a customer allowed domain for the enterprise portal
+      operationId: createCustomerAllowedDomain
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: Create a customer allowed domain for the enterprise portal
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              x-go-name: CustomerID
+            domain:
+              type: string
+              x-go-name: Domain
+      responses:
+        '201':
+          $ref: '#/responses/createCustomerAllowedDomainResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/customer-allowed-domains/{allowedDomainId}:
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy:
+
+        kots/app/[:appid]/enterprise-portal/customer-allowed-domains/delete
+
+        kots/app/[:appid]/license/[:customer_id]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Delete a customer allowed domain for the enterprise portal
+      operationId: deleteCustomerAllowedDomain
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: AllowedDomainID
+        description: The allowed domain ID to delete
+        name: allowedDomainId
+        in: path
+        required: true
+      - type: string
+        x-go-name: CustomerID
+        description: The customer ID for the allowed domain
+        name: customer_id
+        in: query
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/customer-user:
+    post:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: Invite a customer user to the enterprise portal, sending an invite email to the customer user.
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Invite a customer user to the enterprise portal
+      operationId: inviteEnterprisePortalCustomerUser
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: Invite a customer user to the enterprise portal
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              x-go-name: CustomerID
+            email_address:
+              type: string
+              x-go-name: EmailAddress
+      responses:
+        '201':
+          $ref: '#/responses/inviteEnterprisePortalCustomerUserResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: Delete a customer user for the enterprise portal
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      operationId: deleteEnterprisePortalCustomerUser
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        description: The email address of the user to delete
+        name: EmailAddress
+        in: query
+      - type: string
+        x-go-name: CustomerID
+        description: The customer ID which the user belongs to
+        name: customer_id
+        in: query
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/customer-users:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy:
+
+        kots/app/[:appid]/enterprise-portal/customer-users/read
+
+        kots/app/[:appid]/license/[:customer_id]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: List customer users for the enterprise portal
+      operationId: listEnterprisePortalCustomerUsers
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: boolean
+        default: false
+        name: ExcludeInvites
+        in: query
+      - type: string
+        description: Filter by customer ID
+        name: FilterCustomerID
+        in: query
+      - type: string
+        description: Filter by email address
+        name: FilterEmail
+        in: query
+      - type: integer
+        format: int64
+        name: Limit
+        in: query
+      - type: integer
+        format: int64
+        name: Offset
+        in: query
+      - type: string
+        name: Sort
+        in: query
+      - type: string
+        name: Order
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listEnterprisePortalCustomerUsersResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/documentation:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/enterprise-portal/documentation/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Get documentation URLs for various installation methods
+      operationId: getEnterprisePortalDocumentation
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getDocumentationResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: 'Update documentation URLs and markdown content for various installation methods
+
+
+        Required RBAC Policy: kots/app/[:appid]/enterprise-portal/documentation/update'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Update documentation URLs
+      operationId: updateEnterprisePortalDocumentation
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: JSON input
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            embeddedClusterInstallURL:
+              description: URL for Embedded Cluster installation documentation
+              type: string
+              x-go-name: EmbeddedClusterInstallURL
+            embeddedClusterPostInstall:
+              description: Markdown content for Embedded Cluster post-installation steps
+              type: string
+              x-go-name: EmbeddedClusterPostInstall
+            embeddedClusterPreInstall:
+              description: Markdown content for Embedded Cluster pre-installation steps
+              type: string
+              x-go-name: EmbeddedClusterPreInstall
+            helmInstallURL:
+              description: URL for Helm installation documentation
+              type: string
+              x-go-name: HelmInstallURL
+            helmPostInstall:
+              description: Markdown content for Helm post-installation steps
+              type: string
+              x-go-name: HelmPostInstall
+            helmPreInstall:
+              description: Markdown content for Helm pre-installation steps
+              type: string
+              x-go-name: HelmPreInstall
+            kotsInstallURL:
+              description: URL for KOTS installation documentation
+              type: string
+              x-go-name: KOTSInstallURL
+            kurlInstallURL:
+              description: URL for kURL installation documentation
+              type: string
+              x-go-name: KURLInstallURL
+            valuesOverrideURL:
+              description: URL for Values Override documentation
+              type: string
+              x-go-name: ValuesOverrideURL
+      responses:
+        '200':
+          $ref: '#/responses/updateDocumentationResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /app/{app_id}/enterprise-portal/email-history:
+    get:
+      security:
+      - api_key: []
+      description: 'Returns a paginated list of emails sent through the enterprise portal with their delivery status.
+
+
+        Required RBAC Policy:
+
+        kots/app/{app_id}/enterprise-portal/email-history/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: List email history for the enterprise portal
+      operationId: listEnterprisePortalEmailHistory
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        description: Filter by email type (login, invite, version_update)
+        name: EmailType
+        in: query
+      - type: string
+        description: Filter by status (sent, delivered, bounced, spam_complaint)
+        name: Status
+        in: query
+      - type: string
+        description: Filter by customer ID
+        name: CustomerID
+        in: query
+      - type: integer
+        format: int64
+        default: 25
+        name: Limit
+        in: query
+      - type: integer
+        format: int64
+        default: 0
+        name: Offset
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listEnterprisePortalEmailHistoryResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/failed-login-attempts:
+    get:
+      security:
+      - api_key: []
+      description: 'List failed login attempts for the enterprise portal users.
+
+
+
+        Required RBAC Policy: kots/app/[:appid]/enterprise-portal/failed-login-attempts/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: List failed login attempts
+      operationId: listFailedLoginAttempts
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: integer
+        format: int64
+        description: Maximum number of results to return
+        name: Limit
+        in: query
+      - type: integer
+        format: int64
+        description: Number of results to skip
+        name: Offset
+        in: query
+      - type: string
+        description: Filter by email address
+        name: FilterEmail
+        in: query
+      - type: string
+        description: Sort field
+        name: Sort
+        in: query
+      - type: string
+        description: Sort order (asc or desc)
+        name: Order
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listFailedLoginAttemptsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/features:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Get Enterprise Portal feature settings for an app
+      operationId: getPortalFeatures
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getPortalFeaturesResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Update Enterprise Portal feature settings for an app
+      operationId: updatePortalFeatures
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            askAiEnabled:
+              description: Whether the Ask AI assistant should be enabled in the Enterprise Portal.
+              type: boolean
+              x-go-name: AskAiEnabled
+            supportBundleUploadEnabled:
+              description: Whether support bundle upload should be enabled in the Enterprise Portal.
+              type: boolean
+              x-go-name: SupportBundleUploadEnabled
+      responses:
+        '200':
+          $ref: '#/responses/getPortalFeaturesResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/install-attempts:
+    get:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: List install attempts for a customer or all customers in the app.
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: List installation attempts for the enterprise portal
+      operationId: listInstallAttempts
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        description: Filter by a specific customer ID
+        name: FilterCustomerID
+        in: query
+      - type: string
+        description: Filter by a specific instance ID
+        name: FilterInstanceID
+        in: query
+      - type: integer
+        format: int64
+        description: Maximum number of results to return
+        name: Limit
+        in: query
+      - type: integer
+        format: int64
+        description: Number of results to skip
+        name: Offset
+        in: query
+      - type: string
+        description: Filter by status
+        name: FilterStatus
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listInstallAttemptsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/install-options:
+    post:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: 'Create an installation options record for a customer describing the installation configuration. Automatically creating
+
+        a service account for the installation that can be used to perform the actual installation.
+
+        Optionally include generated install instructions by setting the includeInstructions query parameter to true.'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Create an installation options record
+      operationId: createInstallOptions
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: boolean
+        x-go-name: WithInstructions
+        description: Whether to include install instructions in the response
+        name: includeInstructions
+        in: query
+      - description: JSON input
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - customer_id
+          - install_type
+          - instance_name
+          - network_availability
+          - channel_id
+          - channel_release_sequence
+          properties:
+            admin_console_url:
+              description: URL for the admin console, used for updates
+              type: string
+              x-go-name: AdminConsoleURL
+            channel_id:
+              description: Channel ID to use for the installation
+              type: string
+              x-go-name: ChannelID
+            channel_release_sequence:
+              description: Channel release sequence number to use for the installation
+              type: integer
+              format: int64
+              x-go-name: ChannelReleaseSequence
+            customer_id:
+              description: The customer ID for which to create install options
+              type: string
+              x-go-name: CustomerID
+            install_type:
+              description: Type of installation
+              type: string
+              enum:
+              - linux
+              - helm
+              x-go-name: InstallType
+            instance_name:
+              description: Name of the installation instance, also used as service account name - must be unique per customer
+              type: string
+              x-go-name: InstanceName
+            is_multi_node:
+              description: Whether this is a multi-node installation (only applicable for linux install type)
+              type: boolean
+              x-go-name: IsMultiNode
+            kubernetes_distribution:
+              description: Kubernetes distribution that will be used for the helm installation (only applicable for helm install type)
+              type: string
+              enum:
+              - vanilla
+              - openshift
+              - rancher
+              - aks
+              - eks
+              - gke
+              x-go-name: KubernetesDistribution
+            network_availability:
+              description: Network availability for the installation environment
+              type: string
+              enum:
+              - airgap
+              - proxy
+              - online
+              x-go-name: NetworkAvailability
+            registry_availability:
+              description: Registry availability for installations that use a private registry
+              type: string
+              enum:
+              - online
+              - partial
+              - offline
+              x-go-name: RegistryAvailability
+      responses:
+        '201':
+          $ref: '#/responses/createInstallOptionsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/install-options/{install_options_id}:
+    delete:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: 'Soft-delete an existing installation options record for a customer by setting its status to "discarded".
+
+        The record is preserved for audit purposes. The associated service account is not revoked. The service account
+
+        must be revoked before the instance name can be reused with a new install option record for the same customer.'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Delete an installation options record
+      operationId: deleteInstallOptions
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: InstallOptionsID
+        description: Install options ID from path
+        name: install_options_id
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    patch:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: 'Update an existing installation options record for a customer. Only provided fields will be updated.
+
+        You cannot change the service account ID, instance name, or install type as these are immutable.
+
+
+        Optionally return updated install instructions by setting the includeInstructions query parameter to true.'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Update an installation options record
+      operationId: patchInstallOptions
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: InstallOptionsID
+        description: Install options ID from path
+        name: install_options_id
+        in: path
+        required: true
+      - type: boolean
+        x-go-name: WithInstructions
+        description: Whether to include install instructions in the response
+        name: includeInstructions
+        in: query
+      - description: JSON input - all fields are optional for PATCH
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            admin_console_url:
+              description: URL for the admin console, used for updates
+              type: string
+              x-go-name: AdminConsoleURL
+            channel_id:
+              description: Channel ID to use for the installation (must be provided together with channel_release_sequence if being updated)
+              type: string
+              x-go-name: ChannelID
+            channel_release_sequence:
+              description: Channel release sequence number to use for the installation (must be provided together with channel_id if being updated)
+              type: integer
+              format: int64
+              x-go-name: ChannelReleaseSequence
+            instance_name:
+              description: Instance name (display name for the installation)
+              type: string
+              x-go-name: InstanceName
+            kubernetes_distribution:
+              description: Kubernetes distribution that will be used for the helm installation (only applicable for helm install type)
+              type: string
+              enum:
+              - vanilla
+              - openshift
+              - rancher
+              - aks
+              - eks
+              - gke
+              x-go-name: KubernetesDistribution
+            network_availability:
+              description: Network availability for the installation environment
+              type: string
+              enum:
+              - airgap
+              - proxy
+              - online
+              x-go-name: NetworkAvailability
+            registry_availability:
+              description: Registry availability for installations that use a private registry
+              type: string
+              enum:
+              - online
+              - partial
+              - offline
+              x-go-name: RegistryAvailability
+      responses:
+        '200':
+          $ref: '#/responses/patchInstallOptionsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/install-options/{option_id}:
+    get:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: 'Retrieve the installation options that describe the installation configured for a customers install via the Enterprise Portal or API.
+
+        Optionally include generated install instructions by setting the includeInstructions query parameter to true.'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Get an install options record
+      operationId: getInstallOptions
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: OptionID
+        description: The ID for a customer install options record (returned from create install options)
+        name: option_id
+        in: path
+        required: true
+      - type: boolean
+        x-go-name: WithInstructions
+        description: Whether to include install instructions in the response
+        name: includeInstructions
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/getInstallOptionsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/install-options/{option_id}/update-instructions:
+    get:
+      security:
+      - api_key: []
+      description: 'Generates step-by-step instructions for updating an installation to a specific target version.
+
+        Supports both Helm and Linux (Embedded Cluster) installation types. The update instructions
+
+        will use upgrade/update commands instead of install commands, and are tailored to the
+
+        network and registry availability configuration from the original install options.'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Get update instructions
+      operationId: getUpdateInstructions
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: OptionID
+        description: The ID for a customer install options record
+        name: option_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: InstanceID
+        description: The instance ID for a legacy/airgap instance (used when option_id is "placeholder")
+        name: instance_id
+        in: query
+      - type: string
+        x-go-name: ClusterID
+        description: 'Optional cluster ID used to disambiguate a kots_license_instance row when
+
+          the same instance_id exists across multiple clusters.'
+        name: cluster_id
+        in: query
+      - type: string
+        x-go-name: TargetChannelID
+        description: Target channel ID for the update
+        name: targetChannelId
+        in: query
+        required: true
+      - type: integer
+        format: int64
+        x-go-name: TargetChannelSequence
+        description: Target channel sequence for the update
+        name: targetChannelSequence
+        in: query
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getUpdateInstructionsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/instances:
+    get:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: List instances for the enterprise portal with optional pagination and customer filtering.
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: List instances
+      operationId: listEnterprisePortalInstances
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        description: Filter by customer ID
+        name: FilterCustomerID
+        in: query
+      - type: integer
+        format: int64
+        description: Maximum number of results to return
+        name: Limit
+        in: query
+      - type: integer
+        format: int64
+        description: Number of results to skip
+        name: Offset
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listEnterprisePortalInstancesResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/service-accounts:
+    get:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: List service accounts for the enterprise portal, optionally filtered by customer ID and/or revoked status.
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: List service accounts
+      operationId: listEnterprisePortalServiceAccounts
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        description: Filter by a specific customer ID
+        name: FilterCustomerID
+        in: query
+      - type: integer
+        format: int64
+        description: Maximum number of results to return
+        name: Limit
+        in: query
+      - type: integer
+        format: int64
+        description: Number of results to skip
+        name: Offset
+        in: query
+      - type: string
+        description: Sort field
+        name: Sort
+        in: query
+      - type: string
+        description: Sort order (asc or desc)
+        name: Order
+        in: query
+      - type: boolean
+        description: Filter by revoked status
+        name: FilterRevoked
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listEnterprisePortalServiceAccountsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/service-accounts/{serviceAccountId}:
+    delete:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: 'Revokes an enterprise portal service account, marking it as revoked and clearing sensitive data. Note that this
+
+        makes the service account name reusable.'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Delete (revoke) a service account
+      operationId: deleteEnterprisePortalServiceAccount
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: ServiceAccountID
+        description: Service Account ID to revoke
+        name: serviceAccountId
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/settings:
+    get:
+      security:
+      - api_key: []
+      description: Get enterprise portal settings for a customer
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      operationId: getEnterprisePortalSettings
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        description: Filter by customer ID
+        name: FilterCustomerID
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/getEnterprisePortalSettingsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: Update enterprise portal settings for a customer
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      operationId: updateEnterprisePortalSettings
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            allowedDomainsEnabled:
+              type: boolean
+              x-go-name: AllowedDomainsEnabled
+            customerId:
+              type: string
+              x-go-name: CustomerID
+            portalVersion:
+              type: string
+              x-go-name: PortalVersion
+      responses:
+        '200':
+          $ref: '#/responses/updateEnterprisePortalSettingsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/status:
+    get:
+      security:
+      - api_key: []
+      description: Get the status of the enterprise portal for an app
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Get enterprise portal status
+      operationId: getEnterprisePortalStatus
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getEnterprisePortalStatusResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: Update the status of the enterprise portal for an app
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Update status of the enterprise portal
+      operationId: updateEnterprisePortalStatus
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: Update status for the enterprise portal
+        name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - status
+          properties:
+            status:
+              description: Status value
+              type: string
+              enum:
+              - always
+              - never
+              - per-customer
+              x-go-name: Status
+      responses:
+        '200':
+          $ref: '#/responses/getEnterprisePortalStatusResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/system-user-login:
+    post:
+      security:
+      - api_key: []
+      - Required RBAC Policy: []
+      description: The system user will be created on-demand if it does not exist. The URL will open the EP verify endpoint with the generated nonce.
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: Create a one-time login URL for Enterprise Portal using a system user for the specified customer.
+      operationId: createEnterprisePortalSystemUserLogin
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: Create a login link for Enterprise Portal using a system user for the specified customer
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - customer_id
+          properties:
+            customer_id:
+              description: Customer ID to scope the system user email address
+              type: string
+              x-go-name: CustomerID
+      responses:
+        '201':
+          $ref: '#/responses/createEnterprisePortalSystemUserLoginResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/enterprise-portal/update-attempts:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/enterprise-portal/update-attempts/read
+
+
+        Lists update attempts for a customer, optionally filtered by service account ID.'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - enterprisePortal
+      summary: List customer update attempts
+      operationId: listUpdateAttempts
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: CustomerID
+        description: The customer ID to list update attempts for
+        name: customer_id
+        in: query
+        required: true
+      - type: string
+        x-go-name: ServiceAccountID
+        description: Optional service account ID filter
+        name: service_account_id
+        in: query
+      - type: integer
+        format: int64
+        default: 1
+        x-go-name: Page
+        description: Page number (starting at 1)
+        name: page
+        in: query
+      - type: integer
+        format: int64
+        default: 20
+        x-go-name: PageSize
+        description: Page size (1-100)
+        name: page_size
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listUpdateAttemptsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+definitions:
+  ArtifactDownloadResponse:
+    description: 'ArtifactDownloadResponse describes a browser-downloadable artifact exposed
+
+      alongside generated install instructions.'
+    type: object
+    properties:
+      filename:
+        type: string
+        x-go-name: Filename
+      href:
+        type: string
+        x-go-name: Href
+      id:
+        type: string
+        x-go-name: ID
+      kind:
+        type: string
+        x-go-name: Kind
+      label:
+        type: string
+        x-go-name: Label
+      metadata:
+        type: object
+        additionalProperties:
+          type: string
+        x-go-name: Metadata
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  InstanceResourceState:
+    type: object
+    properties:
+      kind:
+        type: string
+        x-go-name: Kind
+      name:
+        type: string
+        x-go-name: Name
+      namespace:
+        type: string
+        x-go-name: Namespace
+      state:
+        type: string
+        x-go-name: State
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  InstanceTag:
+    type: object
+    properties:
+      instanceId:
+        type: string
+        x-go-name: InstanceId
+      key:
+        type: string
+        x-go-name: Key
+      origin:
+        type: string
+        x-go-name: Origin
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  InstallStepResponse:
+    type: object
+    title: InstallStepResponse represents a single step in the installation process.
+    properties:
+      commands:
+        description: List of shell commands to execute (one per entry)
+        type: array
+        items:
+          type: string
+        x-go-name: Commands
+      description:
+        description: 'Optional detailed description
+
+          The contents of this field may change.'
+        type: string
+        x-go-name: Description
+      download_url:
+        description: Optional browser download URL (for airgap installs)
+        type: string
+        x-go-name: DownloadURL
+      downloads:
+        description: Browser-downloadable artifacts associated with this step
+        type: array
+        items:
+          $ref: '#/definitions/ArtifactDownloadResponse'
+        x-go-name: Downloads
+      step_name:
+        description: Machine-readable step identifier (e.g., "download_assets")
+        type: string
+        x-go-name: StepName
+      step_number:
+        description: Sequential step number (e.g., 2, 3, 4)
+        type: integer
+        format: int64
+        x-go-name: StepNumber
+      title:
+        description: 'Human-readable step title (e.g., "Download the installation assets")
+
+          The contents of this field may change. For a persistent identifier, use the StepName field.'
+        type: string
+        x-go-name: Title
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  InstallAttempt:
+    description: InstallAttempt extends CustomerInstallOptions with calculated or joined fields to represent an installation attempt
+    type: object
+    properties:
+      admin_console_url:
+        description: The admin console URL of the installation attempt
+        type: string
+        x-go-name: AdminConsoleURL
+      assets_downloaded_at:
+        description: New fields for tracking installation progress
+        type: string
+        format: date-time
+        x-go-name: AssetsDownloadedAt
+      browser_install_completed_at:
+        type: string
+        format: date-time
+        x-go-name: BrowserInstallCompletedAt
+      channel_id:
+        type: string
+        x-go-name: ChannelID
+      channel_release_sequence:
+        type: integer
+        format: int64
+        x-go-name: ChannelSequence
+      customer_email:
+        type: string
+        x-go-name: CustomerEmail
+      customer_id:
+        type: string
+        x-go-name: CustomerID
+      ec_version:
+        description: The embedded cluster version (if applicable)
+        type: string
+        x-go-name: ECVersion
+      id:
+        type: string
+        x-go-name: ID
+      images_pulled_at:
+        type: string
+        format: date-time
+        x-go-name: ImagesPulledAt
+      install_type:
+        type: string
+        x-go-name: InstallType
+      installation_completed_at:
+        type: string
+        format: date-time
+        x-go-name: InstallationCompletedAt
+      instance_id:
+        type: string
+        x-go-name: InstanceID
+      instance_name:
+        type: string
+        x-go-name: InstanceName
+      is_multi_node:
+        type: boolean
+        x-go-name: IsMultiNode
+      kubernetes_distribution:
+        type: string
+        x-go-name: KubernetesDistribution
+      license_id:
+        type: string
+        x-go-name: LicenseID
+      network_availability:
+        type: string
+        x-go-name: NetworkAvailability
+      os_distro:
+        type: string
+        x-go-name: OSDistro
+      os_version:
+        type: string
+        x-go-name: OSVersion
+      registry_authenticated_at:
+        type: string
+        format: date-time
+        x-go-name: RegistryAuthenticatedAt
+      registry_availability:
+        type: string
+        x-go-name: RegistryAvailability
+      release_sequence:
+        description: The sequence number of the release in the channel
+        type: integer
+        format: int64
+        x-go-name: ReleaseSequence
+      service_account_email_address:
+        description: The email address of the service account used for the installation attempt
+        type: string
+        x-go-name: ServiceAccountEmailAddress
+      service_account_id:
+        type: string
+        x-go-name: ServiceAccountID
+      service_account_token:
+        type: string
+        x-go-name: ServiceAccountToken
+      started_at:
+        type: string
+        format: date-time
+        x-go-name: StartedAt
+      status:
+        description: Status of the installation attempt
+        type: string
+        enum:
+        - in_progress
+        - succeeded
+        - stalled
+        - discarded
+        - obsolete
+        - setup_complete
+        - all
+        x-go-name: Status
+      version:
+        type: string
+        x-go-name: VersionLabel
+      version_label:
+        description: The version label of the release
+        type: string
+        x-go-name: VersionLabel
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
+  UpdateAttempt:
+    description: UpdateAttempt represents a row from customer_update_attempts
+    type: object
+    properties:
+      admin_console_url:
+        type: string
+        x-go-name: AdminConsoleURL
+      airgap_assets_downloaded_at:
+        type: string
+        format: date-time
+        x-go-name: AirgapAssetsDownloadedAt
+      customer_id:
+        type: string
+        x-go-name: CustomerID
+      from_channel_id:
+        type: string
+        x-go-name: FromChannelID
+      from_channel_sequence:
+        type: integer
+        format: int64
+        x-go-name: FromChannelSequence
+      from_release_sequence:
+        type: integer
+        format: int64
+        x-go-name: FromReleaseSequence
+      from_version_label:
+        description: Joined from kots_channel_release
+        type: string
+        x-go-name: FromVersionLabel
+      id:
+        type: string
+        x-go-name: ID
+      install_option_id:
+        type: string
+        x-go-name: InstallOptionID
+      install_type:
+        type: string
+        x-go-name: InstallType
+      instance_id:
+        description: Joined from customer_install_options
+        type: string
+        x-go-name: InstanceID
+      instance_name:
+        type: string
+        x-go-name: InstanceName
+      network_availability:
+        type: string
+        x-go-name: NetworkAvailability
+      service_account_email_address:
+        description: Joined from enterprise_portal_service_account
+        type: string
+        x-go-name: ServiceAccountEmailAddress
+      service_account_id:
+        type: string
+        x-go-name: ServiceAccountID
+      started_at:
+        type: string
+        format: date-time
+        x-go-name: StartedAt
+      status:
+        type: string
+        x-go-name: Status
+      target_channel_id:
+        type: string
+        x-go-name: TargetChannelID
+      target_channel_sequence:
+        type: integer
+        format: int64
+        x-go-name: TargetChannelSequence
+      target_release_sequence:
+        type: integer
+        format: int64
+        x-go-name: TargetReleaseSequence
+      target_version_label:
+        type: string
+        x-go-name: TargetVersionLabel
+      update_completed_at:
+        type: string
+        format: date-time
+        x-go-name: UpdateCompletedAt
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
+  FailedLoginAttempt:
+    description: FailedLoginAttempt represents a failed login attempt record
+    type: object
+    properties:
+      app_id:
+        type: string
+        x-go-name: AppID
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      email_address:
+        type: string
+        x-go-name: EmailAddress
+      id:
+        type: string
+        x-go-name: ID
+      ip_address:
+        type: string
+        x-go-name: IPAddress
+      login_url:
+        type: string
+        x-go-name: LoginURL
+      team_id:
+        type: string
+        x-go-name: TeamID
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
+  UpdateInstructionsResponse:
+    type: object
+    title: UpdateInstructionsResponse represents the complete set of update instructions for a given install id.
+    properties:
+      context:
+        description: MDX context with all template variables
+        x-go-name: Context
+      format:
+        description: Version format ("basic" for legacy JSON, "mdx" for custom instructions)
+        type: string
+        x-go-name: Format
+      install_type:
+        description: Installation type ("linux", "helm", or "embedded-cluster")
+        type: string
+        x-go-name: InstallType
+      mdx_template:
+        description: 'MDX format fields (only present when format == "mdx")
+
+          MDX template content'
+        type: string
+        x-go-name: MDXTemplate
+      renderer_version:
+        description: Renderer version for frontend compatibility
+        type: integer
+        format: int64
+        x-go-name: RendererVersion
+      steps:
+        description: 'Sequential list of installation steps (legacy format only)
+
+          Note that the number and order will vary based on the install type and the install options themselves.'
+        type: array
+        items:
+          $ref: '#/definitions/InstallStepResponse'
+        x-go-name: Steps
+      title:
+        description: Overall installation title (legacy format only)
+        type: string
+        x-go-name: Title
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  AllowedDomain:
+    type: object
+    properties:
+      appId:
+        type: string
+        x-go-name: AppID
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      customerId:
+        type: string
+        x-go-name: CustomerID
+      domain:
+        type: string
+        x-go-name: Domain
+      id:
+        type: string
+        x-go-name: ID
+      teamId:
+        type: string
+        x-go-name: TeamID
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  Instance:
+    type: object
+    properties:
+      appStatus:
+        type: string
+        x-go-name: AppStatus
+      channelId:
+        type: string
+        x-go-name: ChannelID
+      channelSequence:
+        type: integer
+        format: int64
+        x-go-name: ChannelSequence
+      clusterId:
+        type: string
+        x-go-name: ClusterID
+      embeddedClusterId:
+        type: string
+        x-go-name: EmbeddedClusterID
+      embeddedClusterVersion:
+        type: string
+        x-go-name: EmbeddedClusterVersion
+      firstCheckin:
+        type: string
+        format: date-time
+        x-go-name: FirstCheckin
+      firstReadyAt:
+        type: string
+        format: date-time
+        x-go-name: FirstReadyAt
+      id:
+        type: string
+        x-go-name: ID
+      installType:
+        description: 'InstallType is the canonical observed install type, derived once
+
+          server-side from the instance''s identity signals: one of "linux"
+
+          (embedded cluster), "kurl", "kots", or "helm". Clients read this
+
+          directly instead of re-deriving; collapse to a binary install method
+
+          with installType == "helm" ? "helm" : "linux" where needed.'
+        type: string
+        x-go-name: InstallType
+      isAirgap:
+        type: boolean
+        x-go-name: IsAirgap
+      k8sDistribution:
+        type: string
+        x-go-name: K8sDistribution
+      k8sVersion:
+        type: string
+        x-go-name: K8sVersion
+      kotsInstallId:
+        type: string
+        x-go-name: KotsInstallID
+      kurlInstallId:
+        type: string
+        x-go-name: KurlInstallID
+      lastCheckin:
+        type: string
+        format: date-time
+        x-go-name: LastCheckin
+      releaseSequence:
+        type: integer
+        format: int64
+        x-go-name: ReleaseSequence
+      resourceStates:
+        type: array
+        items:
+          $ref: '#/definitions/InstanceResourceState'
+        x-go-name: ResourceStates
+      serviceAccountId:
+        type: string
+        x-go-name: ServiceAccountID
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/InstanceTag'
+        x-go-name: Tags
+      versionLabel:
+        type: string
+        x-go-name: VersionLabel
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  CustomerInstallOptions:
+    type: object
+    properties:
+      admin_console_url:
+        type: string
+        x-go-name: AdminConsoleURL
+      assets_downloaded_at:
+        description: New fields for tracking installation progress
+        type: string
+        format: date-time
+        x-go-name: AssetsDownloadedAt
+      browser_install_completed_at:
+        type: string
+        format: date-time
+        x-go-name: BrowserInstallCompletedAt
+      channel_id:
+        type: string
+        x-go-name: ChannelID
+      channel_release_sequence:
+        type: integer
+        format: int64
+        x-go-name: ChannelSequence
+      customer_email:
+        type: string
+        x-go-name: CustomerEmail
+      customer_id:
+        type: string
+        x-go-name: CustomerID
+      id:
+        type: string
+        x-go-name: ID
+      images_pulled_at:
+        type: string
+        format: date-time
+        x-go-name: ImagesPulledAt
+      install_type:
+        type: string
+        x-go-name: InstallType
+      installation_completed_at:
+        type: string
+        format: date-time
+        x-go-name: InstallationCompletedAt
+      instance_id:
+        type: string
+        x-go-name: InstanceID
+      instance_name:
+        type: string
+        x-go-name: InstanceName
+      is_multi_node:
+        type: boolean
+        x-go-name: IsMultiNode
+      kubernetes_distribution:
+        type: string
+        x-go-name: KubernetesDistribution
+      license_id:
+        type: string
+        x-go-name: LicenseID
+      network_availability:
+        type: string
+        x-go-name: NetworkAvailability
+      os_distro:
+        type: string
+        x-go-name: OSDistro
+      os_version:
+        type: string
+        x-go-name: OSVersion
+      registry_authenticated_at:
+        type: string
+        format: date-time
+        x-go-name: RegistryAuthenticatedAt
+      registry_availability:
+        type: string
+        x-go-name: RegistryAvailability
+      service_account_id:
+        type: string
+        x-go-name: ServiceAccountID
+      service_account_token:
+        type: string
+        x-go-name: ServiceAccountToken
+      started_at:
+        type: string
+        format: date-time
+        x-go-name: StartedAt
+      status:
+        type: string
+        x-go-name: Status
+      version:
+        type: string
+        x-go-name: VersionLabel
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
+  CustomerUser:
+    type: object
+    properties:
+      appId:
+        type: string
+        x-go-name: AppID
+      customerId:
+        type: string
+        x-go-name: CustomerID
+      customerName:
+        type: string
+        x-go-name: CustomerName
+      emailAddress:
+        type: string
+        x-go-name: EmailAddress
+      firstAccessedAt:
+        type: string
+        format: date-time
+        x-go-name: FirstAccessedAt
+      id:
+        type: string
+        x-go-name: ID
+      invitedAt:
+        type: string
+        x-go-name: InvitedAt
+      lastAccessedAt:
+        type: string
+        format: date-time
+        x-go-name: LastAccessedAt
+      pendingInvite:
+        type: boolean
+        x-go-name: PendingInvite
+      role:
+        type: string
+        x-go-name: Role
+      viewCount:
+        type: integer
+        format: int64
+        x-go-name: ViewCount
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  Documentation:
+    type: object
+    properties:
+      embedded_cluster_install_url:
+        type: string
+        x-go-name: EmbeddedClusterInstallURL
+      embedded_cluster_post_install:
+        type: string
+        x-go-name: EmbeddedClusterPostInstall
+      embedded_cluster_pre_install:
+        type: string
+        x-go-name: EmbeddedClusterPreInstall
+      helm_install_url:
+        type: string
+        x-go-name: HelmInstallURL
+      helm_post_install:
+        type: string
+        x-go-name: HelmPostInstall
+      helm_pre_install:
+        type: string
+        x-go-name: HelmPreInstall
+      kots_install_url:
+        type: string
+        x-go-name: KOTSInstallURL
+      kurl_install_url:
+        type: string
+        x-go-name: KURLInstallURL
+      values_override_url:
+        type: string
+        x-go-name: ValuesOverrideURL
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
+  InstallInstructionsResponse:
+    type: object
+    title: InstallInstructionsResponse represents the complete set of installation instructions for a given install id.
+    properties:
+      context:
+        description: MDX context with all template variables
+        x-go-name: Context
+      format:
+        description: Version format ("basic" for legacy JSON, "mdx" for custom instructions)
+        type: string
+        x-go-name: Format
+      install_type:
+        description: Installation type ("linux", "helm", or "embedded-cluster")
+        type: string
+        x-go-name: InstallType
+      mdx_template:
+        description: 'MDX format fields (only present when format == "mdx")
+
+          MDX template content'
+        type: string
+        x-go-name: MDXTemplate
+      renderer_version:
+        description: Renderer version for frontend compatibility
+        type: integer
+        format: int64
+        x-go-name: RendererVersion
+      steps:
+        description: 'Sequential list of installation steps (legacy format only)
+
+          Note that the number and order will vary based on the install type and the install options themselves.'
+        type: array
+        items:
+          $ref: '#/definitions/InstallStepResponse'
+        x-go-name: Steps
+      title:
+        description: Overall installation title (legacy format only)
+        type: string
+        x-go-name: Title
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  EmailHistoryItem:
+    description: EmailHistoryItem represents an email with its latest status for display
+    type: object
+    properties:
+      bounceType:
+        type: string
+        x-go-name: BounceType
+      customerId:
+        type: string
+        x-go-name: CustomerID
+      customerName:
+        type: string
+        x-go-name: CustomerName
+      emailType:
+        type: string
+        x-go-name: EmailType
+      fromEmail:
+        type: string
+        x-go-name: FromEmail
+      latestEventAt:
+        type: string
+        format: date-time
+        x-go-name: LatestEventAt
+      latestStatus:
+        type: string
+        x-go-name: LatestStatus
+      messageId:
+        type: string
+        x-go-name: MessageID
+      sentAt:
+        type: string
+        format: date-time
+        x-go-name: SentAt
+      subject:
+        type: string
+        x-go-name: Subject
+      templateName:
+        type: string
+        x-go-name: TemplateName
+      toEmail:
+        type: string
+        x-go-name: ToEmail
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
+  ContentVersion:
+    type: object
+    properties:
+      branch:
+        type: string
+        x-go-name: Branch
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      id:
+        type: string
+        x-go-name: ID
+      last_sync_at:
+        type: string
+        format: date-time
+        x-go-name: LastSyncAt
+      last_sync_commit:
+        type: string
+        x-go-name: LastSyncCommit
+      last_sync_error:
+        type: string
+        x-go-name: LastSyncError
+      last_sync_notice:
+        type: string
+        x-go-name: LastSyncNotice
+      repo_id:
+        type: string
+        x-go-name: RepoID
+      source_version_id:
+        type: string
+        x-go-name: SourceVersionID
+      updated_at:
+        type: string
+        format: date-time
+        x-go-name: UpdatedAt
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
+  EnterprisePortalSettings:
+    type: object
+    properties:
+      allowedDomainsEnabled:
+        type: boolean
+        x-go-name: AllowedDomainsEnabled
+      appId:
+        type: string
+        x-go-name: AppID
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      customerId:
+        type: string
+        x-go-name: CustomerID
+      portalVersion:
+        type: string
+        x-go-name: PortalVersion
+      teamId:
+        type: string
+        x-go-name: TeamID
+      updatedAt:
+        type: string
+        format: date-time
+        x-go-name: UpdatedAt
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  ServiceAccount:
+    type: object
+    title: ServiceAccount represents a modified user on a team paired with an API token.
+    properties:
+      accountName:
+        type: string
+        x-go-name: AccountName
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      customerId:
+        type: string
+        x-go-name: CustomerID
+      emailAddress:
+        type: string
+        x-go-name: EmailAddress
+      id:
+        type: string
+        x-go-name: ID
+      isRevoked:
+        type: boolean
+        x-go-name: IsRevoked
+      lastUsedAt:
+        type: string
+        format: date-time
+        x-go-name: LastUsedAt
+      token:
+        type: string
+        x-go-name: Token
+      tokenRegeneratedAt:
+        type: string
+        format: date-time
+        x-go-name: TokenRegeneratedAt
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  CustomerInvite:
+    type: object
+    properties:
+      appId:
+        type: string
+        x-go-name: AppID
+      appSlug:
+        type: string
+        x-go-name: AppSlug
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      customerId:
+        type: string
+        x-go-name: CustomerID
+      customerName:
+        type: string
+        x-go-name: CustomerName
+      emailAddress:
+        type: string
+        x-go-name: EmailAddress
+      expireAt:
+        type: string
+        format: date-time
+        x-go-name: ExpireAt
+      id:
+        type: string
+        x-go-name: ID
+      inviteNonce:
+        type: string
+        x-go-name: Nonce
+      teamId:
+        type: string
+        x-go-name: TeamID
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  ContentSettings:
+    type: object
+    properties:
+      hide_unmatched_content_versions:
+        type: boolean
+        x-go-name: HideUnmatchedContentVersions
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/enterprise_portal
+responses:
+  listEnterprisePortalCustomerUsersResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+        users:
+          type: array
+          items:
+            $ref: '#/definitions/CustomerUser'
+          x-go-name: Users
+  listEnterprisePortalEmailHistoryResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        emails:
+          type: array
+          items:
+            $ref: '#/definitions/EmailHistoryItem'
+          x-go-name: Emails
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+  listInstallAttemptsResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        install_attempts:
+          type: array
+          items:
+            $ref: '#/definitions/InstallAttempt'
+          x-go-name: InstallAttempts
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+  updateContentSettingsResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        settings:
+          $ref: '#/definitions/ContentSettings'
+  createInstallOptionsResponse:
+    description: CreateInstallOptionsResponse contains the response from creating install options.
+    schema:
+      type: object
+      properties:
+        install_options:
+          $ref: '#/definitions/CustomerInstallOptions'
+        instructions:
+          $ref: '#/definitions/InstallInstructionsResponse'
+        service_account:
+          $ref: '#/definitions/ServiceAccount'
+  getEnterprisePortalAccessResponse:
+    description: GetEnterprisePortalAccessResponse represents the access settings response
+    schema:
+      type: object
+      properties:
+        auto_invite_to_ep_on_create:
+          type: boolean
+          x-go-name: AutoInviteToEpOnCreate
+        download_portal_disabled:
+          type: boolean
+          x-go-name: DownloadPortalDisabled
+  listFailedLoginAttemptsResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        attempts:
+          type: array
+          items:
+            $ref: '#/definitions/FailedLoginAttempt'
+          x-go-name: Attempts
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+  getUpdateInstructionsResponse:
+    description: GetUpdateInstructionsResponse contains the response from getting update instructions.
+    schema:
+      $ref: '#/definitions/UpdateInstructionsResponse'
+  dismissContentVersionNoticeResponse:
+    description: 'DismissContentVersionNoticeResponse contains the response from dismissing a
+
+      content version notice.'
+    schema:
+      type: object
+      properties:
+        success:
+          description: True when the notice was dismissed
+          type: boolean
+          x-go-name: Success
+  createContentVersionPinResponse:
+    description: 'CreateContentVersionPinResponse contains the response from creating a
+
+      content version pin.'
+    schema:
+      type: object
+      properties:
+        version:
+          $ref: '#/definitions/ContentVersion'
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  getEnterprisePortalSettingsResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        settings:
+          $ref: '#/definitions/EnterprisePortalSettings'
+  acknowledgeContentTemplateUpdatesResponse:
+    description: 'AcknowledgeContentTemplateUpdatesResponse contains the response from
+
+      acknowledging upstream content template updates.'
+    schema:
+      type: object
+      properties:
+        acknowledged_through_at:
+          description: Template update watermark after acknowledgement
+          type: string
+          format: date-time
+          x-go-name: AcknowledgedThroughAt
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  getInstallOptionsResponse:
+    description: GetInstallOptionsResponse contains the response from getting install options.
+    schema:
+      type: object
+      properties:
+        admin_console_url:
+          type: string
+          x-go-name: AdminConsoleURL
+        assets_downloaded_at:
+          description: New fields for tracking installation progress
+          type: string
+          format: date-time
+          x-go-name: AssetsDownloadedAt
+        browser_install_completed_at:
+          type: string
+          format: date-time
+          x-go-name: BrowserInstallCompletedAt
+        channel_id:
+          type: string
+          x-go-name: ChannelID
+        channel_release_sequence:
+          type: integer
+          format: int64
+          x-go-name: ChannelSequence
+        customer_email:
+          type: string
+          x-go-name: CustomerEmail
+        customer_id:
+          type: string
+          x-go-name: CustomerID
+        id:
+          type: string
+          x-go-name: ID
+        images_pulled_at:
+          type: string
+          format: date-time
+          x-go-name: ImagesPulledAt
+        install_type:
+          type: string
+          x-go-name: InstallType
+        installation_completed_at:
+          type: string
+          format: date-time
+          x-go-name: InstallationCompletedAt
+        instance_id:
+          type: string
+          x-go-name: InstanceID
+        instance_name:
+          type: string
+          x-go-name: InstanceName
+        instructions:
+          $ref: '#/definitions/InstallInstructionsResponse'
+        is_multi_node:
+          type: boolean
+          x-go-name: IsMultiNode
+        kubernetes_distribution:
+          type: string
+          x-go-name: KubernetesDistribution
+        license_id:
+          type: string
+          x-go-name: LicenseID
+        network_availability:
+          type: string
+          x-go-name: NetworkAvailability
+        os_distro:
+          type: string
+          x-go-name: OSDistro
+        os_version:
+          type: string
+          x-go-name: OSVersion
+        registry_authenticated_at:
+          type: string
+          format: date-time
+          x-go-name: RegistryAuthenticatedAt
+        registry_availability:
+          type: string
+          x-go-name: RegistryAvailability
+        service_account_id:
+          type: string
+          x-go-name: ServiceAccountID
+        service_account_token:
+          type: string
+          x-go-name: ServiceAccountToken
+        started_at:
+          type: string
+          format: date-time
+          x-go-name: StartedAt
+        status:
+          type: string
+          x-go-name: Status
+        version:
+          type: string
+          x-go-name: VersionLabel
+  listEnterprisePortalInstancesResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        instances:
+          type: array
+          items:
+            $ref: '#/definitions/Instance'
+          x-go-name: Instances
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+  updateEnterprisePortalAccessResponse:
+    description: UpdateEnterprisePortalAccessResponse represents the access settings response
+    schema:
+      type: object
+      properties:
+        auto_invite_to_ep_on_create:
+          type: boolean
+          x-go-name: AutoInviteToEpOnCreate
+        download_portal_disabled:
+          type: boolean
+          x-go-name: DownloadPortalDisabled
+  createEnterprisePortalSystemUserLoginResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        login_url:
+          description: A fully-qualified login URL to open in a new tab
+          type: string
+          x-go-name: LoginURL
+        nonce:
+          description: The nonce that can be used with the EP verify endpoint
+          type: string
+          x-go-name: Nonce
+  createCustomerAllowedDomainResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        allowedDomain:
+          $ref: '#/definitions/AllowedDomain'
+  deleteContentVersionResponse:
+    description: 'DeleteContentVersionResponse contains the response from deleting a content
+
+      version.'
+    schema:
+      type: object
+      properties:
+        success:
+          description: True when the version was deleted
+          type: boolean
+          x-go-name: Success
+  listUpdateAttemptsResponse:
+    description: ListUpdateAttemptsResponse is the response body for listing update attempts
+    schema:
+      type: object
+      properties:
+        update_attempts:
+          type: array
+          items:
+            $ref: '#/definitions/UpdateAttempt'
+          x-go-name: UpdateAttempts
+  updateEnterprisePortalSettingsResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        settings:
+          $ref: '#/definitions/EnterprisePortalSettings'
+  listEnterprisePortalServiceAccountsResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        service_accounts:
+          type: array
+          items:
+            $ref: '#/definitions/ServiceAccount'
+          x-go-name: ServiceAccounts
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+  responseNoContent:
+    description: On success, no payload returned
+  patchInstallOptionsResponse:
+    description: PatchInstallOptionsResponse contains the response from patching install options.
+    schema:
+      type: object
+      properties:
+        install_options:
+          $ref: '#/definitions/CustomerInstallOptions'
+        instructions:
+          $ref: '#/definitions/InstallInstructionsResponse'
+        service_account:
+          $ref: '#/definitions/ServiceAccount'
+  updateDocumentationResponse:
+    description: ''
+    schema:
+      type: object
+  getPortalFeaturesResponse:
+    description: PortalFeaturesResponse holds the current state of all portal feature toggles for an app.
+    schema:
+      type: object
+      properties:
+        askAiEnabled:
+          description: Whether the Ask AI assistant is enabled in the Enterprise Portal.
+          type: boolean
+          x-go-name: AskAiEnabled
+        supportBundleUploadEnabled:
+          description: Whether support bundle upload is enabled in the Enterprise Portal.
+          type: boolean
+          x-go-name: SupportBundleUploadEnabled
+  getDocumentationResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        documentation:
+          $ref: '#/definitions/Documentation'
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  getEnterprisePortalStatusResponse:
+    description: GetEnterprisePortalStatusResponse represents the status of the enterprise portal.
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-name: Status
+  inviteEnterprisePortalCustomerUserResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        invite:
+          $ref: '#/definitions/CustomerInvite'
+  getEnterprisePortalBrandingResponse:
+    description: GetEnterprisePortalBrandingResponse represents the branding for the enterprise portal.
+    schema:
+      type: object
+      properties:
+        activeEnterprisePortalTemplate:
+          type: string
+          x-go-name: ActiveEnterprisePortalTemplate
+        branding:
+          type: string
+          x-go-name: Branding
+  listCustomerAllowedDomainsResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        allowedDomains:
+          type: array
+          items:
+            $ref: '#/definitions/AllowedDomain'
+          x-go-name: AllowedDomains
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

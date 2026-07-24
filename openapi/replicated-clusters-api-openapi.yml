@@ -1,0 +1,1688 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps clusters API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: clusters
+paths:
+  /app/{app_id}/cluster-usage:
+    get:
+      security:
+      - api_key: []
+      description: 'List cluster distribution/version usage by customers.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: List cluster usage.
+      operationId: listClusterUsage
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listClusterUsageResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/create'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Create a test cluster.
+      operationId: createCluster
+      parameters:
+      - name: Body
+        in: body
+        schema:
+          $ref: '#/definitions/CreateClusterParametersBody'
+      - type: boolean
+        name: DryRun
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/createClusterDryRunResponse'
+        '201':
+          $ref: '#/responses/createClusterResponse'
+        '400':
+          $ref: '#/responses/createClusterErrorResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/filters:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Get clusters filters.
+      operationId: getClusterFilters
+      responses:
+        '200':
+          $ref: '#/responses/getClusterFiltersResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/quotas:
+    get:
+      security:
+      - api_key: []
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: List cluster quotas.
+      operationId: listClusterQuotas
+      responses:
+        '200':
+          $ref: '#/responses/listClusterQuotasResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/stats:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Get clusters stats.
+      operationId: getClusterStats
+      responses:
+        '200':
+          $ref: '#/responses/getClusterStatsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/versions:
+    get:
+      security:
+      - api_key: []
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: List cluster versions.
+      operationId: listClusterVersions
+      responses:
+        '200':
+          $ref: '#/responses/listClusterVersionsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Get the details for a test cluster.
+      operationId: getCluster
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getClusterResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Delete a test cluster.
+      operationId: deleteCluster
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/deleteClusterResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}/kubeconfig:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]/kubeconfig'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Get the kubeconfig for a test cluster.
+      operationId: getClusterKubeconfig
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getClusterKubeconfigResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}/nodegroup/{nodegroup_id}:
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]/nodegroup'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Update a nodegroup for a cluster.
+      operationId: updateClusterNodegroup
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: NodegroupID
+        description: Nodegroup identifier
+        name: nodegroup_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            count:
+              type: integer
+              format: int64
+              x-go-name: Count
+            maxCount:
+              type: integer
+              format: int64
+              x-go-name: MaxCount
+            minCount:
+              type: integer
+              format: int64
+              x-go-name: MinCount
+      responses:
+        '200':
+          $ref: '#/responses/updateClusterNodegroupResponse'
+        '400':
+          $ref: '#/responses/updateClusterNodegroupErrorResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}/port:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]/port/expose'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Exposes a port on a cluster.
+      operationId: createClusterPort
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - port
+          - protocols
+          properties:
+            is_wildcard:
+              description: IsWildcard
+              type: boolean
+              x-go-name: IsWildcard
+            port:
+              description: Port Number
+              type: integer
+              format: int64
+              x-go-name: Port
+            protocols:
+              description: Protocols
+              type: array
+              items:
+                $ref: '#/definitions/PortProtocol'
+              x-go-name: Protocols
+      responses:
+        '201':
+          $ref: '#/responses/createClusterPortResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}/port/{port_number}:
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]/port/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Deletes a port from a cluster.
+      operationId: deleteClusterPort
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      - type: integer
+        format: int64
+        x-go-name: PortNumber
+        description: Port Number
+        name: port_number
+        in: path
+        required: true
+      - type: array
+        items:
+          type: string
+        x-go-name: Protocols
+        description: Protocols
+        name: protocols
+        in: query
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/deleteClusterPortResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}/ports:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]/port/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Lists ports for a cluster.
+      operationId: listClusterPorts
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listClusterPortsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}/tags:
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/tag/update'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Update the tags for a cluster.
+      operationId: updateClusterTags
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            tags:
+              type: array
+              items:
+                $ref: '#/definitions/Tag'
+              x-go-name: Tags
+      responses:
+        '201':
+          $ref: '#/responses/updateClusterTagsResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}/ttl:
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/ttl/update'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Update ttl for a cluster.
+      operationId: updateClusterTTL
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            ttl:
+              type: string
+              x-go-name: TTL
+      responses:
+        '200':
+          $ref: '#/responses/updateClusterTTLResponse'
+        '400':
+          $ref: '#/responses/updateClusterTTLErrorResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cluster/{cluster_id}/upgrade:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/[:clusterid]/upgrade'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Upgrade a test cluster.
+      operationId: upgradeCluster
+      parameters:
+      - type: string
+        x-go-name: ClusterID
+        description: Cluster identifier
+        name: cluster_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            kubernetes_version:
+              type: string
+              x-go-name: KubernetesVersion
+      - type: boolean
+        name: DryRun
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/upgradeClusterResponse'
+        '400':
+          $ref: '#/responses/upgradeClusterValidationErrorResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /clusters:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: List test clusters.
+      operationId: listClusters
+      parameters:
+      - type: integer
+        format: int64
+        default: 20
+        x-go-name: PageSize
+        description: Page size
+        name: pageSize
+        in: query
+      - type: integer
+        format: int64
+        x-go-name: CurrentPage
+        description: Current page
+        name: currentPage
+        in: query
+      - type: string
+        x-go-name: SortColumn
+        description: Sort column
+        name: sortColumn
+        in: query
+      - type: boolean
+        x-go-name: SortDesc
+        description: Sort descending
+        name: sortDesc
+        in: query
+      - type: boolean
+        x-go-name: ShowTerminated
+        name: show-terminated
+        in: query
+      - type: string
+        x-go-name: StartTimeStr
+        description: Specify a start time in the format "YYYY-MM-DDTHH:MM:SSZ".
+        name: start-time
+        in: query
+      - type: string
+        x-go-name: EndTimeStr
+        description: Specify an end time in the format "YYYY-MM-DDTHH:MM:SSZ".
+        name: end-time
+        in: query
+      - type: string
+        x-go-name: ActorFilter
+        description: Filter clusters by actor type or name, e.g. "user" or "Replicated CLI".
+        name: actor-filter
+        in: query
+      - type: string
+        x-go-name: TagFilter
+        description: Filter clusters by tag, e.g. "tag1=value1".
+        name: tag-filter
+        in: query
+      - type: string
+        x-go-name: TagSortKey
+        description: 'Sort clusters by a specific key, e.g. "terminated_at" would sort by
+
+          termination time.'
+        name: tag-sort-key
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listClustersResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /cmx/credits/buy:
+    post:
+      description: 'Start the process of adding credits to a team. This generally
+
+        credits a stripe checkout session'
+      tags:
+      - clusters
+      summary: Add credits to a team.
+      operationId: addClusterCredits
+      responses:
+        '200':
+          $ref: '#/responses/increaseClusterCreditsResponse'
+        '400':
+          $ref: '#/responses/increaseClusterCreditsErrorResponse'
+        '500':
+          $ref: '#/responses/increaseClusterCreditsErrorResponse'
+  /cmx/quotas/increase:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/cluster/increase-quota'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - clusters
+      summary: Send a request to increase cluster quota.
+      operationId: increaseClusterQuota
+      parameters:
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            requests:
+              type: array
+              items:
+                $ref: '#/definitions/IncreaseQuotaRequest'
+              x-go-name: Requests
+      responses:
+        '200':
+          $ref: '#/responses/increaseClusterQuotaResponse'
+        '400':
+          $ref: '#/responses/increaseClusterQuotaErrorResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+definitions:
+  ClusterAddon:
+    type: object
+    properties:
+      cluster_guid:
+        type: string
+        x-go-name: ClusterGUID
+      cluster_id:
+        type: string
+        x-go-name: ClusterShortID
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      guid:
+        type: string
+        x-go-name: GUID
+      id:
+        type: string
+        x-go-name: ShortID
+      object_store:
+        $ref: '#/definitions/ClusterAddonObjectStore'
+      port:
+        $ref: '#/definitions/ClusterAddonPort'
+      ready_at:
+        type: string
+        format: date-time
+        x-go-name: ReadyAt
+      status:
+        $ref: '#/definitions/ClusterAddonStatus'
+      terminated_at:
+        type: string
+        format: date-time
+        x-go-name: TerminatedAt
+      total_credits:
+        type: integer
+        format: int64
+        x-go-name: TotalCredits
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  SupportedDistributionAndVersions:
+    type: object
+    properties:
+      instance_types:
+        type: array
+        items:
+          type: string
+        x-go-name: InstanceTypes
+      nodes_max:
+        type: integer
+        format: int64
+        x-go-name: NodesMax
+      short_name:
+        type: string
+        x-go-name: ShortName
+      status:
+        $ref: '#/definitions/ClusterDistributionStatus'
+      version_details:
+        type: array
+        items:
+          $ref: '#/definitions/SupportedVersion'
+        x-go-name: VersionDetails
+      versions:
+        type: array
+        items:
+          type: string
+        x-go-name: Versions
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ValidationError:
+    type: object
+    properties:
+      errors:
+        type: array
+        items:
+          type: string
+        x-go-name: Errors
+      supported_distributions:
+        type: array
+        items:
+          $ref: '#/definitions/SupportedDistributionAndVersions'
+        x-go-name: SupportedDistributions
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ClusterAddonPort:
+    type: object
+    properties:
+      is_wildcard:
+        type: boolean
+        x-go-name: IsWildcard
+      name:
+        type: string
+        x-go-name: Name
+      protocol_http:
+        type: boolean
+        x-go-name: ProtocolHTTP
+      protocol_https:
+        type: boolean
+        x-go-name: ProtocolHTTPS
+      protocol_ws:
+        type: boolean
+        x-go-name: ProtocolWS
+      protocol_wss:
+        type: boolean
+        x-go-name: ProtocolWSS
+      upstream_port:
+        type: integer
+        format: int64
+        x-go-name: UpstreamPort
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  NodeGroup:
+    type: object
+    properties:
+      cluster_guid:
+        type: string
+        x-go-name: ClusterGUID
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      credits_per_hour:
+        type: integer
+        format: int64
+        x-go-name: CreditsPerHour
+      disk_gib:
+        type: integer
+        format: int64
+        x-go-name: DiskGiB
+      id:
+        type: string
+        x-go-name: ID
+      instance_type:
+        type: string
+        x-go-name: InstanceType
+      is_default:
+        type: boolean
+        x-go-name: IsDefault
+      max_node_count:
+        type: integer
+        format: int64
+        x-go-name: MaxNodeCount
+      min_node_count:
+        type: integer
+        format: int64
+        x-go-name: MinNodeCount
+      minutes_billed:
+        type: integer
+        format: int64
+        x-go-name: MinutesBilled
+      name:
+        type: string
+        x-go-name: Name
+      node_count:
+        type: integer
+        format: int64
+        x-go-name: NodeCount
+      nodes:
+        type: array
+        items:
+          $ref: '#/definitions/ClusterNode'
+        x-go-name: ClusterNodes
+      running_at:
+        type: string
+        format: date-time
+        x-go-name: RunningAt
+      total_credits:
+        type: integer
+        format: int64
+        x-go-name: TotalCredits
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  IncreaseQuotaRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        x-go-name: Name
+      requested_value:
+        type: integer
+        format: int64
+        x-go-name: RequestedValue
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
+  ClusterPort:
+    type: object
+    properties:
+      addon_guid:
+        type: string
+        x-go-name: AddonGUID
+      addon_id:
+        type: string
+        x-go-name: AddonShortID
+      cluster_guid:
+        type: string
+        x-go-name: ClusterGUID
+      cluster_id:
+        type: string
+        x-go-name: ClusterShortID
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      exposed_ports:
+        type: array
+        items:
+          $ref: '#/definitions/ClusterExposedPort'
+        x-go-name: ExposedPorts
+      hostname:
+        type: string
+        x-go-name: Hostname
+      is_wildcard:
+        type: boolean
+        x-go-name: IsWildcard
+      port_name:
+        type: string
+        x-go-name: PortName
+      state:
+        $ref: '#/definitions/ClusterAddonStatus'
+      upstream_port:
+        type: integer
+        format: int64
+        x-go-name: UpstreamPort
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ClusterStatus:
+    type: string
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ClusterDetail:
+    type: object
+    properties:
+      channel_id:
+        type: string
+        x-go-name: ChannelId
+      channel_sequence:
+        type: integer
+        format: int64
+        x-go-name: ChannelSequence
+      cloud_provider:
+        type: string
+        x-go-name: CloudProvider
+      is_airgap:
+        type: boolean
+        x-go-name: IsAirgap
+      is_kurl:
+        type: boolean
+        x-go-name: IsKurl
+      kots_version:
+        type: string
+        x-go-name: KotsVersion
+      kubernetes_distribution:
+        type: string
+        x-go-name: KubernetesDistribution
+      kubernetes_version:
+        type: string
+        x-go-name: KubernetesVersion
+      number_of_instances:
+        type: integer
+        format: int64
+        x-go-name: NumberOfInstances
+      version_label:
+        type: string
+        x-go-name: VersionLabel
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster
+  ClusterExposedPort:
+    type: object
+    properties:
+      exposed_port:
+        type: integer
+        format: int64
+        x-go-name: ExposedPort
+      protocol:
+        $ref: '#/definitions/PortProtocol'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  Cluster:
+    type: object
+    properties:
+      actor:
+        $ref: '#/definitions/Actor'
+      addons:
+        type: array
+        items:
+          $ref: '#/definitions/ClusterAddon'
+        x-go-name: Addons
+      assigned_at:
+        type: string
+        format: date-time
+        x-go-name: AssignedAt
+      cluster_node:
+        $ref: '#/definitions/ClusterNode'
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      credits_per_hour_per_cluster:
+        type: integer
+        format: int64
+        x-go-name: CreditsPerHourPerCluster
+      distribution:
+        type: string
+        x-go-name: Distribution
+      expires_at:
+        type: string
+        format: date-time
+        x-go-name: ExpiresAt
+      flat_fee:
+        type: integer
+        format: int64
+        x-go-name: FlatFee
+      guid:
+        type: string
+        x-go-name: GUID
+      id:
+        type: string
+        x-go-name: ShortID
+      installer_url:
+        type: string
+        x-go-name: InstallerURL
+      ip_family:
+        type: string
+        x-go-name: IPFamily
+      kubernetes_distribution:
+        type: string
+        x-go-name: KubernetesDistribution
+      kubernetes_version:
+        type: string
+        x-go-name: KubernetesVersion
+      last_scheduling_status:
+        type: string
+        x-go-name: LastSchedulingStatus
+      license_id:
+        type: string
+        x-go-name: LicenseID
+      name:
+        type: string
+        x-go-name: Name
+      network_id:
+        type: string
+        x-go-name: NetworkID
+      node_groups:
+        type: array
+        items:
+          $ref: '#/definitions/NodeGroup'
+        x-go-name: NodeGroups
+      running_at:
+        type: string
+        format: date-time
+        x-go-name: RunningAt
+      status:
+        $ref: '#/definitions/ClusterStatus'
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+        x-go-name: Tags
+      team_id:
+        type: string
+        x-go-name: TeamID
+      total_credits:
+        type: integer
+        format: int64
+        x-go-name: TotalCredits
+      ttl:
+        type: string
+        x-go-name: TTL
+      version:
+        type: string
+        x-go-name: Version
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  SupportedVersion:
+    type: object
+    properties:
+      nodes_max:
+        type: integer
+        format: int64
+        x-go-name: NodesMax
+      version:
+        type: string
+        x-go-name: Version
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  PortProtocol:
+    type: string
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+  Actor:
+    type: object
+    properties:
+      description:
+        type: string
+        x-go-name: Description
+      id:
+        type: string
+        x-go-name: ID
+      link:
+        type: string
+        x-go-name: Link
+      timestamp:
+        type: string
+        format: date-time
+        x-go-name: Timestamp
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+  ClusterQuota:
+    type: object
+    properties:
+      current_value:
+        type: integer
+        format: int64
+        x-go-name: CurrentValue
+      default_value:
+        type: integer
+        format: int64
+        x-go-name: DefaultValue
+      in_use:
+        type: integer
+        format: int64
+        x-go-name: InUse
+      name:
+        type: string
+        x-go-name: Name
+      queued:
+        type: integer
+        format: int64
+        x-go-name: Queued
+      unit:
+        type: string
+        x-go-name: Unit
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
+  CreateClusterParametersBody:
+    type: object
+    properties:
+      additional_node_groups:
+        type: array
+        items:
+          $ref: '#/definitions/CreateNodeGroupParameters'
+        x-go-name: AdditionalNodeGroups
+      default_node_group:
+        $ref: '#/definitions/CreateNodeGroupParameters'
+      disk_gib:
+        type: integer
+        format: int64
+        x-go-name: DiskGiB
+      instance_type:
+        description: 'following params are deprecated but remain to support cli versions <= 0.72.0
+
+          this handler will construct everything into DefaultNodeGroup and AdditionalNodeGroups
+
+          in the Bind method'
+        type: string
+        x-go-name: InstanceType
+      ip_family:
+        type: string
+        x-go-name: IPFamily
+      kubernetes_distribution:
+        type: string
+        x-go-name: KubernetesDistribution
+      kubernetes_version:
+        type: string
+        x-go-name: KubernetesVersion
+      license_id:
+        type: string
+        x-go-name: LicenseID
+      max_node_count:
+        type: integer
+        format: int64
+        x-go-name: MaxNodeCount
+      min_node_count:
+        type: integer
+        format: int64
+        x-go-name: MinNodeCount
+      name:
+        type: string
+        x-go-name: Name
+      network_policy:
+        type: string
+        x-go-name: NetworkPolicy
+      node_count:
+        type: integer
+        format: int64
+        x-go-name: NodeCount
+      node_groups:
+        type: array
+        items:
+          $ref: '#/definitions/CreateNodeGroupParameters'
+        x-go-name: NodeGroups
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+        x-go-name: Tags
+      ttl:
+        type: string
+        x-go-name: TTL
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
+  Tag:
+    type: object
+    properties:
+      key:
+        type: string
+        x-go-name: Key
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+  CreateNodeGroupParameters:
+    type: object
+    properties:
+      disk_gib:
+        type: integer
+        format: int64
+        x-go-name: DiskGiB
+      instance_type:
+        type: string
+        x-go-name: InstanceType
+      max_node_count:
+        type: integer
+        format: int64
+        x-go-name: MaxNodeCount
+      min_node_count:
+        type: integer
+        format: int64
+        x-go-name: MinNodeCount
+      name:
+        type: string
+        x-go-name: Name
+      node_count:
+        type: integer
+        format: int64
+        x-go-name: NodeCount
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
+  NodeType:
+    type: string
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ClusterNode:
+    type: object
+    properties:
+      join_command:
+        type: string
+        x-go-name: JoinCommand
+      network_id:
+        description: Used by vxlan nodes
+        type: string
+        x-go-name: NetworkID
+      network_public_ips:
+        type: array
+        items:
+          type: string
+        x-go-name: NetworkPublicIPs
+      node_group_id:
+        type: string
+        x-go-name: NodeGroupID
+      node_index:
+        type: integer
+        format: int64
+        x-go-name: Index
+      node_type:
+        $ref: '#/definitions/NodeType'
+      ssh_endpoint:
+        type: string
+        x-go-name: SSHEndpoint
+      ssh_key:
+        type: string
+        x-go-name: SSHKey
+      ssh_port:
+        type: integer
+        format: int64
+        x-go-name: SSHPort
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ClusterAddonStatus:
+    type: string
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ClusterAddonObjectStore:
+    type: object
+    properties:
+      bucket_name:
+        type: string
+        x-go-name: BucketName
+      bucket_prefix:
+        type: string
+        x-go-name: BucketPrefix
+      service_account_name:
+        type: string
+        x-go-name: ServiceAccountName
+      service_account_name_read_only:
+        type: string
+        x-go-name: ServiceAccountNameReadOnly
+      service_account_namespace:
+        type: string
+        x-go-name: ServiceAccountNamespace
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  ClusterDistributionStatus:
+    type: object
+    properties:
+      enabled:
+        type: boolean
+        x-go-name: Enabled
+      status:
+        type: string
+        x-go-name: Status
+      status_message:
+        type: string
+        x-go-name: StatusMessage
+      versions:
+        type: string
+        x-go-name: Versions
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+  CreateClusterError:
+    type: object
+    properties:
+      maxAKS:
+        type: integer
+        format: int64
+        x-go-name: MaxAKS
+      maxDiskGiB:
+        type: integer
+        format: int64
+        x-go-name: MaxDiskGiB
+      maxEKS:
+        type: integer
+        format: int64
+        x-go-name: MaxEKS
+      maxGKE:
+        type: integer
+        format: int64
+        x-go-name: MaxGKE
+      maxMemoryGiB:
+        type: integer
+        format: int64
+        x-go-name: MaxMemoryGiB
+      maxOKE:
+        type: integer
+        format: int64
+        x-go-name: MaxOKE
+      maxVCPUs:
+        type: integer
+        format: int64
+        x-go-name: MaxVCPUs
+      message:
+        type: string
+        x-go-name: Message
+      validationError:
+        $ref: '#/definitions/ValidationError'
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
+responses:
+  updateClusterTTLResponse:
+    description: UpdateClusterTTLResponse contains the response to update a cluster ttl
+    schema:
+      type: object
+      properties:
+        cluster:
+          $ref: '#/definitions/Cluster'
+        error:
+          type: string
+          x-go-name: Error
+  createClusterDryRunResponse:
+    description: CreateClusterDryRunResponse contains the response to a dry run of creating a cluster
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: '#/definitions/CreateClusterError'
+        total_cost:
+          type: integer
+          format: int64
+          x-go-name: TotalCost
+        ttl:
+          type: string
+          x-go-name: TTL
+  listClusterVersionsResponse:
+    description: ListClusterVersionsResponse contains the response to list clusters
+    schema:
+      type: object
+      properties:
+        cluster-versions:
+          type: array
+          items:
+            $ref: '#/definitions/SupportedDistributionAndVersions'
+          x-go-name: Clusters
+        error:
+          type: string
+          x-go-name: Error
+  increaseClusterCreditsResponse:
+    description: IncreaseClusterCreditsResponse contains the response to increase cluster credits
+    schema:
+      type: object
+      properties:
+        checkout_url:
+          type: string
+          x-go-name: CheckoutURL
+  createClusterResponse:
+    description: CreateClusterResponse contains the response to create a cluster
+    schema:
+      type: object
+      properties:
+        cluster:
+          $ref: '#/definitions/Cluster'
+  listClusterPortsResponse:
+    description: ListClusterPortsResponse contains the response to a list cluster [prts] request
+    schema:
+      type: object
+      properties:
+        addons:
+          type: array
+          items:
+            $ref: '#/definitions/ClusterAddon'
+          x-go-name: Addons
+        ports:
+          type: array
+          items:
+            $ref: '#/definitions/ClusterPort'
+          x-go-name: Ports
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  updateClusterTTLErrorResponse:
+    description: UpdateClusterTTLErrorResponse contains error information
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  increaseClusterQuotaResponse:
+    description: IncreaseClusterQuotaResponse contains the response to increase cluster quota
+    schema:
+      type: object
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  createClusterPortResponse:
+    description: CreateClusterPortResponse contains the response to a create cluster port request
+    schema:
+      type: object
+      properties:
+        addon:
+          $ref: '#/definitions/ClusterAddon'
+        port:
+          $ref: '#/definitions/ClusterPort'
+  increaseClusterQuotaErrorResponse:
+    description: IncreaseClusterQuotaErrorResponse contains the errors returned when increasing cluster quota
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+  updateClusterNodegroupErrorResponse:
+    description: updateClusterNodegroupErrorResponse contains error information
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+        validationError:
+          $ref: '#/definitions/ValidationError'
+  getClusterStatsResponse:
+    description: GetClusterStatsResponse contains the response to get clusters stats
+    schema:
+      type: object
+      properties:
+        cluster_count:
+          description: Total number of clusters.
+          type: integer
+          format: int64
+          x-go-name: ClusterCount
+        cost:
+          description: Total cost of all clusters in cents.
+          type: integer
+          format: int64
+          x-go-name: Cost
+        credit_balance:
+          description: Total remaining credit balance in cents.
+          type: integer
+          format: int64
+          x-go-name: CreditBalance
+        error:
+          type: string
+          x-go-name: Error
+        node_minutes:
+          description: Total number of node minutes.
+          type: integer
+          format: int64
+          x-go-name: NodeMinutes
+  updateClusterTagsResponse:
+    description: UpdateClusterTagsResponse contains the response to update a cluster tags
+    schema:
+      type: object
+      properties:
+        cluster:
+          $ref: '#/definitions/Cluster'
+        error:
+          type: string
+          x-go-name: Error
+  updateClusterNodegroupResponse:
+    description: UpdateClusterNodegroupResponse contains the response to update a cluster nodegroup
+    schema:
+      type: object
+      properties:
+        cluster:
+          $ref: '#/definitions/Cluster'
+        error:
+          type: string
+          x-go-name: Error
+  increaseClusterCreditsErrorResponse:
+    description: IncreaseClusterCreditsErrorResponse contains the errors returned when increasing cluster credits
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+  getClusterKubeconfigResponse:
+    description: GetClusterKubeconfigResponse contains the response to get a cluster kubeconfig
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        kubeconfig:
+          type: array
+          items:
+            type: integer
+            format: uint8
+          x-go-name: Kubeconfig
+  upgradeClusterValidationErrorResponse:
+    description: UpgradeClusterValidationErrorResponse contains a bad request response when upgrading a cluster
+    schema:
+      $ref: '#/definitions/ValidationError'
+  deleteClusterPortResponse:
+    description: DeleteClusterPortResponse contains the response to a delete cluster port request
+    schema:
+      type: object
+      properties:
+        addons:
+          type: array
+          items:
+            $ref: '#/definitions/ClusterAddon'
+          x-go-name: Addons
+        ports:
+          type: array
+          items:
+            $ref: '#/definitions/ClusterPort'
+          x-go-name: Ports
+  upgradeClusterResponse:
+    description: UpgradeClusterResponse contains the response to upgrade a cluster
+    schema:
+      type: object
+      properties:
+        cluster:
+          $ref: '#/definitions/Cluster'
+  listClustersResponse:
+    description: ListClustersResponse contains the response to list clusters
+    schema:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/definitions/Cluster'
+          x-go-name: Clusters
+        error:
+          type: string
+          x-go-name: Error
+        totalClusters:
+          type: integer
+          format: int64
+          x-go-name: TotalClusters
+  deleteClusterResponse:
+    description: DeleteClusterResponse contains the response to delete a cluster
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+  getClusterResponse:
+    description: GetClusterResponse contains the response to get cluster details
+    schema:
+      type: object
+      properties:
+        cluster:
+          $ref: '#/definitions/Cluster'
+        error:
+          type: string
+          x-go-name: Error
+  createClusterErrorResponse:
+    description: CreateClusterErrorResponse contains error information
+    schema:
+      $ref: '#/definitions/CreateClusterError'
+  listClusterQuotasResponse:
+    description: ListClusterQuotasResponse contains the response to list cluster quotas
+    schema:
+      type: object
+      properties:
+        cluster_quotas:
+          type: array
+          items:
+            $ref: '#/definitions/ClusterQuota'
+          x-go-name: ClusterQuotas
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  getClusterFiltersResponse:
+    description: GetClusterFiltersResponse contains the response to get clusters filters
+    schema:
+      type: object
+      properties:
+        earliest_cluster_date_days_ago:
+          type: integer
+          format: int64
+          x-go-name: EarliestClusterDateDaysAgo
+        max_cost:
+          type: integer
+          format: int64
+          x-go-name: MaxCost
+        max_duration_minutes:
+          type: integer
+          format: int64
+          x-go-name: MaxDurationMinutes
+        max_node_groups:
+          type: integer
+          format: int64
+          x-go-name: MaxNodeGroups
+        max_nodes:
+          type: integer
+          format: int64
+          x-go-name: MaxNodes
+        max_ttl_minutes:
+          type: integer
+          format: int64
+          x-go-name: MaxTTLMinutes
+  listClusterUsageResponse:
+    description: ListClusterUsageResponse contains the response to list cluster usage
+    schema:
+      type: object
+      properties:
+        clusterUsageDetails:
+          type: array
+          items:
+            $ref: '#/definitions/ClusterDetail'
+          x-go-name: ClusterUsageDetails
+        error:
+          type: string
+          x-go-name: Error
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

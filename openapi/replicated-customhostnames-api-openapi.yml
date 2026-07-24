@@ -1,0 +1,447 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps customHostnames API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: customHostnames
+paths:
+  /app/{app_id}/custom-hostname:
+    post:
+      security:
+      - api_key: []
+      description: 'Add a new custom hostname for a specific app and service (registry, proxy, download portal, or replicated app).
+
+
+        Required RBAC Policy: kots/app/[:appid]/customhostname/create'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customHostnames
+      summary: Create a custom hostname
+      operationId: createCustomHostname
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            downloadPortal:
+              $ref: '#/definitions/CreateCustomHostnameParams'
+            proxy:
+              $ref: '#/definitions/CreateCustomHostnameParams'
+            registry:
+              $ref: '#/definitions/CreateCustomHostnameParams'
+            replicatedApp:
+              $ref: '#/definitions/CreateCustomHostnameParams'
+      responses:
+        '200':
+          $ref: '#/responses/createCustomHostnameResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Remove a custom hostname from a specific app and service (registry, proxy, download portal, or replicated app).
+
+
+        Required RBAC Policy: kots/app/[:appid]/customhostname/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customHostnames
+      summary: Delete a custom hostname
+      operationId: deleteCustomHostname
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            downloadPortal:
+              $ref: '#/definitions/DeleteCustomHostnameParams'
+            proxy:
+              $ref: '#/definitions/DeleteCustomHostnameParams'
+            registry:
+              $ref: '#/definitions/DeleteCustomHostnameParams'
+            replicatedApp:
+              $ref: '#/definitions/DeleteCustomHostnameParams'
+      responses:
+        '200':
+          $ref: '#/responses/deleteCustomHostnameResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/custom-hostname/default/set:
+    put:
+      description: 'Set the default custom hostname for a specific app and service (registry, proxy, download portal, or replicated app).
+
+        The default hostname is used when no other custom hostname is specified for a channel.
+
+
+        Required RBAC Policy: kots/app/[:appid]/customhostname/default/set'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customHostnames
+      summary: Set the default hostname
+      operationId: setDefaultHostname
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            downloadPortal:
+              $ref: '#/definitions/SetDefaultHostnameParams'
+            proxy:
+              $ref: '#/definitions/SetDefaultHostnameParams'
+            registry:
+              $ref: '#/definitions/SetDefaultHostnameParams'
+            replicatedApp:
+              $ref: '#/definitions/SetDefaultHostnameParams'
+      responses:
+        '200':
+          $ref: '#/responses/setDefaultHostnameResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/custom-hostname/default/unset:
+    put:
+      description: 'Remove the default custom hostname for a specific app and service (registry, proxy, download portal, or replicated app).
+
+        After unsetting, the system will fall back to the replicated hostname for that service if a custom hostname is not set for a channel.
+
+
+        Required RBAC Policy: kots/app/[:appid]/customhostname/default/unset'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customHostnames
+      summary: Unset the default hostname
+      operationId: unsetDefaultHostname
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            downloadPortal:
+              $ref: '#/definitions/UnsetDefaultHostnameParams'
+            proxy:
+              $ref: '#/definitions/UnsetDefaultHostnameParams'
+            registry:
+              $ref: '#/definitions/UnsetDefaultHostnameParams'
+            replicatedApp:
+              $ref: '#/definitions/UnsetDefaultHostnameParams'
+      responses:
+        '200':
+          $ref: '#/responses/unsetDefaultHostnameResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/custom-hostnames:
+    get:
+      security:
+      - api_key: []
+      description: 'Return all custom hostnames configured for the specified app, grouped by service (registry, proxy, download portal, replicated app).
+
+
+        Required RBAC Policy: kots/app/[:appid]/customhostname/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - customHostnames
+      summary: List custom hostnames for an app.
+      operationId: listCustomHostnames
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listCustomHostnamesResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+definitions:
+  SetDefaultHostnameParams:
+    type: object
+    properties:
+      hostname:
+        type: string
+        x-go-name: Hostname
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
+  CreateCustomHostnameParams:
+    type: object
+    properties:
+      hostname:
+        type: string
+        x-go-name: Hostname
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
+  DeleteCustomHostnameParams:
+    type: object
+    properties:
+      hostname:
+        type: string
+        x-go-name: Hostname
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
+  KotsAppCustomHostname:
+    description: KotsAppCustomHostname represents a custom hostname configured for a kots app
+    type: object
+    properties:
+      app_id:
+        type: string
+        x-go-name: AppID
+      cloudflare_custom_hostname_id:
+        type: string
+        x-go-name: CloudflareCustomHostnameID
+      cloudflare_worker_route_id:
+        type: string
+        x-go-name: CloudflareWorkerRouteID
+      created_at:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      domain_txt_record_name:
+        type: string
+        x-go-name: DomainTxtRecordName
+      domain_txt_record_value:
+        type: string
+        x-go-name: DomainTxtRecordValue
+      domain_verification_status:
+        type: string
+        x-go-name: DomainVerificationStatus
+      domain_verification_type:
+        type: string
+        x-go-name: DomainVerificationType
+      failure_count:
+        type: integer
+        format: int64
+        x-go-name: FailureCount
+      failure_reason:
+        type: string
+        x-go-name: FailureReason
+      hostname:
+        type: string
+        x-go-name: Hostname
+      is_default:
+        type: boolean
+        x-go-name: IsDefault
+      origin_server:
+        type: string
+        x-go-name: OriginServer
+      team_id:
+        type: string
+        x-go-name: TeamID
+      tls_txt_record_name:
+        type: string
+        x-go-name: TLSTxtRecordName
+      tls_txt_record_value:
+        type: string
+        x-go-name: TLSTxtRecordValue
+      tls_verification_status:
+        type: string
+        x-go-name: TLSVerificationStatus
+      tls_verification_type:
+        type: string
+        x-go-name: TLSVerificationType
+      updated_at:
+        type: string
+        format: date-time
+        x-go-name: UpdatedAt
+      verification_errors:
+        type: array
+        items:
+          type: string
+        x-go-name: VerificationErrors
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customhostname
+  UnsetDefaultHostnameParams:
+    type: object
+    properties:
+      hostname:
+        type: string
+        x-go-name: Hostname
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
+responses:
+  deleteCustomHostnameResponse:
+    description: DeleteCustomHostnameResponse contains whether or not the request was successful
+    schema:
+      type: object
+      properties:
+        success:
+          type: boolean
+          x-go-name: Success
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  setDefaultHostnameResponse:
+    description: SetDefaultHostnameResponse contains whether or not the request was successful
+    schema:
+      type: object
+      properties:
+        success:
+          type: boolean
+          x-go-name: Success
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  createCustomHostnameResponse:
+    description: CreateCustomHostnameResponse contains whether or not the request was successful
+    schema:
+      type: object
+      properties:
+        success:
+          type: boolean
+          x-go-name: Success
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  listCustomHostnamesResponse:
+    description: ListCustomHostnamesResponse contains the JSON custom hostnames list
+    schema:
+      type: object
+      properties:
+        downloadPortal:
+          type: array
+          items:
+            $ref: '#/definitions/KotsAppCustomHostname'
+          x-go-name: DownloadPortal
+        proxy:
+          type: array
+          items:
+            $ref: '#/definitions/KotsAppCustomHostname'
+          x-go-name: Proxy
+        registry:
+          type: array
+          items:
+            $ref: '#/definitions/KotsAppCustomHostname'
+          x-go-name: Registry
+        replicatedApp:
+          type: array
+          items:
+            $ref: '#/definitions/KotsAppCustomHostname'
+          x-go-name: ReplicatedApp
+  unsetDefaultHostnameResponse:
+    description: UnsetDefaultHostnameResponse contains whether or not the request was successful
+    schema:
+      type: object
+      properties:
+        success:
+          type: boolean
+          x-go-name: Success
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

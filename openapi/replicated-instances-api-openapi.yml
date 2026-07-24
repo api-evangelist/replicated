@@ -1,0 +1,1142 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps instances API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: instances
+paths:
+  /app/{app_id}/customer/{customer_id}/instance/{instance_id}/running-images:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: Get running images for an instance.
+      operationId: getCustomerInstanceRunningImages
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: InstanceID
+        description: Instance identifier
+        name: instance_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      - type: string
+        description: Optional cluster identifier to disambiguate instance_id
+        name: ClusterID
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/getCustomerInstanceRunningImagesResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/customer/{customer_id}/instance/{instance_id}/scan:
+    get:
+      security:
+      - api_key: []
+      description: 'Retrieve security scan summaries for all images reported by a specific instance.
+
+        The response contains scan summaries in the same shape as the channel-based endpoint.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: Get security scan summaries for an instance.
+      operationId: getCustomerInstanceScan
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: InstanceID
+        description: Instance identifier
+        name: instance_id
+        in: path
+        required: true
+      - type: string
+        description: Optional cluster identifier to disambiguate instance_id
+        name: ClusterID
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/getCustomerInstanceScan'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/customer/{customer_id}/instance/{instance_id}/scan/trigger:
+    post:
+      security:
+      - api_key: []
+      description: 'Sends a request to SecureBuild to scan a specific image from a customer instance.
+
+        This is typically used when no SBOM exists for an image.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: Trigger a security scan for an instance image.
+      operationId: triggerCustomerInstanceScan
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: InstanceID
+        description: Instance identifier
+        name: instance_id
+        in: path
+        required: true
+      - description: Request body for triggering a scan
+        name: Body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/TriggerCustomerInstanceScanBody'
+      responses:
+        '200':
+          $ref: '#/responses/triggerCustomerInstanceScan'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/customer/{customer_id}/instance/{instance_id}/tags:
+    get:
+      security:
+      - api_key: []
+      description: 'Retrieve the tags associated with a specific customer instance, allowing teams to view metadata or categorization applied to that instance.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: Get tags for a instance.
+      operationId: getCustomerInstanceTags
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: InstanceID
+        description: Instance identifier
+        name: instance_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      - type: string
+        description: Optional cluster identifier to disambiguate instance_id
+        name: ClusterID
+        in: query
+      responses:
+        '201':
+          $ref: '#/responses/getCustomerInstanceTagsResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    put:
+      security:
+      - api_key: []
+      description: 'Create or update tags for a specific customer instance.
+
+        Tags can be used for categorization, filtering, or metadata. Keys with empty values will remove the tag.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: Create or update the tags for an instance.
+      operationId: updateCustomerInstanceTags
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: InstanceID
+        description: Instance identifier
+        name: instance_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      - description: 'Requried: true'
+        name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            cluster_id:
+              description: Optional cluster identifier to disambiguate instance_id
+              type: string
+              x-go-name: ClusterID
+            tags:
+              description: Upsert (create or update) instance tags. A key with an empty value will result in a delete operation for the key=value pair.
+              type: array
+              items:
+                $ref: '#/definitions/InstanceTag'
+              x-go-name: Tags
+      responses:
+        '201':
+          $ref: '#/responses/updateCustomerInstanceTagsResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/customer/{customer_id}/instances:
+    get:
+      security:
+      - api_key: []
+      description: 'Return a list of all instances associated with a specific customer and app, including instance metadata and status.
+
+        Useful for tracking deployments and usage per customer.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: List customer instances.
+      operationId: listCustomerInstances
+      parameters:
+      - type: string
+        x-go-name: CustomerID
+        description: Customer identifier
+        name: customer_id
+        in: path
+        required: true
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listCustomerInstancesResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/instance-tag-schema:
+    get:
+      security:
+      - api_key: []
+      description: 'Returns a map of distinct tag keys to their distinct values across all instances belonging to the app.
+
+
+        Required RBAC Policy: kots/app/[:appid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: Get the instance tag schema for an app.
+      operationId: getInstanceTagSchema
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getInstanceTagSchemaResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/instance-tags:
+    post:
+      security:
+      - api_key: []
+      description: 'Accepts a list of instance IDs and returns their tags in a single response.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: Get tags for multiple instances.
+      operationId: getCustomerInstancesTagsBulk
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            clusterIds:
+              type: array
+              items:
+                type: string
+              x-go-name: ClusterIDs
+            instanceIds:
+              type: array
+              items:
+                type: string
+              x-go-name: InstanceIDs
+      responses:
+        '200':
+          $ref: '#/responses/getCustomerInstancesTagsBulkResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/instances/archive:
+    post:
+      security:
+      - api_key: []
+      description: 'Archives multiple customer instances in a single request. Only development,
+
+        airgap, or inactive instances are eligible. Instances that cannot be archived
+
+        (e.g., active production instances or instances the caller lacks permission
+
+        for) are skipped and returned in the skipped array with a reason.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: Batch archive customer instances.
+      operationId: batchArchiveCustomerInstances
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            instances:
+              type: array
+              items:
+                $ref: '#/definitions/BatchArchiveInstance'
+              x-go-name: Instances
+      responses:
+        '200':
+          $ref: '#/responses/batchArchiveCustomerInstancesResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /instance/{instance_id}/archive:
+    put:
+      security:
+      - api_key: []
+      description: 'Deactivate a customer instance, making it inactive and unavailable for future use.
+
+        Only development, airgap, or inactive instances can be archived.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: Archive an instance.
+      operationId: archiveCustomerInstance
+      parameters:
+      - type: string
+        x-go-name: InstanceID
+        description: Instance identifier
+        name: instance_id
+        in: path
+        required: true
+      - type: string
+        description: Optional cluster identifier to disambiguate instance_id
+        name: ClusterID
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/archiveCustomerInstanceResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /instance/{instance_id}/unarchive:
+    put:
+      security:
+      - api_key: []
+      description: 'Restore a previously archived customer instance, making it active and available for use again.
+
+
+        Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - instances
+      summary: Unarchive an instance.
+      operationId: unarchiveCustomerInstance
+      parameters:
+      - type: string
+        x-go-name: InstanceID
+        description: Instance identifier
+        name: instance_id
+        in: path
+        required: true
+      - type: string
+        description: Optional cluster identifier to disambiguate instance_id
+        name: ClusterID
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/unarchiveCustomerInstanceResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+definitions:
+  InstanceTag:
+    type: object
+    properties:
+      instanceId:
+        type: string
+        x-go-name: InstanceId
+      key:
+        type: string
+        x-go-name: Key
+      origin:
+        type: string
+        x-go-name: Origin
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  TriggerCustomerInstanceScanBody:
+    description: TriggerCustomerInstanceScanBody contains the body parameters for triggering a scan
+    type: object
+    required:
+    - image_name
+    - image_digest
+    properties:
+      cluster_id:
+        description: Optional cluster identifier to disambiguate instance_id
+        type: string
+        x-go-name: ClusterID
+      image_digest:
+        description: Image digest to scan
+        type: string
+        x-go-name: ImageDigest
+      image_name:
+        description: Image name to scan
+        type: string
+        x-go-name: ImageName
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
+  SecurityScanWrapper:
+    type: object
+    properties:
+      digest:
+        type: string
+        x-go-name: Digest
+      digest_first_seen_at:
+        type: string
+        x-go-name: DigestFirstSeenAt
+      image_size_bytes:
+        type: integer
+        format: int64
+        x-go-name: ImageSizeBytes
+      input:
+        type: string
+        x-go-name: Input
+      installation_phase:
+        description: 'InstallationPhase indicates the Embedded Cluster phase for the image ("", "online", or "airgap").
+
+          Application images have the phase "".
+
+          Infrastructure images used for Embedded Cluster in both online and airgap have the phase "online" or "airgap".
+
+          Infrastructure images used for Embedded Cluster only in airgap have the phase "airgap".'
+        type: string
+        x-go-name: InstallationPhase
+      last_scanned_at:
+        type: string
+        x-go-name: LastScannedAt
+      not_found:
+        type: boolean
+        x-go-name: NotFound
+      result:
+        $ref: '#/definitions/SecurityScanInfo'
+      sbom_status:
+        description: SBOM status tracking
+        type: string
+        x-go-name: SBOMStatus
+      sbom_status_message:
+        type: string
+        x-go-name: SBOMStatusMessage
+      sbom_status_updated_at:
+        type: string
+        x-go-name: SBOMStatusUpdatedAt
+      scan_status:
+        description: Scan status tracking
+        type: string
+        x-go-name: ScanStatus
+      scan_status_message:
+        type: string
+        x-go-name: ScanStatusMessage
+      scan_status_updated_at:
+        type: string
+        x-go-name: ScanStatusUpdatedAt
+      source_type:
+        $ref: '#/definitions/SourceType'
+      sources:
+        type: array
+        items:
+          $ref: '#/definitions/ImageSource'
+        x-go-name: Sources
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  CustomerInstance:
+    type: object
+    properties:
+      active:
+        type: boolean
+        x-go-name: Active
+      appStatus:
+        type: string
+        x-go-name: AppStatus
+      client:
+        type: string
+        x-go-name: Client
+      cloud:
+        type: string
+        x-go-name: Cloud
+      clusterId:
+        type: string
+        x-go-name: ClusterID
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      embeddedClusterVersion:
+        type: string
+        x-go-name: EmbeddedClusterVersion
+      instanceId:
+        type: string
+        x-go-name: InstanceID
+      isAirgap:
+        type: boolean
+        x-go-name: IsAirgap
+      isArchived:
+        type: boolean
+        x-go-name: IsArchived
+      isDummyInstance:
+        type: boolean
+        x-go-name: IsDummyInstance
+      isEmbeddedCluster:
+        type: boolean
+        x-go-name: IsEmbeddedCluster
+      isKurl:
+        type: boolean
+        x-go-name: IsKurl
+      k8sVersion:
+        type: string
+        x-go-name: K8sVersion
+      kotsVersion:
+        type: string
+        x-go-name: KotsVersion
+      kurlNodeCountReady:
+        type: integer
+        format: int64
+        x-go-name: KurlNodeCountReady
+      kurlNodeCountTotal:
+        type: integer
+        format: int64
+        x-go-name: KurlNodeCountTotal
+      lastActive:
+        type: string
+        format: date-time
+        x-go-name: LastActive
+      licenseId:
+        type: string
+        x-go-name: LicenseID
+      replicatedSdkVersion:
+        type: string
+        x-go-name: ReplicatedSDKVersion
+      securitySummary:
+        $ref: '#/definitions/InstanceSecuritySummary'
+      serviceAccountId:
+        type: string
+        x-go-name: ServiceAccountID
+      tags:
+        $ref: '#/definitions/InstanceTags'
+      versionHistory:
+        type: array
+        items:
+          $ref: '#/definitions/CustomerInstanceVersionHistory'
+        x-go-name: VersionHistory
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  SourceType:
+    description: 'SourceType classifies an image as either a Replicated platform image or a
+
+      vendor application image, so that consumers can distinguish vulnerabilities in
+
+      Replicated-shipped components from vulnerabilities in the vendor''s own images.'
+    type: string
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  BatchArchiveInstance:
+    type: object
+    properties:
+      clusterId:
+        type: string
+        x-go-name: ClusterID
+      instanceId:
+        type: string
+        x-go-name: InstanceID
+      licenseId:
+        type: string
+        x-go-name: LicenseID
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
+  ScannerDescriptor:
+    type: object
+    title: ScannerDescriptor captures the scanner metadata (e.g., Grype version).
+    properties:
+      name:
+        type: string
+        x-go-name: Name
+      version:
+        type: string
+        x-go-name: Version
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  CustomerInstanceVersionHistory:
+    type: object
+    properties:
+      clusterId:
+        type: string
+        x-go-name: ClusterID
+      downstreamChannelId:
+        type: string
+        x-go-name: DownstreamChannelID
+      downstreamReleaseSequence:
+        type: integer
+        format: int64
+        x-go-name: DownstreamReleaseSequence
+      instanceId:
+        type: string
+        x-go-name: InstanceID
+      intervalLast:
+        type: string
+        format: date-time
+        x-go-name: IntervalLast
+      intervalStart:
+        type: string
+        format: date-time
+        x-go-name: IntervalStart
+      nativeHelmCount:
+        type: integer
+        format: int32
+        x-go-name: NativeHelmCount
+      replHelmCount:
+        type: integer
+        format: int32
+        x-go-name: ReplHelmCount
+      versionLabel:
+        type: string
+        x-go-name: VersionLabel
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  SecurityScanInfo:
+    type: object
+    properties:
+      counts:
+        $ref: '#/definitions/VulnCounts'
+      created_at:
+        type: string
+        x-go-name: CreatedAt
+      critical:
+        type: object
+        additionalProperties:
+          type: string
+        x-go-name: Critical
+      descriptor:
+        $ref: '#/definitions/ScannerDescriptor'
+      fixed_counts:
+        $ref: '#/definitions/VulnCounts'
+      high:
+        type: object
+        additionalProperties:
+          type: string
+        x-go-name: High
+      low:
+        type: object
+        additionalProperties:
+          type: string
+        x-go-name: Low
+      medium:
+        type: object
+        additionalProperties:
+          type: string
+        x-go-name: Medium
+      vulnerability_details:
+        type: array
+        items:
+          $ref: '#/definitions/VulnDetail'
+        x-go-name: VulnerabilityDetails
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  InstanceTags:
+    type: array
+    items:
+      $ref: '#/definitions/InstanceTag'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+  VulnCounts:
+    type: object
+    properties:
+      critical:
+        type: integer
+        format: int64
+        x-go-name: Critical
+      high:
+        type: integer
+        format: int64
+        x-go-name: High
+      low:
+        type: integer
+        format: int64
+        x-go-name: Low
+      medium:
+        type: integer
+        format: int64
+        x-go-name: Medium
+      total:
+        type: integer
+        format: int64
+        x-go-name: Total
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  InstanceSecuritySummary:
+    description: InstanceSecuritySummary represents aggregated security information for an instance
+    type: object
+    properties:
+      imageCount:
+        type: integer
+        format: int64
+        x-go-name: ImageCount
+      lastScannedAt:
+        type: string
+        format: date-time
+        x-go-name: LastScannedAt
+      vulnerabilityCounts:
+        $ref: '#/definitions/VulnCounts'
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  VulnDetail:
+    type: object
+    properties:
+      artifact_name:
+        type: string
+        x-go-name: ArtifactName
+      artifact_type:
+        type: string
+        x-go-name: ArtifactType
+      artifact_version:
+        type: string
+        x-go-name: ArtifactVersion
+      cve:
+        type: string
+        x-go-name: CVE
+      description:
+        type: string
+        x-go-name: Description
+      epss_percentile:
+        type: number
+        format: double
+        x-go-name: EpssPercentile
+      fix_state:
+        type: string
+        x-go-name: FixState
+      fix_versions:
+        type: array
+        items:
+          type: string
+        x-go-name: FixVersions
+      risk:
+        type: number
+        format: double
+        x-go-name: Risk
+      severity:
+        type: string
+        x-go-name: Severity
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  ImageSource:
+    type: object
+    properties:
+      chart_name:
+        type: string
+        x-go-name: ChartName
+      is_installer_only:
+        type: boolean
+        x-go-name: IsInstallerOnly
+      resource_kind:
+        type: string
+        x-go-name: ResourceKind
+      resource_name:
+        type: string
+        x-go-name: ResourceName
+      resource_namespace:
+        type: string
+        x-go-name: ResourceNamespace
+    x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+  InstanceTagDTO:
+    description: InstanceTagDTO is a response-only shape without instanceId
+    type: object
+    properties:
+      key:
+        type: string
+        x-go-name: Key
+      origin:
+        type: string
+        x-go-name: Origin
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
+  SkippedInstance:
+    type: object
+    properties:
+      clusterId:
+        type: string
+        x-go-name: ClusterID
+      instanceId:
+        type: string
+        x-go-name: InstanceID
+      licenseId:
+        type: string
+        x-go-name: LicenseID
+      reason:
+        type: string
+        x-go-name: Reason
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
+responses:
+  getCustomerInstanceTagsResponse:
+    description: GetCustomerInstanceTagsResponse contains the response to update a instance tags
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        tags:
+          $ref: '#/definitions/InstanceTags'
+  getCustomerInstanceScan:
+    description: GetCustomerInstanceScanResponse contains the security scan summaries for the instance images.
+    schema:
+      type: object
+      properties:
+        scans:
+          type: array
+          items:
+            $ref: '#/definitions/SecurityScanWrapper'
+          x-go-name: Scans
+  archiveCustomerInstanceResponse:
+    description: ArchiveCustomerInstanceResponse contains the response to archive an instance
+    schema:
+      type: object
+      properties:
+        customerInstance:
+          $ref: '#/definitions/CustomerInstance'
+        error:
+          type: string
+          x-go-name: Error
+  getInstanceTagSchemaResponse:
+    description: GetInstanceTagSchemaResponse contains the tag schema response
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        tags:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          x-go-name: Tags
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  batchArchiveCustomerInstancesResponse:
+    description: BatchArchiveCustomerInstancesResponse contains the bulk archive response.
+    schema:
+      type: object
+      properties:
+        archived:
+          type: integer
+          format: int64
+          x-go-name: Archived
+        error:
+          type: string
+          x-go-name: Error
+        skipped:
+          type: array
+          items:
+            $ref: '#/definitions/SkippedInstance'
+          x-go-name: Skipped
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+  listCustomerInstancesResponse:
+    description: ListCustomerInstancesResponse contains the JSON instances list
+    schema:
+      type: object
+      properties:
+        instances:
+          type: array
+          items:
+            $ref: '#/definitions/CustomerInstance'
+          x-go-name: Instances
+  triggerCustomerInstanceScan:
+    description: TriggerCustomerInstanceScanResponse contains the response for triggering a scan
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+        success:
+          type: boolean
+          x-go-name: Success
+  updateCustomerInstanceTagsResponse:
+    description: UpdateCustomerInstanceTagsResponse contains the response to update a instance tags
+    schema:
+      type: object
+      properties:
+        customerInstance:
+          $ref: '#/definitions/CustomerInstance'
+        error:
+          type: string
+          x-go-name: Error
+  getCustomerInstancesTagsBulkResponse:
+    description: GetCustomerInstancesTagsBulkResponse contains the bulk tags response
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              clusterId:
+                type: string
+                x-go-name: ClusterID
+              instanceId:
+                type: string
+                x-go-name: InstanceID
+              tags:
+                type: array
+                items:
+                  $ref: '#/definitions/InstanceTagDTO'
+                x-go-name: Tags
+          x-go-name: Results
+  unarchiveCustomerInstanceResponse:
+    description: UnarchiveCustomerInstanceResponse contains the response to unarchive an instance
+    schema:
+      type: object
+      properties:
+        customerInstance:
+          $ref: '#/definitions/CustomerInstance'
+        error:
+          type: string
+          x-go-name: Error
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  getCustomerInstanceRunningImagesResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        running_images:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          x-go-name: RunningImages
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

@@ -1,0 +1,542 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps externalRegistries API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: externalRegistries
+paths:
+  /external_registries:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/externalregistry/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - externalRegistries
+      summary: List external registries for a team.
+      operationId: listExternalRegistries
+      responses:
+        '200':
+          $ref: '#/responses/listExternalRegistriesResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /external_registry:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/externalregistry/create'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - externalRegistries
+      summary: Creates an external registry with the specified parameters.
+      operationId: createExternalRegistry
+      parameters:
+      - description: ExternalRegistry create parameters.
+        name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - endpoint
+          - username
+          - password
+          properties:
+            appIds:
+              description: AppIds is a list of app IDs that can access this registry. If null or empty, registry is shared across all apps. (optional)
+              type: array
+              items:
+                type: string
+              x-go-name: AppIds
+            authType:
+              description: Auth type for the upstream registry (optional)
+              type: string
+              x-go-name: AuthType
+            copyPassword:
+              description: CopyPassword flag to indicate if password should be copied from original registry (optional)
+              type: boolean
+              x-go-name: CopyPassword
+            endpoint:
+              description: Endpoint of the upstream registry.
+              type: string
+              x-go-name: Endpoint
+            originalSlug:
+              description: OriginalSlug is used when duplicating a registry to copy passwords if they're unchanged (optional)
+              type: string
+              x-go-name: OriginalSlug
+            password:
+              description: Password for authentication with the upstream registry.
+              type: string
+              x-go-name: Password
+            provider:
+              description: Provider of the upstream registry. (optional)
+              type: string
+              x-go-name: Provider
+            skipValidation:
+              description: SkipValidation just saves the values without checking if the registry is valid.
+              type: boolean
+              x-go-name: SkipValidation
+            slug:
+              description: Slug (registry name) for the upstream registry. If not provided, the endpoint will be used as the slug. (optional)
+              type: string
+              x-go-name: Slug
+            username:
+              description: Username for authentication with the upstream registry.
+              type: string
+              x-go-name: Username
+      responses:
+        '201':
+          $ref: '#/responses/createExternalRegistryResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /external_registry/iam:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/externalregistry/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - externalRegistries
+      summary: Get team OIDC IAM configuration for ECR.
+      operationId: getECRIAMConfig
+      responses:
+        '200':
+          $ref: '#/responses/getECRIAMConfigResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /external_registry/logs:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/externalregistry/logs/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - externalRegistries
+      summary: Get the logs for a specific external registry either by endpoint or slug, or both.
+      operationId: externalRegistryLogs
+      parameters:
+      - type: string
+        description: The endpoint of the external registry to get logs for
+        name: Endpoint
+        in: query
+      - type: string
+        description: The slug of the external registry to get logs for
+        name: Slug
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/externalRegistryLogsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /external_registry/test:
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/externalregistry/test'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - externalRegistries
+      summary: Test external registry for a team.
+      operationId: testExternalRegistry
+      parameters:
+      - description: ExternalRegistry create parameters.
+        name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - endpoint
+          - image
+          properties:
+            authType:
+              description: Auth type for the registry (optional)
+              type: string
+              x-go-name: AuthType
+            copyPassword:
+              description: Whether to copy password from original registry when testing
+              type: boolean
+              x-go-name: CopyPassword
+            endpoint:
+              description: Endpoint of the external registry.
+              type: string
+              x-go-name: Endpoint
+            image:
+              description: Image to test pulling.
+              type: string
+              x-go-name: Image
+            originalSlug:
+              description: Original registry slug to copy password from when testing during duplication
+              type: string
+              x-go-name: OriginalSlug
+            password:
+              description: Password to use, provide only when testing before saving
+              type: string
+              x-go-name: Password
+            slug:
+              description: 'Slug of the external registry.
+
+                Will default to the endpoint if not provided.'
+              type: string
+              x-go-name: Slug
+            username:
+              description: Username to use, provide only when testing before saving
+              type: string
+              x-go-name: Username
+      responses:
+        '200':
+          $ref: '#/responses/testExternalRegistryResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /external_registry/{slug}:
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/externalregistry/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - externalRegistries
+      summary: Updates an external registry with the specified parameters.
+      operationId: updateExternalRegistry
+      parameters:
+      - type: string
+        x-go-name: Slug
+        description: Registry slug - can not be changed
+        name: slug
+        in: path
+        required: true
+      - description: ExternalRegistry update parameters.
+        name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            appIds:
+              description: 'AppIds is a list of app IDs that can access this registry.
+
+                If null/omitted, existing appIds are preserved
+
+                If empty array [], registry becomes shared across all apps
+
+                If contains values, registry is scoped to those apps (optional)'
+              type: array
+              items:
+                type: string
+              x-go-name: AppIds
+            authType:
+              description: Authentication type for the registry (e.g., "password", "token"). (optional)
+              type: string
+              x-go-name: AuthType
+            endpoint:
+              description: Endpoint of the external registry. (optional)
+              type: string
+              x-go-name: Endpoint
+            password:
+              description: Password for authentication with the upstream registry. (optional)
+              type: string
+              x-go-name: Password
+            provider:
+              description: Provider of the external registry (e.g., "dockerhub", "gcr", "ecr", etc.). (optional)
+              type: string
+              x-go-name: Provider
+            username:
+              description: Username for authentication with the upstream registry. (optional)
+              type: string
+              x-go-name: Username
+      responses:
+        '200':
+          $ref: '#/responses/updateExternalRegistryResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/externalregistry/[:slug]/delete'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - externalRegistries
+      summary: Deletes an external registry by slug.
+      operationId: deleteExternalRegistry
+      parameters:
+      - type: string
+        x-go-name: Slug
+        description: Slug identifier
+        name: slug
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+definitions:
+  ExternalRegistryLog:
+    type: object
+    properties:
+      action:
+        type: string
+        x-go-name: Action
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      customerName:
+        type: string
+        x-go-name: CustomerName
+      endpoint:
+        type: string
+        x-go-name: Endpoint
+      image:
+        type: string
+        x-go-name: Image
+      isSuccess:
+        type: boolean
+        x-go-name: IsSuccess
+      slug:
+        type: string
+        x-go-name: Slug
+      statusCode:
+        type: integer
+        format: int64
+        x-go-name: StatusCode
+      tag:
+        type: string
+        x-go-name: Tag
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/kots
+  ExternalRegistry:
+    type: object
+    properties:
+      appIds:
+        type: array
+        items:
+          type: string
+        x-go-name: AppIDs
+      authType:
+        type: string
+        x-go-name: AuthType
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      endpoint:
+        type: string
+        x-go-name: Endpoint
+      isReplicated:
+        type: boolean
+        x-go-name: IsReplicated
+      provider:
+        type: string
+        x-go-name: Provider
+      slug:
+        type: string
+        x-go-name: Slug
+      teamId:
+        type: string
+        x-go-name: TeamID
+      updatedAt:
+        type: string
+        format: date-time
+        x-go-name: UpdatedAt
+      username:
+        type: string
+        x-go-name: Username
+    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/kots
+responses:
+  responseNoContent:
+    description: On success, no payload returned
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  getECRIAMConfigResponse:
+    description: GetECRIAMConfigResponse contains the team OIDC configuration.
+    schema:
+      type: object
+      properties:
+        audience:
+          type: string
+          x-go-name: Audience
+        issuer_url:
+          type: string
+          x-go-name: IssuerURL
+        subject_type:
+          type: string
+          x-go-name: SubjectType
+        thumbprint:
+          type: string
+          x-go-name: Thumbprint
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  listExternalRegistriesResponse:
+    description: ListExternalRegistriesResponse contains the JSON external registries list
+    schema:
+      type: object
+      properties:
+        available_registries:
+          description: Available registries (only present when app_id query parameter is provided)
+          type: array
+          items:
+            $ref: '#/definitions/ExternalRegistry'
+          x-go-name: AvailableRegistries
+        external_registries:
+          type: array
+          items:
+            $ref: '#/definitions/ExternalRegistry'
+          x-go-name: ExternalRegistries
+        unavailable_registries:
+          description: Unavailable registries (only present when app_id query parameter is provided)
+          type: array
+          items:
+            $ref: '#/definitions/ExternalRegistry'
+          x-go-name: UnavailableRegistries
+  createExternalRegistryResponse:
+    description: CreateExternalRegistryResponse represents an external registry.
+    schema:
+      type: object
+      properties:
+        external_registry:
+          $ref: '#/definitions/ExternalRegistry'
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  externalRegistryLogsResponse:
+    description: ExternalRegistryLogsResponse contains the JSON external registry logs
+    schema:
+      type: object
+      properties:
+        logs:
+          type: array
+          items:
+            $ref: '#/definitions/ExternalRegistryLog'
+          x-go-name: Logs
+  updateExternalRegistryResponse:
+    description: UpdateExternalRegistryResponse represents an updated external registry.
+    schema:
+      type: object
+      properties:
+        external_registry:
+          $ref: '#/definitions/ExternalRegistry'
+  testExternalRegistryResponse:
+    description: TestExternalRegistriesResponse contains the JSON external registries test
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        status:
+          type: integer
+          format: int64
+          x-go-name: Status
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header

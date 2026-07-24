@@ -1,0 +1,769 @@
+swagger: '2.0'
+info:
+  description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
+  title: Vendor API V3 apps team API
+  contact:
+    name: Replicated, Inc.
+    url: http://www.replicated.com/
+    email: info@replicated.com
+  version: 3.0.0
+host: api.replicated.com
+basePath: /vendor/v3
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: team
+paths:
+  /app/{app_id}/images:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/image/list'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: Lists all registry images for an app by ID.
+      operationId: listAppImages
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/listImagesResponse'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /app/{app_id}/images/delete:
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: kots/app/[:appid]/image/delete'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: Deletes registry images for an app by ID.
+      operationId: deleteAppImages
+      parameters:
+      - type: string
+        x-go-name: AppID
+        description: App identifier
+        name: app_id
+        in: path
+        required: true
+      - description: Image references to delete
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - imageRefs
+          properties:
+            imageRefs:
+              description: Image references to delete
+              type: array
+              items:
+                type: string
+              x-go-name: ImageRefs
+              example:
+              - myapp/myimage:1.0.0
+              - myapp/myimage:2.0.0
+      responses:
+        '200':
+          $ref: '#/responses/responseOk'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /team:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: Get the current team.
+      operationId: getTeam
+      responses:
+        '200':
+          $ref: '#/responses/getTeamResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /team/default-app:
+    put:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/default-app/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: Set or clear the team's default application.
+      operationId: updateTeamDefaultApp
+      parameters:
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            default_app_id:
+              type: string
+              x-go-name: DefaultAppID
+      responses:
+        '200':
+          $ref: '#/responses/updateDefaultAppResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+  /team/invite:
+    post:
+      security:
+      - api_key: []
+      description: 'Creates a new pending invite for the team.
+
+
+        Required RBAC Policy: team/member/create'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: Create a pending team invite.
+      operationId: createInvite
+      parameters:
+      - description: The invite creation request body
+        name: Body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              x-go-name: Email
+            permissions:
+              type: string
+              x-go-name: Permissions
+            policy_id:
+              type: string
+              x-go-name: PolicyID
+      responses:
+        '201':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /team/invite/{email}:
+    delete:
+      security:
+      - api_key: []
+      description: 'Deletes the pending invite with the given email.
+
+
+        Required RBAC Policy: team/member/delete'
+      schemes:
+      - https
+      tags:
+      - team
+      summary: Delete a pending team invite.
+      operationId: deleteInvite
+      parameters:
+      - type: string
+        description: The email of the invite to delete
+        name: email
+        in: path
+        required: true
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /team/invite/{id}:
+    put:
+      security:
+      - api_key: []
+      description: 'Updates the pending invite with the given ID.
+
+
+        Required RBAC Policy: team/member/update'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: Update a pending team invite.
+      operationId: updatePendingInvite
+      parameters:
+      - type: string
+        description: The ID of the pending invite to update
+        name: id
+        in: path
+        required: true
+      - description: The update request body
+        name: Body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateTeamMemberRequest'
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /team/member/{id}:
+    get:
+      security:
+      - api_key: []
+      description: 'Retrieves the team member with the given ID.
+
+
+        Required RBAC Policy: team/member/read'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: Get a team member.
+      operationId: getTeamMember
+      parameters:
+      - type: string
+        description: The ID of the team member to retrieve
+        name: id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/getTeamMemberResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /team/members:
+    get:
+      security:
+      - api_key: []
+      description: 'Return a list of all team members, with optional inclusion of pending invites.
+
+        Members are sorted by email address.
+
+
+        Required RBAC Policy: team/member/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: List team members.
+      operationId: listTeamMembers
+      parameters:
+      - type: boolean
+        x-go-name: IncludeInvites
+        description: When set to true, pending invites will be included in the results. Default is false.
+        name: includeInvites
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/listTeamMembersResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /team/serviceaccount:
+    delete:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/serviceaccount/delete'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: Remove a service account from a team.
+      operationId: removeServiceAccount
+      responses:
+        '204':
+          $ref: '#/responses/responseNoContent'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+  /team/serviceaccounts:
+    get:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/serviceaccount/list'
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: List service accounts for a team.
+      operationId: listServiceAccounts
+      responses:
+        '200':
+          $ref: '#/responses/listServiceAccountsResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+    post:
+      security:
+      - api_key: []
+      description: 'Required RBAC Policy: team/serviceaccount/create'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - team
+      summary: Create a service account for a team.
+      operationId: createTeamServiceAccount
+      parameters:
+      - type: string
+        x-go-name: Name
+        description: Name is the name of the service account to create.
+        name: name
+        in: query
+        required: true
+      - type: string
+        x-go-name: PolicyID
+        description: PolicyID is the ID of the policy to assign to the service account.
+        name: policy_id
+        in: query
+        required: true
+      - type: string
+        x-go-name: Permissions
+        description: 'Permissions is whether the service account is read-only or not. Any value besides "read-only" will be treated as "read-write".
+
+          Optional.'
+        name: permissions
+        in: query
+      responses:
+        '201':
+          $ref: '#/responses/createTeamServiceAccountResponse'
+        '400':
+          $ref: '#/responses/responseErrBadRequest'
+        '401':
+          $ref: '#/responses/responseErrUnauthorized'
+        '403':
+          $ref: '#/responses/responseErrForbidden'
+        '404':
+          $ref: '#/responses/responseErrNotFound'
+definitions:
+  Image:
+    type: object
+    properties:
+      name:
+        type: string
+        x-go-name: Name
+      versions:
+        type: array
+        items:
+          type: string
+        x-go-name: Versions
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/images
+  Team:
+    type: object
+    properties:
+      automatic_join_enabled:
+        type: boolean
+        x-go-name: AutomaticJoinEnabled
+      cmx_low_credits_notified_at:
+        type: string
+        format: date-time
+        x-go-name: CMXLowCreditsNotifiedAt
+      collab_repo_feature:
+        type: string
+        x-go-name: FeatureCollabRepo
+      collab_repo_support:
+        type: string
+        x-go-name: SupportCollabRepo
+      complexity_requirements:
+        $ref: '#/definitions/ComplexityRequirements'
+      default_app_id:
+        type: string
+        x-go-name: DefaultAppID
+      default_policy:
+        type: string
+        x-go-name: DefaultPolicy
+      domain_name:
+        type: string
+        x-go-name: DomainName
+      has_contract:
+        description: New fields from id service
+        type: boolean
+        x-go-name: TeamHasContract
+      has_enforced_complexity:
+        type: boolean
+        x-go-name: HasEnforcedComplexity
+      id:
+        type: string
+        x-go-name: Id
+      is_google_auth_enabled:
+        type: boolean
+        x-go-name: IsGoogleAuthEnabled
+      is_google_auth_required:
+        type: boolean
+        x-go-name: IsGoogleAuthRequired
+      is_saml_enabled:
+        type: boolean
+        x-go-name: IsSAMLEnabled
+      is_saml_required:
+        type: boolean
+        x-go-name: IsSAMLRequired
+      is_two_factor_required:
+        type: boolean
+        x-go-name: IsTwoFactorRequired
+      name:
+        type: string
+        x-go-name: Name
+      needs_profile:
+        type: boolean
+        x-go-name: NeedsProfile
+      saml_default_policy:
+        type: string
+        x-go-name: SAMLDefaultPolicy
+      saml_landing:
+        type: string
+        x-go-name: SAMLLanding
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models
+  ComplexityRequirements:
+    type: object
+    properties:
+      digit:
+        type: integer
+        format: int64
+        x-go-name: Digit
+      min:
+        type: integer
+        format: int64
+        x-go-name: Min
+      special:
+        description: 'Current data is like this: {"min":12,"upperLower":6,"digit":2,"special":2}'
+        type: integer
+        format: int64
+        x-go-name: Special
+      upperLower:
+        type: integer
+        format: int64
+        x-go-name: UpperLower
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models
+  UpdateTeamMemberRequest:
+    type: object
+    properties:
+      policy_id:
+        type: string
+        x-go-name: PolicyID
+    x-go-package: github.com/replicatedhq/vandoor/pkg/schema
+  User:
+    type: object
+    title: User is an account on a team.
+    properties:
+      email:
+        type: string
+        x-go-name: Email
+      first_name:
+        type: string
+        x-go-name: FirstName
+      id:
+        type: string
+        x-go-name: ID
+      is_replicated_system_user:
+        type: boolean
+        x-go-name: IsReplicatedSystemUser
+      is_two_factor_enabled:
+        type: boolean
+        x-go-name: IsTwoFactorEnabled
+      last_name:
+        type: string
+        x-go-name: LastName
+      policy_ids:
+        type: array
+        items:
+          type: string
+        x-go-name: PolicyIDs
+      team_id:
+        type: string
+        x-go-name: TeamID
+    x-go-package: github.com/replicatedhq/vandoor/pkg/models
+  ServiceAccount:
+    type: object
+    title: ServiceAccount represents a modified user on a team paired with an API token.
+    properties:
+      accountName:
+        type: string
+        x-go-name: AccountName
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      customerId:
+        type: string
+        x-go-name: CustomerID
+      emailAddress:
+        type: string
+        x-go-name: EmailAddress
+      id:
+        type: string
+        x-go-name: ID
+      isRevoked:
+        type: boolean
+        x-go-name: IsRevoked
+      lastUsedAt:
+        type: string
+        format: date-time
+        x-go-name: LastUsedAt
+      token:
+        type: string
+        x-go-name: Token
+      tokenRegeneratedAt:
+        type: string
+        format: date-time
+        x-go-name: TokenRegeneratedAt
+    x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+  VendorTeamMember:
+    description: VendorTeamMember represents a team member in the vendor API
+    type: object
+    properties:
+      createdAt:
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      email:
+        type: string
+        x-go-name: Email
+      firstName:
+        type: string
+        x-go-name: FirstName
+      hasGitHubUsername:
+        type: boolean
+        x-go-name: HasGitHubUsername
+      id:
+        type: string
+        x-go-name: ID
+      isArchived:
+        type: boolean
+        x-go-name: IsArchived
+      isInviteExpired:
+        type: boolean
+        x-go-name: IsInviteExpired
+      isMFAEnabled:
+        type: boolean
+        x-go-name: IsMFAEnabled
+      isPendingInvite:
+        type: boolean
+        x-go-name: IsPendingInvite
+      isReadOnly:
+        type: boolean
+        x-go-name: IsReadOnly
+      isSAML:
+        type: boolean
+        x-go-name: IsSAML
+      lastActiveAt:
+        type: string
+        format: date-time
+        x-go-name: LastActiveAt
+      lastName:
+        type: string
+        x-go-name: LastName
+      policyId:
+        type: string
+        x-go-name: PolicyID
+    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/v1/team
+responses:
+  getTeamResponse:
+    description: ''
+    schema:
+      $ref: '#/definitions/Team'
+  listServiceAccountsResponse:
+    description: ''
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/ServiceAccount'
+  listTeamMembersResponse:
+    description: ListTeamMembersResponse contains the JSON team members list
+    schema:
+      type: object
+      properties:
+        members:
+          type: array
+          items:
+            $ref: '#/definitions/VendorTeamMember'
+          x-go-name: Members
+  responseErrUnauthorized:
+    description: Return if the caller is not authorized
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  responseErrBadRequest:
+    description: Returned on bad input
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error code if available
+          type: string
+          x-go-name: ErrorCode
+        message:
+          description: Error message text if available
+          type: string
+          x-go-name: Message
+  responseErrForbidden:
+    description: Returned if the caller does not have the needed permission
+    schema:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              x-go-name: Message
+            messageCode:
+              type: string
+              x-go-name: MessageCode
+          x-go-name: Error
+  updateDefaultAppResponse:
+    description: ''
+    schema:
+      type: object
+      properties:
+        default_app_id:
+          type: string
+          x-go-name: DefaultAppID
+        id:
+          type: string
+          x-go-name: ID
+  responseOk:
+    description: On success
+  responseNoContent:
+    description: On success, no payload returned
+  getTeamMemberResponse:
+    description: ''
+    schema:
+      $ref: '#/definitions/User'
+  responseErrNotFound:
+    description: Returned on resource not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+  createTeamServiceAccountResponse:
+    description: CreateTeamServiceAccountResponse contains the created service account and its access token.
+    schema:
+      type: object
+      properties:
+        access_token:
+          description: AccessToken is the access token for the created service account.
+          type: string
+          x-go-name: AccessToken
+        service_account:
+          $ref: '#/definitions/ServiceAccount'
+  listImagesResponse:
+    description: ListImagesResponse represents a list of images.
+    schema:
+      type: object
+      properties:
+        images:
+          type: array
+          items:
+            $ref: '#/definitions/Image'
+          x-go-name: Images
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
