@@ -1,0 +1,14 @@
+generated: '2026-07-20'
+method: searched
+probe: true
+source: https://www.replicated.com/security
+url: https://www.replicated.com/security
+certifications:
+- SOC 2
+- CSA STAR
+evidence:
+- source: https://www.replicated.com/security
+  keywords:
+  - soc 2
+  - trust center
+  - csa star

@@ -1,0 +1,3685 @@
+{
+  "info": {
+    "_postman_id": "94e0a971-b81f-4df0-a8d1-043441e75cc3",
+    "name": "Vendor API V3 apps notifications API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:35.000Z",
+    "updatedAt": "2026-07-28T02:45:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-94e0a971-b81f-4df0-a8d1-043441e75cc3"
+  },
+  "item": [
+    {
+      "name": "notification_email",
+      "item": [
+        {
+          "name": "resend_verification",
+          "item": [
+            {
+              "name": "Resend verification email for an unverified email address.",
+              "id": "a85cef09-369a-42f8-86bd-a1c98957fd60",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailAddress\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notification_email/resend_verification",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_email",
+                    "resend_verification"
+                  ]
+                },
+                "description": "Required RBAC Policy: team/notifications/subscriptions/update"
+              },
+              "response": [
+                {
+                  "id": "a06e1d10-4712-4820-b289-a35abd413f38",
+                  "name": "ResendVerificationEmailResponse indicates success or failure",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"emailAddress\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_email/resend_verification",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_email",
+                        "resend_verification"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-a06e1d10-4712-4820-b289-a35abd413f38"
+                },
+                {
+                  "id": "96e70f02-da42-460d-8ca9-1df26856b807",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"emailAddress\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_email/resend_verification",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_email",
+                        "resend_verification"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-96e70f02-da42-460d-8ca9-1df26856b807"
+                },
+                {
+                  "id": "70e5bd57-fe2f-4711-a3ad-c401c609ecf6",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"emailAddress\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_email/resend_verification",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_email",
+                        "resend_verification"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-70e5bd57-fe2f-4711-a3ad-c401c609ecf6"
+                },
+                {
+                  "id": "92b15782-730c-4180-a509-129d5f26216d",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"emailAddress\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_email/resend_verification",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_email",
+                        "resend_verification"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-92b15782-730c-4180-a509-129d5f26216d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-a85cef09-369a-42f8-86bd-a1c98957fd60"
+            }
+          ],
+          "id": "0058922e-cb10-4474-b502-9b6c5fc693f3",
+          "createdAt": "2026-07-28T02:45:36.000Z",
+          "updatedAt": "2026-07-28T02:45:36.000Z",
+          "uid": "35240-0058922e-cb10-4474-b502-9b6c5fc693f3"
+        },
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "Verify an email address using a verification code.",
+              "id": "befb8a68-6e1f-4551-8158-cbf5560b7f50",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailAddress\": \"<string>\",\n  \"verificationCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notification_email/verify",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_email",
+                    "verify"
+                  ]
+                },
+                "description": "Required RBAC Policy: team/notifications/subscriptions/update"
+              },
+              "response": [
+                {
+                  "id": "bb0e2947-5c4c-4880-bb28-f4e8c5b63711",
+                  "name": "VerifyEmailResponse indicates success or failure",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"emailAddress\": \"<string>\",\n  \"verificationCode\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_email/verify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_email",
+                        "verify"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-bb0e2947-5c4c-4880-bb28-f4e8c5b63711"
+                },
+                {
+                  "id": "7f9a5347-85ef-42be-bc56-688e77a593f3",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"emailAddress\": \"<string>\",\n  \"verificationCode\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_email/verify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_email",
+                        "verify"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-7f9a5347-85ef-42be-bc56-688e77a593f3"
+                },
+                {
+                  "id": "068fe9da-89b3-48a7-aec9-de63439e000d",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"emailAddress\": \"<string>\",\n  \"verificationCode\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_email/verify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_email",
+                        "verify"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-068fe9da-89b3-48a7-aec9-de63439e000d"
+                },
+                {
+                  "id": "ea4cfbf0-7fb6-4555-9df9-4133a4fb9718",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"emailAddress\": \"<string>\",\n  \"verificationCode\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_email/verify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_email",
+                        "verify"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-ea4cfbf0-7fb6-4555-9df9-4133a4fb9718"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-befb8a68-6e1f-4551-8158-cbf5560b7f50"
+            }
+          ],
+          "id": "72dfcdbf-35c8-45b7-b642-6adc59ca2ff7",
+          "createdAt": "2026-07-28T02:45:36.000Z",
+          "updatedAt": "2026-07-28T02:45:36.000Z",
+          "uid": "35240-72dfcdbf-35c8-45b7-b642-6adc59ca2ff7"
+        }
+      ],
+      "id": "74a07348-3b71-4e31-ab95-947c1190e854",
+      "createdAt": "2026-07-28T02:45:36.000Z",
+      "updatedAt": "2026-07-28T02:45:36.000Z",
+      "uid": "35240-74a07348-3b71-4e31-ab95-947c1190e854"
+    },
+    {
+      "name": "notification_event",
+      "item": [
+        {
+          "name": "{event_id}",
+          "item": [
+            {
+              "name": "retry",
+              "item": [
+                {
+                  "name": "Retry a notification event.",
+                  "id": "ed1176cb-6587-41ac-b0c6-f1ef9e52b849",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_event/:event_id/retry",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_event",
+                        ":event_id",
+                        "retry"
+                      ],
+                      "variable": [
+                        {
+                          "id": "87a31a09-0053-4a29-a1cc-e9fa58eb4eda",
+                          "key": "event_id",
+                          "value": "<string>",
+                          "description": "(Required) Event identifier"
+                        }
+                      ]
+                    },
+                    "description": "Immediately retry a failed notification event, including permanently failed events.\n\nRequired RBAC Policy: team/[:teamid]/notification/write"
+                  },
+                  "response": [
+                    {
+                      "id": "a096d845-2685-4a4c-be17-d86feefb3d49",
+                      "name": "On success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notification_event/:event_id/retry",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notification_event",
+                            ":event_id",
+                            "retry"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:45:36.000Z",
+                      "updatedAt": "2026-07-28T02:45:36.000Z",
+                      "uid": "35240-a096d845-2685-4a4c-be17-d86feefb3d49"
+                    },
+                    {
+                      "id": "7b3a57e5-e512-40e8-b6cd-fe8d5c80e6db",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notification_event/:event_id/retry",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notification_event",
+                            ":event_id",
+                            "retry"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:36.000Z",
+                      "updatedAt": "2026-07-28T02:45:36.000Z",
+                      "uid": "35240-7b3a57e5-e512-40e8-b6cd-fe8d5c80e6db"
+                    },
+                    {
+                      "id": "b0731c39-ccce-4cb1-bde7-acc1a2da4a60",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notification_event/:event_id/retry",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notification_event",
+                            ":event_id",
+                            "retry"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:36.000Z",
+                      "updatedAt": "2026-07-28T02:45:36.000Z",
+                      "uid": "35240-b0731c39-ccce-4cb1-bde7-acc1a2da4a60"
+                    },
+                    {
+                      "id": "8f25d5ae-2da0-4fd9-a139-5311c8662cd4",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notification_event/:event_id/retry",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notification_event",
+                            ":event_id",
+                            "retry"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:36.000Z",
+                      "updatedAt": "2026-07-28T02:45:36.000Z",
+                      "uid": "35240-8f25d5ae-2da0-4fd9-a139-5311c8662cd4"
+                    },
+                    {
+                      "id": "71826e2f-c084-4415-b79f-7972135e05a3",
+                      "name": "Returned on resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notification_event/:event_id/retry",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notification_event",
+                            ":event_id",
+                            "retry"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:36.000Z",
+                      "updatedAt": "2026-07-28T02:45:36.000Z",
+                      "uid": "35240-71826e2f-c084-4415-b79f-7972135e05a3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-ed1176cb-6587-41ac-b0c6-f1ef9e52b849"
+                }
+              ],
+              "id": "e0ded0d8-e35e-471e-ae1e-4419a9449f4c",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-e0ded0d8-e35e-471e-ae1e-4419a9449f4c"
+            }
+          ],
+          "id": "ffbdb64d-dbfe-4a94-8d05-188c20b56ee0",
+          "createdAt": "2026-07-28T02:45:36.000Z",
+          "updatedAt": "2026-07-28T02:45:36.000Z",
+          "uid": "35240-ffbdb64d-dbfe-4a94-8d05-188c20b56ee0"
+        }
+      ],
+      "id": "b52df2a5-757e-4771-a406-4b6d0d626aef",
+      "createdAt": "2026-07-28T02:45:36.000Z",
+      "updatedAt": "2026-07-28T02:45:36.000Z",
+      "uid": "35240-b52df2a5-757e-4771-a406-4b6d0d626aef"
+    },
+    {
+      "name": "notification_event_types",
+      "item": [
+        {
+          "name": "Search notification event types.",
+          "id": "5bf3ee47-5304-49e3-a74d-d955acff905c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notification_event_types?q=<string>&limit=<long>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notification_event_types"
+              ],
+              "query": [
+                {
+                  "description": "Search query matching key, display name, description, or category.",
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Optional maximum number of results to return. Must be between 1 and 100.",
+                  "key": "limit",
+                  "value": "<long>"
+                }
+              ]
+            },
+            "description": "Required RBAC Policy: team/notifications/types/list"
+          },
+          "response": [
+            {
+              "id": "cd2dc16d-4751-45b7-af52-724043e54af9",
+              "name": "New Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_event_types?q=<string>&limit=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_event_types"
+                  ],
+                  "query": [
+                    {
+                      "description": "Search query matching key, display name, description, or category.",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional maximum number of results to return. Must be between 1 and 100.",
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"eventTypes\": [\n    {\n      \"category\": \"<string>\",\n      \"description\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"filters\": [\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\",\n          \"options\": [\n            {\n              \"appId\": \"<string>\",\n              \"label\": \"<string>\",\n              \"metricType\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"appId\": \"<string>\",\n              \"label\": \"<string>\",\n              \"metricType\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"placeholder\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\",\n          \"options\": [\n            {\n              \"appId\": \"<string>\",\n              \"label\": \"<string>\",\n              \"metricType\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"appId\": \"<string>\",\n              \"label\": \"<string>\",\n              \"metricType\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"placeholder\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"key\": \"<string>\",\n      \"webhookPayloadFormat\": [\n        {\n          \"description\": \"<string>\",\n          \"key\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"key\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"category\": \"<string>\",\n      \"description\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"filters\": [\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\",\n          \"options\": [\n            {\n              \"appId\": \"<string>\",\n              \"label\": \"<string>\",\n              \"metricType\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"appId\": \"<string>\",\n              \"label\": \"<string>\",\n              \"metricType\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"placeholder\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\",\n          \"options\": [\n            {\n              \"appId\": \"<string>\",\n              \"label\": \"<string>\",\n              \"metricType\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"appId\": \"<string>\",\n              \"label\": \"<string>\",\n              \"metricType\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ],\n          \"placeholder\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"key\": \"<string>\",\n      \"webhookPayloadFormat\": [\n        {\n          \"description\": \"<string>\",\n          \"key\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"key\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"total\": \"<long>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-cd2dc16d-4751-45b7-af52-724043e54af9"
+            },
+            {
+              "id": "fa8be448-34b3-4876-8191-47d274e3d539",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_event_types?q=<string>&limit=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_event_types"
+                  ],
+                  "query": [
+                    {
+                      "description": "Search query matching key, display name, description, or category.",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional maximum number of results to return. Must be between 1 and 100.",
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-fa8be448-34b3-4876-8191-47d274e3d539"
+            },
+            {
+              "id": "971668ff-a04b-4b26-aa40-7300375c467d",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_event_types?q=<string>&limit=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_event_types"
+                  ],
+                  "query": [
+                    {
+                      "description": "Search query matching key, display name, description, or category.",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional maximum number of results to return. Must be between 1 and 100.",
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-971668ff-a04b-4b26-aa40-7300375c467d"
+            },
+            {
+              "id": "8897f366-a49c-45b9-9d34-5292bf7ab30f",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_event_types?q=<string>&limit=<long>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_event_types"
+                  ],
+                  "query": [
+                    {
+                      "description": "Search query matching key, display name, description, or category.",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional maximum number of results to return. Must be between 1 and 100.",
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-8897f366-a49c-45b9-9d34-5292bf7ab30f"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:36.000Z",
+          "updatedAt": "2026-07-28T02:45:36.000Z",
+          "uid": "35240-5bf3ee47-5304-49e3-a74d-d955acff905c"
+        }
+      ],
+      "id": "265e453a-e160-4b86-b8f1-378d9dfe7566",
+      "createdAt": "2026-07-28T02:45:36.000Z",
+      "updatedAt": "2026-07-28T02:45:36.000Z",
+      "uid": "35240-265e453a-e160-4b86-b8f1-378d9dfe7566"
+    },
+    {
+      "name": "notification_events",
+      "item": [
+        {
+          "name": "List team notification delivery events.",
+          "id": "b33bd6fc-bc9e-4016-ab7c-afe10576297d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notification_events?pageSize=20&currentPage=<long>&type=<string>&event_types=<string>,<string>&subscription_id=<string>&subscription_type=<string>&start_time=<string>&end_time=<string>&search=<string>&status=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notification_events"
+              ],
+              "query": [
+                {
+                  "description": "Page size",
+                  "key": "pageSize",
+                  "value": "20"
+                },
+                {
+                  "description": "Current page",
+                  "key": "currentPage",
+                  "value": "<long>"
+                },
+                {
+                  "description": "Filter by type prefix (e.g. customer., instance., release.)",
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by event types",
+                  "key": "event_types",
+                  "value": "<string>,<string>"
+                },
+                {
+                  "description": "Filter by subscription ID",
+                  "key": "subscription_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by subscription type: \"personal\" shows only the current user's events, \"team\" shows all team events",
+                  "key": "subscription_type",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter events after this time (ISO 8601 format)",
+                  "key": "start_time",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter events before this time (ISO 8601 format)",
+                  "key": "end_time",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Search term to filter events by content",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by computed status: success, pending, or failed",
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Required RBAC Policy: team/notifications/events/read"
+          },
+          "response": [
+            {
+              "id": "1f84c06c-7ca8-401f-a58b-7988ce961d6e",
+              "name": "ListNotificationEventsResponse contains the JSON response for listing notification events.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_events?pageSize=20&currentPage=<long>&type=<string>&event_types=<string>,<string>&subscription_id=<string>&subscription_type=<string>&start_time=<string>&end_time=<string>&search=<string>&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page size",
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Current page",
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Filter by type prefix (e.g. customer., instance., release.)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by event types",
+                      "key": "event_types",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "Filter by subscription ID",
+                      "key": "subscription_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by subscription type: \"personal\" shows only the current user's events, \"team\" shows all team events",
+                      "key": "subscription_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events after this time (ISO 8601 format)",
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events before this time (ISO 8601 format)",
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter events by content",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by computed status: success, pending, or failed",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"events\": [\n    {\n      \"attempts\": [\n        {\n          \"attemptedAt\": \"<dateTime>\",\n          \"durationMs\": \"<long>\",\n          \"errorMessage\": \"<string>\",\n          \"eventId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"requestBody\": {},\n          \"requestHeaders\": {},\n          \"responseBody\": \"<string>\",\n          \"responseHeaders\": {},\n          \"statusCode\": \"<long>\",\n          \"success\": \"<boolean>\"\n        },\n        {\n          \"attemptedAt\": \"<dateTime>\",\n          \"durationMs\": \"<long>\",\n          \"errorMessage\": \"<string>\",\n          \"eventId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"requestBody\": {},\n          \"requestHeaders\": {},\n          \"responseBody\": \"<string>\",\n          \"responseHeaders\": {},\n          \"statusCode\": \"<long>\",\n          \"success\": \"<boolean>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"createdByUserId\": \"<string>\",\n      \"eventData\": {},\n      \"eventType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"lastError\": \"<string>\",\n      \"nextRetryAt\": \"<dateTime>\",\n      \"payload\": {},\n      \"payloadType\": \"<string>\",\n      \"retryCount\": \"<long>\",\n      \"sentAt\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"subscriptionDeletedAt\": \"<dateTime>\",\n      \"subscriptionId\": \"<string>\"\n    },\n    {\n      \"attempts\": [\n        {\n          \"attemptedAt\": \"<dateTime>\",\n          \"durationMs\": \"<long>\",\n          \"errorMessage\": \"<string>\",\n          \"eventId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"requestBody\": {},\n          \"requestHeaders\": {},\n          \"responseBody\": \"<string>\",\n          \"responseHeaders\": {},\n          \"statusCode\": \"<long>\",\n          \"success\": \"<boolean>\"\n        },\n        {\n          \"attemptedAt\": \"<dateTime>\",\n          \"durationMs\": \"<long>\",\n          \"errorMessage\": \"<string>\",\n          \"eventId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"requestBody\": {},\n          \"requestHeaders\": {},\n          \"responseBody\": \"<string>\",\n          \"responseHeaders\": {},\n          \"statusCode\": \"<long>\",\n          \"success\": \"<boolean>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"createdByUserId\": \"<string>\",\n      \"eventData\": {},\n      \"eventType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"lastError\": \"<string>\",\n      \"nextRetryAt\": \"<dateTime>\",\n      \"payload\": {},\n      \"payloadType\": \"<string>\",\n      \"retryCount\": \"<long>\",\n      \"sentAt\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"subscriptionDeletedAt\": \"<dateTime>\",\n      \"subscriptionId\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<long>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-1f84c06c-7ca8-401f-a58b-7988ce961d6e"
+            },
+            {
+              "id": "e0e3832d-fff6-4a88-88a2-2c52e2c21103",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_events?pageSize=20&currentPage=<long>&type=<string>&event_types=<string>,<string>&subscription_id=<string>&subscription_type=<string>&start_time=<string>&end_time=<string>&search=<string>&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page size",
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Current page",
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Filter by type prefix (e.g. customer., instance., release.)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by event types",
+                      "key": "event_types",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "Filter by subscription ID",
+                      "key": "subscription_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by subscription type: \"personal\" shows only the current user's events, \"team\" shows all team events",
+                      "key": "subscription_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events after this time (ISO 8601 format)",
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events before this time (ISO 8601 format)",
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter events by content",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by computed status: success, pending, or failed",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-e0e3832d-fff6-4a88-88a2-2c52e2c21103"
+            },
+            {
+              "id": "6633f075-905a-4ecd-bcc4-8eaf7510c05d",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_events?pageSize=20&currentPage=<long>&type=<string>&event_types=<string>,<string>&subscription_id=<string>&subscription_type=<string>&start_time=<string>&end_time=<string>&search=<string>&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page size",
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Current page",
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Filter by type prefix (e.g. customer., instance., release.)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by event types",
+                      "key": "event_types",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "Filter by subscription ID",
+                      "key": "subscription_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by subscription type: \"personal\" shows only the current user's events, \"team\" shows all team events",
+                      "key": "subscription_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events after this time (ISO 8601 format)",
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events before this time (ISO 8601 format)",
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter events by content",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by computed status: success, pending, or failed",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-6633f075-905a-4ecd-bcc4-8eaf7510c05d"
+            },
+            {
+              "id": "031e4480-65d8-40dd-8851-1666c74f174c",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_events?pageSize=20&currentPage=<long>&type=<string>&event_types=<string>,<string>&subscription_id=<string>&subscription_type=<string>&start_time=<string>&end_time=<string>&search=<string>&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page size",
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Current page",
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Filter by type prefix (e.g. customer., instance., release.)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by event types",
+                      "key": "event_types",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "Filter by subscription ID",
+                      "key": "subscription_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by subscription type: \"personal\" shows only the current user's events, \"team\" shows all team events",
+                      "key": "subscription_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events after this time (ISO 8601 format)",
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events before this time (ISO 8601 format)",
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter events by content",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by computed status: success, pending, or failed",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-031e4480-65d8-40dd-8851-1666c74f174c"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:36.000Z",
+          "updatedAt": "2026-07-28T02:45:36.000Z",
+          "uid": "35240-b33bd6fc-bc9e-4016-ab7c-afe10576297d"
+        }
+      ],
+      "id": "65447fea-f421-4ddd-9948-6d1d5dcc03ae",
+      "createdAt": "2026-07-28T02:45:36.000Z",
+      "updatedAt": "2026-07-28T02:45:36.000Z",
+      "uid": "35240-65447fea-f421-4ddd-9948-6d1d5dcc03ae"
+    },
+    {
+      "name": "notification_subscription",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "events",
+              "item": [
+                {
+                  "name": "List all events for a notification subscription.",
+                  "id": "da3d26a2-db7d-4840-8e32-6f792403d132",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id",
+                        "events"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eca361d5-1593-47e2-a2a2-73e87df71d47",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the notification subscription"
+                        }
+                      ]
+                    },
+                    "description": "Required RBAC Policy: team/notifications/subscriptions/read"
+                  },
+                  "response": [
+                    {
+                      "id": "c7cb032c-3774-4a03-a6e0-c7cad4920afa",
+                      "name": "ListNotificationSubscriptionEventsResponse contains the notification events",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notification_subscription/:id/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notification_subscription",
+                            ":id",
+                            "events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"events\": [\n    {\n      \"attempts\": [\n        {\n          \"attemptedAt\": \"<dateTime>\",\n          \"durationMs\": \"<long>\",\n          \"errorMessage\": \"<string>\",\n          \"eventId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"requestBody\": {},\n          \"requestHeaders\": {},\n          \"responseBody\": \"<string>\",\n          \"responseHeaders\": {},\n          \"statusCode\": \"<long>\",\n          \"success\": \"<boolean>\"\n        },\n        {\n          \"attemptedAt\": \"<dateTime>\",\n          \"durationMs\": \"<long>\",\n          \"errorMessage\": \"<string>\",\n          \"eventId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"requestBody\": {},\n          \"requestHeaders\": {},\n          \"responseBody\": \"<string>\",\n          \"responseHeaders\": {},\n          \"statusCode\": \"<long>\",\n          \"success\": \"<boolean>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"eventData\": {},\n      \"eventType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"lastError\": \"<string>\",\n      \"nextRetryAt\": \"<dateTime>\",\n      \"payload\": {},\n      \"payloadType\": \"<string>\",\n      \"retryCount\": \"<long>\",\n      \"sentAt\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"subscriptionId\": \"<string>\"\n    },\n    {\n      \"attempts\": [\n        {\n          \"attemptedAt\": \"<dateTime>\",\n          \"durationMs\": \"<long>\",\n          \"errorMessage\": \"<string>\",\n          \"eventId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"requestBody\": {},\n          \"requestHeaders\": {},\n          \"responseBody\": \"<string>\",\n          \"responseHeaders\": {},\n          \"statusCode\": \"<long>\",\n          \"success\": \"<boolean>\"\n        },\n        {\n          \"attemptedAt\": \"<dateTime>\",\n          \"durationMs\": \"<long>\",\n          \"errorMessage\": \"<string>\",\n          \"eventId\": \"<string>\",\n          \"id\": \"<string>\",\n          \"requestBody\": {},\n          \"requestHeaders\": {},\n          \"responseBody\": \"<string>\",\n          \"responseHeaders\": {},\n          \"statusCode\": \"<long>\",\n          \"success\": \"<boolean>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"eventData\": {},\n      \"eventType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"lastError\": \"<string>\",\n      \"nextRetryAt\": \"<dateTime>\",\n      \"payload\": {},\n      \"payloadType\": \"<string>\",\n      \"retryCount\": \"<long>\",\n      \"sentAt\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"subscriptionId\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:45:36.000Z",
+                      "updatedAt": "2026-07-28T02:45:36.000Z",
+                      "uid": "35240-c7cb032c-3774-4a03-a6e0-c7cad4920afa"
+                    },
+                    {
+                      "id": "7e718678-2ffe-4449-bfc4-591b21fc9fc7",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notification_subscription/:id/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notification_subscription",
+                            ":id",
+                            "events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:36.000Z",
+                      "updatedAt": "2026-07-28T02:45:36.000Z",
+                      "uid": "35240-7e718678-2ffe-4449-bfc4-591b21fc9fc7"
+                    },
+                    {
+                      "id": "a339d9bb-d445-4ff5-9a99-4f6f3abea69d",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notification_subscription/:id/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notification_subscription",
+                            ":id",
+                            "events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:36.000Z",
+                      "updatedAt": "2026-07-28T02:45:36.000Z",
+                      "uid": "35240-a339d9bb-d445-4ff5-9a99-4f6f3abea69d"
+                    },
+                    {
+                      "id": "df91e7ce-7694-44ec-85b7-837808eba188",
+                      "name": "Returned on resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notification_subscription/:id/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notification_subscription",
+                            ":id",
+                            "events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:36.000Z",
+                      "updatedAt": "2026-07-28T02:45:36.000Z",
+                      "uid": "35240-df91e7ce-7694-44ec-85b7-837808eba188"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-da3d26a2-db7d-4840-8e32-6f792403d132"
+                }
+              ],
+              "id": "fd031e68-da59-4934-afcd-8facf15b2c0e",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-fd031e68-da59-4934-afcd-8facf15b2c0e"
+            },
+            {
+              "name": "Retrieve a single notification subscription.",
+              "id": "45da0780-18e7-4830-9334-3ce66bfeaef8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_subscription/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_subscription",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "841c39ef-cd1d-4704-8f88-001e6682cf7d",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Notification subscription ID"
+                    }
+                  ]
+                },
+                "description": "Required RBAC Policy: team/notifications/subscriptions/read"
+              },
+              "response": [
+                {
+                  "id": "860fb183-d629-4f3c-b7e7-eb1d02add17b",
+                  "name": "GetNotificationSubscriptionResponse contains a single notification subscription",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"activeMutesCount\": \"<long>\",\n  \"createdAt\": \"<dateTime>\",\n  \"createdBy\": {\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"link\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"type\": \"<string>\"\n  },\n  \"customHeaders\": [\n    {\n      \"maskedValue\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"maskedValue\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"deletedAt\": \"<dateTime>\",\n  \"emailAddress\": \"<string>\",\n  \"emailVerified\": \"<boolean>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"sunt_1c7\": {},\n        \"magnae\": {},\n        \"Ut9\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"nisi42\": {}\n      }\n    }\n  ],\n  \"failureContact\": \"<string>\",\n  \"id\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"readonly\": \"<boolean>\",\n  \"requiresVerification\": \"<boolean>\",\n  \"teamId\": \"<string>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"userId\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-860fb183-d629-4f3c-b7e7-eb1d02add17b"
+                },
+                {
+                  "id": "46d34611-4b40-484c-b656-8d3e323db5c0",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-46d34611-4b40-484c-b656-8d3e323db5c0"
+                },
+                {
+                  "id": "04db47e6-0f8a-4e10-a1cd-e367421b7b23",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-04db47e6-0f8a-4e10-a1cd-e367421b7b23"
+                },
+                {
+                  "id": "b23e81d4-4924-4e8e-8d8c-b2be1a278b41",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-b23e81d4-4924-4e8e-8d8c-b2be1a278b41"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-45da0780-18e7-4830-9334-3ce66bfeaef8"
+            },
+            {
+              "name": "Update a notification subscription.",
+              "id": "18fc6691-6571-45d1-a4eb-a179bce4b63f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notification_subscription/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_subscription",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cec187f3-a6be-4f78-b155-500ac75de463",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Notification subscription ID"
+                    }
+                  ]
+                },
+                "description": "Required RBAC Policy: team/notifications/subscriptions/update"
+              },
+              "response": [
+                {
+                  "id": "c01e2e93-5310-4441-82d2-d89873bf55ed",
+                  "name": "UpdateNotificationSubscriptionResponse contains the updated notification subscription",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"activeMutesCount\": \"<long>\",\n  \"createdAt\": \"<dateTime>\",\n  \"createdBy\": {\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"link\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"type\": \"<string>\"\n  },\n  \"customHeaders\": [\n    {\n      \"maskedValue\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"maskedValue\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"deletedAt\": \"<dateTime>\",\n  \"emailAddress\": \"<string>\",\n  \"emailVerified\": \"<boolean>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"sunt_1c7\": {},\n        \"magnae\": {},\n        \"Ut9\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"nisi42\": {}\n      }\n    }\n  ],\n  \"failureContact\": \"<string>\",\n  \"id\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"readonly\": \"<boolean>\",\n  \"requiresVerification\": \"<boolean>\",\n  \"teamId\": \"<string>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"userId\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-c01e2e93-5310-4441-82d2-d89873bf55ed"
+                },
+                {
+                  "id": "f1b12213-3d3d-4275-a9b5-358012ac231f",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-f1b12213-3d3d-4275-a9b5-358012ac231f"
+                },
+                {
+                  "id": "a6477577-c009-4877-8d4d-ae7fb661278a",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-a6477577-c009-4877-8d4d-ae7fb661278a"
+                },
+                {
+                  "id": "7fa7377b-f4f1-405e-a3a2-dea179827a7f",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-7fa7377b-f4f1-405e-a3a2-dea179827a7f"
+                },
+                {
+                  "id": "7be4d932-35e9-4fa8-a235-ff55e8d78cd9",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-7be4d932-35e9-4fa8-a235-ff55e8d78cd9"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-18fc6691-6571-45d1-a4eb-a179bce4b63f"
+            },
+            {
+              "name": "Remove a notification subscription.",
+              "id": "19e86726-9f7e-4cf3-9fd5-5249fe979a36",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_subscription/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_subscription",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "564c3bc4-16ea-4f7a-a569-03fb4fd6762d",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Notification subscription ID"
+                    }
+                  ]
+                },
+                "description": "Required RBAC Policy: team/notifications/subscriptions/delete"
+              },
+              "response": [
+                {
+                  "id": "11e9779d-3e4c-4d32-ac12-5a80f240b619",
+                  "name": "On success, no payload returned",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-11e9779d-3e4c-4d32-ac12-5a80f240b619"
+                },
+                {
+                  "id": "8bd3422d-97f2-4e16-b84a-b95fb6415295",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-8bd3422d-97f2-4e16-b84a-b95fb6415295"
+                },
+                {
+                  "id": "4381bcb1-26a7-4b53-82bc-def34ecd295a",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-4381bcb1-26a7-4b53-82bc-def34ecd295a"
+                },
+                {
+                  "id": "cf49cd75-6bd3-4186-9cc5-403fbb03d446",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-cf49cd75-6bd3-4186-9cc5-403fbb03d446"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-19e86726-9f7e-4cf3-9fd5-5249fe979a36"
+            }
+          ],
+          "id": "6b23cb0a-998b-4041-8d35-93d5b2afe8e9",
+          "createdAt": "2026-07-28T02:45:36.000Z",
+          "updatedAt": "2026-07-28T02:45:36.000Z",
+          "uid": "35240-6b23cb0a-998b-4041-8d35-93d5b2afe8e9"
+        },
+        {
+          "name": "Create a new notification subscription.\nNote: The webhook secret is stored but never returned in API responses for security.",
+          "id": "8f0e385b-23b0-4c2e-a5c3-9adc63f03aa6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/notification_subscription",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notification_subscription"
+              ]
+            },
+            "description": "Required RBAC Policy: team/notifications/subscriptions/create"
+          },
+          "response": [
+            {
+              "id": "2c64c87e-ed5e-4afd-8cb3-d17e4224f269",
+              "name": "CreateNotificationSubscriptionResponse contains the created notification subscription",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notification_subscription",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_subscription"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"activeMutesCount\": \"<long>\",\n  \"createdAt\": \"<dateTime>\",\n  \"createdBy\": {\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"link\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"type\": \"<string>\"\n  },\n  \"customHeaders\": [\n    {\n      \"maskedValue\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"maskedValue\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"deletedAt\": \"<dateTime>\",\n  \"emailAddress\": \"<string>\",\n  \"emailVerified\": \"<boolean>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"sunt_1c7\": {},\n        \"magnae\": {},\n        \"Ut9\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"nisi42\": {}\n      }\n    }\n  ],\n  \"failureContact\": \"<string>\",\n  \"id\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"readonly\": \"<boolean>\",\n  \"requiresVerification\": \"<boolean>\",\n  \"teamId\": \"<string>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"userId\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-2c64c87e-ed5e-4afd-8cb3-d17e4224f269"
+            },
+            {
+              "id": "932dda29-9909-4453-b3b1-45051179ed86",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notification_subscription",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_subscription"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-932dda29-9909-4453-b3b1-45051179ed86"
+            },
+            {
+              "id": "abd3a8ca-46dc-4a82-a1ff-3fa13e06588e",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notification_subscription",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_subscription"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-abd3a8ca-46dc-4a82-a1ff-3fa13e06588e"
+            },
+            {
+              "id": "d632b744-06b0-4547-a92c-1a0b6df68a47",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"emailAddress\": \"<string>\",\n  \"eventConfigs\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"culpa6\": {},\n        \"nisic\": {},\n        \"dolorc\": {},\n        \"commodo_f\": {}\n      }\n    },\n    {\n      \"eventType\": \"<string>\",\n      \"filters\": {\n        \"fugiatbd\": {}\n      }\n    }\n  ],\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"failureContact\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notification_subscription",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_subscription"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-d632b744-06b0-4547-a92c-1a0b6df68a47"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:36.000Z",
+          "updatedAt": "2026-07-28T02:45:36.000Z",
+          "uid": "35240-8f0e385b-23b0-4c2e-a5c3-9adc63f03aa6"
+        }
+      ],
+      "id": "a6c1badf-0dc6-44b7-bd31-001b57ca2d08",
+      "createdAt": "2026-07-28T02:45:36.000Z",
+      "updatedAt": "2026-07-28T02:45:36.000Z",
+      "uid": "35240-a6c1badf-0dc6-44b7-bd31-001b57ca2d08"
+    },
+    {
+      "name": "notification_subscriptions",
+      "item": [
+        {
+          "name": "List all notification subscriptions for the current team.",
+          "id": "d8b25207-0afb-4d3d-8903-d245ea8bd981",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notification_subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notification_subscriptions"
+              ]
+            },
+            "description": "Required RBAC Policy: team/notifications/subscriptions/read"
+          },
+          "response": [
+            {
+              "id": "4e9cf789-9bc9-4661-9ac7-a5d4a9e98760",
+              "name": "ListNotificationSubscriptionsResponse contains a list of notification subscriptions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_subscriptions"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"subscriptions\": [\n    {\n      \"activeMutesCount\": \"<long>\",\n      \"createdAt\": \"<dateTime>\",\n      \"createdBy\": {\n        \"description\": \"<string>\",\n        \"id\": \"<string>\",\n        \"link\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"customHeaders\": [\n        {\n          \"maskedValue\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"maskedValue\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"deletedAt\": \"<dateTime>\",\n      \"emailAddress\": \"<string>\",\n      \"emailVerified\": \"<boolean>\",\n      \"eventConfigs\": [\n        {\n          \"eventType\": \"<string>\",\n          \"filters\": {\n            \"exercitation_2\": {},\n            \"fugiate\": {},\n            \"sed7\": {}\n          }\n        },\n        {\n          \"eventType\": \"<string>\",\n          \"filters\": {\n            \"adipisicing_25\": {}\n          }\n        }\n      ],\n      \"failureContact\": \"<string>\",\n      \"id\": \"<string>\",\n      \"isEnabled\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"readonly\": \"<boolean>\",\n      \"requiresVerification\": \"<boolean>\",\n      \"teamId\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"userId\": \"<string>\",\n      \"webhookUrl\": \"<string>\"\n    },\n    {\n      \"activeMutesCount\": \"<long>\",\n      \"createdAt\": \"<dateTime>\",\n      \"createdBy\": {\n        \"description\": \"<string>\",\n        \"id\": \"<string>\",\n        \"link\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"customHeaders\": [\n        {\n          \"maskedValue\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"maskedValue\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"deletedAt\": \"<dateTime>\",\n      \"emailAddress\": \"<string>\",\n      \"emailVerified\": \"<boolean>\",\n      \"eventConfigs\": [\n        {\n          \"eventType\": \"<string>\",\n          \"filters\": {\n            \"ullamco_838\": {}\n          }\n        },\n        {\n          \"eventType\": \"<string>\",\n          \"filters\": {\n            \"qui089\": {}\n          }\n        }\n      ],\n      \"failureContact\": \"<string>\",\n      \"id\": \"<string>\",\n      \"isEnabled\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"readonly\": \"<boolean>\",\n      \"requiresVerification\": \"<boolean>\",\n      \"teamId\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"userId\": \"<string>\",\n      \"webhookUrl\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<long>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-4e9cf789-9bc9-4661-9ac7-a5d4a9e98760"
+            },
+            {
+              "id": "8fac9cee-1eed-4d1e-b8ca-b00b93ec7179",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_subscriptions"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-8fac9cee-1eed-4d1e-b8ca-b00b93ec7179"
+            },
+            {
+              "id": "4ef7e5ef-9847-4c51-8892-673d250bb78b",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification_subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_subscriptions"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-4ef7e5ef-9847-4c51-8892-673d250bb78b"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:36.000Z",
+          "updatedAt": "2026-07-28T02:45:36.000Z",
+          "uid": "35240-d8b25207-0afb-4d3d-8903-d245ea8bd981"
+        }
+      ],
+      "id": "07769052-4c43-40e8-bee1-1242d884f285",
+      "createdAt": "2026-07-28T02:45:36.000Z",
+      "updatedAt": "2026-07-28T02:45:36.000Z",
+      "uid": "35240-07769052-4c43-40e8-bee1-1242d884f285"
+    },
+    {
+      "name": "notification_webhook",
+      "item": [
+        {
+          "name": "test",
+          "item": [
+            {
+              "name": "Test a webhook endpoint by sending a sample payload.",
+              "id": "7ae74d4c-c514-4e81-8b0e-2daed8f19b8c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"eventType\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notification_webhook/test",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification_webhook",
+                    "test"
+                  ]
+                },
+                "description": "Required RBAC Policy: team/notifications/subscriptions/create"
+              },
+              "response": [
+                {
+                  "id": "9f2ef2f8-b40a-4d03-992c-dbcf0c2508dc",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"eventType\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_webhook/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_webhook",
+                        "test"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"durationMs\": \"<long>\",\n  \"error\": \"<string>\",\n  \"statusCode\": \"<long>\",\n  \"success\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-9f2ef2f8-b40a-4d03-992c-dbcf0c2508dc"
+                },
+                {
+                  "id": "a14c1366-ae1b-4866-9e39-f956957e0603",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"eventType\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_webhook/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_webhook",
+                        "test"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-a14c1366-ae1b-4866-9e39-f956957e0603"
+                },
+                {
+                  "id": "d44285bf-d115-4b4e-8806-b60922ee3326",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"eventType\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_webhook/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_webhook",
+                        "test"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-d44285bf-d115-4b4e-8806-b60922ee3326"
+                },
+                {
+                  "id": "d255e309-7a84-4679-8d1a-08c89fed68b9",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"eventType\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notification_webhook/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification_webhook",
+                        "test"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:36.000Z",
+                  "updatedAt": "2026-07-28T02:45:36.000Z",
+                  "uid": "35240-d255e309-7a84-4679-8d1a-08c89fed68b9"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:36.000Z",
+              "updatedAt": "2026-07-28T02:45:36.000Z",
+              "uid": "35240-7ae74d4c-c514-4e81-8b0e-2daed8f19b8c"
+            }
+          ],
+          "id": "e80eda59-072a-49ba-9181-6ad06b778c54",
+          "createdAt": "2026-07-28T02:45:36.000Z",
+          "updatedAt": "2026-07-28T02:45:36.000Z",
+          "uid": "35240-e80eda59-072a-49ba-9181-6ad06b778c54"
+        }
+      ],
+      "id": "c32100e0-5fae-4d7e-96ea-170a0590cb83",
+      "createdAt": "2026-07-28T02:45:36.000Z",
+      "updatedAt": "2026-07-28T02:45:36.000Z",
+      "uid": "35240-c32100e0-5fae-4d7e-96ea-170a0590cb83"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

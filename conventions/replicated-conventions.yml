@@ -1,0 +1,52 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/replicated-vendor-api-v3-openapi-original.json
+docs: https://docs.replicated.com/reference/vendor-api-using
+summary: >-
+  Cross-cutting request/response semantics for the Replicated Vendor API v3,
+  derived from the published Swagger 2.0 spec and the Vendor API reference docs.
+authentication:
+  style: api-key
+  location: header
+  header: Authorization
+  token_types: [user API token, service account token]
+  docs: https://docs.replicated.com/vendor/replicated-api-tokens
+  see: authentication/replicated-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v3
+  base_path: /vendor/v3
+  docs: https://docs.replicated.com/reference/vendor-api-using
+content_type:
+  request: application/json
+  response: application/json
+pagination:
+  style: page-based
+  params: [pageSize, currentPage]
+  alternate_params: [limit, offset, page]
+  note: >-
+    Most list endpoints page with pageSize + currentPage; a few report-style
+    endpoints use limit/offset. No global cursor scheme is declared in the spec.
+idempotency:
+  supported: false
+  note: >-
+    The Vendor API v3 spec declares no Idempotency-Key header or idempotent-retry
+    contract. Creation is not idempotent; callers should guard against duplicate
+    submits client-side.
+error_envelope:
+  format: json
+  note: >-
+    4xx/5xx responses are documented by status code only (400/401/403/404/412/429/500)
+    with no problem+json schema in the spec. See errors/replicated-problem-types.yml.
+  see: errors/replicated-problem-types.yml
+rate_limiting:
+  signalled: partial
+  note: >-
+    A 429 Too Many Requests response is documented on at least one operation
+    (renameApp); the spec does not define standard RateLimit-* response headers.
+request_tracing:
+  note: No documented request-id / trace header convention in the spec.
+cross_links:
+  authentication: authentication/replicated-authentication.yml
+  errors: errors/replicated-problem-types.yml
+  lifecycle: lifecycle/replicated-lifecycle.yml

@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.replicated.com/reference/vendor-api-using
+versioning:
+  scheme: uri-path
+  current: v3
+  base_path: /vendor/v3
+  docs: https://docs.replicated.com/reference/vendor-api-using
+  note: >-
+    Vendor API v3 is the current major version. v1 (Team API tokens) is legacy;
+    Replicated recommends migrating to service accounts or user API tokens.
+deprecation:
+  policy_url: https://docs.replicated.com/vendor/replicated-api-tokens
+  note: >-
+    Team API tokens are deprecated in favor of service-account and user API
+    tokens. No dated Sunset/Deprecation HTTP header contract is documented for the
+    API itself.
+status_page: https://status.replicated.com
+release_notes: https://docs.replicated.com/release-notes/rn-vendor-platform
+deprecated_operations: []

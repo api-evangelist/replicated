@@ -1,0 +1,3035 @@
+{
+  "info": {
+    "_postman_id": "cc641f14-d117-46f2-bbb1-d7d0fdf3c9cb",
+    "name": "Vendor API V3 apps channelReleases API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:10.000Z",
+    "updatedAt": "2026-07-28T02:45:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cc641f14-d117-46f2-bbb1-d7d0fdf3c9cb"
+  },
+  "item": [
+    {
+      "name": "app",
+      "item": [
+        {
+          "name": "{app_id}",
+          "item": [
+            {
+              "name": "channel",
+              "item": [
+                {
+                  "name": "{channel_id}",
+                  "item": [
+                    {
+                      "name": "airgap",
+                      "item": [
+                        {
+                          "name": "download-url",
+                          "item": [
+                            {
+                              "name": "Get airgap bundle download URL the active release on the channel.",
+                              "id": "eb175719-3937-4d25-8b10-3f694786e291",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "Authorization",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/airgap/download-url?channelSequence=<long>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "channel",
+                                    ":channel_id",
+                                    "airgap",
+                                    "download-url"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If provided, the airgap bundle download URL for the given channel sequence will be returned",
+                                      "key": "channelSequence",
+                                      "value": "<long>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "004b3e7a-1592-4ec5-b5c8-dcf2acabd45a",
+                                      "key": "app_id",
+                                      "value": "<string>",
+                                      "description": "(Required) App identifier"
+                                    },
+                                    {
+                                      "id": "6211504c-b8f8-402f-9655-00303bb30627",
+                                      "key": "channel_id",
+                                      "value": "<string>",
+                                      "description": "(Required) Channel identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a download URL for the airgap bundle associated with the active release on the specified channel. Optionally, a specific channel sequence can be requested via query parameter.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/airgap/download-url"
+                              },
+                              "response": [
+                                {
+                                  "id": "0683b007-762f-4d0f-bcd7-37935e6f7c8a",
+                                  "name": "ChannelReleaseAirgapBundleURLResponse contains the airgap bundle download URL",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/airgap/download-url?channelSequence=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        ":app_id",
+                                        "channel",
+                                        ":channel_id",
+                                        "airgap",
+                                        "download-url"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If provided, the airgap bundle download URL for the given channel sequence will be returned",
+                                          "key": "channelSequence",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "app_id"
+                                        },
+                                        {
+                                          "key": "channel_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"url\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:45:10.000Z",
+                                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                                  "uid": "35240-0683b007-762f-4d0f-bcd7-37935e6f7c8a"
+                                },
+                                {
+                                  "id": "fcee5db7-7e4d-4887-b09c-e3d7c95a2d70",
+                                  "name": "Returned on bad input",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/airgap/download-url?channelSequence=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        ":app_id",
+                                        "channel",
+                                        ":channel_id",
+                                        "airgap",
+                                        "download-url"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If provided, the airgap bundle download URL for the given channel sequence will be returned",
+                                          "key": "channelSequence",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "app_id"
+                                        },
+                                        {
+                                          "key": "channel_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:45:10.000Z",
+                                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                                  "uid": "35240-fcee5db7-7e4d-4887-b09c-e3d7c95a2d70"
+                                },
+                                {
+                                  "id": "a84223e8-5b35-4ee1-a23b-6e639cf08d5f",
+                                  "name": "Return if the caller is not authorized",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/airgap/download-url?channelSequence=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        ":app_id",
+                                        "channel",
+                                        ":channel_id",
+                                        "airgap",
+                                        "download-url"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If provided, the airgap bundle download URL for the given channel sequence will be returned",
+                                          "key": "channelSequence",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "app_id"
+                                        },
+                                        {
+                                          "key": "channel_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:45:10.000Z",
+                                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                                  "uid": "35240-a84223e8-5b35-4ee1-a23b-6e639cf08d5f"
+                                },
+                                {
+                                  "id": "55fed5e6-a584-449c-9b65-efdaa4892dfc",
+                                  "name": "Returned if the caller does not have the needed permission",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/airgap/download-url?channelSequence=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        ":app_id",
+                                        "channel",
+                                        ":channel_id",
+                                        "airgap",
+                                        "download-url"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If provided, the airgap bundle download URL for the given channel sequence will be returned",
+                                          "key": "channelSequence",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "app_id"
+                                        },
+                                        {
+                                          "key": "channel_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:45:10.000Z",
+                                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                                  "uid": "35240-55fed5e6-a584-449c-9b65-efdaa4892dfc"
+                                },
+                                {
+                                  "id": "86a2cb63-000e-49a1-a512-23c9656fc15a",
+                                  "name": "Returned on resource not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/airgap/download-url?channelSequence=<long>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        ":app_id",
+                                        "channel",
+                                        ":channel_id",
+                                        "airgap",
+                                        "download-url"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If provided, the airgap bundle download URL for the given channel sequence will be returned",
+                                          "key": "channelSequence",
+                                          "value": "<long>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "app_id"
+                                        },
+                                        {
+                                          "key": "channel_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:45:10.000Z",
+                                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                                  "uid": "35240-86a2cb63-000e-49a1-a512-23c9656fc15a"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:45:10.000Z",
+                              "updatedAt": "2026-07-28T02:45:10.000Z",
+                              "uid": "35240-eb175719-3937-4d25-8b10-3f694786e291"
+                            }
+                          ],
+                          "id": "b66269c8-4cef-4c00-9bd2-f9f3bf4adfdb",
+                          "createdAt": "2026-07-28T02:45:10.000Z",
+                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                          "uid": "35240-b66269c8-4cef-4c00-9bd2-f9f3bf4adfdb"
+                        }
+                      ],
+                      "id": "f82caf36-fad3-49c6-bbe0-7c75d61a05d0",
+                      "createdAt": "2026-07-28T02:45:10.000Z",
+                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                      "uid": "35240-f82caf36-fad3-49c6-bbe0-7c75d61a05d0"
+                    },
+                    {
+                      "name": "release",
+                      "item": [
+                        {
+                          "name": "{sequence}",
+                          "item": [
+                            {
+                              "name": "airgap",
+                              "item": [
+                                {
+                                  "name": "build",
+                                  "item": [
+                                    {
+                                      "name": "Trigger airgap build for a channel's release.",
+                                      "id": "6c32031b-22a3-4e9e-acee-1c9fa6aee8e8",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "Authorization",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/build",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "airgap",
+                                            "build"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "14d9765e-e12c-4e10-b7bd-8052419c0773",
+                                              "key": "app_id",
+                                              "value": "<string>",
+                                              "description": "(Required) App identifier"
+                                            },
+                                            {
+                                              "id": "0b52433c-d742-4717-ab92-5b3b95738181",
+                                              "key": "channel_id",
+                                              "value": "<string>",
+                                              "description": "(Required) Channel identifier"
+                                            },
+                                            {
+                                              "id": "abb633ad-b4b4-4fbf-9e7a-39f6ad1d1d1c",
+                                              "key": "sequence",
+                                              "value": "<long>",
+                                              "description": "(Required) Release identifier"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Triggers a build of an airgap bundle for the specified release in a channel. The airgap bundle can be used for offline installations.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/airgap"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "5f18da26-7d61-4662-837d-e0f08d3044c7",
+                                          "name": "ChannelReleaseAirgapBuildResponse contains empty JSON object",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/build",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "build"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-5f18da26-7d61-4662-837d-e0f08d3044c7"
+                                        },
+                                        {
+                                          "id": "25d3fffc-ef7a-4892-a442-3566356c22eb",
+                                          "name": "Returned on bad input",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/build",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "build"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Bad Request",
+                                          "code": 400,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-25d3fffc-ef7a-4892-a442-3566356c22eb"
+                                        },
+                                        {
+                                          "id": "b928459b-6d54-4b35-af16-ef6fc5981721",
+                                          "name": "Return if the caller is not authorized",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/build",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "build"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-b928459b-6d54-4b35-af16-ef6fc5981721"
+                                        },
+                                        {
+                                          "id": "8dfc83c8-b60b-40df-9fba-adfc8799ec40",
+                                          "name": "Returned if the caller does not have the needed permission",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/build",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "build"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-8dfc83c8-b60b-40df-9fba-adfc8799ec40"
+                                        },
+                                        {
+                                          "id": "44102b49-06d3-4a09-9879-a33f886786b5",
+                                          "name": "Returned on resource not found",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/build",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "build"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-44102b49-06d3-4a09-9879-a33f886786b5"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-6c32031b-22a3-4e9e-acee-1c9fa6aee8e8"
+                                    }
+                                  ],
+                                  "id": "b0219b33-e146-4cc0-85f7-4bfa92514772",
+                                  "createdAt": "2026-07-28T02:45:10.000Z",
+                                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                                  "uid": "35240-b0219b33-e146-4cc0-85f7-4bfa92514772"
+                                },
+                                {
+                                  "name": "cancel",
+                                  "item": [
+                                    {
+                                      "name": "Cancel airgap build for a channel's release.",
+                                      "id": "5053511a-fb08-4225-8e55-0a98707215c0",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "Authorization",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "airgap",
+                                            "cancel"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "01933239-463f-43db-b6ab-19b29aa06e92",
+                                              "key": "app_id",
+                                              "value": "<string>",
+                                              "description": "(Required) App identifier"
+                                            },
+                                            {
+                                              "id": "6070d671-29ff-4e92-ae73-e9c61895231f",
+                                              "key": "channel_id",
+                                              "value": "<string>",
+                                              "description": "(Required) Channel identifier"
+                                            },
+                                            {
+                                              "id": "8b6415cb-661e-4037-b5a6-f729b3db7de3",
+                                              "key": "sequence",
+                                              "value": "<long>",
+                                              "description": "(Required) Release identifier"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Cancels an in-progress airgap build for the specified release in a channel.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/airgap"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "3d27fbf9-0967-4723-8bf5-ccf52c18492a",
+                                          "name": "ChannelReleaseAirgapCancelResponse contains empty JSON object",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/cancel",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "cancel"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-3d27fbf9-0967-4723-8bf5-ccf52c18492a"
+                                        },
+                                        {
+                                          "id": "aa2a53f3-0b7e-4904-bbff-c4daf218ed72",
+                                          "name": "Returned on bad input",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/cancel",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "cancel"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Bad Request",
+                                          "code": 400,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-aa2a53f3-0b7e-4904-bbff-c4daf218ed72"
+                                        },
+                                        {
+                                          "id": "de08182f-83a6-4207-ac77-befaedf8a538",
+                                          "name": "Return if the caller is not authorized",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/cancel",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "cancel"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-de08182f-83a6-4207-ac77-befaedf8a538"
+                                        },
+                                        {
+                                          "id": "541f6749-9279-4b22-9d48-2400197330ea",
+                                          "name": "Returned if the caller does not have the needed permission",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/cancel",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "cancel"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-541f6749-9279-4b22-9d48-2400197330ea"
+                                        },
+                                        {
+                                          "id": "bbbabf68-1b65-43b5-bf73-eb1b98a5995c",
+                                          "name": "Returned on resource not found",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/cancel",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "cancel"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-bbbabf68-1b65-43b5-bf73-eb1b98a5995c"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-5053511a-fb08-4225-8e55-0a98707215c0"
+                                    }
+                                  ],
+                                  "id": "8451e6da-43ec-41ee-9035-e618bd4fb7b9",
+                                  "createdAt": "2026-07-28T02:45:10.000Z",
+                                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                                  "uid": "35240-8451e6da-43ec-41ee-9035-e618bd4fb7b9"
+                                },
+                                {
+                                  "name": "status",
+                                  "item": [
+                                    {
+                                      "name": "Get airgap build status for a channel's release.",
+                                      "id": "1c7e2f5d-5569-4c51-be7b-66bd0e71704f",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "Authorization",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/status",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "airgap",
+                                            "status"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "84a157c9-a55b-4881-b50c-6f1b1a1352fb",
+                                              "key": "app_id",
+                                              "value": "<string>",
+                                              "description": "(Required) App identifier"
+                                            },
+                                            {
+                                              "id": "7bbe7a3e-90f5-44d1-be57-3ac52bdabda8",
+                                              "key": "channel_id",
+                                              "value": "<string>",
+                                              "description": "(Required) Channel identifier"
+                                            },
+                                            {
+                                              "id": "8fd366c9-ac89-4595-bf03-850261240af4",
+                                              "key": "sequence",
+                                              "value": "<long>",
+                                              "description": "(Required) Release identifier"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Returns the current airgap build status for the specified release in a channel.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/airgap/status/read"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "be2e7481-172e-4be6-a7b3-7d07efff0fd9",
+                                          "name": "ChannelReleaseAirgapStatusResponse contains the airgap build status",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/status",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "status"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"airgapBuildError\": \"<string>\",\n  \"airgapBuildStatus\": \"<string>\",\n  \"channelId\": \"<string>\",\n  \"channelName\": \"<string>\",\n  \"channelSequence\": \"<long>\",\n  \"fullAirgapBuild\": \"<boolean>\"\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-be2e7481-172e-4be6-a7b3-7d07efff0fd9"
+                                        },
+                                        {
+                                          "id": "58eed47c-608e-4dee-b71b-72bf64474eb3",
+                                          "name": "Returned on bad input",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/status",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "status"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Bad Request",
+                                          "code": 400,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-58eed47c-608e-4dee-b71b-72bf64474eb3"
+                                        },
+                                        {
+                                          "id": "22616167-d130-4a44-9418-f1211659ef28",
+                                          "name": "Return if the caller is not authorized",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/status",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "status"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-22616167-d130-4a44-9418-f1211659ef28"
+                                        },
+                                        {
+                                          "id": "085ea043-1320-41ed-b3b6-a9a9e8e11fac",
+                                          "name": "Returned if the caller does not have the needed permission",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/status",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "status"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-085ea043-1320-41ed-b3b6-a9a9e8e11fac"
+                                        },
+                                        {
+                                          "id": "5ab49ef4-64c8-491a-b134-d70ddcfa08f5",
+                                          "name": "Returned on resource not found",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/status",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "app",
+                                                ":app_id",
+                                                "channel",
+                                                ":channel_id",
+                                                "release",
+                                                ":sequence",
+                                                "airgap",
+                                                "status"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "app_id"
+                                                },
+                                                {
+                                                  "key": "channel_id"
+                                                },
+                                                {
+                                                  "key": "sequence"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:45:10.000Z",
+                                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                                          "uid": "35240-5ab49ef4-64c8-491a-b134-d70ddcfa08f5"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-1c7e2f5d-5569-4c51-be7b-66bd0e71704f"
+                                    }
+                                  ],
+                                  "id": "502c43f2-5070-4253-a1aa-5c6d486b9e9c",
+                                  "createdAt": "2026-07-28T02:45:10.000Z",
+                                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                                  "uid": "35240-502c43f2-5070-4253-a1aa-5c6d486b9e9c"
+                                }
+                              ],
+                              "id": "9221822e-9f08-4e80-91e1-3225197df021",
+                              "createdAt": "2026-07-28T02:45:10.000Z",
+                              "updatedAt": "2026-07-28T02:45:10.000Z",
+                              "uid": "35240-9221822e-9f08-4e80-91e1-3225197df021"
+                            },
+                            {
+                              "name": "install-commands",
+                              "item": [
+                                {
+                                  "name": "Get install commands for a specific channel release.",
+                                  "id": "ab2061fc-8604-469c-a853-d288d635e36f",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "Authorization",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/install-commands",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        ":app_id",
+                                        "channel",
+                                        ":channel_id",
+                                        "release",
+                                        ":sequence",
+                                        "install-commands"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "3dba5d68-3ab3-4ca1-a836-a281a4376234",
+                                          "key": "app_id",
+                                          "value": "<string>",
+                                          "description": "(Required) App identifier"
+                                        },
+                                        {
+                                          "id": "d90f7711-77a9-4b49-a2a4-808e5560e36b",
+                                          "key": "channel_id",
+                                          "value": "<string>",
+                                          "description": "(Required) Channel identifier"
+                                        },
+                                        {
+                                          "id": "9df3ea7c-e2a3-4f9f-a955-bd828c755a2a",
+                                          "key": "sequence",
+                                          "value": "<long>",
+                                          "description": "(Required) Release identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Return the install commands for a specific release in a channel, including commands for embedded and existing clusters.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/read"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "2603143f-38dc-49b0-9e8a-4d831982b0e0",
+                                      "name": "GetChannelReleaseInstallCommandsResponse contains the JSON channel release install commands",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/install-commands",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "install-commands"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "app_id"
+                                            },
+                                            {
+                                              "key": "channel_id"
+                                            },
+                                            {
+                                              "key": "sequence"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"commands\": {\n    \"embeddedClusterInstallCommand\": \"<string>\",\n    \"existingClusterInstallCommand\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-2603143f-38dc-49b0-9e8a-4d831982b0e0"
+                                    },
+                                    {
+                                      "id": "6761cc80-76f3-4e80-b136-edf6a14486d3",
+                                      "name": "Returned on bad input",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/install-commands",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "install-commands"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "app_id"
+                                            },
+                                            {
+                                              "key": "channel_id"
+                                            },
+                                            {
+                                              "key": "sequence"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-6761cc80-76f3-4e80-b136-edf6a14486d3"
+                                    },
+                                    {
+                                      "id": "5101a054-045f-4e73-b8de-1721267f0bc0",
+                                      "name": "Return if the caller is not authorized",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/install-commands",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "install-commands"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "app_id"
+                                            },
+                                            {
+                                              "key": "channel_id"
+                                            },
+                                            {
+                                              "key": "sequence"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-5101a054-045f-4e73-b8de-1721267f0bc0"
+                                    },
+                                    {
+                                      "id": "766e3ce3-2c87-4172-b052-b05170911278",
+                                      "name": "Returned if the caller does not have the needed permission",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/install-commands",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "install-commands"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "app_id"
+                                            },
+                                            {
+                                              "key": "channel_id"
+                                            },
+                                            {
+                                              "key": "sequence"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-766e3ce3-2c87-4172-b052-b05170911278"
+                                    },
+                                    {
+                                      "id": "f0561362-bd63-4145-a067-a2fcb30c54b3",
+                                      "name": "Returned on resource not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/install-commands",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "install-commands"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "app_id"
+                                            },
+                                            {
+                                              "key": "channel_id"
+                                            },
+                                            {
+                                              "key": "sequence"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-f0561362-bd63-4145-a067-a2fcb30c54b3"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:45:10.000Z",
+                                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                                  "uid": "35240-ab2061fc-8604-469c-a853-d288d635e36f"
+                                }
+                              ],
+                              "id": "b5467147-3dc3-4747-ad0c-ff2897bb1669",
+                              "createdAt": "2026-07-28T02:45:10.000Z",
+                              "updatedAt": "2026-07-28T02:45:10.000Z",
+                              "uid": "35240-b5467147-3dc3-4747-ad0c-ff2897bb1669"
+                            },
+                            {
+                              "name": "update-properties",
+                              "item": [
+                                {
+                                  "name": "Update properties for a channel release.",
+                                  "id": "f10b094f-4ad8-4fa8-9da2-37c8dbf6bc27",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "Authorization",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"isRequired\": \"<boolean>\",\n  \"releaseNotes\": \"<string>\",\n  \"versionLabel\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/update-properties",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        ":app_id",
+                                        "channel",
+                                        ":channel_id",
+                                        "release",
+                                        ":sequence",
+                                        "update-properties"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "27832203-6c11-4839-8805-a58656f10c55",
+                                          "key": "app_id",
+                                          "value": "<string>",
+                                          "description": "(Required) App identifier"
+                                        },
+                                        {
+                                          "id": "4b9b7e6a-f61d-4f3f-abb1-020eb9e4e81a",
+                                          "key": "channel_id",
+                                          "value": "<string>",
+                                          "description": "(Required) Channel identifier"
+                                        },
+                                        {
+                                          "id": "831308ad-05be-4e01-8555-7046dd80102c",
+                                          "key": "sequence",
+                                          "value": "<long>",
+                                          "description": "(Required) Release identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Updates the properties (such as version label, release notes, and required status) for a specific release in a channel.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/update"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "e65913c1-64bc-4d56-8034-c2742560db12",
+                                      "name": "UpdateChannelReleaseResponse contains the release properties",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"isRequired\": \"<boolean>\",\n  \"releaseNotes\": \"<string>\",\n  \"versionLabel\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/update-properties",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "update-properties"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "app_id"
+                                            },
+                                            {
+                                              "key": "channel_id"
+                                            },
+                                            {
+                                              "key": "sequence"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"release\": {\n    \"airgapBuildError\": \"<string>\",\n    \"airgapBuildStatus\": \"<string>\",\n    \"airgapBundleImages\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"channelIcon\": \"<string>\",\n    \"channelId\": \"<string>\",\n    \"channelName\": \"<string>\",\n    \"channelSequence\": \"<long>\",\n    \"created\": \"<dateTime>\",\n    \"createdBy\": {\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"link\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"type\": \"<string>\"\n    },\n    \"customResourceError\": \"<string>\",\n    \"customResourceWarnings\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"demotedAt\": \"<dateTime>\",\n    \"embeddedClusterVersion\": \"<string>\",\n    \"hasECInstaller\": \"<boolean>\",\n    \"hasKurlInstaller\": \"<boolean>\",\n    \"imageSecurityInfo\": [\n      {\n        \"counts\": {\n          \"critical\": \"<long>\",\n          \"high\": \"<long>\",\n          \"low\": \"<long>\",\n          \"medium\": \"<long>\",\n          \"total\": \"<long>\"\n        },\n        \"digest\": \"<string>\",\n        \"digest_first_seen_at\": \"<string>\",\n        \"image_size_bytes\": \"<long>\",\n        \"input\": \"<string>\",\n        \"installation_phase\": \"<string>\",\n        \"last_scanned_at\": \"<string>\",\n        \"not_found\": \"<boolean>\",\n        \"sbom_status\": \"<string>\",\n        \"sbom_status_message\": \"<string>\",\n        \"sbom_status_updated_at\": \"<string>\",\n        \"scan_status\": \"<string>\",\n        \"scan_status_message\": \"<string>\",\n        \"scan_status_updated_at\": \"<string>\",\n        \"scanned_images\": \"<long>\",\n        \"total_images\": \"<long>\"\n      },\n      {\n        \"counts\": {\n          \"critical\": \"<long>\",\n          \"high\": \"<long>\",\n          \"low\": \"<long>\",\n          \"medium\": \"<long>\",\n          \"total\": \"<long>\"\n        },\n        \"digest\": \"<string>\",\n        \"digest_first_seen_at\": \"<string>\",\n        \"image_size_bytes\": \"<long>\",\n        \"input\": \"<string>\",\n        \"installation_phase\": \"<string>\",\n        \"last_scanned_at\": \"<string>\",\n        \"not_found\": \"<boolean>\",\n        \"sbom_status\": \"<string>\",\n        \"sbom_status_message\": \"<string>\",\n        \"sbom_status_updated_at\": \"<string>\",\n        \"scan_status\": \"<string>\",\n        \"scan_status_message\": \"<string>\",\n        \"scan_status_updated_at\": \"<string>\",\n        \"scanned_images\": \"<long>\",\n        \"total_images\": \"<long>\"\n      }\n    ],\n    \"imageSecuritySums\": {\n      \"exercitation6\": {\n        \"counts\": {\n          \"critical\": \"<long>\",\n          \"high\": \"<long>\",\n          \"low\": \"<long>\",\n          \"medium\": \"<long>\",\n          \"total\": \"<long>\"\n        },\n        \"digest\": \"<string>\",\n        \"digest_first_seen_at\": \"<string>\",\n        \"image_size_bytes\": \"<long>\",\n        \"input\": \"<string>\",\n        \"installation_phase\": \"<string>\",\n        \"last_scanned_at\": \"<string>\",\n        \"not_found\": \"<boolean>\",\n        \"sbom_status\": \"<string>\",\n        \"sbom_status_message\": \"<string>\",\n        \"sbom_status_updated_at\": \"<string>\",\n        \"scan_status\": \"<string>\",\n        \"scan_status_message\": \"<string>\",\n        \"scan_status_updated_at\": \"<string>\",\n        \"scanned_images\": \"<long>\",\n        \"total_images\": \"<long>\"\n      },\n      \"consectetur_7\": {\n        \"counts\": {\n          \"critical\": \"<long>\",\n          \"high\": \"<long>\",\n          \"low\": \"<long>\",\n          \"medium\": \"<long>\",\n          \"total\": \"<long>\"\n        },\n        \"digest\": \"<string>\",\n        \"digest_first_seen_at\": \"<string>\",\n        \"image_size_bytes\": \"<long>\",\n        \"input\": \"<string>\",\n        \"installation_phase\": \"<string>\",\n        \"last_scanned_at\": \"<string>\",\n        \"not_found\": \"<boolean>\",\n        \"sbom_status\": \"<string>\",\n        \"sbom_status_message\": \"<string>\",\n        \"sbom_status_updated_at\": \"<string>\",\n        \"scan_status\": \"<string>\",\n        \"scan_status_message\": \"<string>\",\n        \"scan_status_updated_at\": \"<string>\",\n        \"scanned_images\": \"<long>\",\n        \"total_images\": \"<long>\"\n      }\n    },\n    \"installationTypes\": {\n      \"embeddedCluster\": {\n        \"proxyRegistryDomain\": \"<string>\",\n        \"replicatedAppDomain\": \"<string>\",\n        \"replicatedRegistryDomain\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"helm\": {},\n      \"helmInstallabilityIssue\": {\n        \"message\": \"<string>\",\n        \"resources\": [\n          {\n            \"filePath\": \"<string>\",\n            \"identifier\": \"<string>\",\n            \"kind\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"filePath\": \"<string>\",\n            \"identifier\": \"<string>\",\n            \"kind\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      \"kots\": {\n        \"minKotsVersion\": \"<string>\",\n        \"targetKotsVersion\": \"<string>\"\n      },\n      \"kotsConfig\": {\n        \"apiVersion\": \"<string>\"\n      },\n      \"kurl\": {\n        \"installerVersion\": \"<string>\"\n      },\n      \"preflight\": {\n        \"apiVersion\": \"<string>\"\n      },\n      \"replicatedSDK\": {\n        \"sdkVersion\": \"<string>\"\n      },\n      \"supportBundle\": {\n        \"apiVersion\": \"<string>\"\n      }\n    },\n    \"isDemoted\": \"<boolean>\",\n    \"isRequired\": \"<boolean>\",\n    \"kurlInstallerID\": \"<string>\",\n    \"lintResult\": {\n      \"isLintingComplete\": \"<boolean>\",\n      \"lintExpressions\": [\n        {\n          \"message\": \"<string>\",\n          \"path\": \"<string>\",\n          \"rule\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"path\": \"<string>\",\n          \"rule\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    },\n    \"proxyRegistryDomain\": \"<string>\",\n    \"registrySecret\": \"<string>\",\n    \"releaseNotes\": \"<string>\",\n    \"releasedAt\": \"<dateTime>\",\n    \"replicatedRegistryDomain\": \"<string>\",\n    \"semver\": \"<string>\",\n    \"sequence\": \"<long>\",\n    \"updated\": \"<dateTime>\",\n    \"updatedBy\": {\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"link\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"type\": \"<string>\"\n    }\n  }\n}",
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-e65913c1-64bc-4d56-8034-c2742560db12"
+                                    },
+                                    {
+                                      "id": "69684b54-a303-48ad-afb5-19bd13b59e71",
+                                      "name": "Returned on bad input",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"isRequired\": \"<boolean>\",\n  \"releaseNotes\": \"<string>\",\n  \"versionLabel\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/update-properties",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "update-properties"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "app_id"
+                                            },
+                                            {
+                                              "key": "channel_id"
+                                            },
+                                            {
+                                              "key": "sequence"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-69684b54-a303-48ad-afb5-19bd13b59e71"
+                                    },
+                                    {
+                                      "id": "2a52e0a7-d478-40b4-86bb-fb45fc529a42",
+                                      "name": "Return if the caller is not authorized",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"isRequired\": \"<boolean>\",\n  \"releaseNotes\": \"<string>\",\n  \"versionLabel\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/update-properties",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "update-properties"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "app_id"
+                                            },
+                                            {
+                                              "key": "channel_id"
+                                            },
+                                            {
+                                              "key": "sequence"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-2a52e0a7-d478-40b4-86bb-fb45fc529a42"
+                                    },
+                                    {
+                                      "id": "02e76245-b422-4238-b16a-e852536f7ee5",
+                                      "name": "Returned if the caller does not have the needed permission",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"isRequired\": \"<boolean>\",\n  \"releaseNotes\": \"<string>\",\n  \"versionLabel\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/update-properties",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "update-properties"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "app_id"
+                                            },
+                                            {
+                                              "key": "channel_id"
+                                            },
+                                            {
+                                              "key": "sequence"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-02e76245-b422-4238-b16a-e852536f7ee5"
+                                    },
+                                    {
+                                      "id": "7cfb2cc0-20a0-4680-af69-4eee667cd61e",
+                                      "name": "Returned on resource not found",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"isRequired\": \"<boolean>\",\n  \"releaseNotes\": \"<string>\",\n  \"versionLabel\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/update-properties",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "app",
+                                            ":app_id",
+                                            "channel",
+                                            ":channel_id",
+                                            "release",
+                                            ":sequence",
+                                            "update-properties"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "app_id"
+                                            },
+                                            {
+                                              "key": "channel_id"
+                                            },
+                                            {
+                                              "key": "sequence"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T02:45:10.000Z",
+                                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                                      "uid": "35240-7cfb2cc0-20a0-4680-af69-4eee667cd61e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:45:10.000Z",
+                                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                                  "uid": "35240-f10b094f-4ad8-4fa8-9da2-37c8dbf6bc27"
+                                }
+                              ],
+                              "id": "608b57be-a3dc-492f-bf4f-63fa7e97c2f4",
+                              "createdAt": "2026-07-28T02:45:10.000Z",
+                              "updatedAt": "2026-07-28T02:45:10.000Z",
+                              "uid": "35240-608b57be-a3dc-492f-bf4f-63fa7e97c2f4"
+                            }
+                          ],
+                          "id": "a9c0bbac-ba50-4019-8f28-934ac4ca1e08",
+                          "createdAt": "2026-07-28T02:45:10.000Z",
+                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                          "uid": "35240-a9c0bbac-ba50-4019-8f28-934ac4ca1e08"
+                        }
+                      ],
+                      "id": "287fec2e-6626-4a26-a149-84d4763b6384",
+                      "createdAt": "2026-07-28T02:45:10.000Z",
+                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                      "uid": "35240-287fec2e-6626-4a26-a149-84d4763b6384"
+                    },
+                    {
+                      "name": "releases",
+                      "item": [
+                        {
+                          "name": "List releases for an app channel.",
+                          "id": "45f89cea-4378-4be8-8994-fa98d153cb7b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/releases?pageSize=20&currentPage=<long>&excludeDemoted=<boolean>&includeSecuritySummary=<boolean>&versionLabel=<string>&includeInstallerImages=airgap",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                ":app_id",
+                                "channel",
+                                ":channel_id",
+                                "releases"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page size",
+                                  "key": "pageSize",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Current page",
+                                  "key": "currentPage",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "Exclude demoted releases",
+                                  "key": "excludeDemoted",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "description": "Include security summary",
+                                  "key": "includeSecuritySummary",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "description": "Filter by version label (partial match)",
+                                  "key": "versionLabel",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Include EC installer images in the images list. Empty = app images only (default).",
+                                  "key": "includeInstallerImages",
+                                  "value": "airgap"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "36ca3660-156d-41f7-b9a7-e4307fecc6a8",
+                                  "key": "app_id",
+                                  "value": "<string>",
+                                  "description": "(Required) App identifier"
+                                },
+                                {
+                                  "id": "01c7a84a-df40-469c-886c-731227983736",
+                                  "key": "channel_id",
+                                  "value": "<string>",
+                                  "description": "(Required) Channel identifier"
+                                }
+                              ]
+                            },
+                            "description": "Return a paginated list of releases for a specific channel within an app, including release metadata and status.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/read"
+                          },
+                          "response": [
+                            {
+                              "id": "5a638244-7f56-409a-821e-b18a8a8d3322",
+                              "name": "ListChannelReleasesResponse contains the JSON channel releases list",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/releases?pageSize=20&currentPage=<long>&excludeDemoted=<boolean>&includeSecuritySummary=<boolean>&versionLabel=<string>&includeInstallerImages=airgap",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "channel",
+                                    ":channel_id",
+                                    "releases"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Page size",
+                                      "key": "pageSize",
+                                      "value": "20"
+                                    },
+                                    {
+                                      "description": "Current page",
+                                      "key": "currentPage",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "Exclude demoted releases",
+                                      "key": "excludeDemoted",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Include security summary",
+                                      "key": "includeSecuritySummary",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by version label (partial match)",
+                                      "key": "versionLabel",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Include EC installer images in the images list. Empty = app images only (default).",
+                                      "key": "includeInstallerImages",
+                                      "value": "airgap"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    },
+                                    {
+                                      "key": "channel_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"matchedCount\": \"<long>\",\n  \"releases\": [\n    {\n      \"airgapBuildError\": \"<string>\",\n      \"airgapBuildStatus\": \"<string>\",\n      \"airgapBundleImages\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"channelIcon\": \"<string>\",\n      \"channelId\": \"<string>\",\n      \"channelName\": \"<string>\",\n      \"channelSequence\": \"<long>\",\n      \"created\": \"<dateTime>\",\n      \"createdBy\": {\n        \"description\": \"<string>\",\n        \"id\": \"<string>\",\n        \"link\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"customResourceError\": \"<string>\",\n      \"customResourceWarnings\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"demotedAt\": \"<dateTime>\",\n      \"embeddedClusterVersion\": \"<string>\",\n      \"hasECInstaller\": \"<boolean>\",\n      \"hasKurlInstaller\": \"<boolean>\",\n      \"imageSecurityInfo\": [\n        {\n          \"counts\": {\n            \"critical\": \"<long>\",\n            \"high\": \"<long>\",\n            \"low\": \"<long>\",\n            \"medium\": \"<long>\",\n            \"total\": \"<long>\"\n          },\n          \"digest\": \"<string>\",\n          \"digest_first_seen_at\": \"<string>\",\n          \"image_size_bytes\": \"<long>\",\n          \"input\": \"<string>\",\n          \"installation_phase\": \"<string>\",\n          \"last_scanned_at\": \"<string>\",\n          \"not_found\": \"<boolean>\",\n          \"sbom_status\": \"<string>\",\n          \"sbom_status_message\": \"<string>\",\n          \"sbom_status_updated_at\": \"<string>\",\n          \"scan_status\": \"<string>\",\n          \"scan_status_message\": \"<string>\",\n          \"scan_status_updated_at\": \"<string>\",\n          \"scanned_images\": \"<long>\",\n          \"total_images\": \"<long>\"\n        },\n        {\n          \"counts\": {\n            \"critical\": \"<long>\",\n            \"high\": \"<long>\",\n            \"low\": \"<long>\",\n            \"medium\": \"<long>\",\n            \"total\": \"<long>\"\n          },\n          \"digest\": \"<string>\",\n          \"digest_first_seen_at\": \"<string>\",\n          \"image_size_bytes\": \"<long>\",\n          \"input\": \"<string>\",\n          \"installation_phase\": \"<string>\",\n          \"last_scanned_at\": \"<string>\",\n          \"not_found\": \"<boolean>\",\n          \"sbom_status\": \"<string>\",\n          \"sbom_status_message\": \"<string>\",\n          \"sbom_status_updated_at\": \"<string>\",\n          \"scan_status\": \"<string>\",\n          \"scan_status_message\": \"<string>\",\n          \"scan_status_updated_at\": \"<string>\",\n          \"scanned_images\": \"<long>\",\n          \"total_images\": \"<long>\"\n        }\n      ],\n      \"imageSecuritySums\": {\n        \"sunt10\": {\n          \"counts\": {\n            \"critical\": \"<long>\",\n            \"high\": \"<long>\",\n            \"low\": \"<long>\",\n            \"medium\": \"<long>\",\n            \"total\": \"<long>\"\n          },\n          \"digest\": \"<string>\",\n          \"digest_first_seen_at\": \"<string>\",\n          \"image_size_bytes\": \"<long>\",\n          \"input\": \"<string>\",\n          \"installation_phase\": \"<string>\",\n          \"last_scanned_at\": \"<string>\",\n          \"not_found\": \"<boolean>\",\n          \"sbom_status\": \"<string>\",\n          \"sbom_status_message\": \"<string>\",\n          \"sbom_status_updated_at\": \"<string>\",\n          \"scan_status\": \"<string>\",\n          \"scan_status_message\": \"<string>\",\n          \"scan_status_updated_at\": \"<string>\",\n          \"scanned_images\": \"<long>\",\n          \"total_images\": \"<long>\"\n        }\n      },\n      \"installationTypes\": {\n        \"embeddedCluster\": {\n          \"proxyRegistryDomain\": \"<string>\",\n          \"replicatedAppDomain\": \"<string>\",\n          \"replicatedRegistryDomain\": \"<string>\",\n          \"version\": \"<string>\"\n        },\n        \"helm\": {},\n        \"helmInstallabilityIssue\": {\n          \"message\": \"<string>\",\n          \"resources\": [\n            {\n              \"filePath\": \"<string>\",\n              \"identifier\": \"<string>\",\n              \"kind\": \"<string>\",\n              \"name\": \"<string>\"\n            },\n            {\n              \"filePath\": \"<string>\",\n              \"identifier\": \"<string>\",\n              \"kind\": \"<string>\",\n              \"name\": \"<string>\"\n            }\n          ]\n        },\n        \"kots\": {\n          \"minKotsVersion\": \"<string>\",\n          \"targetKotsVersion\": \"<string>\"\n        },\n        \"kotsConfig\": {\n          \"apiVersion\": \"<string>\"\n        },\n        \"kurl\": {\n          \"installerVersion\": \"<string>\"\n        },\n        \"preflight\": {\n          \"apiVersion\": \"<string>\"\n        },\n        \"replicatedSDK\": {\n          \"sdkVersion\": \"<string>\"\n        },\n        \"supportBundle\": {\n          \"apiVersion\": \"<string>\"\n        }\n      },\n      \"isDemoted\": \"<boolean>\",\n      \"isRequired\": \"<boolean>\",\n      \"kurlInstallerID\": \"<string>\",\n      \"lintResult\": {\n        \"isLintingComplete\": \"<boolean>\",\n        \"lintExpressions\": [\n          {\n            \"message\": \"<string>\",\n            \"path\": \"<string>\",\n            \"rule\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"message\": \"<string>\",\n            \"path\": \"<string>\",\n            \"rule\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ]\n      },\n      \"proxyRegistryDomain\": \"<string>\",\n      \"registrySecret\": \"<string>\",\n      \"releaseNotes\": \"<string>\",\n      \"releasedAt\": \"<dateTime>\",\n      \"replicatedRegistryDomain\": \"<string>\",\n      \"semver\": \"<string>\",\n      \"sequence\": \"<long>\",\n      \"updated\": \"<dateTime>\",\n      \"updatedBy\": {\n        \"description\": \"<string>\",\n        \"id\": \"<string>\",\n        \"link\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      }\n    },\n    {\n      \"airgapBuildError\": \"<string>\",\n      \"airgapBuildStatus\": \"<string>\",\n      \"airgapBundleImages\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"channelIcon\": \"<string>\",\n      \"channelId\": \"<string>\",\n      \"channelName\": \"<string>\",\n      \"channelSequence\": \"<long>\",\n      \"created\": \"<dateTime>\",\n      \"createdBy\": {\n        \"description\": \"<string>\",\n        \"id\": \"<string>\",\n        \"link\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"customResourceError\": \"<string>\",\n      \"customResourceWarnings\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"demotedAt\": \"<dateTime>\",\n      \"embeddedClusterVersion\": \"<string>\",\n      \"hasECInstaller\": \"<boolean>\",\n      \"hasKurlInstaller\": \"<boolean>\",\n      \"imageSecurityInfo\": [\n        {\n          \"counts\": {\n            \"critical\": \"<long>\",\n            \"high\": \"<long>\",\n            \"low\": \"<long>\",\n            \"medium\": \"<long>\",\n            \"total\": \"<long>\"\n          },\n          \"digest\": \"<string>\",\n          \"digest_first_seen_at\": \"<string>\",\n          \"image_size_bytes\": \"<long>\",\n          \"input\": \"<string>\",\n          \"installation_phase\": \"<string>\",\n          \"last_scanned_at\": \"<string>\",\n          \"not_found\": \"<boolean>\",\n          \"sbom_status\": \"<string>\",\n          \"sbom_status_message\": \"<string>\",\n          \"sbom_status_updated_at\": \"<string>\",\n          \"scan_status\": \"<string>\",\n          \"scan_status_message\": \"<string>\",\n          \"scan_status_updated_at\": \"<string>\",\n          \"scanned_images\": \"<long>\",\n          \"total_images\": \"<long>\"\n        },\n        {\n          \"counts\": {\n            \"critical\": \"<long>\",\n            \"high\": \"<long>\",\n            \"low\": \"<long>\",\n            \"medium\": \"<long>\",\n            \"total\": \"<long>\"\n          },\n          \"digest\": \"<string>\",\n          \"digest_first_seen_at\": \"<string>\",\n          \"image_size_bytes\": \"<long>\",\n          \"input\": \"<string>\",\n          \"installation_phase\": \"<string>\",\n          \"last_scanned_at\": \"<string>\",\n          \"not_found\": \"<boolean>\",\n          \"sbom_status\": \"<string>\",\n          \"sbom_status_message\": \"<string>\",\n          \"sbom_status_updated_at\": \"<string>\",\n          \"scan_status\": \"<string>\",\n          \"scan_status_message\": \"<string>\",\n          \"scan_status_updated_at\": \"<string>\",\n          \"scanned_images\": \"<long>\",\n          \"total_images\": \"<long>\"\n        }\n      ],\n      \"imageSecuritySums\": {\n        \"anim36f\": {\n          \"counts\": {\n            \"critical\": \"<long>\",\n            \"high\": \"<long>\",\n            \"low\": \"<long>\",\n            \"medium\": \"<long>\",\n            \"total\": \"<long>\"\n          },\n          \"digest\": \"<string>\",\n          \"digest_first_seen_at\": \"<string>\",\n          \"image_size_bytes\": \"<long>\",\n          \"input\": \"<string>\",\n          \"installation_phase\": \"<string>\",\n          \"last_scanned_at\": \"<string>\",\n          \"not_found\": \"<boolean>\",\n          \"sbom_status\": \"<string>\",\n          \"sbom_status_message\": \"<string>\",\n          \"sbom_status_updated_at\": \"<string>\",\n          \"scan_status\": \"<string>\",\n          \"scan_status_message\": \"<string>\",\n          \"scan_status_updated_at\": \"<string>\",\n          \"scanned_images\": \"<long>\",\n          \"total_images\": \"<long>\"\n        },\n        \"exercitation88\": {\n          \"counts\": {\n            \"critical\": \"<long>\",\n            \"high\": \"<long>\",\n            \"low\": \"<long>\",\n            \"medium\": \"<long>\",\n            \"total\": \"<long>\"\n          },\n          \"digest\": \"<string>\",\n          \"digest_first_seen_at\": \"<string>\",\n          \"image_size_bytes\": \"<long>\",\n          \"input\": \"<string>\",\n          \"installation_phase\": \"<string>\",\n          \"last_scanned_at\": \"<string>\",\n          \"not_found\": \"<boolean>\",\n          \"sbom_status\": \"<string>\",\n          \"sbom_status_message\": \"<string>\",\n          \"sbom_status_updated_at\": \"<string>\",\n          \"scan_status\": \"<string>\",\n          \"scan_status_message\": \"<string>\",\n          \"scan_status_updated_at\": \"<string>\",\n          \"scanned_images\": \"<long>\",\n          \"total_images\": \"<long>\"\n        }\n      },\n      \"installationTypes\": {\n        \"embeddedCluster\": {\n          \"proxyRegistryDomain\": \"<string>\",\n          \"replicatedAppDomain\": \"<string>\",\n          \"replicatedRegistryDomain\": \"<string>\",\n          \"version\": \"<string>\"\n        },\n        \"helm\": {},\n        \"helmInstallabilityIssue\": {\n          \"message\": \"<string>\",\n          \"resources\": [\n            {\n              \"filePath\": \"<string>\",\n              \"identifier\": \"<string>\",\n              \"kind\": \"<string>\",\n              \"name\": \"<string>\"\n            },\n            {\n              \"filePath\": \"<string>\",\n              \"identifier\": \"<string>\",\n              \"kind\": \"<string>\",\n              \"name\": \"<string>\"\n            }\n          ]\n        },\n        \"kots\": {\n          \"minKotsVersion\": \"<string>\",\n          \"targetKotsVersion\": \"<string>\"\n        },\n        \"kotsConfig\": {\n          \"apiVersion\": \"<string>\"\n        },\n        \"kurl\": {\n          \"installerVersion\": \"<string>\"\n        },\n        \"preflight\": {\n          \"apiVersion\": \"<string>\"\n        },\n        \"replicatedSDK\": {\n          \"sdkVersion\": \"<string>\"\n        },\n        \"supportBundle\": {\n          \"apiVersion\": \"<string>\"\n        }\n      },\n      \"isDemoted\": \"<boolean>\",\n      \"isRequired\": \"<boolean>\",\n      \"kurlInstallerID\": \"<string>\",\n      \"lintResult\": {\n        \"isLintingComplete\": \"<boolean>\",\n        \"lintExpressions\": [\n          {\n            \"message\": \"<string>\",\n            \"path\": \"<string>\",\n            \"rule\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"message\": \"<string>\",\n            \"path\": \"<string>\",\n            \"rule\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ]\n      },\n      \"proxyRegistryDomain\": \"<string>\",\n      \"registrySecret\": \"<string>\",\n      \"releaseNotes\": \"<string>\",\n      \"releasedAt\": \"<dateTime>\",\n      \"replicatedRegistryDomain\": \"<string>\",\n      \"semver\": \"<string>\",\n      \"sequence\": \"<long>\",\n      \"updated\": \"<dateTime>\",\n      \"updatedBy\": {\n        \"description\": \"<string>\",\n        \"id\": \"<string>\",\n        \"link\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:45:10.000Z",
+                              "updatedAt": "2026-07-28T02:45:10.000Z",
+                              "uid": "35240-5a638244-7f56-409a-821e-b18a8a8d3322"
+                            },
+                            {
+                              "id": "fc04f386-b76c-4191-980d-d74ee0ef1810",
+                              "name": "Returned on bad input",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/releases?pageSize=20&currentPage=<long>&excludeDemoted=<boolean>&includeSecuritySummary=<boolean>&versionLabel=<string>&includeInstallerImages=airgap",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "channel",
+                                    ":channel_id",
+                                    "releases"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Page size",
+                                      "key": "pageSize",
+                                      "value": "20"
+                                    },
+                                    {
+                                      "description": "Current page",
+                                      "key": "currentPage",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "Exclude demoted releases",
+                                      "key": "excludeDemoted",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Include security summary",
+                                      "key": "includeSecuritySummary",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by version label (partial match)",
+                                      "key": "versionLabel",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Include EC installer images in the images list. Empty = app images only (default).",
+                                      "key": "includeInstallerImages",
+                                      "value": "airgap"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    },
+                                    {
+                                      "key": "channel_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:10.000Z",
+                              "updatedAt": "2026-07-28T02:45:10.000Z",
+                              "uid": "35240-fc04f386-b76c-4191-980d-d74ee0ef1810"
+                            },
+                            {
+                              "id": "b4dcc632-dc3d-491d-8671-7bca2dbab7c1",
+                              "name": "Return if the caller is not authorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/releases?pageSize=20&currentPage=<long>&excludeDemoted=<boolean>&includeSecuritySummary=<boolean>&versionLabel=<string>&includeInstallerImages=airgap",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "channel",
+                                    ":channel_id",
+                                    "releases"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Page size",
+                                      "key": "pageSize",
+                                      "value": "20"
+                                    },
+                                    {
+                                      "description": "Current page",
+                                      "key": "currentPage",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "Exclude demoted releases",
+                                      "key": "excludeDemoted",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Include security summary",
+                                      "key": "includeSecuritySummary",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by version label (partial match)",
+                                      "key": "versionLabel",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Include EC installer images in the images list. Empty = app images only (default).",
+                                      "key": "includeInstallerImages",
+                                      "value": "airgap"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    },
+                                    {
+                                      "key": "channel_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:10.000Z",
+                              "updatedAt": "2026-07-28T02:45:10.000Z",
+                              "uid": "35240-b4dcc632-dc3d-491d-8671-7bca2dbab7c1"
+                            },
+                            {
+                              "id": "a9db2e38-510c-47a3-9088-47fd30e538c8",
+                              "name": "Returned if the caller does not have the needed permission",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/releases?pageSize=20&currentPage=<long>&excludeDemoted=<boolean>&includeSecuritySummary=<boolean>&versionLabel=<string>&includeInstallerImages=airgap",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "channel",
+                                    ":channel_id",
+                                    "releases"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Page size",
+                                      "key": "pageSize",
+                                      "value": "20"
+                                    },
+                                    {
+                                      "description": "Current page",
+                                      "key": "currentPage",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "Exclude demoted releases",
+                                      "key": "excludeDemoted",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Include security summary",
+                                      "key": "includeSecuritySummary",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by version label (partial match)",
+                                      "key": "versionLabel",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Include EC installer images in the images list. Empty = app images only (default).",
+                                      "key": "includeInstallerImages",
+                                      "value": "airgap"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    },
+                                    {
+                                      "key": "channel_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:45:10.000Z",
+                              "updatedAt": "2026-07-28T02:45:10.000Z",
+                              "uid": "35240-a9db2e38-510c-47a3-9088-47fd30e538c8"
+                            },
+                            {
+                              "id": "883d7690-91af-44d8-ae21-61bb59c95c01",
+                              "name": "Returned on resource not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/channel/:channel_id/releases?pageSize=20&currentPage=<long>&excludeDemoted=<boolean>&includeSecuritySummary=<boolean>&versionLabel=<string>&includeInstallerImages=airgap",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "channel",
+                                    ":channel_id",
+                                    "releases"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Page size",
+                                      "key": "pageSize",
+                                      "value": "20"
+                                    },
+                                    {
+                                      "description": "Current page",
+                                      "key": "currentPage",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "Exclude demoted releases",
+                                      "key": "excludeDemoted",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Include security summary",
+                                      "key": "includeSecuritySummary",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by version label (partial match)",
+                                      "key": "versionLabel",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Include EC installer images in the images list. Empty = app images only (default).",
+                                      "key": "includeInstallerImages",
+                                      "value": "airgap"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    },
+                                    {
+                                      "key": "channel_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:10.000Z",
+                              "updatedAt": "2026-07-28T02:45:10.000Z",
+                              "uid": "35240-883d7690-91af-44d8-ae21-61bb59c95c01"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:45:10.000Z",
+                          "updatedAt": "2026-07-28T02:45:10.000Z",
+                          "uid": "35240-45f89cea-4378-4be8-8994-fa98d153cb7b"
+                        }
+                      ],
+                      "id": "08f0b958-0306-4df7-b4e0-6d553efe0aa5",
+                      "createdAt": "2026-07-28T02:45:10.000Z",
+                      "updatedAt": "2026-07-28T02:45:10.000Z",
+                      "uid": "35240-08f0b958-0306-4df7-b4e0-6d553efe0aa5"
+                    }
+                  ],
+                  "id": "421bd134-5714-4ebe-8188-4082fd3fd8ee",
+                  "createdAt": "2026-07-28T02:45:10.000Z",
+                  "updatedAt": "2026-07-28T02:45:10.000Z",
+                  "uid": "35240-421bd134-5714-4ebe-8188-4082fd3fd8ee"
+                }
+              ],
+              "id": "b4312fda-7748-4ceb-9a13-80d40c5f50b7",
+              "createdAt": "2026-07-28T02:45:10.000Z",
+              "updatedAt": "2026-07-28T02:45:10.000Z",
+              "uid": "35240-b4312fda-7748-4ceb-9a13-80d40c5f50b7"
+            }
+          ],
+          "id": "8aaad06a-84c8-4d25-8e89-8780e73e2d23",
+          "createdAt": "2026-07-28T02:45:10.000Z",
+          "updatedAt": "2026-07-28T02:45:10.000Z",
+          "uid": "35240-8aaad06a-84c8-4d25-8e89-8780e73e2d23"
+        }
+      ],
+      "id": "10e72cab-7114-4be4-884f-3a776c3c4677",
+      "createdAt": "2026-07-28T02:45:10.000Z",
+      "updatedAt": "2026-07-28T02:45:10.000Z",
+      "uid": "35240-10e72cab-7114-4be4-884f-3a776c3c4677"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

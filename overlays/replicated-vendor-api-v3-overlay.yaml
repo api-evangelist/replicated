@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Replicated Vendor API v3
+  version: 1.0.0
+extends: openapi/replicated-vendor-api-v3-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: true
+    x-apievangelist-provider: replicated
+    x-apievangelist-artifacts:
+    - authentication/replicated-authentication.yml
+    - conventions/replicated-conventions.yml
+    - errors/replicated-problem-types.yml
+    - lifecycle/replicated-lifecycle.yml
+    - conformance/replicated-conformance.yml
+    - data-model/replicated-data-model.yml
+    - asyncapi/replicated-notifications-webhooks.yml
+- target: $.info
+  update:
+    x-apievangelist-docs: https://docs.replicated.com/reference/vendor-api-using
+    x-apievangelist-status-page: https://status.replicated.com
+    x-apievangelist-compliance:
+    - SOC 2
+    - CSA STAR

@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.replicated.com/release-notes/rn-vendor-platform
+scheme: dated-release-notes
+current_version: v3
+notes: >-
+  Replicated publishes dated Vendor Platform release notes (not a semver API
+  changelog). The live release-notes page is the source of truth; the highlights
+  below capture the recent themes rather than a fabricated version history. Refresh
+  from the source URL for the current window.
+sources:
+  vendor_platform: https://docs.replicated.com/release-notes/rn-vendor-platform
+  blog: https://www.replicated.com/blog
+recent_themes:
+- highlight: Event Notifications reached General Availability (20+ event types over webhook/email/Slack).
+  area: notifications
+- highlight: Compatibility Matrix (CMX) cluster and VM provisioning enhancements.
+  area: cmx
+- highlight: Embedded Cluster v3 install experience (KOTS no longer used).
+  area: embedded-cluster
+- highlight: Enterprise Portal for end customers.
+  area: enterprise-portal

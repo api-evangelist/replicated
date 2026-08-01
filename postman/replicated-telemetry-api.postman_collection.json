@@ -1,0 +1,788 @@
+{
+  "info": {
+    "_postman_id": "cbbde22a-cb55-4c26-8398-dd9acf91abf2",
+    "name": "Vendor API V3 apps telemetry API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:44.000Z",
+    "updatedAt": "2026-07-28T02:45:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cbbde22a-cb55-4c26-8398-dd9acf91abf2"
+  },
+  "item": [
+    {
+      "name": "cli",
+      "item": [
+        {
+          "name": "telemetry",
+          "item": [
+            {
+              "name": "error",
+              "item": [
+                {
+                  "name": "Record CLI error details",
+                  "id": "4762aa67-ab60-4daa-b791-fea10e427d09",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"event_id\": \"<string>\",\n  \"command\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"error_type\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/cli/telemetry/error",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cli",
+                        "telemetry",
+                        "error"
+                      ]
+                    },
+                    "description": "Records detailed error information for a CLI command that failed. The event_id must reference\na valid event from cli_telemetry_events table, otherwise a 400 error is returned.\n\nNote: Authentication required. Team and user information is extracted automatically from the Bearer token.\nThis endpoint is accessible to all authenticated users, including read-only users, to ensure comprehensive telemetry collection."
+                  },
+                  "response": [
+                    {
+                      "id": "24a92056-bf0c-4f65-a480-bd0258692e47",
+                      "name": "CliTelemetryErrorResponse represents the response from recording an error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event_id\": \"<string>\",\n  \"command\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"error_type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cli/telemetry/error",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cli",
+                            "telemetry",
+                            "error"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:44.000Z",
+                      "updatedAt": "2026-07-28T02:45:44.000Z",
+                      "uid": "35240-24a92056-bf0c-4f65-a480-bd0258692e47"
+                    },
+                    {
+                      "id": "da7703a6-448a-4ddf-81af-ca6e42cbc2c3",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event_id\": \"<string>\",\n  \"command\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"error_type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cli/telemetry/error",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cli",
+                            "telemetry",
+                            "error"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:44.000Z",
+                      "updatedAt": "2026-07-28T02:45:44.000Z",
+                      "uid": "35240-da7703a6-448a-4ddf-81af-ca6e42cbc2c3"
+                    },
+                    {
+                      "id": "9851284f-ff3f-45dd-a968-8d5f24f653c1",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event_id\": \"<string>\",\n  \"command\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"error_type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cli/telemetry/error",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cli",
+                            "telemetry",
+                            "error"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:44.000Z",
+                      "updatedAt": "2026-07-28T02:45:44.000Z",
+                      "uid": "35240-9851284f-ff3f-45dd-a968-8d5f24f653c1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:44.000Z",
+                  "updatedAt": "2026-07-28T02:45:44.000Z",
+                  "uid": "35240-4762aa67-ab60-4daa-b791-fea10e427d09"
+                }
+              ],
+              "id": "1b392517-8ca7-40e9-b677-813f6706fc0d",
+              "createdAt": "2026-07-28T02:45:44.000Z",
+              "updatedAt": "2026-07-28T02:45:44.000Z",
+              "uid": "35240-1b392517-8ca7-40e9-b677-813f6706fc0d"
+            },
+            {
+              "name": "event",
+              "item": [
+                {
+                  "name": "Record CLI command execution event",
+                  "id": "85f72fb1-8064-4452-92cb-6a5ab8497e8b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"event_id\": \"<string>\",\n  \"command\": \"<string>\",\n  \"duration_ms\": \"<long>\",\n  \"exit_code\": \"<long>\",\n  \"has_config_file\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/cli/telemetry/event",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cli",
+                        "telemetry",
+                        "event"
+                      ]
+                    },
+                    "description": "Records telemetry data for a CLI command execution including exit code, duration, and environment metadata.\nReturns a unique event_id that can be used to correlate errors with this event.\n\nNote: Authentication required. Team and user information is extracted automatically from the Bearer token.\nThis endpoint is accessible to all authenticated users, including read-only users, to ensure comprehensive telemetry collection."
+                  },
+                  "response": [
+                    {
+                      "id": "770345be-1e2f-4b8b-bee2-cd3aa02c90cb",
+                      "name": "CliTelemetryEventResponse represents the response from creating a telemetry event",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event_id\": \"<string>\",\n  \"command\": \"<string>\",\n  \"duration_ms\": \"<long>\",\n  \"exit_code\": \"<long>\",\n  \"has_config_file\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cli/telemetry/event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cli",
+                            "telemetry",
+                            "event"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"event_id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:44.000Z",
+                      "updatedAt": "2026-07-28T02:45:44.000Z",
+                      "uid": "35240-770345be-1e2f-4b8b-bee2-cd3aa02c90cb"
+                    },
+                    {
+                      "id": "bcb2a876-3ff9-4009-9139-14b8c735b3dd",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event_id\": \"<string>\",\n  \"command\": \"<string>\",\n  \"duration_ms\": \"<long>\",\n  \"exit_code\": \"<long>\",\n  \"has_config_file\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cli/telemetry/event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cli",
+                            "telemetry",
+                            "event"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:44.000Z",
+                      "updatedAt": "2026-07-28T02:45:44.000Z",
+                      "uid": "35240-bcb2a876-3ff9-4009-9139-14b8c735b3dd"
+                    },
+                    {
+                      "id": "695d1ba2-5c78-4afb-a124-99188c11bce4",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event_id\": \"<string>\",\n  \"command\": \"<string>\",\n  \"duration_ms\": \"<long>\",\n  \"exit_code\": \"<long>\",\n  \"has_config_file\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cli/telemetry/event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cli",
+                            "telemetry",
+                            "event"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:44.000Z",
+                      "updatedAt": "2026-07-28T02:45:44.000Z",
+                      "uid": "35240-695d1ba2-5c78-4afb-a124-99188c11bce4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:44.000Z",
+                  "updatedAt": "2026-07-28T02:45:44.000Z",
+                  "uid": "35240-85f72fb1-8064-4452-92cb-6a5ab8497e8b"
+                }
+              ],
+              "id": "d3659de5-72c3-4662-ac91-b9dbe991d14a",
+              "createdAt": "2026-07-28T02:45:44.000Z",
+              "updatedAt": "2026-07-28T02:45:44.000Z",
+              "uid": "35240-d3659de5-72c3-4662-ac91-b9dbe991d14a"
+            },
+            {
+              "name": "stats",
+              "item": [
+                {
+                  "name": "Record CLI resource statistics",
+                  "id": "838643bd-98d2-48ed-872b-65ebca21de0f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"command\": \"<string>\",\n  \"helm_charts\": \"<long>\",\n  \"k8s_manifests\": \"<long>\",\n  \"preflights\": \"<long>\",\n  \"support_bundles\": \"<long>\",\n  \"tool_versions\": {\n    \"officia_787\": \"<string>\",\n    \"elitcb8\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/cli/telemetry/stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cli",
+                        "telemetry",
+                        "stats"
+                      ]
+                    },
+                    "description": "Records resource count statistics for a CLI operation, including number of Helm charts,\nKubernetes manifests, preflights, and support bundles. Also captures tool version information.\n\nNote: Authentication required. Team and user information is extracted automatically from the Bearer token.\nThis endpoint is accessible to all authenticated users, including read-only users, to ensure comprehensive telemetry collection."
+                  },
+                  "response": [
+                    {
+                      "id": "42c4349a-56d0-46d2-9643-700e3281a67d",
+                      "name": "CliTelemetryStatsResponse represents the response from recording stats",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"command\": \"<string>\",\n  \"helm_charts\": \"<long>\",\n  \"k8s_manifests\": \"<long>\",\n  \"preflights\": \"<long>\",\n  \"support_bundles\": \"<long>\",\n  \"tool_versions\": {\n    \"officia_787\": \"<string>\",\n    \"elitcb8\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cli/telemetry/stats",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cli",
+                            "telemetry",
+                            "stats"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:44.000Z",
+                      "updatedAt": "2026-07-28T02:45:44.000Z",
+                      "uid": "35240-42c4349a-56d0-46d2-9643-700e3281a67d"
+                    },
+                    {
+                      "id": "74f84a62-be05-4bf4-8c8f-a963519d405a",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"command\": \"<string>\",\n  \"helm_charts\": \"<long>\",\n  \"k8s_manifests\": \"<long>\",\n  \"preflights\": \"<long>\",\n  \"support_bundles\": \"<long>\",\n  \"tool_versions\": {\n    \"officia_787\": \"<string>\",\n    \"elitcb8\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cli/telemetry/stats",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cli",
+                            "telemetry",
+                            "stats"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:44.000Z",
+                      "updatedAt": "2026-07-28T02:45:44.000Z",
+                      "uid": "35240-74f84a62-be05-4bf4-8c8f-a963519d405a"
+                    },
+                    {
+                      "id": "60b4db9b-189d-4ef8-80dd-3a4b70db8f33",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"command\": \"<string>\",\n  \"helm_charts\": \"<long>\",\n  \"k8s_manifests\": \"<long>\",\n  \"preflights\": \"<long>\",\n  \"support_bundles\": \"<long>\",\n  \"tool_versions\": {\n    \"officia_787\": \"<string>\",\n    \"elitcb8\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cli/telemetry/stats",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cli",
+                            "telemetry",
+                            "stats"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:44.000Z",
+                      "updatedAt": "2026-07-28T02:45:44.000Z",
+                      "uid": "35240-60b4db9b-189d-4ef8-80dd-3a4b70db8f33"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:44.000Z",
+                  "updatedAt": "2026-07-28T02:45:44.000Z",
+                  "uid": "35240-838643bd-98d2-48ed-872b-65ebca21de0f"
+                }
+              ],
+              "id": "0d308c7c-781a-4f75-90fe-d722ef144b46",
+              "createdAt": "2026-07-28T02:45:44.000Z",
+              "updatedAt": "2026-07-28T02:45:44.000Z",
+              "uid": "35240-0d308c7c-781a-4f75-90fe-d722ef144b46"
+            }
+          ],
+          "id": "3da0f71a-90c2-4de0-8c1f-e5a1f58ddda8",
+          "createdAt": "2026-07-28T02:45:44.000Z",
+          "updatedAt": "2026-07-28T02:45:44.000Z",
+          "uid": "35240-3da0f71a-90c2-4de0-8c1f-e5a1f58ddda8"
+        }
+      ],
+      "id": "eab3521a-b53a-4e7d-82a7-231a06dcc597",
+      "createdAt": "2026-07-28T02:45:44.000Z",
+      "updatedAt": "2026-07-28T02:45:44.000Z",
+      "uid": "35240-eab3521a-b53a-4e7d-82a7-231a06dcc597"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

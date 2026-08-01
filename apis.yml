@@ -1,8 +1,17 @@
 aid: replicated
 name: Replicated
-description: 'Replicated is a company surfaced as a portfolio company of amplify-partners and added to
-  the API Evangelist network as a stub for enrichment. Sector: developer-tools. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: >-
+  Replicated is a commercial software distribution platform that lets independent
+  software vendors (ISVs) deliver and manage modern applications into complex,
+  customer-controlled environments — including on-prem, self-hosted, and air-gapped
+  networks with little or no outbound internet access. The platform spans the
+  Vendor Portal, the Replicated CLI, Embedded Cluster and KOTS installers, the
+  Enterprise Portal for end customers, a proxy registry, the Compatibility Matrix
+  (CMX) for ephemeral test clusters/VMs, preflight checks, support bundles, and
+  instance telemetry. Its Vendor API v3 (api.replicated.com/vendor/v3) exposes 217
+  operations across apps, channels, releases, customers, licenses, clusters, VMs,
+  registries, and event notifications, secured with token auth. Replicated is
+  backed by Amplify Partners and is SOC 2 / CSA STAR attested.
 url: https://raw.githubusercontent.com/api-evangelist/replicated/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,18 +19,420 @@ x-backed-by:
 - amplify-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+image: https://www.replicated.com/images/replicated-logo.png
 tags:
 - Company
 - Developer Tools
-apis: []
+- Software Distribution
+- Kubernetes
+- On-Premises
+- Application Delivery
+- Air Gap
+- Licensing
+apis:
+- aid: replicated:replicated-apps-api
+  name: Replicated apps API
+  description: The apps API from Replicated — 17 operation(s) for apps.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - apps
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-apps-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-channelreleases-api
+  name: Replicated channelReleases API
+  description: The channelReleases API from Replicated — 7 operation(s) for channelreleases.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - channelReleases
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-channelreleases-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-channels-api
+  name: Replicated channels API
+  description: The channels API from Replicated — 7 operation(s) for channels.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - channels
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-channels-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-clusteraddons-api
+  name: Replicated clusterAddons API
+  description: The clusterAddons API from Replicated — 3 operation(s) for clusteraddons.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - clusterAddons
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-clusteraddons-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-clusters-api
+  name: Replicated clusters API
+  description: The clusters API from Replicated — 18 operation(s) for clusters.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - clusters
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-clusters-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-cmx-api
+  name: Replicated cmx API
+  description: The cmx API from Replicated — 5 operation(s) for cmx.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - cmx
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-cmx-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-customers-api
+  name: Replicated customers API
+  description: The customers API from Replicated — 11 operation(s) for customers.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - customers
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-customers-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-customhostnames-api
+  name: Replicated customHostnames API
+  description: The customHostnames API from Replicated — 4 operation(s) for customhostnames.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - customHostnames
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-customhostnames-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-enterpriseportal-api
+  name: Replicated enterprisePortal API
+  description: The enterprisePortal API from Replicated — 27 operation(s) for enterpriseportal.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - enterprisePortal
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-enterpriseportal-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-externalregistries-api
+  name: Replicated externalRegistries API
+  description: The externalRegistries API from Replicated — 6 operation(s) for externalregistries.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - externalRegistries
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-externalregistries-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-instances-api
+  name: Replicated instances API
+  description: The instances API from Replicated — 10 operation(s) for instances.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - instances
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-instances-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-networks-api
+  name: Replicated networks API
+  description: The networks API from Replicated — 3 operation(s) for networks.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - networks
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-networks-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-notifications-api
+  name: Replicated notifications API
+  description: The notifications API from Replicated — 10 operation(s) for notifications.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-notifications-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-policy-api
+  name: Replicated policy API
+  description: The policy API from Replicated — 3 operation(s) for policy.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - policy
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-policy-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-registry-api
+  name: Replicated registry API
+  description: The registry API from Replicated — 1 operation(s) for registry.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - registry
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-registry-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-releases-api
+  name: Replicated releases API
+  description: The releases API from Replicated — 13 operation(s) for releases.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - releases
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-releases-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-supportbundle-api
+  name: Replicated supportBundle API
+  description: The supportBundle API from Replicated — 14 operation(s) for supportbundle.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - supportBundle
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-supportbundle-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-team-api
+  name: Replicated team API
+  description: The team API from Replicated — 11 operation(s) for team.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - team
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-team-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-telemetry-api
+  name: Replicated telemetry API
+  description: The telemetry API from Replicated — 3 operation(s) for telemetry.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - telemetry
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-telemetry-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-user-api
+  name: Replicated user API
+  description: The user API from Replicated — 2 operation(s) for user.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - user
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-user-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-vmaddons-api
+  name: Replicated vmAddons API
+  description: The vmAddons API from Replicated — 1 operation(s) for vmaddons.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - vmAddons
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-vmaddons-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-vms-api
+  name: Replicated vms API
+  description: The vms API from Replicated — 8 operation(s) for vms.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - vms
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-vms-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/replicated/overview
 - type: Website
   url: https://replicated.com
+- type: DeveloperPortal
+  url: https://docs.replicated.com
+- type: Documentation
+  url: https://docs.replicated.com
+- type: APIReference
+  url: https://docs.replicated.com/reference/vendor-api-using
+- type: GettingStarted
+  url: https://docs.replicated.com/vendor/quick-start
+- type: Support
+  url: https://community.replicated.com
+- type: Blog
+  url: https://www.replicated.com/blog
+- type: GitHubOrganization
+  url: https://github.com/replicatedhq
+- type: Pricing
+  url: https://replicated.com/pricing
+- type: SignUp
+  url: https://vendor.replicated.com
+- type: TermsOfService
+  url: https://replicated.com/terms
+- type: PrivacyPolicy
+  url: https://replicated.com/privacy
+- type: StatusPage
+  url: https://status.replicated.com
+- type: ChangeLog
+  url: changelog/replicated-changelog.yml
+- type: Authentication
+  url: authentication/replicated-authentication.yml
+- type: Packages
+  url: packages/replicated-packages.yml
+- type: SDKs
+  url: packages/replicated-packages.yml
+- type: CLI
+  url: cli/replicated-cli.yml
+- type: MCPServer
+  url: mcp/replicated-mcp.yml
+- type: LLMsTxt
+  url: llms/replicated-llms.txt
+- type: WellKnown
+  url: well-known/replicated-well-known.yml
+- type: SecurityTxt
+  url: well-known/replicated-security.txt
+- type: Conventions
+  url: conventions/replicated-conventions.yml
+- type: ErrorCatalog
+  url: errors/replicated-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/replicated-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/replicated-lifecycle.yml
+- type: Conformance
+  url: conformance/replicated-conformance.yml
+- type: Compliance
+  url: https://www.replicated.com/security
+- type: DataModel
+  url: data-model/replicated-data-model.yml
+- type: DomainSecurity
+  url: security/replicated-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/replicated-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.replicated.com/security
+- type: TrustCenter
+  url: security/replicated-trust-center.yml
+- type: Webhooks
+  url: asyncapi/replicated-notifications-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1

@@ -1,0 +1,50 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/replicated-vendor-api-v3-openapi-original.json
+notes: >-
+  No official hosted/remote Replicated MCP server was found (docs, npm
+  @modelcontextprotocol, MCP registries all negative as of 2026-07). This is a
+  DERIVED candidate tool list mapping a subset of marquee Vendor API v3 operations
+  to MCP tools. Auth is a Vendor API token via the Authorization header.
+server:
+  name: replicated-vendor
+  transport: http
+  base_url: https://api.replicated.com/vendor/v3
+tools:
+- name: list_apps
+  description: List applications in the team.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#apps
+- name: create_app
+  description: Create a new application.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#createApp
+- name: list_channels
+  description: List release channels for an app.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#listChannels
+- name: create_release
+  description: Create a new release for an app.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#createRelease
+- name: promote_release
+  description: Promote a release to a channel.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#promoteRelease
+- name: list_customers
+  description: List customers for an app.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#listAppCustomers
+- name: create_customer
+  description: Create a customer and its license.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#createCustomer
+- name: download_license
+  description: Download a customer license file.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#downloadLicense
+- name: create_cluster
+  description: Provision an ephemeral Compatibility Matrix (CMX) Kubernetes cluster.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#createCluster
+- name: list_clusters
+  description: List CMX clusters.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#listClusters
+- name: create_vm
+  description: Provision an ephemeral CMX virtual machine.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#createVM
+- name: list_customer_instances
+  description: List active customer instances for an app.
+  source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#listCustomerInstances

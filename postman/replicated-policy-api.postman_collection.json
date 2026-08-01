@@ -1,0 +1,1628 @@
+{
+  "info": {
+    "_postman_id": "37d2f33e-1c25-4c16-8d02-19b26b757e2f",
+    "name": "Vendor API V3 apps policy API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:36.000Z",
+    "updatedAt": "2026-07-28T02:45:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-37d2f33e-1c25-4c16-8d02-19b26b757e2f"
+  },
+  "item": [
+    {
+      "name": "policies",
+      "item": [
+        {
+          "name": "List RBAC policies.",
+          "id": "6fd09fe0-eec1-46a3-8491-6482d71ccd6c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/policies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "policies"
+              ]
+            },
+            "description": "Required RBAC Policy: team/policy/read"
+          },
+          "response": [
+            {
+              "id": "c2a6dc8a-48e4-41b7-a3e1-46ea81c4dce0",
+              "name": "New Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"policies\": [\n    {\n      \"createdAt\": \"<dateTime>\",\n      \"definition\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"modifiedAt\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"readOnly\": \"<boolean>\",\n      \"teamId\": \"<string>\"\n    },\n    {\n      \"createdAt\": \"<dateTime>\",\n      \"definition\": \"<string>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"modifiedAt\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"readOnly\": \"<boolean>\",\n      \"teamId\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-c2a6dc8a-48e4-41b7-a3e1-46ea81c4dce0"
+            },
+            {
+              "id": "d681bf98-04c8-4497-ad7e-63bc942bd0e1",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-d681bf98-04c8-4497-ad7e-63bc942bd0e1"
+            },
+            {
+              "id": "cd2c7386-6327-4837-91bb-f342dae142da",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-cd2c7386-6327-4837-91bb-f342dae142da"
+            },
+            {
+              "id": "b2848b1c-52a8-41e3-83e2-63693d12895f",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-b2848b1c-52a8-41e3-83e2-63693d12895f"
+            },
+            {
+              "id": "954907d1-8b5b-4f6f-89f0-9494541b4056",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-954907d1-8b5b-4f6f-89f0-9494541b4056"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:37.000Z",
+          "updatedAt": "2026-07-28T02:45:37.000Z",
+          "uid": "35240-6fd09fe0-eec1-46a3-8491-6482d71ccd6c"
+        }
+      ],
+      "id": "82569747-5692-441e-a2fd-e19173e6db97",
+      "createdAt": "2026-07-28T02:45:37.000Z",
+      "updatedAt": "2026-07-28T02:45:37.000Z",
+      "uid": "35240-82569747-5692-441e-a2fd-e19173e6db97"
+    },
+    {
+      "name": "policy",
+      "item": [
+        {
+          "name": "{policyId}",
+          "item": [
+            {
+              "name": "Get a RBAC policy.",
+              "id": "d1643492-3ee1-43e9-979d-1587e2b3ec39",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policy/:policyId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy",
+                    ":policyId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "27684862-c3a8-46f5-b3e5-e97f80d86f6f",
+                      "key": "policyId",
+                      "value": "<string>",
+                      "description": "(Required) PolicyID is the ID of the policy to get"
+                    }
+                  ]
+                },
+                "description": "Required RBAC Policy: team/policy/read"
+              },
+              "response": [
+                {
+                  "id": "d63ac57b-626b-4f9f-a471-9b878d7eac38",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"policy\": {\n    \"createdAt\": \"<dateTime>\",\n    \"definition\": \"<string>\",\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"modifiedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"readOnly\": \"<boolean>\",\n    \"teamId\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-d63ac57b-626b-4f9f-a471-9b878d7eac38"
+                },
+                {
+                  "id": "00beeeb7-3e78-4f1d-a8df-e38c001edd0b",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-00beeeb7-3e78-4f1d-a8df-e38c001edd0b"
+                },
+                {
+                  "id": "ba841b1b-46a8-44b3-a4c7-327c722f297a",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-ba841b1b-46a8-44b3-a4c7-327c722f297a"
+                },
+                {
+                  "id": "0c0e156d-27be-4ceb-9578-12ea47fbaaf4",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-0c0e156d-27be-4ceb-9578-12ea47fbaaf4"
+                },
+                {
+                  "id": "6698c3e2-e59b-4c46-8b7e-761865aa7613",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-6698c3e2-e59b-4c46-8b7e-761865aa7613"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-d1643492-3ee1-43e9-979d-1587e2b3ec39"
+            },
+            {
+              "name": "Update a RBAC policy.",
+              "id": "a6ea1082-36d9-40f2-807a-5cbf3395a1ac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"definition\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policy/:policyId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy",
+                    ":policyId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7a6e1adc-8ee4-409b-9407-aafc06b37040",
+                      "key": "policyId",
+                      "value": "<string>",
+                      "description": "(Required) PolicyID is the ID of the policy to update"
+                    }
+                  ]
+                },
+                "description": "Required RBAC Policy: team/policy/update"
+              },
+              "response": [
+                {
+                  "id": "e1abf356-a76a-404d-a665-8df3d969cc32",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"definition\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"policy\": {\n    \"createdAt\": \"<dateTime>\",\n    \"definition\": \"<string>\",\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"modifiedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"readOnly\": \"<boolean>\",\n    \"teamId\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-e1abf356-a76a-404d-a665-8df3d969cc32"
+                },
+                {
+                  "id": "9d43e197-71e2-40b2-b73e-2bde6b4e40cc",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"definition\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-9d43e197-71e2-40b2-b73e-2bde6b4e40cc"
+                },
+                {
+                  "id": "e0303ef1-a686-41cb-9fa4-1f7f8182fbfc",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"definition\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-e0303ef1-a686-41cb-9fa4-1f7f8182fbfc"
+                },
+                {
+                  "id": "0de97fbb-c00e-482b-bd05-8aee2e3d0d67",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"definition\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-0de97fbb-c00e-482b-bd05-8aee2e3d0d67"
+                },
+                {
+                  "id": "6a286f2e-5c6a-473f-8b4d-3a0976250a5c",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"definition\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-6a286f2e-5c6a-473f-8b4d-3a0976250a5c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-a6ea1082-36d9-40f2-807a-5cbf3395a1ac"
+            },
+            {
+              "name": "Delete a RBAC policy.",
+              "id": "028365aa-d8d0-47bb-89d7-cd33f69d497b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policy/:policyId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy",
+                    ":policyId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "648b9fa4-aefc-429a-9cfd-83828e05ae52",
+                      "key": "policyId",
+                      "value": "<string>",
+                      "description": "(Required) PolicyID is the ID of the policy to delete"
+                    }
+                  ]
+                },
+                "description": "Required RBAC Policy: team/policy/delete"
+              },
+              "response": [
+                {
+                  "id": "17946664-826e-4955-9e75-4b2e3f5b7805",
+                  "name": "On success, no payload returned",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-17946664-826e-4955-9e75-4b2e3f5b7805"
+                },
+                {
+                  "id": "01253030-7dfc-472b-aa18-ac85965a18d3",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-01253030-7dfc-472b-aa18-ac85965a18d3"
+                },
+                {
+                  "id": "b20d21ec-0fc2-48f4-a259-60cd84ad8238",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-b20d21ec-0fc2-48f4-a259-60cd84ad8238"
+                },
+                {
+                  "id": "4bf26938-6a5f-4480-b67c-0d5c9631b510",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-4bf26938-6a5f-4480-b67c-0d5c9631b510"
+                },
+                {
+                  "id": "720578c7-c663-4b59-bb52-454f25d85320",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy/:policyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy",
+                        ":policyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:37.000Z",
+                  "updatedAt": "2026-07-28T02:45:37.000Z",
+                  "uid": "35240-720578c7-c663-4b59-bb52-454f25d85320"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-028365aa-d8d0-47bb-89d7-cd33f69d497b"
+            }
+          ],
+          "id": "fcbd1b7a-4847-4778-b3bb-cbb13deaf6f5",
+          "createdAt": "2026-07-28T02:45:37.000Z",
+          "updatedAt": "2026-07-28T02:45:37.000Z",
+          "uid": "35240-fcbd1b7a-4847-4778-b3bb-cbb13deaf6f5"
+        },
+        {
+          "name": "Create a RBAC policy.",
+          "id": "5afc65c3-b4eb-4ef1-b490-a1c16c21aa1e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"definition\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/policy",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "policy"
+              ]
+            },
+            "description": "Required RBAC Policy: team/policy/create"
+          },
+          "response": [
+            {
+              "id": "f2fa94f5-4b8f-4875-8a85-93890c4c5144",
+              "name": "New Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"definition\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policy",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"policy\": {\n    \"createdAt\": \"<dateTime>\",\n    \"definition\": \"<string>\",\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"modifiedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"readOnly\": \"<boolean>\",\n    \"teamId\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-f2fa94f5-4b8f-4875-8a85-93890c4c5144"
+            },
+            {
+              "id": "7a938e7c-8f2f-4cb2-a120-7fa0b0d6e143",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"definition\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policy",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-7a938e7c-8f2f-4cb2-a120-7fa0b0d6e143"
+            },
+            {
+              "id": "f6a369df-2aeb-47e6-892c-b4f4f95e16f4",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"definition\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policy",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-f6a369df-2aeb-47e6-892c-b4f4f95e16f4"
+            },
+            {
+              "id": "17a390f5-1020-44e5-bdb8-d897e335b38a",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"definition\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policy",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-17a390f5-1020-44e5-bdb8-d897e335b38a"
+            },
+            {
+              "id": "475f21e7-bbfd-4748-bee4-9cfbb031f6e9",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"definition\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policy",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:37.000Z",
+              "updatedAt": "2026-07-28T02:45:37.000Z",
+              "uid": "35240-475f21e7-bbfd-4748-bee4-9cfbb031f6e9"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:37.000Z",
+          "updatedAt": "2026-07-28T02:45:37.000Z",
+          "uid": "35240-5afc65c3-b4eb-4ef1-b490-a1c16c21aa1e"
+        }
+      ],
+      "id": "6fb4e65d-8934-43e3-9b61-3633b069feee",
+      "createdAt": "2026-07-28T02:45:37.000Z",
+      "updatedAt": "2026-07-28T02:45:37.000Z",
+      "uid": "35240-6fb4e65d-8934-43e3-9b61-3633b069feee"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

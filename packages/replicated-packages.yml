@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/replicatedhq/replicated
+notes: >-
+  Replicated publishes a single first-party Go module that provides both the
+  `replicated` CLI and a Go client for the Vendor API v3. There is no first-party
+  npm / PyPI / RubyGems client. The Replicated SDK shipped alongside applications
+  is a Helm chart (in-cluster service), catalogued under components/CLI rather than
+  as a language package.
+packages:
+- language: go
+  registry: pkg.go.dev
+  name: github.com/replicatedhq/replicated
+  url: https://pkg.go.dev/github.com/replicatedhq/replicated
+  install: go get github.com/replicatedhq/replicated
+  official: true
+  provides:
+  - Vendor API v3 Go client
+  - replicated CLI
+  source: https://github.com/replicatedhq/replicated
+- language: cli
+  registry: homebrew
+  name: replicatedhq/replicated/cli
+  url: https://github.com/replicatedhq/replicated
+  install: brew install replicatedhq/replicated/cli
+  official: true

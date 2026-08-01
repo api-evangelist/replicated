@@ -1,0 +1,3 @@
+Contact: mailto:security@replicated.com
+Expires: 2030-01-30T11:14:00Z
+Policy: https://www.replicated.com/security

@@ -1,0 +1,1027 @@
+{
+  "info": {
+    "_postman_id": "0ecd5460-66c2-4cf2-9417-61badb740d56",
+    "name": "Vendor API V3 apps clusterAddons API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:12.000Z",
+    "updatedAt": "2026-07-28T02:45:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0ecd5460-66c2-4cf2-9417-61badb740d56"
+  },
+  "item": [
+    {
+      "name": "cluster",
+      "item": [
+        {
+          "name": "{cluster_id}",
+          "item": [
+            {
+              "name": "addons",
+              "item": [
+                {
+                  "name": "objectstore",
+                  "item": [
+                    {
+                      "name": "Adds an object store addon to a cluster.",
+                      "id": "e65bfbf8-7313-44f5-be7f-a1b9fb15a7f6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"bucket\": \"<string>\",\n  \"bucket_prefix\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cluster/:cluster_id/addons/objectstore",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cluster",
+                            ":cluster_id",
+                            "addons",
+                            "objectstore"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4be5b81b-145a-45d6-b4ac-640070432403",
+                              "key": "cluster_id",
+                              "value": "<string>",
+                              "description": "(Required) Cluster identifier"
+                            }
+                          ]
+                        },
+                        "description": "Required RBAC Policy: kots/cluster/[:clusterid]/addon/create/objectstore"
+                      },
+                      "response": [
+                        {
+                          "id": "cf94f41d-ccef-471a-9804-58d93dd911b5",
+                          "name": "CreateClusterAddonObjectStoreResponse contains the response to a create cluster object store addon request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"bucket\": \"<string>\",\n  \"bucket_prefix\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/cluster/:cluster_id/addons/objectstore",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cluster",
+                                ":cluster_id",
+                                "addons",
+                                "objectstore"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cluster_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"addon\": {\n    \"cluster_guid\": \"<string>\",\n    \"cluster_id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"guid\": \"<string>\",\n    \"id\": \"<string>\",\n    \"object_store\": {\n      \"bucket_name\": \"<string>\",\n      \"bucket_prefix\": \"<string>\",\n      \"service_account_name\": \"<string>\",\n      \"service_account_name_read_only\": \"<string>\",\n      \"service_account_namespace\": \"<string>\"\n    },\n    \"port\": {\n      \"is_wildcard\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"protocol_http\": \"<boolean>\",\n      \"protocol_https\": \"<boolean>\",\n      \"protocol_ws\": \"<boolean>\",\n      \"protocol_wss\": \"<boolean>\",\n      \"upstream_port\": \"<long>\"\n    },\n    \"ready_at\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"terminated_at\": \"<dateTime>\",\n    \"total_credits\": \"<long>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:45:13.000Z",
+                          "updatedAt": "2026-07-28T02:45:13.000Z",
+                          "uid": "35240-cf94f41d-ccef-471a-9804-58d93dd911b5"
+                        },
+                        {
+                          "id": "58d01e05-79a8-45b1-a0aa-ba818f053b13",
+                          "name": "Return if the caller is not authorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"bucket\": \"<string>\",\n  \"bucket_prefix\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/cluster/:cluster_id/addons/objectstore",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cluster",
+                                ":cluster_id",
+                                "addons",
+                                "objectstore"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cluster_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:13.000Z",
+                          "updatedAt": "2026-07-28T02:45:13.000Z",
+                          "uid": "35240-58d01e05-79a8-45b1-a0aa-ba818f053b13"
+                        },
+                        {
+                          "id": "dd39a111-149d-4f3c-b18e-a0c33476213c",
+                          "name": "Returned if the caller does not have the needed permission",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"bucket\": \"<string>\",\n  \"bucket_prefix\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/cluster/:cluster_id/addons/objectstore",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cluster",
+                                ":cluster_id",
+                                "addons",
+                                "objectstore"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cluster_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:45:13.000Z",
+                          "updatedAt": "2026-07-28T02:45:13.000Z",
+                          "uid": "35240-dd39a111-149d-4f3c-b18e-a0c33476213c"
+                        },
+                        {
+                          "id": "4262e891-0eba-48fb-8188-69798cd82937",
+                          "name": "Returned on resource not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"bucket\": \"<string>\",\n  \"bucket_prefix\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/cluster/:cluster_id/addons/objectstore",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cluster",
+                                ":cluster_id",
+                                "addons",
+                                "objectstore"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cluster_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:13.000Z",
+                          "updatedAt": "2026-07-28T02:45:13.000Z",
+                          "uid": "35240-4262e891-0eba-48fb-8188-69798cd82937"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:45:13.000Z",
+                      "updatedAt": "2026-07-28T02:45:13.000Z",
+                      "uid": "35240-e65bfbf8-7313-44f5-be7f-a1b9fb15a7f6"
+                    }
+                  ],
+                  "id": "7b9ac02f-bc5e-4dd3-9a6e-1f34924d6c8d",
+                  "createdAt": "2026-07-28T02:45:13.000Z",
+                  "updatedAt": "2026-07-28T02:45:13.000Z",
+                  "uid": "35240-7b9ac02f-bc5e-4dd3-9a6e-1f34924d6c8d"
+                },
+                {
+                  "name": "{addon_id}",
+                  "item": [
+                    {
+                      "name": "Deletes an addon from a cluster.",
+                      "id": "ef6c3697-f5ed-4eb1-ac86-f53a8405ced2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cluster/:cluster_id/addons/:addon_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cluster",
+                            ":cluster_id",
+                            "addons",
+                            ":addon_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8adc34d1-b06f-4a3f-8152-cb29e64cb32b",
+                              "key": "cluster_id",
+                              "value": "<string>",
+                              "description": "(Required) Cluster identifier"
+                            },
+                            {
+                              "id": "421f6108-1720-49cb-80c5-656647ca636a",
+                              "key": "addon_id",
+                              "value": "<string>",
+                              "description": "(Required) Cluster addon identifier"
+                            }
+                          ]
+                        },
+                        "description": "Required RBAC Policy: kots/cluster/[:clusterid]/addon/[:addonid]/delete"
+                      },
+                      "response": [
+                        {
+                          "id": "9a06ef3b-d405-4ec3-90c6-9870668a8db6",
+                          "name": "On success, no payload returned",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/cluster/:cluster_id/addons/:addon_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cluster",
+                                ":cluster_id",
+                                "addons",
+                                ":addon_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cluster_id"
+                                },
+                                {
+                                  "key": "addon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:45:13.000Z",
+                          "updatedAt": "2026-07-28T02:45:13.000Z",
+                          "uid": "35240-9a06ef3b-d405-4ec3-90c6-9870668a8db6"
+                        },
+                        {
+                          "id": "50c149ed-bb32-4d6b-8be5-0f17c713cdf3",
+                          "name": "Returned on bad input",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/cluster/:cluster_id/addons/:addon_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cluster",
+                                ":cluster_id",
+                                "addons",
+                                ":addon_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cluster_id"
+                                },
+                                {
+                                  "key": "addon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:13.000Z",
+                          "updatedAt": "2026-07-28T02:45:13.000Z",
+                          "uid": "35240-50c149ed-bb32-4d6b-8be5-0f17c713cdf3"
+                        },
+                        {
+                          "id": "b9f50234-24e8-4a97-a2de-37fbc17dd0d4",
+                          "name": "Return if the caller is not authorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/cluster/:cluster_id/addons/:addon_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cluster",
+                                ":cluster_id",
+                                "addons",
+                                ":addon_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cluster_id"
+                                },
+                                {
+                                  "key": "addon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:13.000Z",
+                          "updatedAt": "2026-07-28T02:45:13.000Z",
+                          "uid": "35240-b9f50234-24e8-4a97-a2de-37fbc17dd0d4"
+                        },
+                        {
+                          "id": "4763676a-667e-4f02-869b-b14c9c6cc879",
+                          "name": "Returned if the caller does not have the needed permission",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/cluster/:cluster_id/addons/:addon_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cluster",
+                                ":cluster_id",
+                                "addons",
+                                ":addon_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cluster_id"
+                                },
+                                {
+                                  "key": "addon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:45:13.000Z",
+                          "updatedAt": "2026-07-28T02:45:13.000Z",
+                          "uid": "35240-4763676a-667e-4f02-869b-b14c9c6cc879"
+                        },
+                        {
+                          "id": "e4ce2929-399d-497e-b128-3d47d69dcfb1",
+                          "name": "Returned on resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/cluster/:cluster_id/addons/:addon_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cluster",
+                                ":cluster_id",
+                                "addons",
+                                ":addon_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cluster_id"
+                                },
+                                {
+                                  "key": "addon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:13.000Z",
+                          "updatedAt": "2026-07-28T02:45:13.000Z",
+                          "uid": "35240-e4ce2929-399d-497e-b128-3d47d69dcfb1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:45:13.000Z",
+                      "updatedAt": "2026-07-28T02:45:13.000Z",
+                      "uid": "35240-ef6c3697-f5ed-4eb1-ac86-f53a8405ced2"
+                    }
+                  ],
+                  "id": "11aec31a-075f-46e8-824c-2e2004798364",
+                  "createdAt": "2026-07-28T02:45:13.000Z",
+                  "updatedAt": "2026-07-28T02:45:13.000Z",
+                  "uid": "35240-11aec31a-075f-46e8-824c-2e2004798364"
+                },
+                {
+                  "name": "Lists addons for all clusters.",
+                  "id": "1044614d-4844-44cb-8c65-36aa11af2b54",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cluster/:cluster_id/addons",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cluster",
+                        ":cluster_id",
+                        "addons"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5917f35e-6c6d-40b4-a488-c7df0b885983",
+                          "key": "cluster_id",
+                          "value": "<string>",
+                          "description": "(Required) Cluster identifier"
+                        }
+                      ]
+                    },
+                    "description": "Required RBAC Policy: kots/cluster/[:clusterid]/addon/list"
+                  },
+                  "response": [
+                    {
+                      "id": "07949276-2065-4c01-81f8-7689415cd0cb",
+                      "name": "ListClusterAddonsResponse contains the response to a list clusters addons request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cluster/:cluster_id/addons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cluster",
+                            ":cluster_id",
+                            "addons"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cluster_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"addons\": [\n    {\n      \"cluster_guid\": \"<string>\",\n      \"cluster_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"guid\": \"<string>\",\n      \"id\": \"<string>\",\n      \"object_store\": {\n        \"bucket_name\": \"<string>\",\n        \"bucket_prefix\": \"<string>\",\n        \"service_account_name\": \"<string>\",\n        \"service_account_name_read_only\": \"<string>\",\n        \"service_account_namespace\": \"<string>\"\n      },\n      \"port\": {\n        \"is_wildcard\": \"<boolean>\",\n        \"name\": \"<string>\",\n        \"protocol_http\": \"<boolean>\",\n        \"protocol_https\": \"<boolean>\",\n        \"protocol_ws\": \"<boolean>\",\n        \"protocol_wss\": \"<boolean>\",\n        \"upstream_port\": \"<long>\"\n      },\n      \"ready_at\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"terminated_at\": \"<dateTime>\",\n      \"total_credits\": \"<long>\"\n    },\n    {\n      \"cluster_guid\": \"<string>\",\n      \"cluster_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"guid\": \"<string>\",\n      \"id\": \"<string>\",\n      \"object_store\": {\n        \"bucket_name\": \"<string>\",\n        \"bucket_prefix\": \"<string>\",\n        \"service_account_name\": \"<string>\",\n        \"service_account_name_read_only\": \"<string>\",\n        \"service_account_namespace\": \"<string>\"\n      },\n      \"port\": {\n        \"is_wildcard\": \"<boolean>\",\n        \"name\": \"<string>\",\n        \"protocol_http\": \"<boolean>\",\n        \"protocol_https\": \"<boolean>\",\n        \"protocol_ws\": \"<boolean>\",\n        \"protocol_wss\": \"<boolean>\",\n        \"upstream_port\": \"<long>\"\n      },\n      \"ready_at\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"terminated_at\": \"<dateTime>\",\n      \"total_credits\": \"<long>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:45:13.000Z",
+                      "updatedAt": "2026-07-28T02:45:13.000Z",
+                      "uid": "35240-07949276-2065-4c01-81f8-7689415cd0cb"
+                    },
+                    {
+                      "id": "fe39f961-4f85-432f-9363-20f4da0a2161",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cluster/:cluster_id/addons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cluster",
+                            ":cluster_id",
+                            "addons"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cluster_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:13.000Z",
+                      "updatedAt": "2026-07-28T02:45:13.000Z",
+                      "uid": "35240-fe39f961-4f85-432f-9363-20f4da0a2161"
+                    },
+                    {
+                      "id": "26b6118b-0446-4a17-a61a-7b17fc473160",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cluster/:cluster_id/addons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cluster",
+                            ":cluster_id",
+                            "addons"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cluster_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:13.000Z",
+                      "updatedAt": "2026-07-28T02:45:13.000Z",
+                      "uid": "35240-26b6118b-0446-4a17-a61a-7b17fc473160"
+                    },
+                    {
+                      "id": "d1bd0961-fbe9-4596-9f77-72978011f27e",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cluster/:cluster_id/addons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cluster",
+                            ":cluster_id",
+                            "addons"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cluster_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:13.000Z",
+                      "updatedAt": "2026-07-28T02:45:13.000Z",
+                      "uid": "35240-d1bd0961-fbe9-4596-9f77-72978011f27e"
+                    },
+                    {
+                      "id": "2dfe172f-183e-4ad8-b2e4-25d9c96cd1ad",
+                      "name": "Returned on resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cluster/:cluster_id/addons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cluster",
+                            ":cluster_id",
+                            "addons"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cluster_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:13.000Z",
+                      "updatedAt": "2026-07-28T02:45:13.000Z",
+                      "uid": "35240-2dfe172f-183e-4ad8-b2e4-25d9c96cd1ad"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:13.000Z",
+                  "updatedAt": "2026-07-28T02:45:13.000Z",
+                  "uid": "35240-1044614d-4844-44cb-8c65-36aa11af2b54"
+                }
+              ],
+              "id": "29bcab4d-36ca-4c0f-ae6a-3900f8161ab0",
+              "createdAt": "2026-07-28T02:45:13.000Z",
+              "updatedAt": "2026-07-28T02:45:13.000Z",
+              "uid": "35240-29bcab4d-36ca-4c0f-ae6a-3900f8161ab0"
+            }
+          ],
+          "id": "c4631427-3c10-4a94-a670-85d3a32a943b",
+          "createdAt": "2026-07-28T02:45:13.000Z",
+          "updatedAt": "2026-07-28T02:45:13.000Z",
+          "uid": "35240-c4631427-3c10-4a94-a670-85d3a32a943b"
+        }
+      ],
+      "id": "23bc15da-e451-4fd5-a72c-1875d6e5e022",
+      "createdAt": "2026-07-28T02:45:13.000Z",
+      "updatedAt": "2026-07-28T02:45:13.000Z",
+      "uid": "35240-23bc15da-e451-4fd5-a72c-1875d6e5e022"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

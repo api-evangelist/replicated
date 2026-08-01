@@ -1,0 +1,54 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.replicated.com/reference/replicated-cli
+name: replicated
+description: >-
+  First-party CLI for the Replicated Vendor Platform. Wraps the Vendor API v3 to
+  create, edit, and promote releases; manage apps, channels, customers, licenses;
+  and provision Compatibility Matrix (CMX) clusters and VMs. Written in Go
+  (github.com/replicatedhq/replicated).
+docs: https://docs.replicated.com/reference/replicated
+repo: https://github.com/replicatedhq/replicated
+install_docs: https://docs.replicated.com/reference/replicated-cli-installing
+getting_started: https://docs.replicated.com/vendor/quick-start
+auth:
+  method: user API token or service account token
+  env: REPLICATED_API_TOKEN
+  docs: https://docs.replicated.com/vendor/replicated-api-tokens
+install_methods:
+- homebrew: brew install replicatedhq/replicated/cli
+- github_releases: https://github.com/replicatedhq/replicated/releases
+- go: go install github.com/replicatedhq/replicated/cli/replicated@latest
+command_groups:
+- name: app
+  summary: Create, list, and remove applications; configure custom hostnames.
+- name: channel
+  summary: Manage release channels; demote, enable/disable semantic versioning.
+- name: release
+  summary: Create, promote, lint, test, and run compatibility checks on releases.
+- name: customer
+  summary: Create, archive, inspect customers and download license files.
+- name: cluster
+  summary: Create/upgrade CMX Kubernetes clusters; manage addons, nodegroups, ports.
+- name: vm
+  summary: Create and manage CMX virtual machines.
+- name: registry
+  summary: Add and test external container registry integrations.
+- name: instance
+  summary: Inspect and tag customer instances.
+- name: network
+  summary: Manage CMX networks.
+- name: policy
+  summary: Create, get, list, update, and remove RBAC policies.
+- name: notification
+  summary: Manage email/webhook notification subscriptions and events.
+- name: api
+  summary: Make ad-hoc get/post/put/patch calls to the Vendor API.
+- name: profile
+  summary: Manage local authentication profiles.
+- name: login / logout / version / completion
+  summary: Session and shell helpers.
+key_flows:
+- create a release and promote it to a channel
+- create a customer and download the license
+- provision an ephemeral CMX cluster for compatibility testing

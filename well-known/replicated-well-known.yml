@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+hosts:
+- host: https://replicated.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: replicated-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+- host: https://api.replicated.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: replicated-api-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+- host: https://docs.replicated.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: redirects to replicated.com security.txt
+  - path: /.well-known/ai-plugin.json
+    status: 404

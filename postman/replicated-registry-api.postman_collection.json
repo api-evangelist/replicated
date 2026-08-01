@@ -1,0 +1,361 @@
+{
+  "info": {
+    "_postman_id": "f7765180-b12b-4ba9-a471-0bf102f3c289",
+    "name": "Vendor API V3 apps registry API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:37.000Z",
+    "updatedAt": "2026-07-28T02:45:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f7765180-b12b-4ba9-a471-0bf102f3c289"
+  },
+  "item": [
+    {
+      "name": "registry",
+      "item": [
+        {
+          "name": "egress",
+          "item": [
+            {
+              "name": "summary",
+              "item": [
+                {
+                  "name": "Get registry egress summary totals.",
+                  "id": "911a56a9-80e7-42c3-a886-f5b5a053bfb4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registry/egress/summary?app_id=<string>&start_date=<string>&end_date=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registry",
+                        "egress",
+                        "summary"
+                      ],
+                      "query": [
+                        {
+                          "description": "App ID to filter the summary to one app.",
+                          "key": "app_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "First UTC date included in the summary.",
+                          "key": "start_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Last UTC date included in the summary.",
+                          "key": "end_date",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Required RBAC Policy: kots/externalregistry/list"
+                  },
+                  "response": [
+                    {
+                      "id": "c77da4d7-cabc-486c-8283-e70bc2a549ff",
+                      "name": "GetEgressSummaryResponse contains registry egress summary totals.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/registry/egress/summary?app_id=<string>&start_date=<string>&end_date=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "registry",
+                            "egress",
+                            "summary"
+                          ],
+                          "query": [
+                            {
+                              "description": "App ID to filter the summary to one app.",
+                              "key": "app_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "First UTC date included in the summary.",
+                              "key": "start_date",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Last UTC date included in the summary.",
+                              "key": "end_date",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"period_end\": \"<string>\",\n  \"period_start\": \"<string>\",\n  \"proxy_bytes\": \"<long>\",\n  \"registry_bytes\": \"<long>\",\n  \"total_bytes\": \"<long>\"\n}",
+                      "createdAt": "2026-07-28T02:45:38.000Z",
+                      "updatedAt": "2026-07-28T02:45:38.000Z",
+                      "uid": "35240-c77da4d7-cabc-486c-8283-e70bc2a549ff"
+                    },
+                    {
+                      "id": "d356a6c9-07af-421f-a30e-f0ea6af26bf2",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/registry/egress/summary?app_id=<string>&start_date=<string>&end_date=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "registry",
+                            "egress",
+                            "summary"
+                          ],
+                          "query": [
+                            {
+                              "description": "App ID to filter the summary to one app.",
+                              "key": "app_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "First UTC date included in the summary.",
+                              "key": "start_date",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Last UTC date included in the summary.",
+                              "key": "end_date",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:38.000Z",
+                      "updatedAt": "2026-07-28T02:45:38.000Z",
+                      "uid": "35240-d356a6c9-07af-421f-a30e-f0ea6af26bf2"
+                    },
+                    {
+                      "id": "dca483d5-36fc-49a6-af16-8c9e974e86f1",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/registry/egress/summary?app_id=<string>&start_date=<string>&end_date=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "registry",
+                            "egress",
+                            "summary"
+                          ],
+                          "query": [
+                            {
+                              "description": "App ID to filter the summary to one app.",
+                              "key": "app_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "First UTC date included in the summary.",
+                              "key": "start_date",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Last UTC date included in the summary.",
+                              "key": "end_date",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:38.000Z",
+                      "updatedAt": "2026-07-28T02:45:38.000Z",
+                      "uid": "35240-dca483d5-36fc-49a6-af16-8c9e974e86f1"
+                    },
+                    {
+                      "id": "b7fa3736-bae5-40f2-967c-5024b3615cd8",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/registry/egress/summary?app_id=<string>&start_date=<string>&end_date=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "registry",
+                            "egress",
+                            "summary"
+                          ],
+                          "query": [
+                            {
+                              "description": "App ID to filter the summary to one app.",
+                              "key": "app_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "First UTC date included in the summary.",
+                              "key": "start_date",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Last UTC date included in the summary.",
+                              "key": "end_date",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:38.000Z",
+                      "updatedAt": "2026-07-28T02:45:38.000Z",
+                      "uid": "35240-b7fa3736-bae5-40f2-967c-5024b3615cd8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:38.000Z",
+                  "updatedAt": "2026-07-28T02:45:38.000Z",
+                  "uid": "35240-911a56a9-80e7-42c3-a886-f5b5a053bfb4"
+                }
+              ],
+              "id": "2ea73d25-9fce-47dd-8314-96b3ef4bfbf9",
+              "createdAt": "2026-07-28T02:45:38.000Z",
+              "updatedAt": "2026-07-28T02:45:38.000Z",
+              "uid": "35240-2ea73d25-9fce-47dd-8314-96b3ef4bfbf9"
+            }
+          ],
+          "id": "cf00153f-2c75-4222-8ee3-a6fd7df0a009",
+          "createdAt": "2026-07-28T02:45:38.000Z",
+          "updatedAt": "2026-07-28T02:45:38.000Z",
+          "uid": "35240-cf00153f-2c75-4222-8ee3-a6fd7df0a009"
+        }
+      ],
+      "id": "ac0caee9-999b-473b-a3e2-c463141f3c42",
+      "createdAt": "2026-07-28T02:45:38.000Z",
+      "updatedAt": "2026-07-28T02:45:38.000Z",
+      "uid": "35240-ac0caee9-999b-473b-a3e2-c463141f3c42"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

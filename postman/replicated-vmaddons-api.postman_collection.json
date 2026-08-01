@@ -1,0 +1,380 @@
+{
+  "info": {
+    "_postman_id": "ffe1a847-7d68-4e17-b62f-ecc456014f04",
+    "name": "Vendor API V3 apps vmAddons API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:46.000Z",
+    "updatedAt": "2026-07-28T02:45:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ffe1a847-7d68-4e17-b62f-ecc456014f04"
+  },
+  "item": [
+    {
+      "name": "vm",
+      "item": [
+        {
+          "name": "{vm_id}",
+          "item": [
+            {
+              "name": "addons",
+              "item": [
+                {
+                  "name": "{addon_id}",
+                  "item": [
+                    {
+                      "name": "Deletes an addon from a vm.",
+                      "id": "ebcb9531-9573-4395-b52e-7bdd3d2dc08f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/vm/:vm_id/addons/:addon_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vm",
+                            ":vm_id",
+                            "addons",
+                            ":addon_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "33176bc4-38d0-4d00-aaab-0c3c1200fa72",
+                              "key": "vm_id",
+                              "value": "<string>",
+                              "description": "(Required) VM identifier"
+                            },
+                            {
+                              "id": "e06cb1fa-6105-4c50-b49a-35e3497fcbcb",
+                              "key": "addon_id",
+                              "value": "<string>",
+                              "description": "(Required) Cluster addon identifier"
+                            }
+                          ]
+                        },
+                        "description": "Required RBAC Policy: kots/vm/[:vmid]/addon/[:addonid]/delete"
+                      },
+                      "response": [
+                        {
+                          "id": "f5c594fa-b014-4d3a-9cc7-e5811a00bfe5",
+                          "name": "On success, no payload returned",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/vm/:vm_id/addons/:addon_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "vm",
+                                ":vm_id",
+                                "addons",
+                                ":addon_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vm_id"
+                                },
+                                {
+                                  "key": "addon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:45:46.000Z",
+                          "updatedAt": "2026-07-28T02:45:46.000Z",
+                          "uid": "35240-f5c594fa-b014-4d3a-9cc7-e5811a00bfe5"
+                        },
+                        {
+                          "id": "17fa43e4-842d-4cd0-bde7-507c9a813cb6",
+                          "name": "Returned on bad input",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/vm/:vm_id/addons/:addon_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "vm",
+                                ":vm_id",
+                                "addons",
+                                ":addon_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vm_id"
+                                },
+                                {
+                                  "key": "addon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:46.000Z",
+                          "updatedAt": "2026-07-28T02:45:46.000Z",
+                          "uid": "35240-17fa43e4-842d-4cd0-bde7-507c9a813cb6"
+                        },
+                        {
+                          "id": "029e870b-9216-4cd4-94db-3b4bb8deffb0",
+                          "name": "Return if the caller is not authorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/vm/:vm_id/addons/:addon_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "vm",
+                                ":vm_id",
+                                "addons",
+                                ":addon_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vm_id"
+                                },
+                                {
+                                  "key": "addon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:46.000Z",
+                          "updatedAt": "2026-07-28T02:45:46.000Z",
+                          "uid": "35240-029e870b-9216-4cd4-94db-3b4bb8deffb0"
+                        },
+                        {
+                          "id": "3795d090-5226-4025-a1c5-17e96a1813df",
+                          "name": "Returned if the caller does not have the needed permission",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/vm/:vm_id/addons/:addon_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "vm",
+                                ":vm_id",
+                                "addons",
+                                ":addon_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vm_id"
+                                },
+                                {
+                                  "key": "addon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:45:46.000Z",
+                          "updatedAt": "2026-07-28T02:45:46.000Z",
+                          "uid": "35240-3795d090-5226-4025-a1c5-17e96a1813df"
+                        },
+                        {
+                          "id": "2f7333c8-3e71-4337-9026-0e8bc67a8ebf",
+                          "name": "Returned on resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/vm/:vm_id/addons/:addon_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "vm",
+                                ":vm_id",
+                                "addons",
+                                ":addon_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vm_id"
+                                },
+                                {
+                                  "key": "addon_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:46.000Z",
+                          "updatedAt": "2026-07-28T02:45:46.000Z",
+                          "uid": "35240-2f7333c8-3e71-4337-9026-0e8bc67a8ebf"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:45:46.000Z",
+                      "updatedAt": "2026-07-28T02:45:46.000Z",
+                      "uid": "35240-ebcb9531-9573-4395-b52e-7bdd3d2dc08f"
+                    }
+                  ],
+                  "id": "90f5ca80-fedb-402a-9abd-576d852b1078",
+                  "createdAt": "2026-07-28T02:45:46.000Z",
+                  "updatedAt": "2026-07-28T02:45:46.000Z",
+                  "uid": "35240-90f5ca80-fedb-402a-9abd-576d852b1078"
+                }
+              ],
+              "id": "3b666329-83cc-4404-8eb0-454979f9b5c3",
+              "createdAt": "2026-07-28T02:45:46.000Z",
+              "updatedAt": "2026-07-28T02:45:46.000Z",
+              "uid": "35240-3b666329-83cc-4404-8eb0-454979f9b5c3"
+            }
+          ],
+          "id": "e3f4b9c1-698d-4c38-8714-b521f15d81b3",
+          "createdAt": "2026-07-28T02:45:46.000Z",
+          "updatedAt": "2026-07-28T02:45:46.000Z",
+          "uid": "35240-e3f4b9c1-698d-4c38-8714-b521f15d81b3"
+        }
+      ],
+      "id": "9f06e417-64c0-4893-b1ef-36c6c1bb3560",
+      "createdAt": "2026-07-28T02:45:46.000Z",
+      "updatedAt": "2026-07-28T02:45:46.000Z",
+      "uid": "35240-9f06e417-64c0-4893-b1ef-36c6c1bb3560"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

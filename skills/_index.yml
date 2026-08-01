@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/replicated-vendor-api-v3-openapi-original.json
+skills:
+- file: replicated-release-and-promote.md
+  name: Create and promote a Replicated release
+  api: openapi/replicated-vendor-api-v3-openapi-original.json
+  operations: [apps, listChannels, createChannel, createRelease, promoteRelease, getChannelReleaseInstallCommands]
+- file: replicated-customer-license.md
+  name: Create a Replicated customer and download its license
+  api: openapi/replicated-vendor-api-v3-openapi-original.json
+  operations: [createCustomer, getCustomer, getCustomerEntitlements, downloadLicense, listAppCustomers]
+- file: replicated-cmx-cluster.md
+  name: Provision a Compatibility Matrix (CMX) cluster
+  api: openapi/replicated-vendor-api-v3-openapi-original.json
+  operations: [listClusterVersions, createCluster, getCluster, getClusterKubeconfig, updateClusterTTL, deleteCluster]

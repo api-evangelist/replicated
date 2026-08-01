@@ -1,0 +1,2122 @@
+{
+  "info": {
+    "_postman_id": "41eee0f8-cd90-4869-9849-3a94ac15d755",
+    "name": "Vendor API V3 apps externalRegistries API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:24.000Z",
+    "updatedAt": "2026-07-28T02:45:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-41eee0f8-cd90-4869-9849-3a94ac15d755"
+  },
+  "item": [
+    {
+      "name": "external_registries",
+      "item": [
+        {
+          "name": "List external registries for a team.",
+          "id": "3629d2d4-7239-4c2d-b5d0-2a47ed1b99aa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/external_registries",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "external_registries"
+              ]
+            },
+            "description": "Required RBAC Policy: kots/externalregistry/list"
+          },
+          "response": [
+            {
+              "id": "e9779578-337e-4ae3-8c5d-3bc6eafda42d",
+              "name": "ListExternalRegistriesResponse contains the JSON external registries list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/external_registries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registries"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"available_registries\": [\n    {\n      \"appIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authType\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"endpoint\": \"<string>\",\n      \"isReplicated\": \"<boolean>\",\n      \"provider\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"teamId\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"appIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authType\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"endpoint\": \"<string>\",\n      \"isReplicated\": \"<boolean>\",\n      \"provider\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"teamId\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"external_registries\": [\n    {\n      \"appIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authType\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"endpoint\": \"<string>\",\n      \"isReplicated\": \"<boolean>\",\n      \"provider\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"teamId\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"appIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authType\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"endpoint\": \"<string>\",\n      \"isReplicated\": \"<boolean>\",\n      \"provider\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"teamId\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"unavailable_registries\": [\n    {\n      \"appIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authType\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"endpoint\": \"<string>\",\n      \"isReplicated\": \"<boolean>\",\n      \"provider\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"teamId\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"appIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authType\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"endpoint\": \"<string>\",\n      \"isReplicated\": \"<boolean>\",\n      \"provider\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"teamId\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"username\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-e9779578-337e-4ae3-8c5d-3bc6eafda42d"
+            },
+            {
+              "id": "2c622191-c218-4fdd-aa58-917aeeb58517",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/external_registries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registries"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-2c622191-c218-4fdd-aa58-917aeeb58517"
+            },
+            {
+              "id": "d82ffd8c-d89b-4244-8ba5-7b6c328812d7",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/external_registries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registries"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-d82ffd8c-d89b-4244-8ba5-7b6c328812d7"
+            },
+            {
+              "id": "3490b03a-a0af-4ce4-9836-7aca5ad7b1d9",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/external_registries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registries"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-3490b03a-a0af-4ce4-9836-7aca5ad7b1d9"
+            },
+            {
+              "id": "f463b0d5-77d7-4ab9-ab30-a9999e501f62",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/external_registries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registries"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-f463b0d5-77d7-4ab9-ab30-a9999e501f62"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:25.000Z",
+          "updatedAt": "2026-07-28T02:45:25.000Z",
+          "uid": "35240-3629d2d4-7239-4c2d-b5d0-2a47ed1b99aa"
+        }
+      ],
+      "id": "a46f93de-314d-4fed-ba9b-ea8128321854",
+      "createdAt": "2026-07-28T02:45:25.000Z",
+      "updatedAt": "2026-07-28T02:45:25.000Z",
+      "uid": "35240-a46f93de-314d-4fed-ba9b-ea8128321854"
+    },
+    {
+      "name": "external_registry",
+      "item": [
+        {
+          "name": "iam",
+          "item": [
+            {
+              "name": "Get team OIDC IAM configuration for ECR.",
+              "id": "b801470f-4cfd-4ff1-8c81-48701ee2d8ce",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/external_registry/iam",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registry",
+                    "iam"
+                  ]
+                },
+                "description": "Required RBAC Policy: kots/externalregistry/read"
+              },
+              "response": [
+                {
+                  "id": "618f35fb-89c9-4fe6-aaad-23ce24f4e86e",
+                  "name": "GetECRIAMConfigResponse contains the team OIDC configuration.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/iam",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "iam"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"audience\": \"<string>\",\n  \"issuer_url\": \"<string>\",\n  \"subject_type\": \"<string>\",\n  \"thumbprint\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-618f35fb-89c9-4fe6-aaad-23ce24f4e86e"
+                },
+                {
+                  "id": "47bfae1d-844e-49e9-8e25-91cd0b26f007",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/iam",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "iam"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-47bfae1d-844e-49e9-8e25-91cd0b26f007"
+                },
+                {
+                  "id": "1cc5b949-d038-4dc7-a052-69b34ca1c9cf",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/iam",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "iam"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-1cc5b949-d038-4dc7-a052-69b34ca1c9cf"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-b801470f-4cfd-4ff1-8c81-48701ee2d8ce"
+            }
+          ],
+          "id": "83cfe2cc-3dcc-4e40-918f-a8c89d66f7a6",
+          "createdAt": "2026-07-28T02:45:25.000Z",
+          "updatedAt": "2026-07-28T02:45:25.000Z",
+          "uid": "35240-83cfe2cc-3dcc-4e40-918f-a8c89d66f7a6"
+        },
+        {
+          "name": "logs",
+          "item": [
+            {
+              "name": "Get the logs for a specific external registry either by endpoint or slug, or both.",
+              "id": "39d70d4b-7653-4270-af1e-ddfea987ec00",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/external_registry/logs?Endpoint=<string>&Slug=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registry",
+                    "logs"
+                  ],
+                  "query": [
+                    {
+                      "description": "The endpoint of the external registry to get logs for",
+                      "key": "Endpoint",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The slug of the external registry to get logs for",
+                      "key": "Slug",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Required RBAC Policy: kots/externalregistry/logs/read"
+              },
+              "response": [
+                {
+                  "id": "f5ce5499-83ef-4bd4-aa85-1e64c03a6172",
+                  "name": "ExternalRegistryLogsResponse contains the JSON external registry logs",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/logs?Endpoint=<string>&Slug=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "logs"
+                      ],
+                      "query": [
+                        {
+                          "description": "The endpoint of the external registry to get logs for",
+                          "key": "Endpoint",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The slug of the external registry to get logs for",
+                          "key": "Slug",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"logs\": [\n    {\n      \"action\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"customerName\": \"<string>\",\n      \"endpoint\": \"<string>\",\n      \"image\": \"<string>\",\n      \"isSuccess\": \"<boolean>\",\n      \"slug\": \"<string>\",\n      \"statusCode\": \"<long>\",\n      \"tag\": \"<string>\"\n    },\n    {\n      \"action\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"customerName\": \"<string>\",\n      \"endpoint\": \"<string>\",\n      \"image\": \"<string>\",\n      \"isSuccess\": \"<boolean>\",\n      \"slug\": \"<string>\",\n      \"statusCode\": \"<long>\",\n      \"tag\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-f5ce5499-83ef-4bd4-aa85-1e64c03a6172"
+                },
+                {
+                  "id": "a6cf0775-191b-412f-8131-d4638def2d71",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/logs?Endpoint=<string>&Slug=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "logs"
+                      ],
+                      "query": [
+                        {
+                          "description": "The endpoint of the external registry to get logs for",
+                          "key": "Endpoint",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The slug of the external registry to get logs for",
+                          "key": "Slug",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-a6cf0775-191b-412f-8131-d4638def2d71"
+                },
+                {
+                  "id": "f763494c-48c2-4fca-886c-5d3d7116e642",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/logs?Endpoint=<string>&Slug=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "logs"
+                      ],
+                      "query": [
+                        {
+                          "description": "The endpoint of the external registry to get logs for",
+                          "key": "Endpoint",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The slug of the external registry to get logs for",
+                          "key": "Slug",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-f763494c-48c2-4fca-886c-5d3d7116e642"
+                },
+                {
+                  "id": "73fa3885-b323-4074-9058-3a6ce5778548",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/logs?Endpoint=<string>&Slug=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "logs"
+                      ],
+                      "query": [
+                        {
+                          "description": "The endpoint of the external registry to get logs for",
+                          "key": "Endpoint",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The slug of the external registry to get logs for",
+                          "key": "Slug",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-73fa3885-b323-4074-9058-3a6ce5778548"
+                },
+                {
+                  "id": "24e7dabc-6e07-4647-a32e-f14504083435",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/logs?Endpoint=<string>&Slug=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "logs"
+                      ],
+                      "query": [
+                        {
+                          "description": "The endpoint of the external registry to get logs for",
+                          "key": "Endpoint",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The slug of the external registry to get logs for",
+                          "key": "Slug",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-24e7dabc-6e07-4647-a32e-f14504083435"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-39d70d4b-7653-4270-af1e-ddfea987ec00"
+            }
+          ],
+          "id": "59c8f646-3967-47d5-baf1-93c9af4eac48",
+          "createdAt": "2026-07-28T02:45:25.000Z",
+          "updatedAt": "2026-07-28T02:45:25.000Z",
+          "uid": "35240-59c8f646-3967-47d5-baf1-93c9af4eac48"
+        },
+        {
+          "name": "test",
+          "item": [
+            {
+              "name": "Test external registry for a team.",
+              "id": "96a4c906-2975-44eb-8608-85aa03db07a9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\",\n  \"image\": \"<string>\",\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"password\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/external_registry/test",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registry",
+                    "test"
+                  ]
+                },
+                "description": "Required RBAC Policy: kots/externalregistry/test"
+              },
+              "response": [
+                {
+                  "id": "4ea918ab-cff2-4264-9812-19e39f80e14a",
+                  "name": "TestExternalRegistriesResponse contains the JSON external registries test",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"endpoint\": \"<string>\",\n  \"image\": \"<string>\",\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"password\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "test"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<long>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-4ea918ab-cff2-4264-9812-19e39f80e14a"
+                },
+                {
+                  "id": "0d5d3609-043e-4072-bedf-d37a3c3221b5",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"endpoint\": \"<string>\",\n  \"image\": \"<string>\",\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"password\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "test"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-0d5d3609-043e-4072-bedf-d37a3c3221b5"
+                },
+                {
+                  "id": "301aaefc-3382-483c-8c0e-dd7f9874d212",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"endpoint\": \"<string>\",\n  \"image\": \"<string>\",\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"password\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "test"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-301aaefc-3382-483c-8c0e-dd7f9874d212"
+                },
+                {
+                  "id": "10595b87-e524-4c9b-8eed-f0d5ae56c66d",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"endpoint\": \"<string>\",\n  \"image\": \"<string>\",\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"password\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "test"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-10595b87-e524-4c9b-8eed-f0d5ae56c66d"
+                },
+                {
+                  "id": "47656135-9c5f-4dad-9241-3ad93fc2fcc6",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"endpoint\": \"<string>\",\n  \"image\": \"<string>\",\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"password\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        "test"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-47656135-9c5f-4dad-9241-3ad93fc2fcc6"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-96a4c906-2975-44eb-8608-85aa03db07a9"
+            }
+          ],
+          "id": "538bc039-3a24-4be0-9c4b-4fd8a1b9907b",
+          "createdAt": "2026-07-28T02:45:25.000Z",
+          "updatedAt": "2026-07-28T02:45:25.000Z",
+          "uid": "35240-538bc039-3a24-4be0-9c4b-4fd8a1b9907b"
+        },
+        {
+          "name": "{slug}",
+          "item": [
+            {
+              "name": "Updates an external registry with the specified parameters.",
+              "id": "7b5700a6-3bc9-4cb4-8df3-1b902cfbd863",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"endpoint\": \"<string>\",\n  \"password\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/external_registry/:slug",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registry",
+                    ":slug"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2bf98421-7119-4c96-92b8-f95bd8d24690",
+                      "key": "slug",
+                      "value": "<string>",
+                      "description": "(Required) Registry slug - can not be changed"
+                    }
+                  ]
+                },
+                "description": "Required RBAC Policy: kots/externalregistry/update"
+              },
+              "response": [
+                {
+                  "id": "09aebe72-371a-4728-8964-e23a049c718a",
+                  "name": "UpdateExternalRegistryResponse represents an updated external registry.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"endpoint\": \"<string>\",\n  \"password\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"external_registry\": {\n    \"appIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"authType\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"endpoint\": \"<string>\",\n    \"isReplicated\": \"<boolean>\",\n    \"provider\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"teamId\": \"<string>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"username\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-09aebe72-371a-4728-8964-e23a049c718a"
+                },
+                {
+                  "id": "247662a0-26ea-4bf4-86df-9f1310fd420b",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"endpoint\": \"<string>\",\n  \"password\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-247662a0-26ea-4bf4-86df-9f1310fd420b"
+                },
+                {
+                  "id": "abac6a28-ee67-4ee3-aa28-da4be85f36cd",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"endpoint\": \"<string>\",\n  \"password\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-abac6a28-ee67-4ee3-aa28-da4be85f36cd"
+                },
+                {
+                  "id": "f2d602e2-4c79-490f-af9f-0c6eab1aedb6",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"endpoint\": \"<string>\",\n  \"password\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-f2d602e2-4c79-490f-af9f-0c6eab1aedb6"
+                },
+                {
+                  "id": "b8b93270-800c-498c-8d0d-c141faea62d4",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"endpoint\": \"<string>\",\n  \"password\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-b8b93270-800c-498c-8d0d-c141faea62d4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-7b5700a6-3bc9-4cb4-8df3-1b902cfbd863"
+            },
+            {
+              "name": "Deletes an external registry by slug.",
+              "id": "e4934c87-d7e2-41cd-abe7-1a7eb7bcce18",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/external_registry/:slug",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registry",
+                    ":slug"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a47e21fa-6efa-4c6f-b4ce-dd58d80c4c64",
+                      "key": "slug",
+                      "value": "<string>",
+                      "description": "(Required) Slug identifier"
+                    }
+                  ]
+                },
+                "description": "Required RBAC Policy: kots/externalregistry/[:slug]/delete"
+              },
+              "response": [
+                {
+                  "id": "90511786-947a-4034-97c0-eb03d229d65d",
+                  "name": "On success, no payload returned",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-90511786-947a-4034-97c0-eb03d229d65d"
+                },
+                {
+                  "id": "55b2cb5a-c5c0-4afc-a782-20d607dd5a78",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-55b2cb5a-c5c0-4afc-a782-20d607dd5a78"
+                },
+                {
+                  "id": "88a1f603-4d65-4979-a3ea-ce7f266ebfd0",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-88a1f603-4d65-4979-a3ea-ce7f266ebfd0"
+                },
+                {
+                  "id": "ec29aedd-aa3d-4558-a4f8-60657505df7f",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/external_registry/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "external_registry",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:25.000Z",
+                  "updatedAt": "2026-07-28T02:45:25.000Z",
+                  "uid": "35240-ec29aedd-aa3d-4558-a4f8-60657505df7f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-e4934c87-d7e2-41cd-abe7-1a7eb7bcce18"
+            }
+          ],
+          "id": "516cb397-9deb-483f-8d84-1a1349c18a16",
+          "createdAt": "2026-07-28T02:45:25.000Z",
+          "updatedAt": "2026-07-28T02:45:25.000Z",
+          "uid": "35240-516cb397-9deb-483f-8d84-1a1349c18a16"
+        },
+        {
+          "name": "Creates an external registry with the specified parameters.",
+          "id": "c509a4d2-a44b-46d5-9515-08227b8b4d81",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"skipValidation\": \"<boolean>\",\n  \"slug\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/external_registry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "external_registry"
+              ]
+            },
+            "description": "Required RBAC Policy: kots/externalregistry/create"
+          },
+          "response": [
+            {
+              "id": "d3861079-a88d-4f59-8caf-fb11b605b2bd",
+              "name": "CreateExternalRegistryResponse represents an external registry.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"skipValidation\": \"<boolean>\",\n  \"slug\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/external_registry",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registry"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"external_registry\": {\n    \"appIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"authType\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"endpoint\": \"<string>\",\n    \"isReplicated\": \"<boolean>\",\n    \"provider\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"teamId\": \"<string>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"username\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-d3861079-a88d-4f59-8caf-fb11b605b2bd"
+            },
+            {
+              "id": "573b8da8-d1ee-4452-ae8b-16a8c3ac0284",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"skipValidation\": \"<boolean>\",\n  \"slug\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/external_registry",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registry"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-573b8da8-d1ee-4452-ae8b-16a8c3ac0284"
+            },
+            {
+              "id": "1c03fbea-2bac-4d38-a509-eb3136a59998",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"skipValidation\": \"<boolean>\",\n  \"slug\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/external_registry",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registry"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-1c03fbea-2bac-4d38-a509-eb3136a59998"
+            },
+            {
+              "id": "353ee3f2-5167-4e3c-9177-be4f2073d2ac",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"authType\": \"<string>\",\n  \"copyPassword\": \"<boolean>\",\n  \"originalSlug\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"skipValidation\": \"<boolean>\",\n  \"slug\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/external_registry",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "external_registry"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:25.000Z",
+              "updatedAt": "2026-07-28T02:45:25.000Z",
+              "uid": "35240-353ee3f2-5167-4e3c-9177-be4f2073d2ac"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:25.000Z",
+          "updatedAt": "2026-07-28T02:45:25.000Z",
+          "uid": "35240-c509a4d2-a44b-46d5-9515-08227b8b4d81"
+        }
+      ],
+      "id": "d30e30ba-7af1-4c74-b80b-0dc5707d3a71",
+      "createdAt": "2026-07-28T02:45:25.000Z",
+      "updatedAt": "2026-07-28T02:45:25.000Z",
+      "uid": "35240-d30e30ba-7af1-4c74-b80b-0dc5707d3a71"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

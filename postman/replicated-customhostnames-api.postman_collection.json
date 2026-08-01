@@ -1,0 +1,1883 @@
+{
+  "info": {
+    "_postman_id": "4bedd866-4f62-49a4-83e3-e9e210986a6b",
+    "name": "Vendor API V3 apps customHostnames API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:19.000Z",
+    "updatedAt": "2026-07-28T02:45:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4bedd866-4f62-49a4-83e3-e9e210986a6b"
+  },
+  "item": [
+    {
+      "name": "app",
+      "item": [
+        {
+          "name": "{app_id}",
+          "item": [
+            {
+              "name": "custom-hostname",
+              "item": [
+                {
+                  "name": "default",
+                  "item": [
+                    {
+                      "name": "set",
+                      "item": [
+                        {
+                          "name": "Set the default hostname",
+                          "id": "1af3a340-8fa6-4ac3-87bb-8dcd5561853d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/set",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                ":app_id",
+                                "custom-hostname",
+                                "default",
+                                "set"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f56d5010-75c8-4aee-a5e4-f6badfa3c370",
+                                  "key": "app_id",
+                                  "value": "<string>",
+                                  "description": "(Required) App identifier"
+                                }
+                              ]
+                            },
+                            "description": "Set the default custom hostname for a specific app and service (registry, proxy, download portal, or replicated app).\nThe default hostname is used when no other custom hostname is specified for a channel.\n\nRequired RBAC Policy: kots/app/[:appid]/customhostname/default/set"
+                          },
+                          "response": [
+                            {
+                              "id": "b36d2253-dc47-4849-9eb3-da4d43d8d2b1",
+                              "name": "SetDefaultHostnameResponse contains whether or not the request was successful",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/set",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "custom-hostname",
+                                    "default",
+                                    "set"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\"\n}",
+                              "createdAt": "2026-07-28T02:45:20.000Z",
+                              "updatedAt": "2026-07-28T02:45:20.000Z",
+                              "uid": "35240-b36d2253-dc47-4849-9eb3-da4d43d8d2b1"
+                            },
+                            {
+                              "id": "2de97b97-adeb-41fa-845c-8f1e7147f441",
+                              "name": "Returned on bad input",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/set",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "custom-hostname",
+                                    "default",
+                                    "set"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:20.000Z",
+                              "updatedAt": "2026-07-28T02:45:20.000Z",
+                              "uid": "35240-2de97b97-adeb-41fa-845c-8f1e7147f441"
+                            },
+                            {
+                              "id": "8265323e-0938-4e27-9f71-e3ddcf085535",
+                              "name": "Return if the caller is not authorized",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/set",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "custom-hostname",
+                                    "default",
+                                    "set"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:20.000Z",
+                              "updatedAt": "2026-07-28T02:45:20.000Z",
+                              "uid": "35240-8265323e-0938-4e27-9f71-e3ddcf085535"
+                            },
+                            {
+                              "id": "bd4b06ed-8158-4a7a-967e-cf6f808c5ecd",
+                              "name": "Returned if the caller does not have the needed permission",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/set",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "custom-hostname",
+                                    "default",
+                                    "set"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:45:20.000Z",
+                              "updatedAt": "2026-07-28T02:45:20.000Z",
+                              "uid": "35240-bd4b06ed-8158-4a7a-967e-cf6f808c5ecd"
+                            },
+                            {
+                              "id": "d10ee6d6-6434-467e-a2cb-c2ee98ccd60f",
+                              "name": "Returned on resource not found",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/set",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "custom-hostname",
+                                    "default",
+                                    "set"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:20.000Z",
+                              "updatedAt": "2026-07-28T02:45:20.000Z",
+                              "uid": "35240-d10ee6d6-6434-467e-a2cb-c2ee98ccd60f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:45:20.000Z",
+                          "updatedAt": "2026-07-28T02:45:20.000Z",
+                          "uid": "35240-1af3a340-8fa6-4ac3-87bb-8dcd5561853d"
+                        }
+                      ],
+                      "id": "0350b2b5-f6b4-4adc-8801-5012d6e1219d",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-0350b2b5-f6b4-4adc-8801-5012d6e1219d"
+                    },
+                    {
+                      "name": "unset",
+                      "item": [
+                        {
+                          "name": "Unset the default hostname",
+                          "id": "facf017c-e590-4614-8f14-9a0cf076d369",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/unset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                ":app_id",
+                                "custom-hostname",
+                                "default",
+                                "unset"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e75087f5-7dc5-4cb4-8a41-cbc7979991db",
+                                  "key": "app_id",
+                                  "value": "<string>",
+                                  "description": "(Required) App identifier"
+                                }
+                              ]
+                            },
+                            "description": "Remove the default custom hostname for a specific app and service (registry, proxy, download portal, or replicated app).\nAfter unsetting, the system will fall back to the replicated hostname for that service if a custom hostname is not set for a channel.\n\nRequired RBAC Policy: kots/app/[:appid]/customhostname/default/unset"
+                          },
+                          "response": [
+                            {
+                              "id": "0fc4d989-2b48-4ebd-b22a-4e9c561fd262",
+                              "name": "UnsetDefaultHostnameResponse contains whether or not the request was successful",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/unset",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "custom-hostname",
+                                    "default",
+                                    "unset"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\"\n}",
+                              "createdAt": "2026-07-28T02:45:20.000Z",
+                              "updatedAt": "2026-07-28T02:45:20.000Z",
+                              "uid": "35240-0fc4d989-2b48-4ebd-b22a-4e9c561fd262"
+                            },
+                            {
+                              "id": "05420867-614c-45d6-a783-6e4f31d4ed41",
+                              "name": "Returned on bad input",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/unset",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "custom-hostname",
+                                    "default",
+                                    "unset"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:20.000Z",
+                              "updatedAt": "2026-07-28T02:45:20.000Z",
+                              "uid": "35240-05420867-614c-45d6-a783-6e4f31d4ed41"
+                            },
+                            {
+                              "id": "f382e3b4-dcb9-4b54-ba35-98fddbbabda0",
+                              "name": "Return if the caller is not authorized",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/unset",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "custom-hostname",
+                                    "default",
+                                    "unset"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:20.000Z",
+                              "updatedAt": "2026-07-28T02:45:20.000Z",
+                              "uid": "35240-f382e3b4-dcb9-4b54-ba35-98fddbbabda0"
+                            },
+                            {
+                              "id": "41ffb4ca-bfd2-4d46-9b9c-e8333856da54",
+                              "name": "Returned if the caller does not have the needed permission",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/unset",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "custom-hostname",
+                                    "default",
+                                    "unset"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:45:20.000Z",
+                              "updatedAt": "2026-07-28T02:45:20.000Z",
+                              "uid": "35240-41ffb4ca-bfd2-4d46-9b9c-e8333856da54"
+                            },
+                            {
+                              "id": "7eee61bd-f2b6-4087-94de-15dec66f199c",
+                              "name": "Returned on resource not found",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/:app_id/custom-hostname/default/unset",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    ":app_id",
+                                    "custom-hostname",
+                                    "default",
+                                    "unset"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "app_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:20.000Z",
+                              "updatedAt": "2026-07-28T02:45:20.000Z",
+                              "uid": "35240-7eee61bd-f2b6-4087-94de-15dec66f199c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:45:20.000Z",
+                          "updatedAt": "2026-07-28T02:45:20.000Z",
+                          "uid": "35240-facf017c-e590-4614-8f14-9a0cf076d369"
+                        }
+                      ],
+                      "id": "2530efb7-ae12-4069-9ec7-045751dc3b47",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-2530efb7-ae12-4069-9ec7-045751dc3b47"
+                    }
+                  ],
+                  "id": "f205c2ff-e85e-47fa-977c-0d36d352f0ee",
+                  "createdAt": "2026-07-28T02:45:20.000Z",
+                  "updatedAt": "2026-07-28T02:45:20.000Z",
+                  "uid": "35240-f205c2ff-e85e-47fa-977c-0d36d352f0ee"
+                },
+                {
+                  "name": "Create a custom hostname",
+                  "id": "7000f49f-2fb3-4141-a699-f6132ff82b31",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "app",
+                        ":app_id",
+                        "custom-hostname"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1b2acfb5-9489-490b-931a-e872253eff50",
+                          "key": "app_id",
+                          "value": "<string>",
+                          "description": "(Required) App identifier"
+                        }
+                      ]
+                    },
+                    "description": "Add a new custom hostname for a specific app and service (registry, proxy, download portal, or replicated app).\n\nRequired RBAC Policy: kots/app/[:appid]/customhostname/create"
+                  },
+                  "response": [
+                    {
+                      "id": "1c1e055c-934b-4c2f-b9ee-b93c6bb4b725",
+                      "name": "CreateCustomHostnameResponse contains whether or not the request was successful",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostname"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-1c1e055c-934b-4c2f-b9ee-b93c6bb4b725"
+                    },
+                    {
+                      "id": "c54587d1-37ec-4aa6-90db-661b48e277d3",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostname"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-c54587d1-37ec-4aa6-90db-661b48e277d3"
+                    },
+                    {
+                      "id": "409e0a4d-ee2c-44ed-85d5-a9ceddafd0ee",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostname"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-409e0a4d-ee2c-44ed-85d5-a9ceddafd0ee"
+                    },
+                    {
+                      "id": "1e1478b3-5675-41c9-a94f-10aea9e51d17",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostname"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-1e1478b3-5675-41c9-a94f-10aea9e51d17"
+                    },
+                    {
+                      "id": "02608d96-8480-4add-8783-71ebb8e62725",
+                      "name": "Returned on resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostname"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-02608d96-8480-4add-8783-71ebb8e62725"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:20.000Z",
+                  "updatedAt": "2026-07-28T02:45:20.000Z",
+                  "uid": "35240-7000f49f-2fb3-4141-a699-f6132ff82b31"
+                },
+                {
+                  "name": "Delete a custom hostname",
+                  "id": "72cac1af-64eb-4c69-9ee6-f04c0f780476",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "app",
+                        ":app_id",
+                        "custom-hostname"
+                      ],
+                      "variable": [
+                        {
+                          "id": "56fda8d9-fd1a-46f3-bf10-3c3320e96f6b",
+                          "key": "app_id",
+                          "value": "<string>",
+                          "description": "(Required) App identifier"
+                        }
+                      ]
+                    },
+                    "description": "Remove a custom hostname from a specific app and service (registry, proxy, download portal, or replicated app).\n\nRequired RBAC Policy: kots/app/[:appid]/customhostname/delete"
+                  },
+                  "response": [
+                    {
+                      "id": "3794a59d-5026-4c42-a6e7-dbaa189f7627",
+                      "name": "DeleteCustomHostnameResponse contains whether or not the request was successful",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostname"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-3794a59d-5026-4c42-a6e7-dbaa189f7627"
+                    },
+                    {
+                      "id": "a70a10aa-46e2-42e5-aca9-1bb358ebbfa7",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostname"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-a70a10aa-46e2-42e5-aca9-1bb358ebbfa7"
+                    },
+                    {
+                      "id": "99a6a9d8-f369-407f-b4cc-a286c965fd0a",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostname"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-99a6a9d8-f369-407f-b4cc-a286c965fd0a"
+                    },
+                    {
+                      "id": "455ea3de-a970-44bf-818e-ac921da0dc66",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostname"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-455ea3de-a970-44bf-818e-ac921da0dc66"
+                    },
+                    {
+                      "id": "97aa266c-7f6c-437c-8e26-d67c7fd3ea25",
+                      "name": "Returned on resource not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"downloadPortal\": {\n    \"hostname\": \"<string>\"\n  },\n  \"proxy\": {\n    \"hostname\": \"<string>\"\n  },\n  \"registry\": {\n    \"hostname\": \"<string>\"\n  },\n  \"replicatedApp\": {\n    \"hostname\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostname"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-97aa266c-7f6c-437c-8e26-d67c7fd3ea25"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:20.000Z",
+                  "updatedAt": "2026-07-28T02:45:20.000Z",
+                  "uid": "35240-72cac1af-64eb-4c69-9ee6-f04c0f780476"
+                }
+              ],
+              "id": "8ac1ec08-9d49-4934-8a4d-1cb42dbdf583",
+              "createdAt": "2026-07-28T02:45:20.000Z",
+              "updatedAt": "2026-07-28T02:45:20.000Z",
+              "uid": "35240-8ac1ec08-9d49-4934-8a4d-1cb42dbdf583"
+            },
+            {
+              "name": "custom-hostnames",
+              "item": [
+                {
+                  "name": "List custom hostnames for an app.",
+                  "id": "08fb5971-ec44-47d6-adf7-5c90f132a9c6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/app/:app_id/custom-hostnames",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "app",
+                        ":app_id",
+                        "custom-hostnames"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9bd6f2c9-5002-418b-a205-030d908d0173",
+                          "key": "app_id",
+                          "value": "<string>",
+                          "description": "(Required) App identifier"
+                        }
+                      ]
+                    },
+                    "description": "Return all custom hostnames configured for the specified app, grouped by service (registry, proxy, download portal, replicated app).\n\nRequired RBAC Policy: kots/app/[:appid]/customhostname/list"
+                  },
+                  "response": [
+                    {
+                      "id": "de4a5462-a5c6-4fe6-ab5e-a2ea5bed4350",
+                      "name": "ListCustomHostnamesResponse contains the JSON custom hostnames list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostnames",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostnames"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"downloadPortal\": [\n    {\n      \"app_id\": \"<string>\",\n      \"cloudflare_custom_hostname_id\": \"<string>\",\n      \"cloudflare_worker_route_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"domain_txt_record_name\": \"<string>\",\n      \"domain_txt_record_value\": \"<string>\",\n      \"domain_verification_status\": \"<string>\",\n      \"domain_verification_type\": \"<string>\",\n      \"failure_count\": \"<long>\",\n      \"failure_reason\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"is_default\": \"<boolean>\",\n      \"origin_server\": \"<string>\",\n      \"team_id\": \"<string>\",\n      \"tls_txt_record_name\": \"<string>\",\n      \"tls_txt_record_value\": \"<string>\",\n      \"tls_verification_status\": \"<string>\",\n      \"tls_verification_type\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"verification_errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"app_id\": \"<string>\",\n      \"cloudflare_custom_hostname_id\": \"<string>\",\n      \"cloudflare_worker_route_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"domain_txt_record_name\": \"<string>\",\n      \"domain_txt_record_value\": \"<string>\",\n      \"domain_verification_status\": \"<string>\",\n      \"domain_verification_type\": \"<string>\",\n      \"failure_count\": \"<long>\",\n      \"failure_reason\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"is_default\": \"<boolean>\",\n      \"origin_server\": \"<string>\",\n      \"team_id\": \"<string>\",\n      \"tls_txt_record_name\": \"<string>\",\n      \"tls_txt_record_value\": \"<string>\",\n      \"tls_verification_status\": \"<string>\",\n      \"tls_verification_type\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"verification_errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"proxy\": [\n    {\n      \"app_id\": \"<string>\",\n      \"cloudflare_custom_hostname_id\": \"<string>\",\n      \"cloudflare_worker_route_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"domain_txt_record_name\": \"<string>\",\n      \"domain_txt_record_value\": \"<string>\",\n      \"domain_verification_status\": \"<string>\",\n      \"domain_verification_type\": \"<string>\",\n      \"failure_count\": \"<long>\",\n      \"failure_reason\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"is_default\": \"<boolean>\",\n      \"origin_server\": \"<string>\",\n      \"team_id\": \"<string>\",\n      \"tls_txt_record_name\": \"<string>\",\n      \"tls_txt_record_value\": \"<string>\",\n      \"tls_verification_status\": \"<string>\",\n      \"tls_verification_type\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"verification_errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"app_id\": \"<string>\",\n      \"cloudflare_custom_hostname_id\": \"<string>\",\n      \"cloudflare_worker_route_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"domain_txt_record_name\": \"<string>\",\n      \"domain_txt_record_value\": \"<string>\",\n      \"domain_verification_status\": \"<string>\",\n      \"domain_verification_type\": \"<string>\",\n      \"failure_count\": \"<long>\",\n      \"failure_reason\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"is_default\": \"<boolean>\",\n      \"origin_server\": \"<string>\",\n      \"team_id\": \"<string>\",\n      \"tls_txt_record_name\": \"<string>\",\n      \"tls_txt_record_value\": \"<string>\",\n      \"tls_verification_status\": \"<string>\",\n      \"tls_verification_type\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"verification_errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"registry\": [\n    {\n      \"app_id\": \"<string>\",\n      \"cloudflare_custom_hostname_id\": \"<string>\",\n      \"cloudflare_worker_route_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"domain_txt_record_name\": \"<string>\",\n      \"domain_txt_record_value\": \"<string>\",\n      \"domain_verification_status\": \"<string>\",\n      \"domain_verification_type\": \"<string>\",\n      \"failure_count\": \"<long>\",\n      \"failure_reason\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"is_default\": \"<boolean>\",\n      \"origin_server\": \"<string>\",\n      \"team_id\": \"<string>\",\n      \"tls_txt_record_name\": \"<string>\",\n      \"tls_txt_record_value\": \"<string>\",\n      \"tls_verification_status\": \"<string>\",\n      \"tls_verification_type\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"verification_errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"app_id\": \"<string>\",\n      \"cloudflare_custom_hostname_id\": \"<string>\",\n      \"cloudflare_worker_route_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"domain_txt_record_name\": \"<string>\",\n      \"domain_txt_record_value\": \"<string>\",\n      \"domain_verification_status\": \"<string>\",\n      \"domain_verification_type\": \"<string>\",\n      \"failure_count\": \"<long>\",\n      \"failure_reason\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"is_default\": \"<boolean>\",\n      \"origin_server\": \"<string>\",\n      \"team_id\": \"<string>\",\n      \"tls_txt_record_name\": \"<string>\",\n      \"tls_txt_record_value\": \"<string>\",\n      \"tls_verification_status\": \"<string>\",\n      \"tls_verification_type\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"verification_errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"replicatedApp\": [\n    {\n      \"app_id\": \"<string>\",\n      \"cloudflare_custom_hostname_id\": \"<string>\",\n      \"cloudflare_worker_route_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"domain_txt_record_name\": \"<string>\",\n      \"domain_txt_record_value\": \"<string>\",\n      \"domain_verification_status\": \"<string>\",\n      \"domain_verification_type\": \"<string>\",\n      \"failure_count\": \"<long>\",\n      \"failure_reason\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"is_default\": \"<boolean>\",\n      \"origin_server\": \"<string>\",\n      \"team_id\": \"<string>\",\n      \"tls_txt_record_name\": \"<string>\",\n      \"tls_txt_record_value\": \"<string>\",\n      \"tls_verification_status\": \"<string>\",\n      \"tls_verification_type\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"verification_errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"app_id\": \"<string>\",\n      \"cloudflare_custom_hostname_id\": \"<string>\",\n      \"cloudflare_worker_route_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"domain_txt_record_name\": \"<string>\",\n      \"domain_txt_record_value\": \"<string>\",\n      \"domain_verification_status\": \"<string>\",\n      \"domain_verification_type\": \"<string>\",\n      \"failure_count\": \"<long>\",\n      \"failure_reason\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"is_default\": \"<boolean>\",\n      \"origin_server\": \"<string>\",\n      \"team_id\": \"<string>\",\n      \"tls_txt_record_name\": \"<string>\",\n      \"tls_txt_record_value\": \"<string>\",\n      \"tls_verification_status\": \"<string>\",\n      \"tls_verification_type\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"verification_errors\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-de4a5462-a5c6-4fe6-ab5e-a2ea5bed4350"
+                    },
+                    {
+                      "id": "20f086d7-43f1-476a-8c66-9878bcf138e5",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostnames",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostnames"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-20f086d7-43f1-476a-8c66-9878bcf138e5"
+                    },
+                    {
+                      "id": "9554d115-a302-41bd-b5e0-8da1d9329a3f",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostnames",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostnames"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-9554d115-a302-41bd-b5e0-8da1d9329a3f"
+                    },
+                    {
+                      "id": "4168d589-51c7-4707-a848-1da57c5f9af2",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostnames",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostnames"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-4168d589-51c7-4707-a848-1da57c5f9af2"
+                    },
+                    {
+                      "id": "b2d8d362-e2f8-42c7-9ae3-2d3ef05d66fc",
+                      "name": "Returned on resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/custom-hostnames",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "custom-hostnames"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:20.000Z",
+                      "updatedAt": "2026-07-28T02:45:20.000Z",
+                      "uid": "35240-b2d8d362-e2f8-42c7-9ae3-2d3ef05d66fc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:20.000Z",
+                  "updatedAt": "2026-07-28T02:45:20.000Z",
+                  "uid": "35240-08fb5971-ec44-47d6-adf7-5c90f132a9c6"
+                }
+              ],
+              "id": "200aa1c8-2f8e-497b-83b9-cb9e6e173231",
+              "createdAt": "2026-07-28T02:45:20.000Z",
+              "updatedAt": "2026-07-28T02:45:20.000Z",
+              "uid": "35240-200aa1c8-2f8e-497b-83b9-cb9e6e173231"
+            }
+          ],
+          "id": "17046705-32d8-4aa5-b4b1-299632b430c8",
+          "createdAt": "2026-07-28T02:45:20.000Z",
+          "updatedAt": "2026-07-28T02:45:20.000Z",
+          "uid": "35240-17046705-32d8-4aa5-b4b1-299632b430c8"
+        }
+      ],
+      "id": "88947fc3-87c7-4ad3-a22b-69c3b30d882d",
+      "createdAt": "2026-07-28T02:45:20.000Z",
+      "updatedAt": "2026-07-28T02:45:20.000Z",
+      "uid": "35240-88947fc3-87c7-4ad3-a22b-69c3b30d882d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

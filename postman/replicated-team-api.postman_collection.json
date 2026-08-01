@@ -1,0 +1,3874 @@
+{
+  "info": {
+    "_postman_id": "98b42234-8174-4a57-98e9-1245a45b0d23",
+    "name": "Vendor API V3 apps team API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:42.000Z",
+    "updatedAt": "2026-07-28T02:45:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-98b42234-8174-4a57-98e9-1245a45b0d23"
+  },
+  "item": [
+    {
+      "name": "app",
+      "item": [
+        {
+          "name": "{app_id}",
+          "item": [
+            {
+              "name": "images",
+              "item": [
+                {
+                  "name": "delete",
+                  "item": [
+                    {
+                      "name": "Deletes registry images for an app by ID.",
+                      "id": "65404826-d683-4438-a9a1-472a80cc4ac2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"imageRefs\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/images/delete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "images",
+                            "delete"
+                          ],
+                          "variable": [
+                            {
+                              "id": "540fb06c-b930-44f8-bc36-5755adfa2460",
+                              "key": "app_id",
+                              "value": "<string>",
+                              "description": "(Required) App identifier"
+                            }
+                          ]
+                        },
+                        "description": "Required RBAC Policy: kots/app/[:appid]/image/delete"
+                      },
+                      "response": [
+                        {
+                          "id": "562b1e62-48dc-48e4-acc9-a652539afb42",
+                          "name": "On success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"imageRefs\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/app/:app_id/images/delete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                ":app_id",
+                                "images",
+                                "delete"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:45:43.000Z",
+                          "updatedAt": "2026-07-28T02:45:43.000Z",
+                          "uid": "35240-562b1e62-48dc-48e4-acc9-a652539afb42"
+                        },
+                        {
+                          "id": "96aa764e-f0b2-4c3f-9c80-988a21e3284a",
+                          "name": "Returned on bad input",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"imageRefs\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/app/:app_id/images/delete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                ":app_id",
+                                "images",
+                                "delete"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:43.000Z",
+                          "updatedAt": "2026-07-28T02:45:43.000Z",
+                          "uid": "35240-96aa764e-f0b2-4c3f-9c80-988a21e3284a"
+                        },
+                        {
+                          "id": "d980c835-029a-40e8-be52-1d2beb512ccf",
+                          "name": "Return if the caller is not authorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"imageRefs\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/app/:app_id/images/delete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                ":app_id",
+                                "images",
+                                "delete"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:43.000Z",
+                          "updatedAt": "2026-07-28T02:45:43.000Z",
+                          "uid": "35240-d980c835-029a-40e8-be52-1d2beb512ccf"
+                        },
+                        {
+                          "id": "da43d382-40f3-4f2e-8987-534f8e7131ba",
+                          "name": "Returned if the caller does not have the needed permission",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"imageRefs\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/app/:app_id/images/delete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                ":app_id",
+                                "images",
+                                "delete"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:45:43.000Z",
+                          "updatedAt": "2026-07-28T02:45:43.000Z",
+                          "uid": "35240-da43d382-40f3-4f2e-8987-534f8e7131ba"
+                        },
+                        {
+                          "id": "b978388b-fbb7-43d1-9b79-8c3467779482",
+                          "name": "Returned on resource not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"imageRefs\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/app/:app_id/images/delete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                ":app_id",
+                                "images",
+                                "delete"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "app_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:45:43.000Z",
+                          "updatedAt": "2026-07-28T02:45:43.000Z",
+                          "uid": "35240-b978388b-fbb7-43d1-9b79-8c3467779482"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-65404826-d683-4438-a9a1-472a80cc4ac2"
+                    }
+                  ],
+                  "id": "44362359-8e37-4fd8-8b8d-b470beddd5e4",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-44362359-8e37-4fd8-8b8d-b470beddd5e4"
+                },
+                {
+                  "name": "Lists all registry images for an app by ID.",
+                  "id": "05a90534-6fe7-4ef1-bf5b-de68c87f3b4d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/app/:app_id/images",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "app",
+                        ":app_id",
+                        "images"
+                      ],
+                      "variable": [
+                        {
+                          "id": "800a5a4a-4f03-4e5d-8ead-012bd2c66bb0",
+                          "key": "app_id",
+                          "value": "<string>",
+                          "description": "(Required) App identifier"
+                        }
+                      ]
+                    },
+                    "description": "Required RBAC Policy: kots/app/[:appid]/image/list"
+                  },
+                  "response": [
+                    {
+                      "id": "390f233a-bd9b-4429-a60e-24c115669a05",
+                      "name": "ListImagesResponse represents a list of images.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/images",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "images"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"images\": [\n    {\n      \"name\": \"<string>\",\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-390f233a-bd9b-4429-a60e-24c115669a05"
+                    },
+                    {
+                      "id": "4b3bf2fd-d5c4-4a9e-a418-661b45f86921",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/images",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "images"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-4b3bf2fd-d5c4-4a9e-a418-661b45f86921"
+                    },
+                    {
+                      "id": "d3a3973b-bd75-4baa-85b7-72320ac23011",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/images",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "images"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-d3a3973b-bd75-4baa-85b7-72320ac23011"
+                    },
+                    {
+                      "id": "918452ee-bf1e-45e3-927f-3f4bff774c0f",
+                      "name": "Returned on resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/app/:app_id/images",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "app",
+                            ":app_id",
+                            "images"
+                          ],
+                          "variable": [
+                            {
+                              "key": "app_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-918452ee-bf1e-45e3-927f-3f4bff774c0f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-05a90534-6fe7-4ef1-bf5b-de68c87f3b4d"
+                }
+              ],
+              "id": "d86575ae-f8b9-4512-81ee-f726cfee4a9a",
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-d86575ae-f8b9-4512-81ee-f726cfee4a9a"
+            }
+          ],
+          "id": "cf13506f-d635-4b4f-848c-e8a55517071f",
+          "createdAt": "2026-07-28T02:45:43.000Z",
+          "updatedAt": "2026-07-28T02:45:43.000Z",
+          "uid": "35240-cf13506f-d635-4b4f-848c-e8a55517071f"
+        }
+      ],
+      "id": "990166f5-b35f-42d1-9cba-4babf856b7cb",
+      "createdAt": "2026-07-28T02:45:43.000Z",
+      "updatedAt": "2026-07-28T02:45:43.000Z",
+      "uid": "35240-990166f5-b35f-42d1-9cba-4babf856b7cb"
+    },
+    {
+      "name": "team",
+      "item": [
+        {
+          "name": "default-app",
+          "item": [
+            {
+              "name": "Set or clear the team's default application.",
+              "id": "5be32633-c61a-40f7-92cb-69ef07c4eee2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"default_app_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/team/default-app",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "default-app"
+                  ]
+                },
+                "description": "Required RBAC Policy: team/default-app/update"
+              },
+              "response": [
+                {
+                  "id": "4f209355-bc63-4d30-b7ab-1d0f7e01abd4",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"default_app_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/default-app",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "default-app"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"default_app_id\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-4f209355-bc63-4d30-b7ab-1d0f7e01abd4"
+                },
+                {
+                  "id": "eeacc3bc-72eb-4653-a4b0-fc611342b3c0",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"default_app_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/default-app",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "default-app"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-eeacc3bc-72eb-4653-a4b0-fc611342b3c0"
+                },
+                {
+                  "id": "54ba439f-9d3d-480e-be48-c918b8e2f060",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"default_app_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/default-app",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "default-app"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-54ba439f-9d3d-480e-be48-c918b8e2f060"
+                },
+                {
+                  "id": "b181eb8e-91bf-4b0e-9add-8f6b76516858",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"default_app_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/default-app",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "default-app"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-b181eb8e-91bf-4b0e-9add-8f6b76516858"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-5be32633-c61a-40f7-92cb-69ef07c4eee2"
+            }
+          ],
+          "id": "376921cb-f541-4e04-b93d-6e251dfc6b27",
+          "createdAt": "2026-07-28T02:45:43.000Z",
+          "updatedAt": "2026-07-28T02:45:43.000Z",
+          "uid": "35240-376921cb-f541-4e04-b93d-6e251dfc6b27"
+        },
+        {
+          "name": "invite",
+          "item": [
+            {
+              "name": "{email}",
+              "item": [
+                {
+                  "name": "Delete a pending team invite.",
+                  "id": "f6d1f23e-43e9-49d5-aae6-33be0355ec22",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/invite/:email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "invite",
+                        ":email"
+                      ],
+                      "variable": [
+                        {
+                          "id": "181563fa-805f-46d3-9269-3b26097d1169",
+                          "key": "email",
+                          "value": "<string>",
+                          "description": "(Required) The email of the invite to delete"
+                        }
+                      ]
+                    },
+                    "description": "Deletes the pending invite with the given email.\n\nRequired RBAC Policy: team/member/delete"
+                  },
+                  "response": [
+                    {
+                      "id": "a793a71c-c511-4c60-a72d-c000c6d3d75b",
+                      "name": "On success, no payload returned",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/invite/:email",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "invite",
+                            ":email"
+                          ],
+                          "variable": [
+                            {
+                              "key": "email"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-a793a71c-c511-4c60-a72d-c000c6d3d75b"
+                    },
+                    {
+                      "id": "edc1413f-191e-4da1-9609-3248c18df5e4",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/invite/:email",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "invite",
+                            ":email"
+                          ],
+                          "variable": [
+                            {
+                              "key": "email"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-edc1413f-191e-4da1-9609-3248c18df5e4"
+                    },
+                    {
+                      "id": "e52214e6-7c17-48a1-8ce1-9b2612498bf3",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/invite/:email",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "invite",
+                            ":email"
+                          ],
+                          "variable": [
+                            {
+                              "key": "email"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-e52214e6-7c17-48a1-8ce1-9b2612498bf3"
+                    },
+                    {
+                      "id": "39758cf9-53fa-4272-aca4-ae51a0ffb805",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/invite/:email",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "invite",
+                            ":email"
+                          ],
+                          "variable": [
+                            {
+                              "key": "email"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-39758cf9-53fa-4272-aca4-ae51a0ffb805"
+                    },
+                    {
+                      "id": "830c89a5-e685-48ce-8a3e-df7077b59519",
+                      "name": "Returned on resource not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/invite/:email",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "invite",
+                            ":email"
+                          ],
+                          "variable": [
+                            {
+                              "key": "email"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-830c89a5-e685-48ce-8a3e-df7077b59519"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-f6d1f23e-43e9-49d5-aae6-33be0355ec22"
+                }
+              ],
+              "id": "3a1c1c6f-d953-484e-8e10-5cda33f3b895",
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-3a1c1c6f-d953-484e-8e10-5cda33f3b895"
+            },
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Update a pending team invite.",
+                  "id": "3b8bc3d2-4d36-458a-a51c-d8da8254149a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"policy_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/invite/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "invite",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "aca18dec-3762-4c28-afff-1cbbffa475e7",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the pending invite to update"
+                        }
+                      ]
+                    },
+                    "description": "Updates the pending invite with the given ID.\n\nRequired RBAC Policy: team/member/update"
+                  },
+                  "response": [
+                    {
+                      "id": "6af7d908-a312-41e1-aefe-f1a46539af53",
+                      "name": "On success, no payload returned",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"policy_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/team/invite/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "invite",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-6af7d908-a312-41e1-aefe-f1a46539af53"
+                    },
+                    {
+                      "id": "49f45f00-8bda-419c-8daa-4cce17a0d0f2",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"policy_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/team/invite/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "invite",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-49f45f00-8bda-419c-8daa-4cce17a0d0f2"
+                    },
+                    {
+                      "id": "705c5142-6166-427a-8cf3-5c72ddf8cad6",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"policy_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/team/invite/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "invite",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-705c5142-6166-427a-8cf3-5c72ddf8cad6"
+                    },
+                    {
+                      "id": "bfd9a88d-94fa-4131-9150-937a09b42601",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"policy_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/team/invite/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "invite",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-bfd9a88d-94fa-4131-9150-937a09b42601"
+                    },
+                    {
+                      "id": "1d5371db-e3fd-4003-a775-c7117fe6c63f",
+                      "name": "Returned on resource not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"policy_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/team/invite/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "invite",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-1d5371db-e3fd-4003-a775-c7117fe6c63f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-3b8bc3d2-4d36-458a-a51c-d8da8254149a"
+                }
+              ],
+              "id": "0c8c0327-95d6-44aa-9d1e-bbcd91871d37",
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-0c8c0327-95d6-44aa-9d1e-bbcd91871d37"
+            },
+            {
+              "name": "Create a pending team invite.",
+              "id": "e8028503-74d8-4a8d-b852-2505e31f4540",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"policy_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/team/invite",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "invite"
+                  ]
+                },
+                "description": "Creates a new pending invite for the team.\n\nRequired RBAC Policy: team/member/create"
+              },
+              "response": [
+                {
+                  "id": "d1c72cee-2763-4d3a-8f8e-c9469d7ecb98",
+                  "name": "On success, no payload returned",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"policy_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/invite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "invite"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-d1c72cee-2763-4d3a-8f8e-c9469d7ecb98"
+                },
+                {
+                  "id": "12e9952a-1bb3-452c-a984-14117fd2c7d0",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"policy_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/invite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "invite"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-12e9952a-1bb3-452c-a984-14117fd2c7d0"
+                },
+                {
+                  "id": "07585dbb-6bf8-430d-ad4a-9750772bd238",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"policy_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/invite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "invite"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-07585dbb-6bf8-430d-ad4a-9750772bd238"
+                },
+                {
+                  "id": "2a2c30fa-451c-477a-b6f3-afdbe95a2014",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"policy_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/invite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "invite"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-2a2c30fa-451c-477a-b6f3-afdbe95a2014"
+                },
+                {
+                  "id": "7ab9ed2e-6d57-4d91-831f-e5b3324a124f",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"policy_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/team/invite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "invite"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-7ab9ed2e-6d57-4d91-831f-e5b3324a124f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-e8028503-74d8-4a8d-b852-2505e31f4540"
+            }
+          ],
+          "id": "0e7c4128-9e2f-48dc-9b54-f11575e6ce85",
+          "createdAt": "2026-07-28T02:45:43.000Z",
+          "updatedAt": "2026-07-28T02:45:43.000Z",
+          "uid": "35240-0e7c4128-9e2f-48dc-9b54-f11575e6ce85"
+        },
+        {
+          "name": "member",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get a team member.",
+                  "id": "a7dafb28-7bbf-469f-8172-288938098302",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/member/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "member",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b8d6d439-ccf9-421b-a554-d9da4a40f2e2",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the team member to retrieve"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the team member with the given ID.\n\nRequired RBAC Policy: team/member/read"
+                  },
+                  "response": [
+                    {
+                      "id": "880a7537-5751-4f1a-b03c-16abd67b43b9",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/member/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "member",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"is_replicated_system_user\": \"<boolean>\",\n  \"is_two_factor_enabled\": \"<boolean>\",\n  \"last_name\": \"<string>\",\n  \"policy_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"team_id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-880a7537-5751-4f1a-b03c-16abd67b43b9"
+                    },
+                    {
+                      "id": "ef1445a1-f3e1-4529-b401-2be2e5f7cef2",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/member/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "member",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-ef1445a1-f3e1-4529-b401-2be2e5f7cef2"
+                    },
+                    {
+                      "id": "b23b79ab-741a-445f-beb8-554dcbdd482b",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/member/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "member",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-b23b79ab-741a-445f-beb8-554dcbdd482b"
+                    },
+                    {
+                      "id": "178b611c-881a-4db6-8780-d51485d4ad34",
+                      "name": "Returned if the caller does not have the needed permission",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/member/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "member",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-178b611c-881a-4db6-8780-d51485d4ad34"
+                    },
+                    {
+                      "id": "9e0f1c5d-920c-4a4d-b859-9e4958dc2a42",
+                      "name": "Returned on resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/team/member/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "team",
+                            "member",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:43.000Z",
+                      "updatedAt": "2026-07-28T02:45:43.000Z",
+                      "uid": "35240-9e0f1c5d-920c-4a4d-b859-9e4958dc2a42"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-a7dafb28-7bbf-469f-8172-288938098302"
+                }
+              ],
+              "id": "406ddc97-c5e9-4160-935a-934483f6a188",
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-406ddc97-c5e9-4160-935a-934483f6a188"
+            }
+          ],
+          "id": "047a542f-0015-4bae-a72a-e86f490fed1e",
+          "createdAt": "2026-07-28T02:45:43.000Z",
+          "updatedAt": "2026-07-28T02:45:43.000Z",
+          "uid": "35240-047a542f-0015-4bae-a72a-e86f490fed1e"
+        },
+        {
+          "name": "members",
+          "item": [
+            {
+              "name": "List team members.",
+              "id": "73768a1f-3c9f-4354-8c21-dd4084a3b3da",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team/members?includeInvites=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "members"
+                  ],
+                  "query": [
+                    {
+                      "description": "When set to true, pending invites will be included in the results. Default is false.",
+                      "key": "includeInvites",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "description": "Return a list of all team members, with optional inclusion of pending invites.\nMembers are sorted by email address.\n\nRequired RBAC Policy: team/member/list"
+              },
+              "response": [
+                {
+                  "id": "b5c41ee8-758a-40e8-b7f0-5b90c4cab77e",
+                  "name": "ListTeamMembersResponse contains the JSON team members list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/members?includeInvites=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "members"
+                      ],
+                      "query": [
+                        {
+                          "description": "When set to true, pending invites will be included in the results. Default is false.",
+                          "key": "includeInvites",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"members\": [\n    {\n      \"createdAt\": \"<dateTime>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"hasGitHubUsername\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"isArchived\": \"<boolean>\",\n      \"isInviteExpired\": \"<boolean>\",\n      \"isMFAEnabled\": \"<boolean>\",\n      \"isPendingInvite\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\",\n      \"isSAML\": \"<boolean>\",\n      \"lastActiveAt\": \"<dateTime>\",\n      \"lastName\": \"<string>\",\n      \"policyId\": \"<string>\"\n    },\n    {\n      \"createdAt\": \"<dateTime>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"hasGitHubUsername\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"isArchived\": \"<boolean>\",\n      \"isInviteExpired\": \"<boolean>\",\n      \"isMFAEnabled\": \"<boolean>\",\n      \"isPendingInvite\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\",\n      \"isSAML\": \"<boolean>\",\n      \"lastActiveAt\": \"<dateTime>\",\n      \"lastName\": \"<string>\",\n      \"policyId\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-b5c41ee8-758a-40e8-b7f0-5b90c4cab77e"
+                },
+                {
+                  "id": "4fd6698a-6f64-4d65-9a45-aebf1de98aa1",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/members?includeInvites=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "members"
+                      ],
+                      "query": [
+                        {
+                          "description": "When set to true, pending invites will be included in the results. Default is false.",
+                          "key": "includeInvites",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-4fd6698a-6f64-4d65-9a45-aebf1de98aa1"
+                },
+                {
+                  "id": "8f6b28aa-ea7e-419e-b73e-69756f4dfb89",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/members?includeInvites=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "members"
+                      ],
+                      "query": [
+                        {
+                          "description": "When set to true, pending invites will be included in the results. Default is false.",
+                          "key": "includeInvites",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-8f6b28aa-ea7e-419e-b73e-69756f4dfb89"
+                },
+                {
+                  "id": "c636a2b2-063e-4f72-9760-5880c6ecfdca",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/members?includeInvites=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "members"
+                      ],
+                      "query": [
+                        {
+                          "description": "When set to true, pending invites will be included in the results. Default is false.",
+                          "key": "includeInvites",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-c636a2b2-063e-4f72-9760-5880c6ecfdca"
+                },
+                {
+                  "id": "fbf39408-407a-494a-8ea7-65f98085a3a7",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/members?includeInvites=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "members"
+                      ],
+                      "query": [
+                        {
+                          "description": "When set to true, pending invites will be included in the results. Default is false.",
+                          "key": "includeInvites",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-fbf39408-407a-494a-8ea7-65f98085a3a7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-73768a1f-3c9f-4354-8c21-dd4084a3b3da"
+            }
+          ],
+          "id": "ee421f1c-0b31-4dfb-912e-bb9cb5fc8808",
+          "createdAt": "2026-07-28T02:45:43.000Z",
+          "updatedAt": "2026-07-28T02:45:43.000Z",
+          "uid": "35240-ee421f1c-0b31-4dfb-912e-bb9cb5fc8808"
+        },
+        {
+          "name": "serviceaccount",
+          "item": [
+            {
+              "name": "Remove a service account from a team.",
+              "id": "0ff38bf2-c4e4-42f6-bbcf-dd841189c182",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team/serviceaccount",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "serviceaccount"
+                  ]
+                },
+                "description": "Required RBAC Policy: team/serviceaccount/delete"
+              },
+              "response": [
+                {
+                  "id": "0aed68de-84a6-4bfa-a8a8-845d7892bceb",
+                  "name": "On success, no payload returned",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccount",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccount"
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-0aed68de-84a6-4bfa-a8a8-845d7892bceb"
+                },
+                {
+                  "id": "661022e0-2000-41e1-9692-df316b78f958",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccount",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccount"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-661022e0-2000-41e1-9692-df316b78f958"
+                },
+                {
+                  "id": "7292b731-123a-422f-b721-7b896a08e3f5",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccount",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccount"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-7292b731-123a-422f-b721-7b896a08e3f5"
+                },
+                {
+                  "id": "174b7ed0-d026-467b-8cf0-21c947d8148a",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccount",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccount"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-174b7ed0-d026-467b-8cf0-21c947d8148a"
+                },
+                {
+                  "id": "7679db53-4b37-41b8-8938-04dceb2a3ead",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccount",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccount"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-7679db53-4b37-41b8-8938-04dceb2a3ead"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-0ff38bf2-c4e4-42f6-bbcf-dd841189c182"
+            }
+          ],
+          "id": "d528a19f-d0e9-44c4-aaa1-78d3d7b310a4",
+          "createdAt": "2026-07-28T02:45:43.000Z",
+          "updatedAt": "2026-07-28T02:45:43.000Z",
+          "uid": "35240-d528a19f-d0e9-44c4-aaa1-78d3d7b310a4"
+        },
+        {
+          "name": "serviceaccounts",
+          "item": [
+            {
+              "name": "List service accounts for a team.",
+              "id": "2aab314f-22be-4b29-b367-66d82215645a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team/serviceaccounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "serviceaccounts"
+                  ]
+                },
+                "description": "Required RBAC Policy: team/serviceaccount/list"
+              },
+              "response": [
+                {
+                  "id": "54ea8083-9262-4388-832a-f35a20b8b526",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccounts"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"accountName\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"customerId\": \"<string>\",\n    \"emailAddress\": \"<string>\",\n    \"id\": \"<string>\",\n    \"isRevoked\": \"<boolean>\",\n    \"lastUsedAt\": \"<dateTime>\",\n    \"token\": \"<string>\",\n    \"tokenRegeneratedAt\": \"<dateTime>\"\n  },\n  {\n    \"accountName\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"customerId\": \"<string>\",\n    \"emailAddress\": \"<string>\",\n    \"id\": \"<string>\",\n    \"isRevoked\": \"<boolean>\",\n    \"lastUsedAt\": \"<dateTime>\",\n    \"token\": \"<string>\",\n    \"tokenRegeneratedAt\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-54ea8083-9262-4388-832a-f35a20b8b526"
+                },
+                {
+                  "id": "b35b321c-229c-417b-b840-a5e4258a4333",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccounts"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-b35b321c-229c-417b-b840-a5e4258a4333"
+                },
+                {
+                  "id": "3d5aa299-633b-411f-af04-fc60ae63c05e",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccounts"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-3d5aa299-633b-411f-af04-fc60ae63c05e"
+                },
+                {
+                  "id": "d6e68a5b-9836-4fa7-9660-2ecb713ab429",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccounts"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-d6e68a5b-9836-4fa7-9660-2ecb713ab429"
+                },
+                {
+                  "id": "d417d10e-3990-4ff3-bd8b-82fec4a016f1",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccounts"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-d417d10e-3990-4ff3-bd8b-82fec4a016f1"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-2aab314f-22be-4b29-b367-66d82215645a"
+            },
+            {
+              "name": "Create a service account for a team.",
+              "id": "1c9e6735-a77d-408d-8d09-9be902ee69be",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team/serviceaccounts?name=<string>&policy_id=<string>&permissions=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team",
+                    "serviceaccounts"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Name is the name of the service account to create.",
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) PolicyID is the ID of the policy to assign to the service account.",
+                      "key": "policy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Permissions is whether the service account is read-only or not. Any value besides \"read-only\" will be treated as \"read-write\".\nOptional.",
+                      "key": "permissions",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Required RBAC Policy: team/serviceaccount/create"
+              },
+              "response": [
+                {
+                  "id": "bb3d5b3e-b011-470e-8c36-a400240b824d",
+                  "name": "CreateTeamServiceAccountResponse contains the created service account and its access token.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccounts?name=<string>&policy_id=<string>&permissions=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Name is the name of the service account to create.",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) PolicyID is the ID of the policy to assign to the service account.",
+                          "key": "policy_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Permissions is whether the service account is read-only or not. Any value besides \"read-only\" will be treated as \"read-write\".\nOptional.",
+                          "key": "permissions",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"service_account\": {\n    \"accountName\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"customerId\": \"<string>\",\n    \"emailAddress\": \"<string>\",\n    \"id\": \"<string>\",\n    \"isRevoked\": \"<boolean>\",\n    \"lastUsedAt\": \"<dateTime>\",\n    \"token\": \"<string>\",\n    \"tokenRegeneratedAt\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-bb3d5b3e-b011-470e-8c36-a400240b824d"
+                },
+                {
+                  "id": "bd29ea77-9dd8-420f-9878-a1f7e1a2d1d8",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccounts?name=<string>&policy_id=<string>&permissions=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Name is the name of the service account to create.",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) PolicyID is the ID of the policy to assign to the service account.",
+                          "key": "policy_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Permissions is whether the service account is read-only or not. Any value besides \"read-only\" will be treated as \"read-write\".\nOptional.",
+                          "key": "permissions",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-bd29ea77-9dd8-420f-9878-a1f7e1a2d1d8"
+                },
+                {
+                  "id": "d1ce00e3-58a6-4a63-b0b1-d294abc0f652",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccounts?name=<string>&policy_id=<string>&permissions=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Name is the name of the service account to create.",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) PolicyID is the ID of the policy to assign to the service account.",
+                          "key": "policy_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Permissions is whether the service account is read-only or not. Any value besides \"read-only\" will be treated as \"read-write\".\nOptional.",
+                          "key": "permissions",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-d1ce00e3-58a6-4a63-b0b1-d294abc0f652"
+                },
+                {
+                  "id": "adefd122-3246-460c-a3a7-04aadebbb6ef",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccounts?name=<string>&policy_id=<string>&permissions=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Name is the name of the service account to create.",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) PolicyID is the ID of the policy to assign to the service account.",
+                          "key": "policy_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Permissions is whether the service account is read-only or not. Any value besides \"read-only\" will be treated as \"read-write\".\nOptional.",
+                          "key": "permissions",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-adefd122-3246-460c-a3a7-04aadebbb6ef"
+                },
+                {
+                  "id": "d2610917-d8b6-4aa1-ab42-8a4175580124",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/team/serviceaccounts?name=<string>&policy_id=<string>&permissions=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "team",
+                        "serviceaccounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Name is the name of the service account to create.",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) PolicyID is the ID of the policy to assign to the service account.",
+                          "key": "policy_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Permissions is whether the service account is read-only or not. Any value besides \"read-only\" will be treated as \"read-write\".\nOptional.",
+                          "key": "permissions",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:43.000Z",
+                  "updatedAt": "2026-07-28T02:45:43.000Z",
+                  "uid": "35240-d2610917-d8b6-4aa1-ab42-8a4175580124"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-1c9e6735-a77d-408d-8d09-9be902ee69be"
+            }
+          ],
+          "id": "dfb030bb-24f6-4a4d-9bbe-0940d1807ba4",
+          "createdAt": "2026-07-28T02:45:43.000Z",
+          "updatedAt": "2026-07-28T02:45:43.000Z",
+          "uid": "35240-dfb030bb-24f6-4a4d-9bbe-0940d1807ba4"
+        },
+        {
+          "name": "Get the current team.",
+          "id": "f4b8a174-dff5-4052-8524-3ae40f065012",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/team",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "team"
+              ]
+            },
+            "description": "Required RBAC Policy: team/read"
+          },
+          "response": [
+            {
+              "id": "407fc4e7-113d-414f-a018-a9b3afbb8482",
+              "name": "New Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"automatic_join_enabled\": \"<boolean>\",\n  \"cmx_low_credits_notified_at\": \"<dateTime>\",\n  \"collab_repo_feature\": \"<string>\",\n  \"collab_repo_support\": \"<string>\",\n  \"complexity_requirements\": {\n    \"digit\": \"<long>\",\n    \"min\": \"<long>\",\n    \"special\": \"<long>\",\n    \"upperLower\": \"<long>\"\n  },\n  \"default_app_id\": \"<string>\",\n  \"default_policy\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"has_contract\": \"<boolean>\",\n  \"has_enforced_complexity\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"is_google_auth_enabled\": \"<boolean>\",\n  \"is_google_auth_required\": \"<boolean>\",\n  \"is_saml_enabled\": \"<boolean>\",\n  \"is_saml_required\": \"<boolean>\",\n  \"is_two_factor_required\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"needs_profile\": \"<boolean>\",\n  \"saml_default_policy\": \"<string>\",\n  \"saml_landing\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-407fc4e7-113d-414f-a018-a9b3afbb8482"
+            },
+            {
+              "id": "dd30c3c5-ccde-48f8-b7f8-b9cc30e15c41",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-dd30c3c5-ccde-48f8-b7f8-b9cc30e15c41"
+            },
+            {
+              "id": "1bec05f6-056a-4196-a1d8-6146628763a7",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-1bec05f6-056a-4196-a1d8-6146628763a7"
+            },
+            {
+              "id": "dc2799c6-aeb9-484e-805c-4a82c2a4b6f9",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-dc2799c6-aeb9-484e-805c-4a82c2a4b6f9"
+            },
+            {
+              "id": "3b100fb8-884a-4e59-a18d-793e0e9aee84",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/team",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "team"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:43.000Z",
+              "updatedAt": "2026-07-28T02:45:43.000Z",
+              "uid": "35240-3b100fb8-884a-4e59-a18d-793e0e9aee84"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:43.000Z",
+          "updatedAt": "2026-07-28T02:45:43.000Z",
+          "uid": "35240-f4b8a174-dff5-4052-8524-3ae40f065012"
+        }
+      ],
+      "id": "468251ef-5b2f-4799-8846-69d7dd575cbd",
+      "createdAt": "2026-07-28T02:45:43.000Z",
+      "updatedAt": "2026-07-28T02:45:43.000Z",
+      "uid": "35240-468251ef-5b2f-4799-8846-69d7dd575cbd"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

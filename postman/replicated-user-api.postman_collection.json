@@ -1,0 +1,850 @@
+{
+  "info": {
+    "_postman_id": "3827be0f-5e31-459d-ab26-303daec3729e",
+    "name": "Vendor API V3 apps user API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:45.000Z",
+    "updatedAt": "2026-07-28T02:45:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3827be0f-5e31-459d-ab26-303daec3729e"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Create an API token for the current user.",
+              "id": "377f7869-abca-469f-868e-f596f2555c4c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"read_only\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "token"
+                  ]
+                },
+                "description": "Required RBAC Policy: user/token/create"
+              },
+              "response": [
+                {
+                  "id": "b62268fe-a639-43ab-ab3f-8273cba2fe38",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"read_only\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"last_active\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"read_only\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-b62268fe-a639-43ab-ab3f-8273cba2fe38"
+                },
+                {
+                  "id": "496c87d9-b2cd-47cb-849b-a302edc300c4",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"read_only\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-496c87d9-b2cd-47cb-849b-a302edc300c4"
+                },
+                {
+                  "id": "1c3f7276-867e-455a-bb86-47aaa31b3f0f",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"read_only\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-1c3f7276-867e-455a-bb86-47aaa31b3f0f"
+                },
+                {
+                  "id": "fe932090-ed1a-49fa-8288-999c58eb6d7c",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"read_only\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-fe932090-ed1a-49fa-8288-999c58eb6d7c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:45.000Z",
+              "updatedAt": "2026-07-28T02:45:45.000Z",
+              "uid": "35240-377f7869-abca-469f-868e-f596f2555c4c"
+            },
+            {
+              "name": "Remove a user API token by name (body param).",
+              "id": "3399b30b-62c3-40b6-994d-f8399e235b57",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "token"
+                  ]
+                },
+                "description": "Required RBAC Policy: user/token/delete"
+              },
+              "response": [
+                {
+                  "id": "2875e4d0-83ca-4da5-9354-d6779bce1c33",
+                  "name": "On success, no payload returned",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-2875e4d0-83ca-4da5-9354-d6779bce1c33"
+                },
+                {
+                  "id": "8c60c52d-56ce-46bf-9507-1698602ce864",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-8c60c52d-56ce-46bf-9507-1698602ce864"
+                },
+                {
+                  "id": "aeb0a247-678a-4831-adb8-ba7119298bca",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-aeb0a247-678a-4831-adb8-ba7119298bca"
+                },
+                {
+                  "id": "e888ef35-9067-4fe3-8827-e16fba269638",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-e888ef35-9067-4fe3-8827-e16fba269638"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:45.000Z",
+              "updatedAt": "2026-07-28T02:45:45.000Z",
+              "uid": "35240-3399b30b-62c3-40b6-994d-f8399e235b57"
+            }
+          ],
+          "id": "a0f82f1e-69b4-495c-8c18-c938be8549aa",
+          "createdAt": "2026-07-28T02:45:45.000Z",
+          "updatedAt": "2026-07-28T02:45:45.000Z",
+          "uid": "35240-a0f82f1e-69b4-495c-8c18-c938be8549aa"
+        },
+        {
+          "name": "tokens",
+          "item": [
+            {
+              "name": "List API tokens for the current user.",
+              "id": "62c48bf6-7199-44cb-9462-f98f04a0c9b2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user/tokens",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "tokens"
+                  ]
+                },
+                "description": "Required RBAC Policy: user/token/list"
+              },
+              "response": [
+                {
+                  "id": "b098773d-0bd3-4012-82bd-9ae1f6986318",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "tokens"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"access_token\": \"<string>\",\n    \"last_active\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"read_only\": \"<boolean>\"\n  },\n  {\n    \"access_token\": \"<string>\",\n    \"last_active\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"read_only\": \"<boolean>\"\n  }\n]",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-b098773d-0bd3-4012-82bd-9ae1f6986318"
+                },
+                {
+                  "id": "d3c21288-dc19-4bbd-b4f9-e068e614d0a8",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "tokens"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-d3c21288-dc19-4bbd-b4f9-e068e614d0a8"
+                },
+                {
+                  "id": "90836aac-73df-45e1-b16d-74d44b8877d3",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "tokens"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-90836aac-73df-45e1-b16d-74d44b8877d3"
+                },
+                {
+                  "id": "d0759e85-0a1d-4214-9391-9a939a2b4e4f",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "tokens"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:45.000Z",
+                  "updatedAt": "2026-07-28T02:45:45.000Z",
+                  "uid": "35240-d0759e85-0a1d-4214-9391-9a939a2b4e4f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:45.000Z",
+              "updatedAt": "2026-07-28T02:45:45.000Z",
+              "uid": "35240-62c48bf6-7199-44cb-9462-f98f04a0c9b2"
+            }
+          ],
+          "id": "04408d41-f0c4-4332-be3e-351fdde04528",
+          "createdAt": "2026-07-28T02:45:45.000Z",
+          "updatedAt": "2026-07-28T02:45:45.000Z",
+          "uid": "35240-04408d41-f0c4-4332-be3e-351fdde04528"
+        }
+      ],
+      "id": "b967486d-c0e0-4649-87f4-2ea82dbb9251",
+      "createdAt": "2026-07-28T02:45:45.000Z",
+      "updatedAt": "2026-07-28T02:45:45.000Z",
+      "uid": "35240-b967486d-c0e0-4649-87f4-2ea82dbb9251"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/replicated-vendor-api-v3-openapi-original.json
+docs: https://docs.replicated.com/vendor/replicated-api-tokens
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  token_types:
+  - user API token
+  - service account token
+  note: >-
+    Vendor API v3 uses a token in the Authorization header. Tokens are user API
+    tokens or service-account tokens created in the Vendor Portal; legacy Team API
+    tokens are deprecated. No OAuth flows, so there is no scope surface.
+schemes:
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: Authorization
+  sources:
+  - openapi/replicated-vendor-api-v3-openapi-original.json

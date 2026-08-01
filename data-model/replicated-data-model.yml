@@ -1,0 +1,87 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/replicated-vendor-api-v3-openapi-original.json
+notes: >-
+  Entity-relationship graph derived from the Vendor API v3 path hierarchy and
+  id-reference parameters (appId, channelId, releaseSequence, customerId,
+  clusterId, vmId). 372 schemas, 22 tags. Relationships reflect the nesting in the
+  documented paths.
+entities:
+- name: App
+  tag: apps
+  description: A vendor application; the top-level container.
+  relationships:
+  - has_many: Channel
+    via: appId
+  - has_many: Release
+    via: appId
+  - has_many: Customer
+    via: appId
+  - has_many: LicenseField
+    via: appId
+- name: Channel
+  tag: channels
+  description: A release channel (Stable, Beta, Unstable, custom) within an app.
+  relationships:
+  - belongs_to: App
+    via: appId
+  - has_many: ChannelRelease
+    via: channelId
+- name: Release
+  tag: releases
+  description: An application release identified by sequence.
+  relationships:
+  - belongs_to: App
+    via: appId
+  - promoted_to: Channel
+    via: channelId
+- name: ChannelRelease
+  tag: channelReleases
+  description: A release as promoted to a specific channel (airgap builds, install commands).
+  relationships:
+  - belongs_to: Channel
+    via: channelId
+  - belongs_to: Release
+    via: releaseSequence
+- name: Customer
+  tag: customers
+  description: An end customer with a license and entitlements.
+  relationships:
+  - belongs_to: App
+    via: appId
+  - has_many: Instance
+    via: customerId
+  - has_one: License
+    via: customerId
+- name: Instance
+  tag: instances
+  description: A running install of the app at a customer, with telemetry and tags.
+  relationships:
+  - belongs_to: Customer
+    via: customerId
+- name: Cluster
+  tag: clusters
+  description: An ephemeral Compatibility Matrix (CMX) Kubernetes cluster for testing.
+  relationships:
+  - has_many: ClusterPort
+    via: clusterId
+  - has_many: ClusterAddon
+    via: clusterId
+- name: VM
+  tag: vms
+  description: An ephemeral Compatibility Matrix (CMX) virtual machine.
+  relationships:
+  - has_many: VMPort
+    via: vmId
+- name: ExternalRegistry
+  tag: externalRegistries
+  description: A configured external container registry integration.
+  relationships:
+  - belongs_to: App
+    via: appId
+- name: NotificationSubscription
+  tag: notifications
+  description: A webhook/email/Slack subscription to event types.
+  relationships:
+  - has_many: NotificationEvent
+    via: subscriptionId

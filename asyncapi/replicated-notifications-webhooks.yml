@@ -1,0 +1,63 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.replicated.com/vendor/event-notifications
+spec_type: Webhooks
+notes: >-
+  Replicated does not publish an AsyncAPI document. It does ship an Event
+  Notifications surface (GA 2026): 20+ event types across ~6 categories delivered
+  by webhook, email, and Slack. The Vendor API v3 exposes the subscription and
+  event management operations below. Event type names are enumerated dynamically
+  by the searchNotificationEventTypes operation, so the categories here reflect the
+  documented set rather than a fabricated fixed list.
+delivery_channels:
+- webhook
+- email
+- slack
+docs:
+  event_notifications: https://docs.replicated.com/vendor/event-notifications
+  instance_notifications: https://docs.replicated.com/vendor/instance-notifications-config
+  slack_config: https://docs.replicated.com/vendor/team-management-slack-config
+event_categories:
+- releases
+- channels
+- instances
+- customers
+- clusters
+- system
+example_events:
+- release promoted
+- release build failed
+- instance status changed
+- kubernetes upgrade available
+operations:
+- name: searchNotificationEventTypes
+  method: GET
+  path: /notification_event_types
+- name: listNotificationEvents
+  method: GET
+  path: /notification_events
+- name: createNotificationSubscription
+  method: POST
+  path: /notification_subscription
+- name: getNotificationSubscription
+  method: GET
+  path: /notification_subscription/{id}
+- name: updateNotificationSubscription
+  method: PUT
+  path: /notification_subscription/{id}
+- name: deleteNotificationSubscription
+  method: DELETE
+  path: /notification_subscription/{id}
+- name: listNotificationSubscriptions
+  method: GET
+  path: /notification_subscriptions
+- name: listNotificationSubscriptionEvents
+  method: GET
+  path: /notification_subscription/{id}/events
+- name: retryNotificationEvent
+  method: POST
+  path: /notification_event/{event_id}/retry
+- name: testWebhook
+  method: POST
+  path: /notification_webhook/test
+source_spec: openapi/replicated-vendor-api-v3-openapi-original.json

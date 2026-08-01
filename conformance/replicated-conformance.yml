@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/replicated-vendor-api-v3-openapi-original.json
+compliance_source: https://www.replicated.com/security
+standards:
+- id: openapi-swagger-2.0
+  conforms: true
+  evidence: Published Vendor API v3 Swagger 2.0 spec (vendor-api-v3.json).
+- id: api-key-auth
+  conforms: true
+  evidence: apiKey security scheme, Authorization header, applied API-wide.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme declared.
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Error responses documented by status code only; no application/problem+json.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: /.well-known/security.txt served on replicated.com and api.replicated.com.
+- id: soc2
+  conforms: true
+  evidence: SOC 2 attested per https://www.replicated.com/security.
+- id: csa-star
+  conforms: true
+  evidence: CSA STAR listed per https://www.replicated.com/security.
+- id: json-api
+  conforms: false
+- id: fhir
+  conforms: false

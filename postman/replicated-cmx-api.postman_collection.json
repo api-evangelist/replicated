@@ -1,0 +1,1945 @@
+{
+  "info": {
+    "_postman_id": "022dcae9-bb5e-4167-b244-1b5aa4fe5e72",
+    "name": "Vendor API V3 apps cmx API",
+    "description": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:16.000Z",
+    "updatedAt": "2026-07-28T02:45:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-022dcae9-bb5e-4167-b244-1b5aa4fe5e72"
+  },
+  "item": [
+    {
+      "name": "cmx",
+      "item": [
+        {
+          "name": "history",
+          "item": [
+            {
+              "name": "List CMX usage history.",
+              "id": "9e5b48c9-5af6-4424-92b1-5ea123f47c63",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cmx/history?pageSize=20&currentPage=<long>&sortColumn=<string>&sortDesc=<boolean>&start-time=<string>&end-time=<string>&actor-filter=<string>&tag-filter=<string>&tag-sort-key=<string>&distribution-type=kubernetes&count-only=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cmx",
+                    "history"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page size",
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Current page",
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "Sort column",
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort descending",
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                      "key": "end-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter history by actor type or name, e.g. \"user\" or \"Replicated CLI\".",
+                      "key": "actor-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter history by tag, e.g. \"tag1=value1\".",
+                      "key": "tag-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort history by a specific key, e.g. \"terminated_at\" would sort by\ntermination time.",
+                      "key": "tag-sort-key",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by distribution type",
+                      "key": "distribution-type",
+                      "value": "kubernetes"
+                    },
+                    {
+                      "description": "Only return the total count of items.  Supports filtering using other parameters.",
+                      "key": "count-only",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "description": "List CMX usage history for both VMs and clusters."
+              },
+              "response": [
+                {
+                  "id": "e5a801b3-7dcd-430c-a58f-8e0b81e68c0d",
+                  "name": "ListCMXHistoryResponse contains the response to listing CMX history",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/history?pageSize=20&currentPage=<long>&sortColumn=<string>&sortDesc=<boolean>&start-time=<string>&end-time=<string>&actor-filter=<string>&tag-filter=<string>&tag-sort-key=<string>&distribution-type=kubernetes&count-only=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "history"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page size",
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Current page",
+                          "key": "currentPage",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Sort column",
+                          "key": "sortColumn",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort descending",
+                          "key": "sortDesc",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                          "key": "start-time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                          "key": "end-time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter history by actor type or name, e.g. \"user\" or \"Replicated CLI\".",
+                          "key": "actor-filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter history by tag, e.g. \"tag1=value1\".",
+                          "key": "tag-filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort history by a specific key, e.g. \"terminated_at\" would sort by\ntermination time.",
+                          "key": "tag-sort-key",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by distribution type",
+                          "key": "distribution-type",
+                          "value": "kubernetes"
+                        },
+                        {
+                          "description": "Only return the total count of items.  Supports filtering using other parameters.",
+                          "key": "count-only",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"history\": [\n    {\n      \"actor\": {\n        \"description\": \"<string>\",\n        \"id\": \"<string>\",\n        \"link\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"assigned_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"credits_per_hour\": \"<long>\",\n      \"disk_gib\": \"<long>\",\n      \"distribution\": \"<string>\",\n      \"distribution_type\": \"<string>\",\n      \"duration\": \"<long>\",\n      \"expires_at\": \"<dateTime>\",\n      \"flat_fee\": \"<long>\",\n      \"guid\": \"<string>\",\n      \"has_network_report\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"instance_type\": \"<string>\",\n      \"minutes_billed\": \"<long>\",\n      \"name\": \"<string>\",\n      \"network_id\": \"<string>\",\n      \"node_groups\": \"<long>\",\n      \"nodes\": \"<long>\",\n      \"running_at\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"tags\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"team_id\": \"<string>\",\n      \"terminated_at\": \"<dateTime>\",\n      \"total_credits\": \"<long>\",\n      \"ttl\": \"<string>\",\n      \"version\": \"<string>\"\n    },\n    {\n      \"actor\": {\n        \"description\": \"<string>\",\n        \"id\": \"<string>\",\n        \"link\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"assigned_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"credits_per_hour\": \"<long>\",\n      \"disk_gib\": \"<long>\",\n      \"distribution\": \"<string>\",\n      \"distribution_type\": \"<string>\",\n      \"duration\": \"<long>\",\n      \"expires_at\": \"<dateTime>\",\n      \"flat_fee\": \"<long>\",\n      \"guid\": \"<string>\",\n      \"has_network_report\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"instance_type\": \"<string>\",\n      \"minutes_billed\": \"<long>\",\n      \"name\": \"<string>\",\n      \"network_id\": \"<string>\",\n      \"node_groups\": \"<long>\",\n      \"nodes\": \"<long>\",\n      \"running_at\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"tags\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"team_id\": \"<string>\",\n      \"terminated_at\": \"<dateTime>\",\n      \"total_credits\": \"<long>\",\n      \"ttl\": \"<string>\",\n      \"version\": \"<string>\"\n    }\n  ],\n  \"total\": \"<long>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-e5a801b3-7dcd-430c-a58f-8e0b81e68c0d"
+                },
+                {
+                  "id": "9d56aaa0-9269-45a4-8362-62074ce21da0",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/history?pageSize=20&currentPage=<long>&sortColumn=<string>&sortDesc=<boolean>&start-time=<string>&end-time=<string>&actor-filter=<string>&tag-filter=<string>&tag-sort-key=<string>&distribution-type=kubernetes&count-only=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "history"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page size",
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Current page",
+                          "key": "currentPage",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Sort column",
+                          "key": "sortColumn",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort descending",
+                          "key": "sortDesc",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                          "key": "start-time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                          "key": "end-time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter history by actor type or name, e.g. \"user\" or \"Replicated CLI\".",
+                          "key": "actor-filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter history by tag, e.g. \"tag1=value1\".",
+                          "key": "tag-filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort history by a specific key, e.g. \"terminated_at\" would sort by\ntermination time.",
+                          "key": "tag-sort-key",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by distribution type",
+                          "key": "distribution-type",
+                          "value": "kubernetes"
+                        },
+                        {
+                          "description": "Only return the total count of items.  Supports filtering using other parameters.",
+                          "key": "count-only",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-9d56aaa0-9269-45a4-8362-62074ce21da0"
+                },
+                {
+                  "id": "c9b4dd5e-6815-4c1c-a347-c7d0d34aa0af",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/history?pageSize=20&currentPage=<long>&sortColumn=<string>&sortDesc=<boolean>&start-time=<string>&end-time=<string>&actor-filter=<string>&tag-filter=<string>&tag-sort-key=<string>&distribution-type=kubernetes&count-only=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "history"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page size",
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Current page",
+                          "key": "currentPage",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Sort column",
+                          "key": "sortColumn",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort descending",
+                          "key": "sortDesc",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                          "key": "start-time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                          "key": "end-time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter history by actor type or name, e.g. \"user\" or \"Replicated CLI\".",
+                          "key": "actor-filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter history by tag, e.g. \"tag1=value1\".",
+                          "key": "tag-filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort history by a specific key, e.g. \"terminated_at\" would sort by\ntermination time.",
+                          "key": "tag-sort-key",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by distribution type",
+                          "key": "distribution-type",
+                          "value": "kubernetes"
+                        },
+                        {
+                          "description": "Only return the total count of items.  Supports filtering using other parameters.",
+                          "key": "count-only",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-c9b4dd5e-6815-4c1c-a347-c7d0d34aa0af"
+                },
+                {
+                  "id": "32dcc9db-76b8-452a-95ae-65922050c36e",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/history?pageSize=20&currentPage=<long>&sortColumn=<string>&sortDesc=<boolean>&start-time=<string>&end-time=<string>&actor-filter=<string>&tag-filter=<string>&tag-sort-key=<string>&distribution-type=kubernetes&count-only=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "history"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page size",
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Current page",
+                          "key": "currentPage",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Sort column",
+                          "key": "sortColumn",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort descending",
+                          "key": "sortDesc",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                          "key": "start-time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                          "key": "end-time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter history by actor type or name, e.g. \"user\" or \"Replicated CLI\".",
+                          "key": "actor-filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter history by tag, e.g. \"tag1=value1\".",
+                          "key": "tag-filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort history by a specific key, e.g. \"terminated_at\" would sort by\ntermination time.",
+                          "key": "tag-sort-key",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by distribution type",
+                          "key": "distribution-type",
+                          "value": "kubernetes"
+                        },
+                        {
+                          "description": "Only return the total count of items.  Supports filtering using other parameters.",
+                          "key": "count-only",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-32dcc9db-76b8-452a-95ae-65922050c36e"
+                },
+                {
+                  "id": "bb7dab99-4e6b-4d00-bdbd-99a11808354c",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/history?pageSize=20&currentPage=<long>&sortColumn=<string>&sortDesc=<boolean>&start-time=<string>&end-time=<string>&actor-filter=<string>&tag-filter=<string>&tag-sort-key=<string>&distribution-type=kubernetes&count-only=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "history"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page size",
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Current page",
+                          "key": "currentPage",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Sort column",
+                          "key": "sortColumn",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort descending",
+                          "key": "sortDesc",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                          "key": "start-time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\".",
+                          "key": "end-time",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter history by actor type or name, e.g. \"user\" or \"Replicated CLI\".",
+                          "key": "actor-filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter history by tag, e.g. \"tag1=value1\".",
+                          "key": "tag-filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort history by a specific key, e.g. \"terminated_at\" would sort by\ntermination time.",
+                          "key": "tag-sort-key",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by distribution type",
+                          "key": "distribution-type",
+                          "value": "kubernetes"
+                        },
+                        {
+                          "description": "Only return the total count of items.  Supports filtering using other parameters.",
+                          "key": "count-only",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-bb7dab99-4e6b-4d00-bdbd-99a11808354c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:16.000Z",
+              "updatedAt": "2026-07-28T02:45:16.000Z",
+              "uid": "35240-9e5b48c9-5af6-4424-92b1-5ea123f47c63"
+            }
+          ],
+          "id": "74f513f6-6be2-4691-b600-16fe492779ae",
+          "createdAt": "2026-07-28T02:45:16.000Z",
+          "updatedAt": "2026-07-28T02:45:16.000Z",
+          "uid": "35240-74f513f6-6be2-4691-b600-16fe492779ae"
+        },
+        {
+          "name": "quotas",
+          "item": [
+            {
+              "name": "List CMX quotas.",
+              "id": "cd6be57f-72e6-49c9-b50d-bad8a43bc406",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cmx/quotas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cmx",
+                    "quotas"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "6e4a69de-6432-491d-9a19-ab4997d13512",
+                  "name": "ListCMXQuotasResponse contains the response to list CMX quotas",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/quotas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "quotas"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"cmx_quotas\": [\n    {\n      \"current_value\": \"<long>\",\n      \"default_value\": \"<long>\",\n      \"in_use\": \"<long>\",\n      \"name\": \"<string>\",\n      \"queued\": \"<long>\",\n      \"unit\": \"<string>\"\n    },\n    {\n      \"current_value\": \"<long>\",\n      \"default_value\": \"<long>\",\n      \"in_use\": \"<long>\",\n      \"name\": \"<string>\",\n      \"queued\": \"<long>\",\n      \"unit\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-6e4a69de-6432-491d-9a19-ab4997d13512"
+                },
+                {
+                  "id": "bd5005ae-f976-47e0-96f6-742c2288a985",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/quotas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "quotas"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-bd5005ae-f976-47e0-96f6-742c2288a985"
+                },
+                {
+                  "id": "d2c04207-997f-40f2-bea5-133a30091b4a",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/quotas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "quotas"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-d2c04207-997f-40f2-bea5-133a30091b4a"
+                },
+                {
+                  "id": "e3352b0a-1bb6-40a5-9259-0673117707b6",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/quotas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "quotas"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-e3352b0a-1bb6-40a5-9259-0673117707b6"
+                },
+                {
+                  "id": "59dc6b7d-3e00-4e2e-b8c1-1ed38a550125",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/quotas",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "quotas"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-59dc6b7d-3e00-4e2e-b8c1-1ed38a550125"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:16.000Z",
+              "updatedAt": "2026-07-28T02:45:16.000Z",
+              "uid": "35240-cd6be57f-72e6-49c9-b50d-bad8a43bc406"
+            }
+          ],
+          "id": "7e1f092d-d1cc-4611-b92b-83914b1e7a34",
+          "createdAt": "2026-07-28T02:45:16.000Z",
+          "updatedAt": "2026-07-28T02:45:16.000Z",
+          "uid": "35240-7e1f092d-d1cc-4611-b92b-83914b1e7a34"
+        },
+        {
+          "name": "stats",
+          "item": [
+            {
+              "name": "Get CMX usage stats.",
+              "id": "cdb6a38e-5f4c-4188-ab60-c79cf51d020a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cmx/stats",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cmx",
+                    "stats"
+                  ]
+                },
+                "description": "Required RBAC Policy: kots/cluster/list"
+              },
+              "response": [
+                {
+                  "id": "7da5c0ab-9734-4c81-9045-11430402d3da",
+                  "name": "GetCMXStatsResponse contains the response to get CMX stats.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "stats"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"cluster_count\": \"<long>\",\n  \"cost\": \"<long>\",\n  \"credit_balance\": \"<long>\",\n  \"error\": \"<string>\",\n  \"usage_minutes\": \"<long>\",\n  \"vm_count\": \"<long>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-7da5c0ab-9734-4c81-9045-11430402d3da"
+                },
+                {
+                  "id": "279b0226-0e8d-48a9-aa49-e1a07ecd8a14",
+                  "name": "Returned on bad input",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "stats"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-279b0226-0e8d-48a9-aa49-e1a07ecd8a14"
+                },
+                {
+                  "id": "de67c689-614f-4fc8-9966-9b69760088e8",
+                  "name": "Return if the caller is not authorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "stats"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-de67c689-614f-4fc8-9966-9b69760088e8"
+                },
+                {
+                  "id": "2f22adee-6f2a-42e8-9db6-1fef68a73a98",
+                  "name": "Returned if the caller does not have the needed permission",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "stats"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"messageCode\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-2f22adee-6f2a-42e8-9db6-1fef68a73a98"
+                },
+                {
+                  "id": "cbc779a3-0fcf-4310-a147-13aa4b66eb4e",
+                  "name": "Returned on resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "stats"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:45:17.000Z",
+                  "updatedAt": "2026-07-28T02:45:17.000Z",
+                  "uid": "35240-cbc779a3-0fcf-4310-a147-13aa4b66eb4e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:16.000Z",
+              "updatedAt": "2026-07-28T02:45:16.000Z",
+              "uid": "35240-cdb6a38e-5f4c-4188-ab60-c79cf51d020a"
+            }
+          ],
+          "id": "185953c0-97a1-4ddf-9291-0d4eb274ff09",
+          "createdAt": "2026-07-28T02:45:16.000Z",
+          "updatedAt": "2026-07-28T02:45:16.000Z",
+          "uid": "35240-185953c0-97a1-4ddf-9291-0d4eb274ff09"
+        },
+        {
+          "name": "user",
+          "item": [
+            {
+              "name": "public-keys",
+              "item": [
+                {
+                  "name": "{user_id}",
+                  "item": [
+                    {
+                      "name": "{fingerprint}",
+                      "item": [
+                        {
+                          "name": "Delete a public key for the authenticated user.",
+                          "id": "bc024f80-566c-49f8-bd08-1ead4e233cbd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/cmx/user/public-keys/:user_id/:fingerprint",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "cmx",
+                                "user",
+                                "public-keys",
+                                ":user_id",
+                                ":fingerprint"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d991242b-f63c-46c4-b090-155f6777bd50",
+                                  "key": "user_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The user ID (GitHub username or identifier) associated with the public key"
+                                },
+                                {
+                                  "id": "bb76b779-510d-4f24-84da-1afd52359b53",
+                                  "key": "fingerprint",
+                                  "value": "<string>",
+                                  "description": "(Required) The SHA256 fingerprint of the public key to delete"
+                                }
+                              ]
+                            },
+                            "description": "Deletes an SSH public key associated with the authenticated user in their team.\nSynced keys (from GitHub) cannot be deleted."
+                          },
+                          "response": [
+                            {
+                              "id": "c288dac7-74f4-4ed4-89df-ed8612f394ca",
+                              "name": "DeleteUserPublicKeyResponse contains the response for deleting a user public key.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/cmx/user/public-keys/:user_id/:fingerprint",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "cmx",
+                                    "user",
+                                    "public-keys",
+                                    ":user_id",
+                                    ":fingerprint"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "user_id"
+                                    },
+                                    {
+                                      "key": "fingerprint"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"success\": \"<boolean>\"\n}",
+                              "createdAt": "2026-07-28T02:45:17.000Z",
+                              "updatedAt": "2026-07-28T02:45:17.000Z",
+                              "uid": "35240-c288dac7-74f4-4ed4-89df-ed8612f394ca"
+                            },
+                            {
+                              "id": "4dbba719-9abd-434d-8ca7-d8cd9fd2ad64",
+                              "name": "Returned on bad input",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/cmx/user/public-keys/:user_id/:fingerprint",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "cmx",
+                                    "user",
+                                    "public-keys",
+                                    ":user_id",
+                                    ":fingerprint"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "user_id"
+                                    },
+                                    {
+                                      "key": "fingerprint"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:17.000Z",
+                              "updatedAt": "2026-07-28T02:45:17.000Z",
+                              "uid": "35240-4dbba719-9abd-434d-8ca7-d8cd9fd2ad64"
+                            },
+                            {
+                              "id": "43297024-50f0-46b8-af5d-1d2a6393488c",
+                              "name": "Return if the caller is not authorized",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/cmx/user/public-keys/:user_id/:fingerprint",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "cmx",
+                                    "user",
+                                    "public-keys",
+                                    ":user_id",
+                                    ":fingerprint"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "user_id"
+                                    },
+                                    {
+                                      "key": "fingerprint"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:17.000Z",
+                              "updatedAt": "2026-07-28T02:45:17.000Z",
+                              "uid": "35240-43297024-50f0-46b8-af5d-1d2a6393488c"
+                            },
+                            {
+                              "id": "c8d4d770-deed-4a14-a430-ae3ecdb89aa8",
+                              "name": "Returned on resource not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/cmx/user/public-keys/:user_id/:fingerprint",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "cmx",
+                                    "user",
+                                    "public-keys",
+                                    ":user_id",
+                                    ":fingerprint"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "user_id"
+                                    },
+                                    {
+                                      "key": "fingerprint"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:45:17.000Z",
+                              "updatedAt": "2026-07-28T02:45:17.000Z",
+                              "uid": "35240-c8d4d770-deed-4a14-a430-ae3ecdb89aa8"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:45:16.000Z",
+                          "updatedAt": "2026-07-28T02:45:16.000Z",
+                          "uid": "35240-bc024f80-566c-49f8-bd08-1ead4e233cbd"
+                        }
+                      ],
+                      "id": "ba6320d2-cd56-4ee4-b52c-683283b162c3",
+                      "createdAt": "2026-07-28T02:45:16.000Z",
+                      "updatedAt": "2026-07-28T02:45:16.000Z",
+                      "uid": "35240-ba6320d2-cd56-4ee4-b52c-683283b162c3"
+                    }
+                  ],
+                  "id": "48d1a108-9fad-4b8b-ad9d-28bf93b61188",
+                  "createdAt": "2026-07-28T02:45:16.000Z",
+                  "updatedAt": "2026-07-28T02:45:16.000Z",
+                  "uid": "35240-48d1a108-9fad-4b8b-ad9d-28bf93b61188"
+                },
+                {
+                  "name": "Get public keys for the authenticated user.",
+                  "id": "db00f105-fce3-45c7-b447-02cd814f5661",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/user/public-keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "user",
+                        "public-keys"
+                      ]
+                    },
+                    "description": "Returns all SSH public keys associated with the authenticated user in their team."
+                  },
+                  "response": [
+                    {
+                      "id": "0872399c-0a75-4e0f-8d03-76f3a25ad00a",
+                      "name": "GetUserPublicKeysResponse contains the response for getting user public keys.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cmx/user/public-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cmx",
+                            "user",
+                            "public-keys"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"public_keys\": [\n    {\n      \"fingerprint\": \"<string>\",\n      \"is_synced\": \"<boolean>\",\n      \"public_key\": \"<string>\",\n      \"user_id\": \"<string>\"\n    },\n    {\n      \"fingerprint\": \"<string>\",\n      \"is_synced\": \"<boolean>\",\n      \"public_key\": \"<string>\",\n      \"user_id\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:45:17.000Z",
+                      "updatedAt": "2026-07-28T02:45:17.000Z",
+                      "uid": "35240-0872399c-0a75-4e0f-8d03-76f3a25ad00a"
+                    },
+                    {
+                      "id": "13c69626-524d-4ebf-9752-85c70a3be094",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cmx/user/public-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cmx",
+                            "user",
+                            "public-keys"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:17.000Z",
+                      "updatedAt": "2026-07-28T02:45:17.000Z",
+                      "uid": "35240-13c69626-524d-4ebf-9752-85c70a3be094"
+                    },
+                    {
+                      "id": "5b3033a3-f6a7-49c4-a6d8-735cdfe11058",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cmx/user/public-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cmx",
+                            "user",
+                            "public-keys"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:17.000Z",
+                      "updatedAt": "2026-07-28T02:45:17.000Z",
+                      "uid": "35240-5b3033a3-f6a7-49c4-a6d8-735cdfe11058"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:16.000Z",
+                  "updatedAt": "2026-07-28T02:45:16.000Z",
+                  "uid": "35240-db00f105-fce3-45c7-b447-02cd814f5661"
+                },
+                {
+                  "name": "Add a public key for the authenticated user.",
+                  "id": "6a83b9e4-ba62-49e3-b575-eb6cdad1eb7c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"public_key\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/cmx/user/public-keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cmx",
+                        "user",
+                        "public-keys"
+                      ]
+                    },
+                    "description": "Adds an SSH public key associated with the authenticated user in their team."
+                  },
+                  "response": [
+                    {
+                      "id": "1e91ac9a-f808-4389-b4ce-b7e450e97c45",
+                      "name": "AddUserPublicKeyResponse contains the response for adding a user public key.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"public_key\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cmx/user/public-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cmx",
+                            "user",
+                            "public-keys"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"public_key\": {\n    \"fingerprint\": \"<string>\",\n    \"is_synced\": \"<boolean>\",\n    \"public_key\": \"<string>\",\n    \"user_id\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:45:17.000Z",
+                      "updatedAt": "2026-07-28T02:45:17.000Z",
+                      "uid": "35240-1e91ac9a-f808-4389-b4ce-b7e450e97c45"
+                    },
+                    {
+                      "id": "0198cee6-bbb3-4b22-ae46-73d04cc7715f",
+                      "name": "Returned on bad input",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"public_key\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cmx/user/public-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cmx",
+                            "user",
+                            "public-keys"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:17.000Z",
+                      "updatedAt": "2026-07-28T02:45:17.000Z",
+                      "uid": "35240-0198cee6-bbb3-4b22-ae46-73d04cc7715f"
+                    },
+                    {
+                      "id": "e0c3f1f4-27b1-45f5-af17-e5889177c6ff",
+                      "name": "Return if the caller is not authorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"public_key\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cmx/user/public-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cmx",
+                            "user",
+                            "public-keys"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:17.000Z",
+                      "updatedAt": "2026-07-28T02:45:17.000Z",
+                      "uid": "35240-e0c3f1f4-27b1-45f5-af17-e5889177c6ff"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:16.000Z",
+                  "updatedAt": "2026-07-28T02:45:16.000Z",
+                  "uid": "35240-6a83b9e4-ba62-49e3-b575-eb6cdad1eb7c"
+                }
+              ],
+              "id": "c6b097c7-180e-4449-89d9-5d4a8b4f565d",
+              "createdAt": "2026-07-28T02:45:16.000Z",
+              "updatedAt": "2026-07-28T02:45:16.000Z",
+              "uid": "35240-c6b097c7-180e-4449-89d9-5d4a8b4f565d"
+            }
+          ],
+          "id": "dbd13a37-e020-4a14-9cb2-408956b9a3f1",
+          "createdAt": "2026-07-28T02:45:16.000Z",
+          "updatedAt": "2026-07-28T02:45:16.000Z",
+          "uid": "35240-dbd13a37-e020-4a14-9cb2-408956b9a3f1"
+        }
+      ],
+      "id": "510cee4f-d970-4cb7-8941-93a19748c62a",
+      "createdAt": "2026-07-28T02:45:16.000Z",
+      "updatedAt": "2026-07-28T02:45:16.000Z",
+      "uid": "35240-510cee4f-d970-4cb7-8941-93a19748c62a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.replicated.com/vendor/v3"
+    }
+  ]
+}

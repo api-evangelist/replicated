@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/replicated-vendor-api-v3-openapi-original.json
+format: http-status
+notes: >-
+  Derived from the status codes declared across Vendor API v3 operations. The spec
+  documents error responses by HTTP status only, with no application/problem+json
+  schema (not RFC 9457). Responses carry a JSON body but its shape is not declared
+  in the spec. Occurrence counts are across all 217 operations.
+problems:
+- status: 400
+  title: Bad Request
+  meaning: Malformed request or invalid parameters.
+  occurrences: 193
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid Authorization token.
+  occurrences: 212
+- status: 403
+  title: Forbidden
+  meaning: Token lacks the RBAC permission for this operation.
+  occurrences: 206
+- status: 404
+  title: Not Found
+  meaning: Referenced app, channel, release, customer, or resource does not exist.
+  occurrences: 184
+- status: 412
+  title: Precondition Failed
+  meaning: A precondition on the request was not met (e.g. testRelease).
+  occurrences: 1
+- status: 429
+  title: Too Many Requests
+  meaning: Rate limit exceeded.
+  occurrences: 1
+- status: 500
+  title: Internal Server Error
+  meaning: Unexpected server-side error.
+  occurrences: 1
