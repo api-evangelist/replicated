@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps vms API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "vms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a test vm.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vm",
+            "params": [
+              {
+                "name": "DryRun",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/vm/create"
+        },
+        {
+          "info": {
+            "name": "List vm versions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vm/versions"
+          },
+          "docs": "List vm versions."
+        },
+        {
+          "info": {
+            "name": "Get the details for a test vm.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vm/:vm_id",
+            "params": [
+              {
+                "name": "vm_id",
+                "value": "",
+                "type": "path",
+                "description": "VM identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/vm/[:vmid]"
+        },
+        {
+          "info": {
+            "name": "Delete a test vm.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/vm/:vm_id",
+            "params": [
+              {
+                "name": "vm_id",
+                "value": "",
+                "type": "path",
+                "description": "VM identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/vm/[:vmid]/delete"
+        },
+        {
+          "info": {
+            "name": "Exposes a port on a vm.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vm/:vm_id/port",
+            "params": [
+              {
+                "name": "vm_id",
+                "value": "",
+                "type": "path",
+                "description": "VM identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/vm/[:vmid]/port/expose"
+        },
+        {
+          "info": {
+            "name": "Lists ports for a vm.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vm/:vm_id/ports",
+            "params": [
+              {
+                "name": "vm_id",
+                "value": "",
+                "type": "path",
+                "description": "VM identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/vm/[:vmid]/port/list"
+        },
+        {
+          "info": {
+            "name": "Update the tags for a vm.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/vm/:vm_id/tags",
+            "params": [
+              {
+                "name": "vm_id",
+                "value": "",
+                "type": "path",
+                "description": "VM identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/vm/tag/update"
+        },
+        {
+          "info": {
+            "name": "Update ttl for a VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/vm/:vm_id/ttl",
+            "params": [
+              {
+                "name": "vm_id",
+                "value": "",
+                "type": "path",
+                "description": "VM identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/vm/ttl/update"
+        },
+        {
+          "info": {
+            "name": "List test vms.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vms"
+          },
+          "docs": "Required RBAC Policy: kots/vm/list"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps networks API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "networks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the details for a test network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/network/:network_id",
+            "params": [
+              {
+                "name": "network_id",
+                "value": "",
+                "type": "path",
+                "description": "Network identifier"
+              }
+            ]
+          },
+          "docs": "The resources field contains a historical list of all clusters and VMs that have ever been\nassociated with this network. Resources remain in the list even after deletion to preserve\nhistory for network report correlation.\n\nRequired RBAC Policy: kots/network/[:clusterid]"
+        },
+        {
+          "info": {
+            "name": "Update network settings (policy and/or collect report).",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/network/:network_id/update",
+            "params": [
+              {
+                "name": "network_id",
+                "value": "",
+                "type": "path",
+                "description": "Network identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/network/[:networkid]/update"
+        },
+        {
+          "info": {
+            "name": "List test networks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/networks",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "sortColumn",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "sortDesc",
+                "value": "",
+                "type": "query",
+                "description": "Sort descending"
+              },
+              {
+                "name": "show-terminated",
+                "value": "",
+                "type": "query",
+                "description": "Show terminated networks"
+              },
+              {
+                "name": "terminated-filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter terminated networks. Allowed values: \"all\" (default, no filter) or\n\"with-report\" (only include terminated networks that have a report)."
+              },
+              {
+                "name": "start-time",
+                "value": "",
+                "type": "query",
+                "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\""
+              },
+              {
+                "name": "end-time",
+                "value": "",
+                "type": "query",
+                "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\""
+              }
+            ]
+          },
+          "docs": "Each network includes a resources field containing a historical list of all clusters and VMs\nthat have ever been associated with the network. Resources remain in the list even after\ndeletion to preserve history for network report correlation.\n\nRequired RBAC Policy: kots/network/list"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

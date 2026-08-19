@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps clusterAddons API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "clusterAddons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists addons for all clusters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cluster/:cluster_id/addons",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]/addon/list"
+        },
+        {
+          "info": {
+            "name": "Adds an object store addon to a cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cluster/:cluster_id/addons/objectstore",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]/addon/create/objectstore"
+        },
+        {
+          "info": {
+            "name": "Deletes an addon from a cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/cluster/:cluster_id/addons/:addon_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              },
+              {
+                "name": "addon_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster addon identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]/addon/[:addonid]/delete"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

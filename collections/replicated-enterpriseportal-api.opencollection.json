@@ -1,0 +1,1031 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps enterprisePortal API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "enterprisePortal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get download portal access settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/access",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/enterprise-portal/access/read"
+        },
+        {
+          "info": {
+            "name": "Update download portal access settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/access",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/{app_id}/enterprise-portal/access/update"
+        },
+        {
+          "info": {
+            "name": "Get custom branding for the enterprise portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/branding",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/enterprise-portal/branding/read"
+        },
+        {
+          "info": {
+            "name": "Update custom branding for the enterprise portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/branding",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/{app_id}/enterprise-portal/branding/update"
+        },
+        {
+          "info": {
+            "name": "Mark pending upstream content template updates reviewed for the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/content-repos/:repo_id/template-updates/acknowledge",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "repo_id",
+                "value": "",
+                "type": "path",
+                "description": "Content repository identifier"
+              }
+            ]
+          },
+          "docs": "Mark pending upstream content template updates reviewed for the current user."
+        },
+        {
+          "info": {
+            "name": "Update Enterprise Portal content settings for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/content-settings",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appId]/enterprise-portal/documentation/update"
+        },
+        {
+          "info": {
+            "name": "Pin a release version label to an existing content branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/content-versions/pin",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Creates a virtual content branch row that pins a release version label to\nthe content of an existing real branch."
+        },
+        {
+          "info": {
+            "name": "Delete a content version",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/content-versions/:version_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "Content version identifier"
+              }
+            ]
+          },
+          "docs": "Removes a content version row and its pages, toc, and theme.\nMainly used to remove pin rows. Real-branch rows can be deleted too —\nthey'll be recreated (empty) on the next sync."
+        },
+        {
+          "info": {
+            "name": "Clear the sync notice for a content version.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/content-versions/:version_id/dismiss-notice",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "Content version identifier"
+              }
+            ]
+          },
+          "docs": "Clear the sync notice for a content version."
+        },
+        {
+          "info": {
+            "name": "List customer allowed domains for the enterprise portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/customer-allowed-domains",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by customer ID"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy:\nkots/app/[:appid]/enterprise-portal/customer-allowed-domains/read\nkots/app/[:appid]/license/[:customer_id]/read"
+        },
+        {
+          "info": {
+            "name": "Create a customer allowed domain for the enterprise portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/customer-allowed-domains",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy:\nkots/app/[:appid]/enterprise-portal/customer-allowed-domains/create\nkots/app/[:appid]/license/[:customer_id]/read"
+        },
+        {
+          "info": {
+            "name": "Delete a customer allowed domain for the enterprise portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/customer-allowed-domains/:allowedDomainId",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "allowedDomainId",
+                "value": "",
+                "type": "path",
+                "description": "The allowed domain ID to delete"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "The customer ID for the allowed domain"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy:\nkots/app/[:appid]/enterprise-portal/customer-allowed-domains/delete\nkots/app/[:appid]/license/[:customer_id]/read"
+        },
+        {
+          "info": {
+            "name": "Invite a customer user to the enterprise portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/customer-user",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Invite a customer user to the enterprise portal, sending an invite email to the customer user."
+        },
+        {
+          "info": {
+            "name": "deleteEnterprisePortalCustomerUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/customer-user",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "EmailAddress",
+                "value": "",
+                "type": "query",
+                "description": "The email address of the user to delete"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "The customer ID which the user belongs to"
+              }
+            ]
+          },
+          "docs": "Delete a customer user for the enterprise portal"
+        },
+        {
+          "info": {
+            "name": "List customer users for the enterprise portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/customer-users",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "ExcludeInvites",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "FilterCustomerID",
+                "value": "",
+                "type": "query",
+                "description": "Filter by customer ID"
+              },
+              {
+                "name": "FilterEmail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by email address"
+              },
+              {
+                "name": "Limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Order",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy:\nkots/app/[:appid]/enterprise-portal/customer-users/read\nkots/app/[:appid]/license/[:customer_id]/read"
+        },
+        {
+          "info": {
+            "name": "Get documentation URLs for various installation methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/documentation",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/enterprise-portal/documentation/read"
+        },
+        {
+          "info": {
+            "name": "Update documentation URLs",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/documentation",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Update documentation URLs and markdown content for various installation methods\n\nRequired RBAC Policy: kots/app/[:appid]/enterprise-portal/documentation/update"
+        },
+        {
+          "info": {
+            "name": "List email history for the enterprise portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/email-history",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "EmailType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by email type (login, invite, version_update)"
+              },
+              {
+                "name": "Status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status (sent, delivered, bounced, spam_complaint)"
+              },
+              {
+                "name": "CustomerID",
+                "value": "",
+                "type": "query",
+                "description": "Filter by customer ID"
+              },
+              {
+                "name": "Limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of emails sent through the enterprise portal with their delivery status.\n\nRequired RBAC Policy:\nkots/app/{app_id}/enterprise-portal/email-history/read"
+        },
+        {
+          "info": {
+            "name": "List failed login attempts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/failed-login-attempts",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "Limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "Offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip"
+              },
+              {
+                "name": "FilterEmail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by email address"
+              },
+              {
+                "name": "Sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "Order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order (asc or desc)"
+              }
+            ]
+          },
+          "docs": "List failed login attempts for the enterprise portal users.\n\n\nRequired RBAC Policy: kots/app/[:appid]/enterprise-portal/failed-login-attempts/read"
+        },
+        {
+          "info": {
+            "name": "Get Enterprise Portal feature settings for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/features",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/read"
+        },
+        {
+          "info": {
+            "name": "Update Enterprise Portal feature settings for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/features",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/update"
+        },
+        {
+          "info": {
+            "name": "List installation attempts for the enterprise portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/install-attempts",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "FilterCustomerID",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a specific customer ID"
+              },
+              {
+                "name": "FilterInstanceID",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a specific instance ID"
+              },
+              {
+                "name": "Limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "Offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip"
+              },
+              {
+                "name": "FilterStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status"
+              }
+            ]
+          },
+          "docs": "List install attempts for a customer or all customers in the app."
+        },
+        {
+          "info": {
+            "name": "Create an installation options record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/install-options",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "includeInstructions",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include install instructions in the response"
+              }
+            ]
+          },
+          "docs": "Create an installation options record for a customer describing the installation configuration. Automatically creating\na service account for the installation that can be used to perform the actual installation.\nOptionally include generated install instructions by setting the includeInstructions query parameter to true."
+        },
+        {
+          "info": {
+            "name": "Update an installation options record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/install-options/:install_options_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "install_options_id",
+                "value": "",
+                "type": "path",
+                "description": "Install options ID from path"
+              },
+              {
+                "name": "includeInstructions",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include install instructions in the response"
+              }
+            ]
+          },
+          "docs": "Update an existing installation options record for a customer. Only provided fields will be updated.\nYou cannot change the service account ID, instance name, or install type as these are immutable.\n\nOptionally return updated install instructions by setting the includeInstructions query parameter to true."
+        },
+        {
+          "info": {
+            "name": "Delete an installation options record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/install-options/:install_options_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "install_options_id",
+                "value": "",
+                "type": "path",
+                "description": "Install options ID from path"
+              }
+            ]
+          },
+          "docs": "Soft-delete an existing installation options record for a customer by setting its status to \"discarded\".\nThe record is preserved for audit purposes. The associated service account is not revoked. The service account\nmust be revoked before the instance name can be reused with a new install option record for the same customer."
+        },
+        {
+          "info": {
+            "name": "Get an install options record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/install-options/:option_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "option_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID for a customer install options record (returned from create install options)"
+              },
+              {
+                "name": "includeInstructions",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include install instructions in the response"
+              }
+            ]
+          },
+          "docs": "Retrieve the installation options that describe the installation configured for a customers install via the Enterprise Portal or API.\nOptionally include generated install instructions by setting the includeInstructions query parameter to true."
+        },
+        {
+          "info": {
+            "name": "Get update instructions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/install-options/:option_id/update-instructions",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "option_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID for a customer install options record"
+              },
+              {
+                "name": "instance_id",
+                "value": "",
+                "type": "query",
+                "description": "The instance ID for a legacy/airgap instance (used when option_id is \"placeholder\")"
+              },
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional cluster ID used to disambiguate a kots_license_instance row when\nthe same instance_id exists across multiple clusters."
+              },
+              {
+                "name": "targetChannelId",
+                "value": "",
+                "type": "query",
+                "description": "Target channel ID for the update"
+              },
+              {
+                "name": "targetChannelSequence",
+                "value": "",
+                "type": "query",
+                "description": "Target channel sequence for the update"
+              }
+            ]
+          },
+          "docs": "Generates step-by-step instructions for updating an installation to a specific target version.\nSupports both Helm and Linux (Embedded Cluster) installation types. The update instructions\nwill use upgrade/update commands instead of install commands, and are tailored to the\nnetwork and registry availability configuration from the original install options."
+        },
+        {
+          "info": {
+            "name": "List instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/instances",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "FilterCustomerID",
+                "value": "",
+                "type": "query",
+                "description": "Filter by customer ID"
+              },
+              {
+                "name": "Limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "Offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip"
+              }
+            ]
+          },
+          "docs": "List instances for the enterprise portal with optional pagination and customer filtering."
+        },
+        {
+          "info": {
+            "name": "List service accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/service-accounts",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "FilterCustomerID",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a specific customer ID"
+              },
+              {
+                "name": "Limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "Offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip"
+              },
+              {
+                "name": "Sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "Order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order (asc or desc)"
+              },
+              {
+                "name": "FilterRevoked",
+                "value": "",
+                "type": "query",
+                "description": "Filter by revoked status"
+              }
+            ]
+          },
+          "docs": "List service accounts for the enterprise portal, optionally filtered by customer ID and/or revoked status."
+        },
+        {
+          "info": {
+            "name": "Delete (revoke) a service account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/service-accounts/:serviceAccountId",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "serviceAccountId",
+                "value": "",
+                "type": "path",
+                "description": "Service Account ID to revoke"
+              }
+            ]
+          },
+          "docs": "Revokes an enterprise portal service account, marking it as revoked and clearing sensitive data. Note that this\nmakes the service account name reusable."
+        },
+        {
+          "info": {
+            "name": "getEnterprisePortalSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/settings",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "FilterCustomerID",
+                "value": "",
+                "type": "query",
+                "description": "Filter by customer ID"
+              }
+            ]
+          },
+          "docs": "Get enterprise portal settings for a customer"
+        },
+        {
+          "info": {
+            "name": "updateEnterprisePortalSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/settings",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Update enterprise portal settings for a customer"
+        },
+        {
+          "info": {
+            "name": "Get enterprise portal status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/status",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Get the status of the enterprise portal for an app"
+        },
+        {
+          "info": {
+            "name": "Update status of the enterprise portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/status",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Update the status of the enterprise portal for an app"
+        },
+        {
+          "info": {
+            "name": "Create a one-time login URL for Enterprise Portal using a system user for the specified customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/system-user-login",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "The system user will be created on-demand if it does not exist. The URL will open the EP verify endpoint with the generated nonce."
+        },
+        {
+          "info": {
+            "name": "List customer update attempts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/update-attempts",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "The customer ID to list update attempts for"
+              },
+              {
+                "name": "service_account_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional service account ID filter"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (starting at 1)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Page size (1-100)"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/enterprise-portal/update-attempts/read\n\nLists update attempts for a customer, optionally filtered by service account ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

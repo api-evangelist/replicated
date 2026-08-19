@@ -1,0 +1,323 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps instances API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get running images for an instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/customer/:customer_id/instance/:instance_id/running-images",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "instance_id",
+                "value": "",
+                "type": "path",
+                "description": "Instance identifier"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              },
+              {
+                "name": "ClusterID",
+                "value": "",
+                "type": "query",
+                "description": "Optional cluster identifier to disambiguate instance_id"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "Get security scan summaries for an instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/customer/:customer_id/instance/:instance_id/scan",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              },
+              {
+                "name": "instance_id",
+                "value": "",
+                "type": "path",
+                "description": "Instance identifier"
+              },
+              {
+                "name": "ClusterID",
+                "value": "",
+                "type": "query",
+                "description": "Optional cluster identifier to disambiguate instance_id"
+              }
+            ]
+          },
+          "docs": "Retrieve security scan summaries for all images reported by a specific instance.\nThe response contains scan summaries in the same shape as the channel-based endpoint.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "Trigger a security scan for an instance image.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/customer/:customer_id/instance/:instance_id/scan/trigger",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              },
+              {
+                "name": "instance_id",
+                "value": "",
+                "type": "path",
+                "description": "Instance identifier"
+              }
+            ]
+          },
+          "docs": "Sends a request to SecureBuild to scan a specific image from a customer instance.\nThis is typically used when no SBOM exists for an image.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update"
+        },
+        {
+          "info": {
+            "name": "Get tags for a instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/customer/:customer_id/instance/:instance_id/tags",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "instance_id",
+                "value": "",
+                "type": "path",
+                "description": "Instance identifier"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              },
+              {
+                "name": "ClusterID",
+                "value": "",
+                "type": "query",
+                "description": "Optional cluster identifier to disambiguate instance_id"
+              }
+            ]
+          },
+          "docs": "Retrieve the tags associated with a specific customer instance, allowing teams to view metadata or categorization applied to that instance.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "Create or update the tags for an instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/customer/:customer_id/instance/:instance_id/tags",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "instance_id",
+                "value": "",
+                "type": "path",
+                "description": "Instance identifier"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              }
+            ]
+          },
+          "docs": "Create or update tags for a specific customer instance.\nTags can be used for categorization, filtering, or metadata. Keys with empty values will remove the tag.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update"
+        },
+        {
+          "info": {
+            "name": "List customer instances.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/customer/:customer_id/instances",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Return a list of all instances associated with a specific customer and app, including instance metadata and status.\nUseful for tracking deployments and usage per customer.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "Get the instance tag schema for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/instance-tag-schema",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Returns a map of distinct tag keys to their distinct values across all instances belonging to the app.\n\nRequired RBAC Policy: kots/app/[:appid]/read"
+        },
+        {
+          "info": {
+            "name": "Get tags for multiple instances.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/instance-tags",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Accepts a list of instance IDs and returns their tags in a single response.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "Batch archive customer instances.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/instances/archive",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Archives multiple customer instances in a single request. Only development,\nairgap, or inactive instances are eligible. Instances that cannot be archived\n(e.g., active production instances or instances the caller lacks permission\nfor) are skipped and returned in the skipped array with a reason.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update"
+        },
+        {
+          "info": {
+            "name": "Archive an instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/instance/:instance_id/archive",
+            "params": [
+              {
+                "name": "instance_id",
+                "value": "",
+                "type": "path",
+                "description": "Instance identifier"
+              },
+              {
+                "name": "ClusterID",
+                "value": "",
+                "type": "query",
+                "description": "Optional cluster identifier to disambiguate instance_id"
+              }
+            ]
+          },
+          "docs": "Deactivate a customer instance, making it inactive and unavailable for future use.\nOnly development, airgap, or inactive instances can be archived.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update"
+        },
+        {
+          "info": {
+            "name": "Unarchive an instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/instance/:instance_id/unarchive",
+            "params": [
+              {
+                "name": "instance_id",
+                "value": "",
+                "type": "path",
+                "description": "Instance identifier"
+              },
+              {
+                "name": "ClusterID",
+                "value": "",
+                "type": "query",
+                "description": "Optional cluster identifier to disambiguate instance_id"
+              }
+            ]
+          },
+          "docs": "Restore a previously archived customer instance, making it active and available for use again.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

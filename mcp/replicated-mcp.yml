@@ -2,11 +2,9 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/replicated-vendor-api-v3-openapi-original.json
-notes: >-
-  No official hosted/remote Replicated MCP server was found (docs, npm
-  @modelcontextprotocol, MCP registries all negative as of 2026-07). This is a
-  DERIVED candidate tool list mapping a subset of marquee Vendor API v3 operations
-  to MCP tools. Auth is a Vendor API token via the Authorization header.
+notes: No official hosted/remote Replicated MCP server was found (docs, npm @modelcontextprotocol, MCP
+  registries all negative as of 2026-07). This is a DERIVED candidate tool list mapping a subset of marquee
+  Vendor API v3 operations to MCP tools. Auth is a Vendor API token via the Authorization header.
 server:
   name: replicated-vendor
   transport: http
@@ -48,3 +46,9 @@ tools:
 - name: list_customer_instances
   description: List active customer instances for an app.
   source_operation: openapi/replicated-vendor-api-v3-openapi-original.json#listCustomerInstances
+deployment:
+  mode: none
+  verified: derived
+  tools: 12
+  checked: '2026-08-12'
+  source: catalog MCP census

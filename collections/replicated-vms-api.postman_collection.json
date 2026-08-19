@@ -1,0 +1,2954 @@
+{
+  "item": [
+    {
+      "id": "29ab8710-c45f-4dd9-ae83-fbaad2743b16",
+      "name": "vms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e8ce26a-9aca-45e3-8dec-7bd0df81ecf2",
+          "name": "Create a test vm.",
+          "request": {
+            "name": "Create a test vm.",
+            "description": {
+              "content": "Required RBAC Policy: kots/vm/create",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "DryRun",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"anthropic_api_key\": \"<string>\",\n  \"count\": \"<long>\",\n  \"disk_gib\": \"<long>\",\n  \"distribution\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"network_id\": \"<string>\",\n  \"network_policy\": \"<string>\",\n  \"overlayfs\": \"<boolean>\",\n  \"public_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rbac_policy_id\": \"<string>\",\n  \"replicated_api_key\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"telegram_bot_token\": \"<string>\",\n  \"telegram_user_id\": \"<string>\",\n  \"ttl\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff2064d8-5155-4845-86d2-320573ce6316",
+              "name": "CreateVMDryRunResponse contains the response to a dry run of creating a vm",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "DryRun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"anthropic_api_key\": \"<string>\",\n  \"count\": \"<long>\",\n  \"disk_gib\": \"<long>\",\n  \"distribution\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"network_id\": \"<string>\",\n  \"network_policy\": \"<string>\",\n  \"overlayfs\": \"<boolean>\",\n  \"public_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rbac_policy_id\": \"<string>\",\n  \"replicated_api_key\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"telegram_bot_token\": \"<string>\",\n  \"telegram_user_id\": \"<string>\",\n  \"ttl\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"maxDiskGiB\": 1917,\n    \"maxMemoryGiB\": 1665,\n    \"maxVCPUs\": 9002,\n    \"message\": \"string\",\n    \"validationError\": {\n      \"errors\": [\n        \"string\",\n        \"string\"\n      ],\n      \"supported_distributions\": [\n        {\n          \"instance_type_details\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"instance_types\": [\n            \"string\",\n            \"string\"\n          ],\n          \"short_name\": \"string\",\n          \"status\": {\n            \"enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status_message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"versions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"version_details\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"versions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"instance_type_details\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"instance_types\": [\n            \"string\",\n            \"string\"\n          ],\n          \"short_name\": \"string\",\n          \"status\": {\n            \"enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status_message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"versions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"version_details\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"versions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  },\n  \"total_cost\": 2705,\n  \"ttl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b53d9ae-003f-4cbb-9672-529ed74feb60",
+              "name": "CreateVMResponse contains the response to create a vm",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "DryRun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"anthropic_api_key\": \"<string>\",\n  \"count\": \"<long>\",\n  \"disk_gib\": \"<long>\",\n  \"distribution\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"network_id\": \"<string>\",\n  \"network_policy\": \"<string>\",\n  \"overlayfs\": \"<boolean>\",\n  \"public_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rbac_policy_id\": \"<string>\",\n  \"replicated_api_key\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"telegram_bot_token\": \"<string>\",\n  \"telegram_user_id\": \"<string>\",\n  \"ttl\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vms\": [\n    {\n      \"actor\": {\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"link\": \"string\",\n        \"timestamp\": \"2004-09-07T15:26:35.565Z\",\n        \"type\": \"string\"\n      },\n      \"addons\": [\n        {\n          \"created_at\": \"1956-05-06T14:53:42.524Z\",\n          \"guid\": \"string\",\n          \"id\": \"string\",\n          \"port\": {\n            \"name\": \"string\",\n            \"protocol_http\": false,\n            \"protocol_https\": false,\n            \"protocol_ws\": true,\n            \"protocol_wss\": false,\n            \"upstream_port\": 6934\n          },\n          \"ready_at\": \"1979-09-05T16:47:45.903Z\",\n          \"status\": \"string\",\n          \"terminated_at\": \"2007-07-23T03:37:33.788Z\",\n          \"total_credits\": 6695,\n          \"vm_guid\": \"string\",\n          \"vm_id\": \"string\"\n        },\n        {\n          \"created_at\": \"2004-12-28T13:18:03.199Z\",\n          \"guid\": \"string\",\n          \"id\": \"string\",\n          \"port\": {\n            \"name\": \"string\",\n            \"protocol_http\": false,\n            \"protocol_https\": false,\n            \"protocol_ws\": true,\n            \"protocol_wss\": true,\n            \"upstream_port\": 8250\n          },\n          \"ready_at\": \"1986-09-10T12:14:09.551Z\",\n          \"status\": \"string\",\n          \"terminated_at\": \"1998-05-10T21:39:07.674Z\",\n          \"total_credits\": 8047,\n          \"vm_guid\": \"string\",\n          \"vm_id\": \"string\"\n        }\n      ],\n      \"assigned_at\": \"2000-06-07T02:43:36.872Z\",\n      \"created_at\": \"1969-04-02T11:26:34.723Z\",\n      \"credits_per_hour\": 7256,\n      \"direct_ssh_endpoint\": \"string\",\n      \"direct_ssh_port\": 5610,\n      \"disk_gib\": 2043,\n      \"distribution\": \"string\",\n      \"expires_at\": \"2024-05-04T04:47:26.008Z\",\n      \"flat_fee\": 8885,\n      \"guid\": \"string\",\n      \"id\": \"string\",\n      \"instance_type\": \"string\",\n      \"last_scheduling_status\": \"string\",\n      \"name\": \"string\",\n      \"network_id\": \"string\",\n      \"overlayfs\": true,\n      \"rbac_policy_id\": \"string\",\n      \"running_at\": \"1953-11-01T06:29:59.140Z\",\n      \"status\": \"string\",\n      \"tags\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"team_id\": \"string\",\n      \"total_credits\": 9361,\n      \"ttl\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"actor\": {\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"link\": \"string\",\n        \"timestamp\": \"2023-02-19T01:45:18.403Z\",\n        \"type\": \"string\"\n      },\n      \"addons\": [\n        {\n          \"created_at\": \"1994-12-17T22:52:26.043Z\",\n          \"guid\": \"string\",\n          \"id\": \"string\",\n          \"port\": {\n            \"name\": \"string\",\n            \"protocol_http\": true,\n            \"protocol_https\": false,\n            \"protocol_ws\": true,\n            \"protocol_wss\": false,\n            \"upstream_port\": 4551\n          },\n          \"ready_at\": \"1987-12-09T21:33:04.847Z\",\n          \"status\": \"string\",\n          \"terminated_at\": \"1997-07-21T01:01:28.925Z\",\n          \"total_credits\": 1244,\n          \"vm_guid\": \"string\",\n          \"vm_id\": \"string\"\n        },\n        {\n          \"created_at\": \"1967-02-25T01:58:54.606Z\",\n          \"guid\": \"string\",\n          \"id\": \"string\",\n          \"port\": {\n            \"name\": \"string\",\n            \"protocol_http\": false,\n            \"protocol_https\": true,\n            \"protocol_ws\": false,\n            \"protocol_wss\": false,\n            \"upstream_port\": 876\n          },\n          \"ready_at\": \"1956-05-17T00:29:54.569Z\",\n          \"status\": \"string\",\n          \"terminated_at\": \"2002-03-06T08:55:01.391Z\",\n          \"total_credits\": 87,\n          \"vm_guid\": \"string\",\n          \"vm_id\": \"string\"\n        }\n      ],\n      \"assigned_at\": \"1950-10-03T10:54:10.246Z\",\n      \"created_at\": \"1998-07-06T02:12:38.016Z\",\n      \"credits_per_hour\": 8608,\n      \"direct_ssh_endpoint\": \"string\",\n      \"direct_ssh_port\": 4178,\n      \"disk_gib\": 4205,\n      \"distribution\": \"string\",\n      \"expires_at\": \"2014-08-04T05:01:58.108Z\",\n      \"flat_fee\": 7396,\n      \"guid\": \"string\",\n      \"id\": \"string\",\n      \"instance_type\": \"string\",\n      \"last_scheduling_status\": \"string\",\n      \"name\": \"string\",\n      \"network_id\": \"string\",\n      \"overlayfs\": false,\n      \"rbac_policy_id\": \"string\",\n      \"running_at\": \"1972-12-25T00:03:13.530Z\",\n      \"status\": \"string\",\n      \"tags\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"team_id\": \"string\",\n      \"total_credits\": 2651,\n      \"ttl\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c950e478-a907-4dc7-a95d-b513090fa791",
+              "name": "CreateVMErrorResponse contains error information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "DryRun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"anthropic_api_key\": \"<string>\",\n  \"count\": \"<long>\",\n  \"disk_gib\": \"<long>\",\n  \"distribution\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"network_id\": \"<string>\",\n  \"network_policy\": \"<string>\",\n  \"overlayfs\": \"<boolean>\",\n  \"public_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rbac_policy_id\": \"<string>\",\n  \"replicated_api_key\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"telegram_bot_token\": \"<string>\",\n  \"telegram_user_id\": \"<string>\",\n  \"ttl\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"maxDiskGiB\": 572,\n  \"maxMemoryGiB\": 290,\n  \"maxVCPUs\": 9202,\n  \"message\": \"string\",\n  \"validationError\": {\n    \"errors\": [\n      \"string\",\n      \"string\"\n    ],\n    \"supported_distributions\": [\n      {\n        \"instance_type_details\": {\n          \"key_0\": {\n            \"memory_gib\": 5406,\n            \"vcpus\": 5745\n          },\n          \"key_1\": {\n            \"memory_gib\": 5422,\n            \"vcpus\": 8653\n          }\n        },\n        \"instance_types\": [\n          \"string\",\n          \"string\"\n        ],\n        \"short_name\": \"string\",\n        \"status\": {\n          \"enabled\": true,\n          \"status\": \"string\",\n          \"status_message\": \"string\",\n          \"versions\": \"string\"\n        },\n        \"version_details\": [\n          {\n            \"version\": \"string\"\n          },\n          {\n            \"version\": \"string\"\n          }\n        ],\n        \"versions\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"instance_type_details\": {\n          \"key_0\": {\n            \"memory_gib\": 1099,\n            \"vcpus\": 2743\n          }\n        },\n        \"instance_types\": [\n          \"string\",\n          \"string\"\n        ],\n        \"short_name\": \"string\",\n        \"status\": {\n          \"enabled\": true,\n          \"status\": \"string\",\n          \"status_message\": \"string\",\n          \"versions\": \"string\"\n        },\n        \"version_details\": [\n          {\n            \"version\": \"string\"\n          },\n          {\n            \"version\": \"string\"\n          }\n        ],\n        \"versions\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1c07196-67d0-4bb2-8052-fbeb24c4b97f",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "DryRun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"anthropic_api_key\": \"<string>\",\n  \"count\": \"<long>\",\n  \"disk_gib\": \"<long>\",\n  \"distribution\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"network_id\": \"<string>\",\n  \"network_policy\": \"<string>\",\n  \"overlayfs\": \"<boolean>\",\n  \"public_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rbac_policy_id\": \"<string>\",\n  \"replicated_api_key\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"telegram_bot_token\": \"<string>\",\n  \"telegram_user_id\": \"<string>\",\n  \"ttl\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41c4c37c-6d27-4183-9c78-3ada2f8f9a78",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "DryRun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"anthropic_api_key\": \"<string>\",\n  \"count\": \"<long>\",\n  \"disk_gib\": \"<long>\",\n  \"distribution\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"network_id\": \"<string>\",\n  \"network_policy\": \"<string>\",\n  \"overlayfs\": \"<boolean>\",\n  \"public_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rbac_policy_id\": \"<string>\",\n  \"replicated_api_key\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"telegram_bot_token\": \"<string>\",\n  \"telegram_user_id\": \"<string>\",\n  \"ttl\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6d428db-95ea-4df1-862f-a0dcf9e19154",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "DryRun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"anthropic_api_key\": \"<string>\",\n  \"count\": \"<long>\",\n  \"disk_gib\": \"<long>\",\n  \"distribution\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"network_id\": \"<string>\",\n  \"network_policy\": \"<string>\",\n  \"overlayfs\": \"<boolean>\",\n  \"public_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rbac_policy_id\": \"<string>\",\n  \"replicated_api_key\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"telegram_bot_token\": \"<string>\",\n  \"telegram_user_id\": \"<string>\",\n  \"ttl\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfbe7cdd-f261-4fcf-a0da-809b60330bd0",
+          "name": "List vm versions.",
+          "request": {
+            "name": "List vm versions.",
+            "description": {},
+            "url": {
+              "path": [
+                "vm",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9e4404b8-81ff-47b7-b951-622c2668aae1",
+              "name": "ListVMVersionsResponse contains the response to list clusters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"vm-versions\": [\n    {\n      \"instance_type_details\": {\n        \"key_0\": {\n          \"memory_gib\": 7692,\n          \"vcpus\": 7209\n        }\n      },\n      \"instance_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"short_name\": \"string\",\n      \"status\": {\n        \"enabled\": true,\n        \"status\": \"string\",\n        \"status_message\": \"string\",\n        \"versions\": \"string\"\n      },\n      \"version_details\": [\n        {\n          \"version\": \"string\"\n        },\n        {\n          \"version\": \"string\"\n        }\n      ],\n      \"versions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"instance_type_details\": {\n        \"key_0\": {\n          \"memory_gib\": 8460,\n          \"vcpus\": 269\n        },\n        \"key_1\": {\n          \"memory_gib\": 9799,\n          \"vcpus\": 2501\n        }\n      },\n      \"instance_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"short_name\": \"string\",\n      \"status\": {\n        \"enabled\": false,\n        \"status\": \"string\",\n        \"status_message\": \"string\",\n        \"versions\": \"string\"\n      },\n      \"version_details\": [\n        {\n          \"version\": \"string\"\n        },\n        {\n          \"version\": \"string\"\n        }\n      ],\n      \"versions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45e25c34-2bed-4511-b3a7-658289469ebc",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cc85734-5fac-4ed7-b276-d3066098d932",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c10cc6e-d08a-4ecb-8020-9fb4a46eb4c3",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b79793e9-cad4-4e13-820c-3c4ee118ed41",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36ba43b8-bbd5-4ec6-94d9-54aa06c879b7",
+          "name": "Get the details for a test vm.",
+          "request": {
+            "name": "Get the details for a test vm.",
+            "description": {
+              "content": "Required RBAC Policy: kots/vm/[:vmid]",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vm",
+                ":vm_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vm_id",
+                  "description": "(Required) VM identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "40e9c5b9-9e9d-4663-aa34-6f01b519978e",
+              "name": "GetVMResponse contains the response to get vm details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"vm\": {\n    \"actor\": {\n      \"description\": \"string\",\n      \"id\": \"string\",\n      \"link\": \"string\",\n      \"timestamp\": \"1964-02-04T21:25:33.491Z\",\n      \"type\": \"string\"\n    },\n    \"addons\": [\n      {\n        \"created_at\": \"1976-02-06T10:08:12.448Z\",\n        \"guid\": \"string\",\n        \"id\": \"string\",\n        \"port\": {\n          \"name\": \"string\",\n          \"protocol_http\": true,\n          \"protocol_https\": true,\n          \"protocol_ws\": false,\n          \"protocol_wss\": false,\n          \"upstream_port\": 1649\n        },\n        \"ready_at\": \"2023-12-04T03:45:52.215Z\",\n        \"status\": \"string\",\n        \"terminated_at\": \"1994-08-24T06:52:47.088Z\",\n        \"total_credits\": 1608,\n        \"vm_guid\": \"string\",\n        \"vm_id\": \"string\"\n      },\n      {\n        \"created_at\": \"2021-09-25T23:29:23.375Z\",\n        \"guid\": \"string\",\n        \"id\": \"string\",\n        \"port\": {\n          \"name\": \"string\",\n          \"protocol_http\": false,\n          \"protocol_https\": true,\n          \"protocol_ws\": false,\n          \"protocol_wss\": true,\n          \"upstream_port\": 753\n        },\n        \"ready_at\": \"2011-09-18T01:42:38.548Z\",\n        \"status\": \"string\",\n        \"terminated_at\": \"2001-04-04T06:26:37.554Z\",\n        \"total_credits\": 5392,\n        \"vm_guid\": \"string\",\n        \"vm_id\": \"string\"\n      }\n    ],\n    \"assigned_at\": \"1975-12-24T10:04:35.072Z\",\n    \"created_at\": \"1955-10-21T22:44:14.865Z\",\n    \"credits_per_hour\": 9040,\n    \"direct_ssh_endpoint\": \"string\",\n    \"direct_ssh_port\": 721,\n    \"disk_gib\": 7772,\n    \"distribution\": \"string\",\n    \"expires_at\": \"2023-04-27T12:42:40.292Z\",\n    \"flat_fee\": 408,\n    \"guid\": \"string\",\n    \"id\": \"string\",\n    \"instance_type\": \"string\",\n    \"last_scheduling_status\": \"string\",\n    \"name\": \"string\",\n    \"network_id\": \"string\",\n    \"overlayfs\": false,\n    \"rbac_policy_id\": \"string\",\n    \"running_at\": \"1996-07-02T15:26:46.472Z\",\n    \"status\": \"string\",\n    \"tags\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"team_id\": \"string\",\n    \"total_credits\": 2004,\n    \"ttl\": \"string\",\n    \"version\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c29876a7-8188-4380-b910-128af1aefa51",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e85af7f3-860a-4b77-94b2-029f625b501a",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69b421b8-e908-49a9-8f30-f86d0eca2d58",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2369e921-8b9f-48ef-a262-0679b2aa9ffe",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72898da7-b1d8-4f6a-ab71-b2ae1dc6cb6f",
+          "name": "Delete a test vm.",
+          "request": {
+            "name": "Delete a test vm.",
+            "description": {
+              "content": "Required RBAC Policy: kots/vm/[:vmid]/delete",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vm",
+                ":vm_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vm_id",
+                  "description": "(Required) VM identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "49d45a78-b413-4c65-8634-159a16235fc2",
+              "name": "DeleteVMResponse contains the response to delete a vm",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47cca63a-2c57-4664-b121-fb37a5bb9a64",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb64d1d8-f00a-4055-8035-a385ddba099d",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9494d70f-b88e-4016-b353-b9fd0d449a91",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8267316e-afa3-4a9e-8f2e-e4d4c7e1aa55",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf5eac59-1525-4fdc-86c3-be55e58f6961",
+          "name": "Exposes a port on a vm.",
+          "request": {
+            "name": "Exposes a port on a vm.",
+            "description": {
+              "content": "Required RBAC Policy: kots/vm/[:vmid]/port/expose",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vm",
+                ":vm_id",
+                "port"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vm_id",
+                  "description": "(Required) VM identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"port\": \"<long>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_wildcard\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8c075f3-5d3c-4a60-82a7-ce10cb0c33b0",
+              "name": "CreateVMPortResponse contains the response to a create vm port request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "port"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"port\": \"<long>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_wildcard\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addon\": {\n    \"created_at\": \"1986-07-20T06:24:27.582Z\",\n    \"guid\": \"string\",\n    \"id\": \"string\",\n    \"port\": {\n      \"name\": \"string\",\n      \"protocol_http\": false,\n      \"protocol_https\": false,\n      \"protocol_ws\": false,\n      \"protocol_wss\": true,\n      \"upstream_port\": 4077\n    },\n    \"ready_at\": \"2024-06-20T12:13:33.589Z\",\n    \"status\": \"string\",\n    \"terminated_at\": \"1955-02-13T12:27:08.192Z\",\n    \"total_credits\": 98,\n    \"vm_guid\": \"string\",\n    \"vm_id\": \"string\"\n  },\n  \"port\": {\n    \"addon_guid\": \"string\",\n    \"addon_id\": \"string\",\n    \"created_at\": \"1987-04-05T18:02:43.555Z\",\n    \"exposed_ports\": [\n      {\n        \"exposed_port\": 4094,\n        \"protocol\": \"<string>\"\n      },\n      {\n        \"exposed_port\": 2644,\n        \"protocol\": \"<string>\"\n      }\n    ],\n    \"hostname\": \"string\",\n    \"port_name\": \"string\",\n    \"state\": \"string\",\n    \"upstream_port\": 7380,\n    \"vm_guid\": \"string\",\n    \"vm_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02a4ec1c-18f1-47bb-aea0-d40c306cf2bf",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "port"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"port\": \"<long>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_wildcard\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f90d2d2f-9435-44d5-93f8-4f9202b2e88c",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "port"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"port\": \"<long>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_wildcard\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3aa84f3a-1f77-418e-857d-61bf89510c19",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "port"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"port\": \"<long>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_wildcard\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d18b935-85bc-40e2-b3f3-0bbc3f6772b4",
+          "name": "Lists ports for a vm.",
+          "request": {
+            "name": "Lists ports for a vm.",
+            "description": {
+              "content": "Required RBAC Policy: kots/vm/[:vmid]/port/list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vm",
+                ":vm_id",
+                "ports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vm_id",
+                  "description": "(Required) VM identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f253e3fb-1186-4291-b854-3c2574ffe33d",
+              "name": "ListVMPortsResponse contains the response to a list vm [prts] request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "ports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addons\": [\n    {\n      \"created_at\": \"2012-10-03T20:40:13.676Z\",\n      \"guid\": \"string\",\n      \"id\": \"string\",\n      \"port\": {\n        \"name\": \"string\",\n        \"protocol_http\": false,\n        \"protocol_https\": false,\n        \"protocol_ws\": false,\n        \"protocol_wss\": false,\n        \"upstream_port\": 6409\n      },\n      \"ready_at\": \"1980-06-08T10:08:12.763Z\",\n      \"status\": \"string\",\n      \"terminated_at\": \"2003-04-26T04:10:41.826Z\",\n      \"total_credits\": 9290,\n      \"vm_guid\": \"string\",\n      \"vm_id\": \"string\"\n    },\n    {\n      \"created_at\": \"2005-02-10T08:19:17.780Z\",\n      \"guid\": \"string\",\n      \"id\": \"string\",\n      \"port\": {\n        \"name\": \"string\",\n        \"protocol_http\": true,\n        \"protocol_https\": false,\n        \"protocol_ws\": false,\n        \"protocol_wss\": false,\n        \"upstream_port\": 5199\n      },\n      \"ready_at\": \"2001-07-15T03:37:48.246Z\",\n      \"status\": \"string\",\n      \"terminated_at\": \"1960-11-06T19:55:10.628Z\",\n      \"total_credits\": 1113,\n      \"vm_guid\": \"string\",\n      \"vm_id\": \"string\"\n    }\n  ],\n  \"ports\": [\n    {\n      \"addon_guid\": \"string\",\n      \"addon_id\": \"string\",\n      \"created_at\": \"1966-11-02T11:27:29.004Z\",\n      \"exposed_ports\": [\n        {\n          \"exposed_port\": 4313,\n          \"protocol\": \"<string>\"\n        },\n        {\n          \"exposed_port\": 2147,\n          \"protocol\": \"<string>\"\n        }\n      ],\n      \"hostname\": \"string\",\n      \"port_name\": \"string\",\n      \"state\": \"string\",\n      \"upstream_port\": 487,\n      \"vm_guid\": \"string\",\n      \"vm_id\": \"string\"\n    },\n    {\n      \"addon_guid\": \"string\",\n      \"addon_id\": \"string\",\n      \"created_at\": \"1994-06-22T13:02:25.908Z\",\n      \"exposed_ports\": [\n        {\n          \"exposed_port\": 4906,\n          \"protocol\": \"<string>\"\n        },\n        {\n          \"exposed_port\": 3187,\n          \"protocol\": \"<string>\"\n        }\n      ],\n      \"hostname\": \"string\",\n      \"port_name\": \"string\",\n      \"state\": \"string\",\n      \"upstream_port\": 2700,\n      \"vm_guid\": \"string\",\n      \"vm_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bb9accf-6d09-460a-adff-f9d6c3e76183",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "ports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0d5ee60-b860-4f0b-897f-657624c69dd2",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "ports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c74b5ca-fab4-4124-a753-2886f743a45c",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "ports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6965c35-6c20-44d2-af4b-da2b0f8b2ffb",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "ports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8926e436-32c3-494c-b20d-91a8afbbcdf4",
+          "name": "Update the tags for a vm.",
+          "request": {
+            "name": "Update the tags for a vm.",
+            "description": {
+              "content": "Required RBAC Policy: kots/vm/tag/update",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vm",
+                ":vm_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vm_id",
+                  "description": "(Required) VM identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9625d037-d8f4-48db-85ca-5cdda560d08c",
+              "name": "UpdateVMTagsResponse contains the response to update a vm tags",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"vm\": {\n    \"actor\": {\n      \"description\": \"string\",\n      \"id\": \"string\",\n      \"link\": \"string\",\n      \"timestamp\": \"1964-02-04T21:25:33.491Z\",\n      \"type\": \"string\"\n    },\n    \"addons\": [\n      {\n        \"created_at\": \"1976-02-06T10:08:12.448Z\",\n        \"guid\": \"string\",\n        \"id\": \"string\",\n        \"port\": {\n          \"name\": \"string\",\n          \"protocol_http\": true,\n          \"protocol_https\": true,\n          \"protocol_ws\": false,\n          \"protocol_wss\": false,\n          \"upstream_port\": 1649\n        },\n        \"ready_at\": \"2023-12-04T03:45:52.215Z\",\n        \"status\": \"string\",\n        \"terminated_at\": \"1994-08-24T06:52:47.088Z\",\n        \"total_credits\": 1608,\n        \"vm_guid\": \"string\",\n        \"vm_id\": \"string\"\n      },\n      {\n        \"created_at\": \"2021-09-25T23:29:23.375Z\",\n        \"guid\": \"string\",\n        \"id\": \"string\",\n        \"port\": {\n          \"name\": \"string\",\n          \"protocol_http\": false,\n          \"protocol_https\": true,\n          \"protocol_ws\": false,\n          \"protocol_wss\": true,\n          \"upstream_port\": 753\n        },\n        \"ready_at\": \"2011-09-18T01:42:38.548Z\",\n        \"status\": \"string\",\n        \"terminated_at\": \"2001-04-04T06:26:37.554Z\",\n        \"total_credits\": 5392,\n        \"vm_guid\": \"string\",\n        \"vm_id\": \"string\"\n      }\n    ],\n    \"assigned_at\": \"1975-12-24T10:04:35.072Z\",\n    \"created_at\": \"1955-10-21T22:44:14.865Z\",\n    \"credits_per_hour\": 9040,\n    \"direct_ssh_endpoint\": \"string\",\n    \"direct_ssh_port\": 721,\n    \"disk_gib\": 7772,\n    \"distribution\": \"string\",\n    \"expires_at\": \"2023-04-27T12:42:40.292Z\",\n    \"flat_fee\": 408,\n    \"guid\": \"string\",\n    \"id\": \"string\",\n    \"instance_type\": \"string\",\n    \"last_scheduling_status\": \"string\",\n    \"name\": \"string\",\n    \"network_id\": \"string\",\n    \"overlayfs\": false,\n    \"rbac_policy_id\": \"string\",\n    \"running_at\": \"1996-07-02T15:26:46.472Z\",\n    \"status\": \"string\",\n    \"tags\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"team_id\": \"string\",\n    \"total_credits\": 2004,\n    \"ttl\": \"string\",\n    \"version\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "831a8a18-c0ac-4dd1-bf56-2e0477ffa436",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f956387a-c884-47fb-8c05-f510798ef787",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "050f0998-56a8-400b-92e8-927d59e2f0eb",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b0bc25e-abcf-4c84-9e09-ab2074ff4791",
+          "name": "Update ttl for a VM.",
+          "request": {
+            "name": "Update ttl for a VM.",
+            "description": {
+              "content": "Required RBAC Policy: kots/vm/ttl/update",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vm",
+                ":vm_id",
+                "ttl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vm_id",
+                  "description": "(Required) VM identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ttl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "948db8a2-b4cb-4b0b-a206-235e6beba241",
+              "name": "UpdateVMTTLResponse contains the response to update a VM ttl",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "ttl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ttl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"vm\": {\n    \"actor\": {\n      \"description\": \"string\",\n      \"id\": \"string\",\n      \"link\": \"string\",\n      \"timestamp\": \"1964-02-04T21:25:33.491Z\",\n      \"type\": \"string\"\n    },\n    \"addons\": [\n      {\n        \"created_at\": \"1976-02-06T10:08:12.448Z\",\n        \"guid\": \"string\",\n        \"id\": \"string\",\n        \"port\": {\n          \"name\": \"string\",\n          \"protocol_http\": true,\n          \"protocol_https\": true,\n          \"protocol_ws\": false,\n          \"protocol_wss\": false,\n          \"upstream_port\": 1649\n        },\n        \"ready_at\": \"2023-12-04T03:45:52.215Z\",\n        \"status\": \"string\",\n        \"terminated_at\": \"1994-08-24T06:52:47.088Z\",\n        \"total_credits\": 1608,\n        \"vm_guid\": \"string\",\n        \"vm_id\": \"string\"\n      },\n      {\n        \"created_at\": \"2021-09-25T23:29:23.375Z\",\n        \"guid\": \"string\",\n        \"id\": \"string\",\n        \"port\": {\n          \"name\": \"string\",\n          \"protocol_http\": false,\n          \"protocol_https\": true,\n          \"protocol_ws\": false,\n          \"protocol_wss\": true,\n          \"upstream_port\": 753\n        },\n        \"ready_at\": \"2011-09-18T01:42:38.548Z\",\n        \"status\": \"string\",\n        \"terminated_at\": \"2001-04-04T06:26:37.554Z\",\n        \"total_credits\": 5392,\n        \"vm_guid\": \"string\",\n        \"vm_id\": \"string\"\n      }\n    ],\n    \"assigned_at\": \"1975-12-24T10:04:35.072Z\",\n    \"created_at\": \"1955-10-21T22:44:14.865Z\",\n    \"credits_per_hour\": 9040,\n    \"direct_ssh_endpoint\": \"string\",\n    \"direct_ssh_port\": 721,\n    \"disk_gib\": 7772,\n    \"distribution\": \"string\",\n    \"expires_at\": \"2023-04-27T12:42:40.292Z\",\n    \"flat_fee\": 408,\n    \"guid\": \"string\",\n    \"id\": \"string\",\n    \"instance_type\": \"string\",\n    \"last_scheduling_status\": \"string\",\n    \"name\": \"string\",\n    \"network_id\": \"string\",\n    \"overlayfs\": false,\n    \"rbac_policy_id\": \"string\",\n    \"running_at\": \"1996-07-02T15:26:46.472Z\",\n    \"status\": \"string\",\n    \"tags\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"team_id\": \"string\",\n    \"total_credits\": 2004,\n    \"ttl\": \"string\",\n    \"version\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bb9c9a6-29e3-4542-95e8-799b0211f52d",
+              "name": "UpdateVMTTLErrorResponse contains error information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "ttl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ttl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91288137-f18a-4ddb-bfe5-b194d284c79a",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "ttl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ttl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da06c516-4e17-4d37-9467-d45a15e53e31",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "ttl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ttl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3b66f91-ca13-4c51-b5e3-642bde8fc4c8",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vm",
+                    ":vm_id",
+                    "ttl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vm_id",
+                      "description": "(Required) VM identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ttl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78fa296a-e8c5-45a9-8c8b-9d26d48b8d58",
+          "name": "List test vms.",
+          "request": {
+            "name": "List test vms.",
+            "description": {
+              "content": "Required RBAC Policy: kots/vm/list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e0de0f1-b1b9-411f-8424-9e1b330c8ec1",
+              "name": "ListVMsResponse contains the response to list vms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"totalVMs\": 9376,\n  \"vms\": [\n    {\n      \"actor\": {\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"link\": \"string\",\n        \"timestamp\": \"2018-10-28T15:26:47.849Z\",\n        \"type\": \"string\"\n      },\n      \"addons\": [\n        {\n          \"created_at\": \"1982-05-13T22:31:51.513Z\",\n          \"guid\": \"string\",\n          \"id\": \"string\",\n          \"port\": {\n            \"name\": \"string\",\n            \"protocol_http\": false,\n            \"protocol_https\": true,\n            \"protocol_ws\": false,\n            \"protocol_wss\": true,\n            \"upstream_port\": 8041\n          },\n          \"ready_at\": \"2011-08-16T22:37:14.892Z\",\n          \"status\": \"string\",\n          \"terminated_at\": \"1958-09-19T03:16:52.897Z\",\n          \"total_credits\": 8932,\n          \"vm_guid\": \"string\",\n          \"vm_id\": \"string\"\n        },\n        {\n          \"created_at\": \"1996-05-15T15:10:17.689Z\",\n          \"guid\": \"string\",\n          \"id\": \"string\",\n          \"port\": {\n            \"name\": \"string\",\n            \"protocol_http\": true,\n            \"protocol_https\": true,\n            \"protocol_ws\": true,\n            \"protocol_wss\": false,\n            \"upstream_port\": 8939\n          },\n          \"ready_at\": \"2017-09-05T01:33:40.246Z\",\n          \"status\": \"string\",\n          \"terminated_at\": \"1962-08-21T23:51:31.787Z\",\n          \"total_credits\": 8881,\n          \"vm_guid\": \"string\",\n          \"vm_id\": \"string\"\n        }\n      ],\n      \"assigned_at\": \"1957-11-03T11:29:53.954Z\",\n      \"created_at\": \"1981-02-25T03:03:13.169Z\",\n      \"credits_per_hour\": 4416,\n      \"direct_ssh_endpoint\": \"string\",\n      \"direct_ssh_port\": 8739,\n      \"disk_gib\": 3290,\n      \"distribution\": \"string\",\n      \"expires_at\": \"1996-10-04T01:18:09.974Z\",\n      \"flat_fee\": 656,\n      \"guid\": \"string\",\n      \"id\": \"string\",\n      \"instance_type\": \"string\",\n      \"last_scheduling_status\": \"string\",\n      \"name\": \"string\",\n      \"network_id\": \"string\",\n      \"overlayfs\": true,\n      \"rbac_policy_id\": \"string\",\n      \"running_at\": \"1980-09-16T15:29:04.872Z\",\n      \"status\": \"string\",\n      \"tags\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"team_id\": \"string\",\n      \"total_credits\": 2875,\n      \"ttl\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"actor\": {\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"link\": \"string\",\n        \"timestamp\": \"1957-10-28T04:53:32.960Z\",\n        \"type\": \"string\"\n      },\n      \"addons\": [\n        {\n          \"created_at\": \"1980-09-03T08:32:40.819Z\",\n          \"guid\": \"string\",\n          \"id\": \"string\",\n          \"port\": {\n            \"name\": \"string\",\n            \"protocol_http\": true,\n            \"protocol_https\": false,\n            \"protocol_ws\": true,\n            \"protocol_wss\": false,\n            \"upstream_port\": 347\n          },\n          \"ready_at\": \"1950-12-01T06:31:42.757Z\",\n          \"status\": \"string\",\n          \"terminated_at\": \"2010-05-23T04:25:34.711Z\",\n          \"total_credits\": 7936,\n          \"vm_guid\": \"string\",\n          \"vm_id\": \"string\"\n        },\n        {\n          \"created_at\": \"2021-05-13T02:51:34.844Z\",\n          \"guid\": \"string\",\n          \"id\": \"string\",\n          \"port\": {\n            \"name\": \"string\",\n            \"protocol_http\": false,\n            \"protocol_https\": false,\n            \"protocol_ws\": false,\n            \"protocol_wss\": true,\n            \"upstream_port\": 1226\n          },\n          \"ready_at\": \"1955-06-26T00:10:28.167Z\",\n          \"status\": \"string\",\n          \"terminated_at\": \"1979-08-05T13:14:11.217Z\",\n          \"total_credits\": 9453,\n          \"vm_guid\": \"string\",\n          \"vm_id\": \"string\"\n        }\n      ],\n      \"assigned_at\": \"2025-11-29T03:27:35.793Z\",\n      \"created_at\": \"1989-09-29T00:28:42.342Z\",\n      \"credits_per_hour\": 7313,\n      \"direct_ssh_endpoint\": \"string\",\n      \"direct_ssh_port\": 1137,\n      \"disk_gib\": 194,\n      \"distribution\": \"string\",\n      \"expires_at\": \"2002-04-14T20:13:00.881Z\",\n      \"flat_fee\": 399,\n      \"guid\": \"string\",\n      \"id\": \"string\",\n      \"instance_type\": \"string\",\n      \"last_scheduling_status\": \"string\",\n      \"name\": \"string\",\n      \"network_id\": \"string\",\n      \"overlayfs\": true,\n      \"rbac_policy_id\": \"string\",\n      \"running_at\": \"1958-06-07T03:24:53.754Z\",\n      \"status\": \"string\",\n      \"tags\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"team_id\": \"string\",\n      \"total_credits\": 5412,\n      \"ttl\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dff5f132-42f2-4d63-a37e-bd378ed8a839",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f6b71a9-382f-4922-a2e2-809f8b57f01c",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6181b6d0-f88d-482c-89ce-3038d2d59f89",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "173b89da-5ca3-411d-8f09-b3bb288b4d78",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.replicated.com/vendor/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4361f6b2-c979-46ce-992d-9770bb50e8fd",
+    "name": "Vendor API V3 apps vms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+      "type": "text/plain"
+    }
+  }
+}

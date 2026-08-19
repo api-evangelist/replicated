@@ -1,0 +1,372 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps customers API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download a customer license file as YAML.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/customer/:customer_id/license-download",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the license for a specific customer and app, returning it as a YAML file suitable for use with KOTS installations.\nThe license includes all entitlements and metadata required for installation and updates.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "List customers for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/customers",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "sortColumn",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "sortDesc",
+                "value": "",
+                "type": "query",
+                "description": "Sort descending"
+              },
+              {
+                "name": "customerName",
+                "value": "",
+                "type": "query",
+                "description": "filter by customer name"
+              },
+              {
+                "name": "IncludeTest",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ExpiresBefore",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return a paginated list of customers for a specific app, with optional filtering by name, test status, and expiration.\nIncludes customer metadata and instance information.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "List all trial signups for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/enterprise-portal/trials",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "sortColumn",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "sortDesc",
+                "value": "",
+                "type": "query",
+                "description": "Sort descending"
+              },
+              {
+                "name": "Verified",
+                "value": "",
+                "type": "query",
+                "description": "Filter for verification status: \"true\" for verified, \"false\" for unverified, omit for all"
+              }
+            ]
+          },
+          "docs": "Return a paginated list of trial signups for a specific app,\nwith email, company, and status information.\n\nRequired RBAC Policy: kots/app/[:appid]/license/*/read"
+        },
+        {
+          "info": {
+            "name": "Create a KOTS customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/customer"
+          },
+          "docs": "Create a new customer and license for a specified app, with options for channel assignment, license type, expiration, and feature flags.\nThe created customer will be available for management and download.\n\nRequired RBAC Policy: kots/app/[:appid]/license/create"
+        },
+        {
+          "info": {
+            "name": "Get customer entitlements.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/customer-entitlements/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the entitlement values for a specific customer and app, including all custom and default entitlements assigned to the customer.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "Get a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/customer/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a specific customer, including metadata, license, and instance information.\nOptionally, channel details can be excluded from the response.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "Update a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/customer/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              }
+            ]
+          },
+          "docs": "Update the details, license, and channel assignments for an existing customer.\nSupports changing metadata, license type, expiration, entitlements, and feature flags.\nParameters that are not provided are reset to default values.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update"
+        },
+        {
+          "info": {
+            "name": "Patch a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/customer/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              }
+            ]
+          },
+          "docs": "Apply partial updates to a customer's details, license, channels, and entitlements.\nOnly the fields provided in the request body will be updated.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update"
+        },
+        {
+          "info": {
+            "name": "Delete a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/customer/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              }
+            ]
+          },
+          "docs": "Permanently delete a customer, removing all their data including licenses and access to associated resources.\nThis action is irreversible. For temporary deactivation, use the archive endpoint instead.\n\nSafety Restriction: Only development customers (type: \"dev\") can be deleted.\nAttempting to delete customers of other types (prod, trial, community, test) will return a 400 Bad Request error.\n\nRequired RBAC Policy: kots/license/[:customerid]/delete\nand kots/app/[:appid]/license/[:customerid]/delete"
+        },
+        {
+          "info": {
+            "name": "Regenerate the airgap password used to access the customer's download portal.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/customer/:customer_id/airgap/password",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              }
+            ]
+          },
+          "docs": "Generate a new password (or set a provided one) for accessing the customer's airgap download portal.\n\nRequired RBAC Policy: kots/license/[:licenseid]/airgap/password"
+        },
+        {
+          "info": {
+            "name": "Archive a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/customer/:customer_id/archive",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              }
+            ]
+          },
+          "docs": "Deactivate a customer, revoking their license and access to associated resources.\nUseful for offboarding or suspending customers without deleting their data.\n\nRequired RBAC Policy: kots/license/[:customerid]/archive\nand kots/app/[:appid]/license/[:customerid]/archive"
+        },
+        {
+          "info": {
+            "name": "Unarchive a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/customer/:customer_id/unarchive",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "Customer identifier"
+              }
+            ]
+          },
+          "docs": "Restore a previously archived customer, making their license and associated data active again.\nUseful for re-enabling access for customers who were previously deactivated.\n\nRequired RBAC Policy: kots/license/[:customerid]/unarchive\nand kots/app/[:appid]/license/[:customerid]/unarchive"
+        },
+        {
+          "info": {
+            "name": "List all customers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/customers",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "sortColumn",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "sortDesc",
+                "value": "",
+                "type": "query",
+                "description": "Sort descending"
+              },
+              {
+                "name": "IncludeTest",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ExpiresBefore",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return a paginated list of all customers accessible to the team, with optional filtering and sorting.\nIncludes metadata and license information for each customer.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "Search all customers for a given team context.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/customers/search"
+          },
+          "docs": "Search for customers within a team using flexible query parameters, including name, type, channel, and status.\nSupports pagination, sorting, and filtering by customer attributes.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

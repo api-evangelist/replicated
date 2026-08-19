@@ -1,0 +1,266 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps notifications API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Resend verification email for an unverified email address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/notification_email/resend_verification"
+          },
+          "docs": "Required RBAC Policy: team/notifications/subscriptions/update"
+        },
+        {
+          "info": {
+            "name": "Verify an email address using a verification code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/notification_email/verify"
+          },
+          "docs": "Required RBAC Policy: team/notifications/subscriptions/update"
+        },
+        {
+          "info": {
+            "name": "Retry a notification event.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/notification_event/:event_id/retry",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "Event identifier"
+              }
+            ]
+          },
+          "docs": "Immediately retry a failed notification event, including permanently failed events.\n\nRequired RBAC Policy: team/[:teamid]/notification/write"
+        },
+        {
+          "info": {
+            "name": "Search notification event types.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notification_event_types",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query matching key, display name, description, or category."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional maximum number of results to return. Must be between 1 and 100."
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: team/notifications/types/list"
+        },
+        {
+          "info": {
+            "name": "List team notification delivery events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notification_events",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by type prefix (e.g. customer., instance., release.)"
+              },
+              {
+                "name": "event_types",
+                "value": "",
+                "type": "query",
+                "description": "Filter by event types"
+              },
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by subscription ID"
+              },
+              {
+                "name": "subscription_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by subscription type: \"personal\" shows only the current user's events, \"team\" shows all team events"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Filter events after this time (ISO 8601 format)"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "Filter events before this time (ISO 8601 format)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search term to filter events by content"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by computed status: success, pending, or failed"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: team/notifications/events/read"
+        },
+        {
+          "info": {
+            "name": "Create a new notification subscription.\nNote: The webhook secret is stored but never returned in API responses for security.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/notification_subscription"
+          },
+          "docs": "Required RBAC Policy: team/notifications/subscriptions/create"
+        },
+        {
+          "info": {
+            "name": "Retrieve a single notification subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notification_subscription/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Notification subscription ID"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: team/notifications/subscriptions/read"
+        },
+        {
+          "info": {
+            "name": "Update a notification subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/notification_subscription/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Notification subscription ID"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: team/notifications/subscriptions/update"
+        },
+        {
+          "info": {
+            "name": "Remove a notification subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/notification_subscription/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Notification subscription ID"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: team/notifications/subscriptions/delete"
+        },
+        {
+          "info": {
+            "name": "List all events for a notification subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notification_subscription/:id/events",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the notification subscription"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: team/notifications/subscriptions/read"
+        },
+        {
+          "info": {
+            "name": "List all notification subscriptions for the current team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notification_subscriptions"
+          },
+          "docs": "Required RBAC Policy: team/notifications/subscriptions/read"
+        },
+        {
+          "info": {
+            "name": "Test a webhook endpoint by sending a sample payload.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/notification_webhook/test"
+          },
+          "docs": "Required RBAC Policy: team/notifications/subscriptions/create"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

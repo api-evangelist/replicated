@@ -1,0 +1,265 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps channelReleases API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channelReleases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get airgap bundle download URL the active release on the channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/airgap/download-url",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "channelSequence",
+                "value": "",
+                "type": "query",
+                "description": "If provided, the airgap bundle download URL for the given channel sequence will be returned"
+              }
+            ]
+          },
+          "docs": "Returns a download URL for the airgap bundle associated with the active release on the specified channel. Optionally, a specific channel sequence can be requested via query parameter.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/airgap/download-url"
+        },
+        {
+          "info": {
+            "name": "Trigger airgap build for a channel's release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/build",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Triggers a build of an airgap bundle for the specified release in a channel. The airgap bundle can be used for offline installations.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/airgap"
+        },
+        {
+          "info": {
+            "name": "Cancel airgap build for a channel's release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/cancel",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Cancels an in-progress airgap build for the specified release in a channel.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/airgap"
+        },
+        {
+          "info": {
+            "name": "Get airgap build status for a channel's release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/airgap/status",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Returns the current airgap build status for the specified release in a channel.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/airgap/status/read"
+        },
+        {
+          "info": {
+            "name": "Get install commands for a specific channel release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/install-commands",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Return the install commands for a specific release in a channel, including commands for embedded and existing clusters.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/read"
+        },
+        {
+          "info": {
+            "name": "Update properties for a channel release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/update-properties",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Updates the properties (such as version label, release notes, and required status) for a specific release in a channel.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/update"
+        },
+        {
+          "info": {
+            "name": "List releases for an app channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/releases",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "excludeDemoted",
+                "value": "",
+                "type": "query",
+                "description": "Exclude demoted releases"
+              },
+              {
+                "name": "includeSecuritySummary",
+                "value": "",
+                "type": "query",
+                "description": "Include security summary"
+              },
+              {
+                "name": "versionLabel",
+                "value": "",
+                "type": "query",
+                "description": "Filter by version label (partial match)"
+              },
+              {
+                "name": "includeInstallerImages",
+                "value": "",
+                "type": "query",
+                "description": "Include EC installer images in the images list. Empty = app images only (default)."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of releases for a specific channel within an app, including release metadata and status.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/releases/read"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

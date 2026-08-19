@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps cmx API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cmx",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List CMX usage history.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cmx/history",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "sortColumn",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "sortDesc",
+                "value": "",
+                "type": "query",
+                "description": "Sort descending"
+              },
+              {
+                "name": "start-time",
+                "value": "",
+                "type": "query",
+                "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\"."
+              },
+              {
+                "name": "end-time",
+                "value": "",
+                "type": "query",
+                "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\"."
+              },
+              {
+                "name": "actor-filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter history by actor type or name, e.g. \"user\" or \"Replicated CLI\"."
+              },
+              {
+                "name": "tag-filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter history by tag, e.g. \"tag1=value1\"."
+              },
+              {
+                "name": "tag-sort-key",
+                "value": "",
+                "type": "query",
+                "description": "Sort history by a specific key, e.g. \"terminated_at\" would sort by\ntermination time."
+              },
+              {
+                "name": "distribution-type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by distribution type"
+              },
+              {
+                "name": "count-only",
+                "value": "",
+                "type": "query",
+                "description": "Only return the total count of items.  Supports filtering using other parameters."
+              }
+            ]
+          },
+          "docs": "List CMX usage history for both VMs and clusters."
+        },
+        {
+          "info": {
+            "name": "List CMX quotas.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cmx/quotas"
+          },
+          "docs": "List CMX quotas."
+        },
+        {
+          "info": {
+            "name": "Get CMX usage stats.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cmx/stats"
+          },
+          "docs": "Required RBAC Policy: kots/cluster/list"
+        },
+        {
+          "info": {
+            "name": "Get public keys for the authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cmx/user/public-keys"
+          },
+          "docs": "Returns all SSH public keys associated with the authenticated user in their team."
+        },
+        {
+          "info": {
+            "name": "Add a public key for the authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cmx/user/public-keys"
+          },
+          "docs": "Adds an SSH public key associated with the authenticated user in their team."
+        },
+        {
+          "info": {
+            "name": "Delete a public key for the authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/cmx/user/public-keys/:user_id/:fingerprint",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The user ID (GitHub username or identifier) associated with the public key"
+              },
+              {
+                "name": "fingerprint",
+                "value": "",
+                "type": "path",
+                "description": "The SHA256 fingerprint of the public key to delete"
+              }
+            ]
+          },
+          "docs": "Deletes an SSH public key associated with the authenticated user in their team.\nSynced keys (from GitHub) cannot be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

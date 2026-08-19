@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps policy API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "policy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List RBAC policies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/policies"
+          },
+          "docs": "Required RBAC Policy: team/policy/read"
+        },
+        {
+          "info": {
+            "name": "Create a RBAC policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/policy"
+          },
+          "docs": "Required RBAC Policy: team/policy/create"
+        },
+        {
+          "info": {
+            "name": "Get a RBAC policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/policy/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "PolicyID is the ID of the policy to get"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: team/policy/read"
+        },
+        {
+          "info": {
+            "name": "Update a RBAC policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/policy/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "PolicyID is the ID of the policy to update"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: team/policy/update"
+        },
+        {
+          "info": {
+            "name": "Delete a RBAC policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/policy/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "PolicyID is the ID of the policy to delete"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: team/policy/delete"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

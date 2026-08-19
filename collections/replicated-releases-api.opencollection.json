@@ -1,0 +1,404 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps releases API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "releases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Demote a channel release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/demote",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Demote a specific release from a channel, making it unavailable for new installations or upgrades via that channel.\nDemoted releases can be un-demoted if needed.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/release/[:releasesequence]/demote"
+        },
+        {
+          "info": {
+            "name": "Un-demote a channel release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/release/:sequence/undemote",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Restore a previously demoted release to a channel, making it available again for installations and upgrades via that channel.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/release/[:releasesequence]/undemote"
+        },
+        {
+          "info": {
+            "name": "Create a new release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/release",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Create a new release for the specified app using the provided release specification.\nThe release can be configured with a raw or gzipped spec and will be available for promotion to channels.\n\nRequired RBAC Policy: kots/app/[:appid]/release/create"
+        },
+        {
+          "info": {
+            "name": "Draft a release for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/release/draft",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Create a draft release for the specified app, which can be further edited and eventually promoted.\nSupports both KOTS and Builders draft types depending on team entitlements.\n\nRequired RBAC Policy: kots/app/[:appid]/release/create"
+        },
+        {
+          "info": {
+            "name": "Get a release by sequence.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/release/:sequence",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a specific release for an app, identified by its sequence number.\nThe response includes the release specification, metadata, and status information.\n\nRequired RBAC Policy: kots/app/[:appid]/release/[:releasesequence]/read"
+        },
+        {
+          "info": {
+            "name": "Update a release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/release/:sequence",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Update the specification and metadata for an existing release, identified by its sequence number.\nOnly non-promoted releases can be updated. Supports raw and gzipped specs.\n\nRequired RBAC Policy: kots/app/[:appid]/release/[:releasesequence]/update"
+        },
+        {
+          "info": {
+            "name": "Report a compatibility result.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/release/:sequence/compatibility",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Report the compatibility test results for a specific release, including Kubernetes distribution, version, and success or failure details.\n\nRequired RBAC Policy: kots/app/[:appid]/release/[:releasesequence]/update"
+        },
+        {
+          "info": {
+            "name": "Get exposure counts for a release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/release/:sequence/exposure",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the number of active instances running a specific release and the\nnumber of customers with access to it via the channels where it is the\ncurrent promoted version, with a per-channel breakdown.\n\nRequired RBAC Policy: kots/app/[:appid]/release/[:releasesequence]/read"
+        },
+        {
+          "info": {
+            "name": "Promote a release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/release/:sequence/promote",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Promote a specific release to one or more channels, making it available for deployment.\nSupports setting release notes, version labels, and marking releases as required.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/promote"
+        },
+        {
+          "info": {
+            "name": "Test a release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/release/:sequence/test",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "path",
+                "description": "Release identifier"
+              }
+            ]
+          },
+          "docs": "Trigger automated tests for a specific release, validating its configuration and compatibility.\nResults are reported asynchronously and may include errors or warnings.\n\nRequired RBAC Policy: kots/app/[:appid]/releases/test"
+        },
+        {
+          "info": {
+            "name": "List releases for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/releases",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "includeSecuritySummary",
+                "value": "",
+                "type": "query",
+                "description": "Include security summary"
+              }
+            ]
+          },
+          "docs": "Return a paginated list of all releases for the specified app, including their metadata, status, and sequence numbers.\n\nRequired RBAC Policy: kots/app/[:appid]/release/[:releasesequence]/read"
+        },
+        {
+          "info": {
+            "name": "List active releases for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/releases/active",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "includeSecuritySummary",
+                "value": "",
+                "type": "query",
+                "description": "Include security summary"
+              }
+            ]
+          },
+          "docs": "Return a list of all active (currently promoted) releases for the specified app.\nActive releases are those that will be used by default when installing a particular channel.\n\nRequired RBAC Policy: kots/app/[:appid]/release/[:releasesequence]/read"
+        },
+        {
+          "info": {
+            "name": "Archive releases.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/releases/archive",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Archive one or more releases for the specified app, making them unavailable for deployment or download.\nActive releases cannot be archived.\n\nRequired RBAC Policy: kots/app/[:appid]/release/[:releasesequence]/archive"
+        },
+        {
+          "info": {
+            "name": "Find releases containing a container image reference.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/releases/search",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "image",
+                "value": "",
+                "type": "query",
+                "description": "Image reference to find across releases."
+              },
+              {
+                "name": "digest",
+                "value": "",
+                "type": "query",
+                "description": "Optional scan digest from Security Center (sha256:...)."
+              }
+            ]
+          },
+          "docs": "Return releases that include the requested image reference in bundle metadata,\nsplit into active releases (latest promoted to each channel) and\nall matching releases (paginated).\n\nRequired RBAC Policy: kots/app/[:appid]/release/[:releasesequence]/read"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

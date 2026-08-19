@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps registry API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "registry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get registry egress summary totals.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/registry/egress/summary",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "App ID to filter the summary to one app."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "First UTC date included in the summary."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Last UTC date included in the summary."
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/externalregistry/list"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

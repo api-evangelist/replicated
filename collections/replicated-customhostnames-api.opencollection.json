@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps customHostnames API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customHostnames",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a custom hostname",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/custom-hostname",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Add a new custom hostname for a specific app and service (registry, proxy, download portal, or replicated app).\n\nRequired RBAC Policy: kots/app/[:appid]/customhostname/create"
+        },
+        {
+          "info": {
+            "name": "Delete a custom hostname",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/custom-hostname",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Remove a custom hostname from a specific app and service (registry, proxy, download portal, or replicated app).\n\nRequired RBAC Policy: kots/app/[:appid]/customhostname/delete"
+        },
+        {
+          "info": {
+            "name": "Set the default hostname",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/custom-hostname/default/set",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Set the default custom hostname for a specific app and service (registry, proxy, download portal, or replicated app).\nThe default hostname is used when no other custom hostname is specified for a channel.\n\nRequired RBAC Policy: kots/app/[:appid]/customhostname/default/set"
+        },
+        {
+          "info": {
+            "name": "Unset the default hostname",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/custom-hostname/default/unset",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Remove the default custom hostname for a specific app and service (registry, proxy, download portal, or replicated app).\nAfter unsetting, the system will fall back to the replicated hostname for that service if a custom hostname is not set for a channel.\n\nRequired RBAC Policy: kots/app/[:appid]/customhostname/default/unset"
+        },
+        {
+          "info": {
+            "name": "List custom hostnames for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/custom-hostnames",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Return all custom hostnames configured for the specified app, grouped by service (registry, proxy, download portal, replicated app).\n\nRequired RBAC Policy: kots/app/[:appid]/customhostname/list"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

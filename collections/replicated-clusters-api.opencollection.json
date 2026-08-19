@@ -1,0 +1,406 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps clusters API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List cluster usage.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/cluster-usage",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "List cluster distribution/version usage by customers.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "Create a test cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cluster",
+            "params": [
+              {
+                "name": "DryRun",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/create"
+        },
+        {
+          "info": {
+            "name": "Get clusters filters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cluster/filters"
+          },
+          "docs": "Required RBAC Policy: kots/cluster/list"
+        },
+        {
+          "info": {
+            "name": "List cluster quotas.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cluster/quotas"
+          },
+          "docs": "List cluster quotas."
+        },
+        {
+          "info": {
+            "name": "Get clusters stats.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cluster/stats"
+          },
+          "docs": "Required RBAC Policy: kots/cluster/list"
+        },
+        {
+          "info": {
+            "name": "List cluster versions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cluster/versions"
+          },
+          "docs": "List cluster versions."
+        },
+        {
+          "info": {
+            "name": "Get the details for a test cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cluster/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]"
+        },
+        {
+          "info": {
+            "name": "Delete a test cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/cluster/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]/delete"
+        },
+        {
+          "info": {
+            "name": "Get the kubeconfig for a test cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cluster/:cluster_id/kubeconfig",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]/kubeconfig"
+        },
+        {
+          "info": {
+            "name": "Update a nodegroup for a cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/cluster/:cluster_id/nodegroup/:nodegroup_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              },
+              {
+                "name": "nodegroup_id",
+                "value": "",
+                "type": "path",
+                "description": "Nodegroup identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]/nodegroup"
+        },
+        {
+          "info": {
+            "name": "Exposes a port on a cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cluster/:cluster_id/port",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]/port/expose"
+        },
+        {
+          "info": {
+            "name": "Deletes a port from a cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/cluster/:cluster_id/port/:port_number",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              },
+              {
+                "name": "port_number",
+                "value": "",
+                "type": "path",
+                "description": "Port Number"
+              },
+              {
+                "name": "protocols",
+                "value": "",
+                "type": "query",
+                "description": "Protocols"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]/port/delete"
+        },
+        {
+          "info": {
+            "name": "Lists ports for a cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cluster/:cluster_id/ports",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]/port/list"
+        },
+        {
+          "info": {
+            "name": "Update the tags for a cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/cluster/:cluster_id/tags",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/tag/update"
+        },
+        {
+          "info": {
+            "name": "Update ttl for a cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/cluster/:cluster_id/ttl",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/ttl/update"
+        },
+        {
+          "info": {
+            "name": "Upgrade a test cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cluster/:cluster_id/upgrade",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster identifier"
+              },
+              {
+                "name": "DryRun",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/[:clusterid]/upgrade"
+        },
+        {
+          "info": {
+            "name": "List test clusters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "sortColumn",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "sortDesc",
+                "value": "",
+                "type": "query",
+                "description": "Sort descending"
+              },
+              {
+                "name": "show-terminated",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start-time",
+                "value": "",
+                "type": "query",
+                "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\"."
+              },
+              {
+                "name": "end-time",
+                "value": "",
+                "type": "query",
+                "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\"."
+              },
+              {
+                "name": "actor-filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter clusters by actor type or name, e.g. \"user\" or \"Replicated CLI\"."
+              },
+              {
+                "name": "tag-filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter clusters by tag, e.g. \"tag1=value1\"."
+              },
+              {
+                "name": "tag-sort-key",
+                "value": "",
+                "type": "query",
+                "description": "Sort clusters by a specific key, e.g. \"terminated_at\" would sort by\ntermination time."
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/cluster/list"
+        },
+        {
+          "info": {
+            "name": "Add credits to a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cmx/credits/buy"
+          },
+          "docs": "Start the process of adding credits to a team. This generally\ncredits a stripe checkout session"
+        },
+        {
+          "info": {
+            "name": "Send a request to increase cluster quota.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cmx/quotas/increase"
+          },
+          "docs": "Required RBAC Policy: kots/cluster/increase-quota"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

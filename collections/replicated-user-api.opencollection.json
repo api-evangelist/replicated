@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps user API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an API token for the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/user/token"
+          },
+          "docs": "Required RBAC Policy: user/token/create"
+        },
+        {
+          "info": {
+            "name": "Remove a user API token by name (body param).",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/user/token"
+          },
+          "docs": "Required RBAC Policy: user/token/delete"
+        },
+        {
+          "info": {
+            "name": "List API tokens for the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/user/tokens"
+          },
+          "docs": "Required RBAC Policy: user/token/list"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

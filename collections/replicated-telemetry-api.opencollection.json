@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps telemetry API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "telemetry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Record CLI error details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cli/telemetry/error"
+          },
+          "docs": "Records detailed error information for a CLI command that failed. The event_id must reference\na valid event from cli_telemetry_events table, otherwise a 400 error is returned.\n\nNote: Authentication required. Team and user information is extracted automatically from the Bearer token.\nThis endpoint is accessible to all authenticated users, including read-only users, to ensure comprehensive telemetry collection."
+        },
+        {
+          "info": {
+            "name": "Record CLI command execution event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cli/telemetry/event"
+          },
+          "docs": "Records telemetry data for a CLI command execution including exit code, duration, and environment metadata.\nReturns a unique event_id that can be used to correlate errors with this event.\n\nNote: Authentication required. Team and user information is extracted automatically from the Bearer token.\nThis endpoint is accessible to all authenticated users, including read-only users, to ensure comprehensive telemetry collection."
+        },
+        {
+          "info": {
+            "name": "Record CLI resource statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cli/telemetry/stats"
+          },
+          "docs": "Records resource count statistics for a CLI operation, including number of Helm charts,\nKubernetes manifests, preflights, and support bundles. Also captures tool version information.\n\nNote: Authentication required. Team and user information is extracted automatically from the Bearer token.\nThis endpoint is accessible to all authenticated users, including read-only users, to ensure comprehensive telemetry collection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

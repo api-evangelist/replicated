@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps externalRegistries API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "externalRegistries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List external registries for a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/external_registries"
+          },
+          "docs": "Required RBAC Policy: kots/externalregistry/list"
+        },
+        {
+          "info": {
+            "name": "Creates an external registry with the specified parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/external_registry"
+          },
+          "docs": "Required RBAC Policy: kots/externalregistry/create"
+        },
+        {
+          "info": {
+            "name": "Get team OIDC IAM configuration for ECR.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/external_registry/iam"
+          },
+          "docs": "Required RBAC Policy: kots/externalregistry/read"
+        },
+        {
+          "info": {
+            "name": "Get the logs for a specific external registry either by endpoint or slug, or both.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/external_registry/logs",
+            "params": [
+              {
+                "name": "Endpoint",
+                "value": "",
+                "type": "query",
+                "description": "The endpoint of the external registry to get logs for"
+              },
+              {
+                "name": "Slug",
+                "value": "",
+                "type": "query",
+                "description": "The slug of the external registry to get logs for"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/externalregistry/logs/read"
+        },
+        {
+          "info": {
+            "name": "Test external registry for a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/external_registry/test"
+          },
+          "docs": "Required RBAC Policy: kots/externalregistry/test"
+        },
+        {
+          "info": {
+            "name": "Updates an external registry with the specified parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/external_registry/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Registry slug - can not be changed"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/externalregistry/update"
+        },
+        {
+          "info": {
+            "name": "Deletes an external registry by slug.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/external_registry/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Slug identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/externalregistry/[:slug]/delete"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

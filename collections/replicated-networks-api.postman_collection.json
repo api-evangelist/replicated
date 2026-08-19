@@ -1,0 +1,1211 @@
+{
+  "item": [
+    {
+      "id": "f09419bf-10ed-44bb-a2a7-860bd23c2b62",
+      "name": "networks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b3f0a9a8-781a-4d77-92b0-c6966cfc6795",
+          "name": "Get the details for a test network.",
+          "request": {
+            "name": "Get the details for a test network.",
+            "description": {
+              "content": "The resources field contains a historical list of all clusters and VMs that have ever been\nassociated with this network. Resources remain in the list even after deletion to preserve\nhistory for network report correlation.\n\nRequired RBAC Policy: kots/network/[:clusterid]",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "network",
+                ":network_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network_id",
+                  "description": "(Required) Network identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "74b29934-b8f4-4b53-ac13-0941fe7958a8",
+              "name": "GetNetworkResponse contains the response to get network details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network",
+                    ":network_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network_id",
+                      "description": "(Required) Network identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"network\": {\n    \"assigned_at\": \"1967-11-13T04:10:19.848Z\",\n    \"collect_report\": false,\n    \"created_at\": \"2003-06-15T18:20:30.004Z\",\n    \"distribution\": \"string\",\n    \"expires_at\": \"2014-11-30T20:02:59.415Z\",\n    \"guid\": \"string\",\n    \"has_report\": true,\n    \"id\": \"string\",\n    \"last_scheduling_status\": \"string\",\n    \"name\": \"string\",\n    \"policy\": \"string\",\n    \"resources\": [\n      {\n        \"distribution\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"distribution\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"running_at\": \"1974-09-08T05:05:37.257Z\",\n    \"status\": \"string\",\n    \"team_id\": \"string\",\n    \"ttl\": \"string\",\n    \"version\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6d3f925-7da5-43be-bbb9-f7b9312e7460",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network",
+                    ":network_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network_id",
+                      "description": "(Required) Network identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57ce5f9c-a838-4148-87bd-485704e343f0",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network",
+                    ":network_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network_id",
+                      "description": "(Required) Network identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c71906be-10ec-4479-a217-fc4bd5fff04e",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network",
+                    ":network_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network_id",
+                      "description": "(Required) Network identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "debc94e7-de27-4e97-9d0d-ed1c66f784bc",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network",
+                    ":network_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network_id",
+                      "description": "(Required) Network identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efc97d30-b1aa-45f8-b0b5-19d38eca307d",
+          "name": "Update network settings (policy and/or collect report).",
+          "request": {
+            "name": "Update network settings (policy and/or collect report).",
+            "description": {
+              "content": "Required RBAC Policy: kots/network/[:networkid]/update",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "network",
+                ":network_id",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network_id",
+                  "description": "(Required) Network identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a38b1e62-775a-49ac-9372-ef32b9d8c8a8",
+              "name": "UpdateNetworkResponse contains the response to update a network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network",
+                    ":network_id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network_id",
+                      "description": "(Required) Network identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"network\": {\n    \"assigned_at\": \"1987-07-08T23:43:41.571Z\",\n    \"collect_report\": true,\n    \"created_at\": \"1974-11-30T15:48:03.503Z\",\n    \"distribution\": \"string\",\n    \"expires_at\": \"1992-04-23T00:38:30.349Z\",\n    \"guid\": \"string\",\n    \"has_report\": true,\n    \"id\": \"string\",\n    \"last_scheduling_status\": \"string\",\n    \"name\": \"string\",\n    \"policy\": \"string\",\n    \"resources\": [\n      {\n        \"distribution\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"distribution\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"running_at\": \"1947-10-13T12:46:23.791Z\",\n    \"status\": \"string\",\n    \"team_id\": \"string\",\n    \"ttl\": \"string\",\n    \"version\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d72f47b-48e9-4570-b319-62bef4429a47",
+              "name": "UpdateNetworkErrorResponse contains error information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network",
+                    ":network_id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network_id",
+                      "description": "(Required) Network identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75434508-d210-439c-8dc7-84578a6c2b09",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network",
+                    ":network_id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network_id",
+                      "description": "(Required) Network identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "270c531b-39e4-4599-bd75-3386374cbfcd",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network",
+                    ":network_id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network_id",
+                      "description": "(Required) Network identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bae8168a-cb55-47c7-a71f-1173ac5790db",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "network",
+                    ":network_id",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network_id",
+                      "description": "(Required) Network identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93a73bc2-bc87-4aec-9dfe-bb8efd8d43cb",
+          "name": "List test networks.",
+          "request": {
+            "name": "List test networks.",
+            "description": {
+              "content": "Each network includes a resources field containing a historical list of all clusters and VMs\nthat have ever been associated with the network. Resources remain in the list even after\ndeletion to preserve history for network report correlation.\n\nRequired RBAC Policy: kots/network/list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "networks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "20",
+                  "description": "Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "currentPage",
+                  "value": "<long>",
+                  "description": "Current page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortColumn",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDesc",
+                  "value": "<boolean>",
+                  "description": "Sort descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "show-terminated",
+                  "value": "<boolean>",
+                  "description": "Show terminated networks"
+                },
+                {
+                  "disabled": false,
+                  "key": "terminated-filter",
+                  "value": "<string>",
+                  "description": "Filter terminated networks. Allowed values: \"all\" (default, no filter) or\n\"with-report\" (only include terminated networks that have a report)."
+                },
+                {
+                  "disabled": false,
+                  "key": "start-time",
+                  "value": "<string>",
+                  "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\""
+                },
+                {
+                  "disabled": false,
+                  "key": "end-time",
+                  "value": "<string>",
+                  "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c62f53af-789a-4f11-accb-fb6d45fef31e",
+              "name": "ListNetworksResponse contains the response to list networks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show-terminated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "terminated-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end-time",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"networks\": [\n    {\n      \"assigned_at\": \"2007-06-07T09:29:13.218Z\",\n      \"collect_report\": false,\n      \"created_at\": \"1974-09-03T11:34:21.868Z\",\n      \"distribution\": \"string\",\n      \"expires_at\": \"1974-03-03T07:17:37.091Z\",\n      \"guid\": \"string\",\n      \"has_report\": true,\n      \"id\": \"string\",\n      \"last_scheduling_status\": \"string\",\n      \"name\": \"string\",\n      \"policy\": \"string\",\n      \"resources\": [\n        {\n          \"distribution\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"distribution\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"running_at\": \"1970-07-17T19:45:36.208Z\",\n      \"status\": \"string\",\n      \"team_id\": \"string\",\n      \"ttl\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"assigned_at\": \"1966-03-15T01:08:45.881Z\",\n      \"collect_report\": true,\n      \"created_at\": \"1959-10-25T15:28:57.308Z\",\n      \"distribution\": \"string\",\n      \"expires_at\": \"1984-02-16T17:47:53.354Z\",\n      \"guid\": \"string\",\n      \"has_report\": true,\n      \"id\": \"string\",\n      \"last_scheduling_status\": \"string\",\n      \"name\": \"string\",\n      \"policy\": \"string\",\n      \"resources\": [\n        {\n          \"distribution\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"distribution\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"running_at\": \"1989-02-05T11:08:41.527Z\",\n      \"status\": \"string\",\n      \"team_id\": \"string\",\n      \"ttl\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"totalNetworks\": 6265\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ae7bebe-2bcc-4f7d-bac6-3327441f478e",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show-terminated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "terminated-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end-time",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9d30fa0-8111-4bae-96fe-dee008d3ef27",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show-terminated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "terminated-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end-time",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e5eaa6d-a258-4bac-a8c4-97d437bf58b5",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show-terminated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "terminated-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end-time",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8032550-3a20-4ee4-b166-31fb506259d3",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "networks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show-terminated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "terminated-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end-time",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.replicated.com/vendor/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "48a19f0f-c20e-47c6-a060-640ea581e129",
+    "name": "Vendor API V3 apps networks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+      "type": "text/plain"
+    }
+  }
+}

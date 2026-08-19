@@ -1,0 +1,305 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps supportBundle API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "supportBundle",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a support bundle command for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/supportbundle-command",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Return a command that can be run to collect a support bundle for the specified app.\nThe command may vary depending on the app's configuration and entitlements.\n\nRequired RBAC Policy: kots/app/[:appid]/read"
+        },
+        {
+          "info": {
+            "name": "Get a presigned S3 support bundle upload URL + bundle ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundle/upload-url"
+          },
+          "docs": "Generate and return a presigned S3 URL for uploading a support bundle, along with a unique bundle ID to reference the upload in subsequent API calls.\n\nRequired RBAC Policy: team/support-issues/write"
+        },
+        {
+          "info": {
+            "name": "Get support bundle analysis results.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "SupportBundle identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the analysis results and metadata for a specific support bundle, including insights, a file tree, and a signed download URI if available.\n\nRequired RBAC Policy: kots/app/[:appid]/supportbundle/read"
+        },
+        {
+          "info": {
+            "name": "Delete a support bundle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "SupportBundle identifier"
+              }
+            ]
+          },
+          "docs": "Delete a specific support bundle, removing it from the system and revoking access for all teams.\n\nRequired RBAC Policy: team/support-issues/write"
+        },
+        {
+          "info": {
+            "name": "Trigger analysis of a support bundle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id/analyze",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "SupportBundle identifier"
+              }
+            ]
+          },
+          "docs": "Re-trigger the analysis process for a previously uploaded support bundle.\nThe analysis will process the bundle and generate insights or results that can be retrieved later.\n\nRequired RBAC Policy: team/support-issues/write"
+        },
+        {
+          "info": {
+            "name": "Download a support bundle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id/download",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "SupportBundle identifier"
+              }
+            ]
+          },
+          "docs": "Returns a 302 redirect to a presigned S3 download URL for the support bundle.\nPass ?redirect=false to receive the URL as JSON instead of a redirect.\n\nRequired RBAC Policy: kots/app/[:appid]/supportbundle/read"
+        },
+        {
+          "info": {
+            "name": "Get parsed Kubernetes events from a support bundle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id/events",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID or slug of the support bundle."
+              }
+            ]
+          },
+          "docs": "Retrieve structured Kubernetes events from the cluster-resources data in a support bundle, with optional filtering by namespace and event type.\n\nRequired RBAC Policy: kots/app/[:appid]/supportbundle/read — enforced via getBundleWithAuth"
+        },
+        {
+          "info": {
+            "name": "Get files from a support bundle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id/files",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "SupportBundle identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve specific files from a support bundle, such as logs or configuration files, for further analysis or troubleshooting.\n\nRequired RBAC Policy: kots/app/[:appid]/supportbundle/read"
+        },
+        {
+          "info": {
+            "name": "Get pod logs from a support bundle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id/logs/:namespace/:pod",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID or slug of the support bundle."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The Kubernetes namespace of the pod."
+              },
+              {
+                "name": "pod",
+                "value": "",
+                "type": "path",
+                "description": "The name of the pod."
+              }
+            ]
+          },
+          "docs": "Retrieve log files for a specific pod from the cluster-resources data in a support bundle.\n\nRequired RBAC Policy: kots/app/[:appid]/supportbundle/read — enforced via getBundleWithAuth"
+        },
+        {
+          "info": {
+            "name": "Update a support bundle name.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id/name",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "SupportBundle identifier"
+              }
+            ]
+          },
+          "docs": "Set or clear the display name for a specific support bundle. Pass an empty string to clear the name.\n\nRequired RBAC Policy: team/support-issues/write"
+        },
+        {
+          "info": {
+            "name": "Get details about a single pod running when a support bundle was collected.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id/pod",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "SupportBundle identifier"
+              }
+            ]
+          },
+          "docs": "Return details about a specific pod that was running in the cluster at the time the specified support bundle was collected.\nIt includes the pod's definition, events, and a list of containers with paths to their logs.\n\nRequired RBAC Policy: kots/app/[:appid]/supportbundle/read"
+        },
+        {
+          "info": {
+            "name": "Get parsed Kubernetes resources from a support bundle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id/resources/:resource_type",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID or slug of the support bundle."
+              },
+              {
+                "name": "resource_type",
+                "value": "",
+                "type": "path",
+                "description": "The type of Kubernetes resource to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve structured Kubernetes resources (pods, deployments, services, etc.) from the cluster-resources data in a support bundle.\n\nRequired RBAC Policy: kots/app/[:appid]/supportbundle/read — enforced via getBundleWithAuth"
+        },
+        {
+          "info": {
+            "name": "Share a support bundle with the requested teams.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id/share",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "SupportBundle identifier"
+              }
+            ]
+          },
+          "docs": "Allow the owner of a support bundle to share access with other teams by specifying their team IDs. Passing an empty list will remove all existing shares.\n\nRequired RBAC Policy: team/support-issues/write"
+        },
+        {
+          "info": {
+            "name": "Set that a support bundle has been successfully uploaded.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/supportbundle/:bundle_id/uploaded",
+            "params": [
+              {
+                "name": "bundle_id",
+                "value": "",
+                "type": "path",
+                "description": "SupportBundle identifier"
+              }
+            ]
+          },
+          "docs": "Mark a support bundle as uploaded using the bundle ID returned from /supportbundle/upload-url after uploading the support bundle to S3.\nIt links the uploaded support bundle to an app and/or a GitHub issue, if provided, and triggers an analysis of the bundle.\n\nRequired RBAC Policy: team/support-issues/write"
+        },
+        {
+          "info": {
+            "name": "List support bundles.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundles"
+          },
+          "docs": "Return a list of support bundles accessible to the requesting team, with optional filtering by app, customer, instance, date range or severity.\n\nRequired RBAC Policy: kots/app/[:appid]/supportbundle/read"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

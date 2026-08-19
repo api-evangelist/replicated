@@ -1,0 +1,364 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps channels API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a channel in the KOTS application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/channel",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Create a new channel for the specified app, allowing for configuration of channel properties such as name, description, and feature flags.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/create"
+        },
+        {
+          "info": {
+            "name": "Get a channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "excludeReleases",
+                "value": "",
+                "type": "query",
+                "description": "Exclude releases"
+              },
+              {
+                "name": "includeSecuritySummary",
+                "value": "",
+                "type": "query",
+                "description": "Include security summary"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a specific channel within an app, including its metadata and optionally its releases.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/read"
+        },
+        {
+          "info": {
+            "name": "Updates an app channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              }
+            ]
+          },
+          "docs": "Update the properties of an existing channel, such as its name, description, and feature flags.\nAll properties must be provided in the request body.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/update"
+        },
+        {
+          "info": {
+            "name": "Patches an app channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              }
+            ]
+          },
+          "docs": "Allow partial updates to a channel's properties. Only the fields provided in the request body will be updated.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/update"
+        },
+        {
+          "info": {
+            "name": "Archives an app channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              }
+            ]
+          },
+          "docs": "Archives the specified channel, making it unavailable for new releases or deployments.\nArchived channels can no longer be used but are retained for historical reference.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/archive"
+        },
+        {
+          "info": {
+            "name": "Get adoption rates for an app channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/adoption",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Report start date in YYYY-MM-DD format"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Report end date in YYYY-MM-DD format"
+              },
+              {
+                "name": "licenseTypes",
+                "value": "",
+                "type": "query",
+                "description": "License types to include"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Interval to group the report by. Valid values are \"1d\" and \"1w\".  Default is 1d"
+              }
+            ]
+          },
+          "docs": "Returns a report of version adoption rates for a channel, grouped by day or week, and filtered by license type and date range.\nThe report helps track how quickly customers are upgrading to new releases.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/read"
+        },
+        {
+          "info": {
+            "name": "Permanently deletes an app channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/delete",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              }
+            ]
+          },
+          "docs": "Permanently deletes the specified channel, removing it from the database.\nThis action is irreversible. The channel cannot have any customers assigned to it.\nDefault channels and system channels cannot be deleted.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/delete"
+        },
+        {
+          "info": {
+            "name": "Get an embedded cluster release.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/embeddedcluster/release",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "channelSequence",
+                "value": "",
+                "type": "query",
+                "description": "If provided, downloads the embedded cluster release for the given channel sequence."
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "If provided, includes the customer's license file in the embedded cluster release."
+              },
+              {
+                "name": "airgap",
+                "value": "",
+                "type": "query",
+                "description": "If provided, includes the airgap bundle in the embedded cluster release."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "If provided, only the specified components are included in the release.\nComma-separated list of component names: binary, release, license, ec-online-bundle, app-airgap-bundle, ec-airgap-bundle.\nWhen omitted, all components are included."
+              }
+            ]
+          },
+          "docs": "Return a .tgz file containing the embedded cluster release for the specified channel and app.\nOptional query parameters allow specifying a channel sequence, a customer license file to include, and whether to include an airgap bundle.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/embeddedcluster/release"
+        },
+        {
+          "info": {
+            "name": "Get customer instance trends for an app channel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/channel/:channel_id/trends",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "Channel identifier"
+              },
+              {
+                "name": "Interval",
+                "value": "",
+                "type": "query",
+                "description": "Interval"
+              }
+            ]
+          },
+          "docs": "Return historical and current trends for customer instances on a specific channel, such as median instance age, unique versions, active instances, and upgrade statistics.\nThe interval for trend comparison is specified via query parameter.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/read"
+        },
+        {
+          "info": {
+            "name": "List channels for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/channels",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "channelName",
+                "value": "",
+                "type": "query",
+                "description": "filter by channel name"
+              },
+              {
+                "name": "excludeDetail",
+                "value": "",
+                "type": "query",
+                "description": "Exclude detail"
+              },
+              {
+                "name": "excludeAdoption",
+                "value": "",
+                "type": "query",
+                "description": "Exclude adoption"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "currentPage",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "channelNameFilter",
+                "value": "",
+                "type": "query",
+                "description": "Channel name filter"
+              },
+              {
+                "name": "includeSecuritySummary",
+                "value": "",
+                "type": "query",
+                "description": "Include security summary"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of channels for the specified app, with optional filtering by channel name. Channel details and associated releases can be included or excluded using query parameters.\n\nRequired RBAC Policy: kots/app/[:appid]/channel/[:channelid]/read"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1868 @@
+{
+  "item": [
+    {
+      "id": "ba92bbcc-7c5d-404d-b1cd-5ff0bc0fc40a",
+      "name": "cmx",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "506eac73-9565-45d0-927b-2fe1b883a6ee",
+          "name": "List CMX usage history.",
+          "request": {
+            "name": "List CMX usage history.",
+            "description": {
+              "content": "List CMX usage history for both VMs and clusters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cmx",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "20",
+                  "description": "Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "currentPage",
+                  "value": "<long>",
+                  "description": "Current page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortColumn",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDesc",
+                  "value": "<boolean>",
+                  "description": "Sort descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "start-time",
+                  "value": "<string>",
+                  "description": "Specify a start time in the format \"YYYY-MM-DDTHH:MM:SSZ\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "end-time",
+                  "value": "<string>",
+                  "description": "Specify an end time in the format \"YYYY-MM-DDTHH:MM:SSZ\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "actor-filter",
+                  "value": "<string>",
+                  "description": "Filter history by actor type or name, e.g. \"user\" or \"Replicated CLI\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "tag-filter",
+                  "value": "<string>",
+                  "description": "Filter history by tag, e.g. \"tag1=value1\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "tag-sort-key",
+                  "value": "<string>",
+                  "description": "Sort history by a specific key, e.g. \"terminated_at\" would sort by\ntermination time."
+                },
+                {
+                  "disabled": false,
+                  "key": "distribution-type",
+                  "value": "<string>",
+                  "description": "Filter by distribution type"
+                },
+                {
+                  "disabled": false,
+                  "key": "count-only",
+                  "value": "<boolean>",
+                  "description": "Only return the total count of items.  Supports filtering using other parameters."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "41cf084c-07fd-4643-9f3b-6232b4ee9692",
+              "name": "ListCMXHistoryResponse contains the response to listing CMX history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "actor-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag-sort-key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distribution-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count-only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"history\": [\n    {\n      \"actor\": {\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"link\": \"string\",\n        \"timestamp\": \"1952-09-13T21:54:31.914Z\",\n        \"type\": \"string\"\n      },\n      \"assigned_at\": \"1983-04-24T02:47:43.815Z\",\n      \"created_at\": \"1995-01-15T20:35:48.155Z\",\n      \"credits_per_hour\": 9116,\n      \"disk_gib\": 5117,\n      \"distribution\": \"string\",\n      \"distribution_type\": \"string\",\n      \"duration\": 2388,\n      \"expires_at\": \"2015-02-08T09:07:26.961Z\",\n      \"flat_fee\": 5495,\n      \"guid\": \"string\",\n      \"has_network_report\": false,\n      \"id\": \"string\",\n      \"instance_type\": \"string\",\n      \"minutes_billed\": 7572,\n      \"name\": \"string\",\n      \"network_id\": \"string\",\n      \"node_groups\": 7161,\n      \"nodes\": 3881,\n      \"running_at\": \"1986-12-16T16:00:32.212Z\",\n      \"status\": \"string\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"team_id\": \"string\",\n      \"terminated_at\": \"1963-04-05T12:15:38.517Z\",\n      \"total_credits\": 1387,\n      \"ttl\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"actor\": {\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"link\": \"string\",\n        \"timestamp\": \"2026-02-23T23:07:48.963Z\",\n        \"type\": \"string\"\n      },\n      \"assigned_at\": \"2012-09-26T08:43:27.545Z\",\n      \"created_at\": \"1967-04-27T22:45:44.292Z\",\n      \"credits_per_hour\": 8587,\n      \"disk_gib\": 2382,\n      \"distribution\": \"string\",\n      \"distribution_type\": \"string\",\n      \"duration\": 2054,\n      \"expires_at\": \"2005-10-21T16:18:35.625Z\",\n      \"flat_fee\": 5254,\n      \"guid\": \"string\",\n      \"has_network_report\": false,\n      \"id\": \"string\",\n      \"instance_type\": \"string\",\n      \"minutes_billed\": 6321,\n      \"name\": \"string\",\n      \"network_id\": \"string\",\n      \"node_groups\": 6870,\n      \"nodes\": 6908,\n      \"running_at\": \"1985-10-02T09:33:55.453Z\",\n      \"status\": \"string\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"team_id\": \"string\",\n      \"terminated_at\": \"2017-06-04T20:55:55.531Z\",\n      \"total_credits\": 2499,\n      \"ttl\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"total\": 4704\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddfdc658-e6ab-4a06-bd9f-16d9f1ba8479",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "actor-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag-sort-key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distribution-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count-only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73c5d526-1a8e-4155-b793-15a9f67c928c",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "actor-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag-sort-key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distribution-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count-only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "268789a3-a9c8-406c-8a2c-e5605e3a059e",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "actor-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag-sort-key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distribution-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count-only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e69d9089-b80d-4f6a-bfa6-07f749823e85",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "currentPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortColumn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDesc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "actor-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag-filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag-sort-key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distribution-type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count-only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c20e7d9e-dbdd-4bd7-91a0-e36dcf4570c7",
+          "name": "List CMX quotas.",
+          "request": {
+            "name": "List CMX quotas.",
+            "description": {},
+            "url": {
+              "path": [
+                "cmx",
+                "quotas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "90b5706d-33ad-456e-838f-ae0100d1b630",
+              "name": "ListCMXQuotasResponse contains the response to list CMX quotas",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "quotas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cmx_quotas\": [\n    {\n      \"current_value\": 3599,\n      \"default_value\": 4212,\n      \"in_use\": 6469,\n      \"name\": \"string\",\n      \"queued\": 5024,\n      \"unit\": \"string\"\n    },\n    {\n      \"current_value\": 7862,\n      \"default_value\": 8190,\n      \"in_use\": 4381,\n      \"name\": \"string\",\n      \"queued\": 8417,\n      \"unit\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f59aa096-3086-45c3-9f12-d04678c30938",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "quotas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04b985d2-b1a1-48a3-82b7-5d687546a436",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "quotas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "503f4fe6-68bc-4bd2-a6ac-da63f3506f9d",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "quotas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71f02583-0d03-4fbd-b4ed-fbc9d18df04e",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "quotas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d574a072-1d2a-4d53-9608-017c68bcef01",
+          "name": "Get CMX usage stats.",
+          "request": {
+            "name": "Get CMX usage stats.",
+            "description": {
+              "content": "Required RBAC Policy: kots/cluster/list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cmx",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f4f5569e-c67a-4ee7-97c6-190d1612e01f",
+              "name": "GetCMXStatsResponse contains the response to get CMX stats.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster_count\": 3420,\n  \"cost\": 3872,\n  \"credit_balance\": 4426,\n  \"error\": \"string\",\n  \"usage_minutes\": 9805,\n  \"vm_count\": 1559\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c0a0bc0-4b6d-45de-be2c-d48ffb23b0bf",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "435f6999-233a-4f30-99a2-23ad2a798fe7",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "522e0a42-8740-417f-b16e-052aa40ba276",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e10cb78-f387-4936-b783-33561aaad32e",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afa8e3a8-a8be-47d3-af27-6af55bb84707",
+          "name": "Get public keys for the authenticated user.",
+          "request": {
+            "name": "Get public keys for the authenticated user.",
+            "description": {
+              "content": "Returns all SSH public keys associated with the authenticated user in their team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cmx",
+                "user",
+                "public-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "afe169d2-ca1b-4a0f-8349-d7e536a5adca",
+              "name": "GetUserPublicKeysResponse contains the response for getting user public keys.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "user",
+                    "public-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"public_keys\": [\n    {\n      \"fingerprint\": \"string\",\n      \"is_synced\": true,\n      \"public_key\": \"string\",\n      \"user_id\": \"string\"\n    },\n    {\n      \"fingerprint\": \"string\",\n      \"is_synced\": true,\n      \"public_key\": \"string\",\n      \"user_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9d8b52b-ce10-4c08-b8f4-660000ecc679",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "user",
+                    "public-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc25e227-1490-4893-992d-c64fca947409",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "user",
+                    "public-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9dd1d8f-727d-4381-8853-280aac11bd26",
+          "name": "Add a public key for the authenticated user.",
+          "request": {
+            "name": "Add a public key for the authenticated user.",
+            "description": {
+              "content": "Adds an SSH public key associated with the authenticated user in their team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cmx",
+                "user",
+                "public-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"public_key\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3906935-5158-4e11-9106-209e17ad30bd",
+              "name": "AddUserPublicKeyResponse contains the response for adding a user public key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "user",
+                    "public-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"public_key\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"public_key\": {\n    \"fingerprint\": \"string\",\n    \"is_synced\": true,\n    \"public_key\": \"string\",\n    \"user_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc5e894f-9f34-4df9-a291-61fb18f6fcc2",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "user",
+                    "public-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"public_key\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0347944b-5c4e-4680-8dcb-4cf0d6263cfe",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "user",
+                    "public-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"public_key\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8826d437-f360-4661-8886-b992b5c74af5",
+          "name": "Delete a public key for the authenticated user.",
+          "request": {
+            "name": "Delete a public key for the authenticated user.",
+            "description": {
+              "content": "Deletes an SSH public key associated with the authenticated user in their team.\nSynced keys (from GitHub) cannot be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cmx",
+                "user",
+                "public-keys",
+                ":user_id",
+                ":fingerprint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_id",
+                  "description": "(Required) The user ID (GitHub username or identifier) associated with the public key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fingerprint",
+                  "description": "(Required) The SHA256 fingerprint of the public key to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bc3acac4-bc7b-436b-9bc4-553db4c1fe7d",
+              "name": "DeleteUserPublicKeyResponse contains the response for deleting a user public key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "user",
+                    "public-keys",
+                    ":user_id",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) The user ID (GitHub username or identifier) associated with the public key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) The SHA256 fingerprint of the public key to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d91ba9f-26b0-40c5-bef8-cbfd1b0f6490",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "user",
+                    "public-keys",
+                    ":user_id",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) The user ID (GitHub username or identifier) associated with the public key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) The SHA256 fingerprint of the public key to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "165ce8ea-5b8b-414d-ae10-cf4f3208bebe",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "user",
+                    "public-keys",
+                    ":user_id",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) The user ID (GitHub username or identifier) associated with the public key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) The SHA256 fingerprint of the public key to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b2df4b9-3572-4137-b709-216e49303946",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cmx",
+                    "user",
+                    "public-keys",
+                    ":user_id",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) The user ID (GitHub username or identifier) associated with the public key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) The SHA256 fingerprint of the public key to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.replicated.com/vendor/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b8fc403d-db6c-49cb-886f-0d9bf4229c5d",
+    "name": "Vendor API V3 apps cmx API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,589 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app"
+          },
+          "docs": "Create a new app for the team with the provided name.\nThe app will be available for further configuration and channel management.\n\nRequired RBAC Policy: kots/app/create"
+        },
+        {
+          "info": {
+            "name": "Get an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a specific app, including its metadata and a list of associated channels.\n\nRequired RBAC Policy: kots/app/[:appid]/read"
+        },
+        {
+          "info": {
+            "name": "Delete an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Delete the specified app from the team.\nThe app and all its associated resources will be removed.\n\nRequired RBAC Policy: kots/app/[:appid]/delete"
+        },
+        {
+          "info": {
+            "name": "Set a builtin license field value override for a given app and named field.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/builtin-license-field/:field_name",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "field_name",
+                "value": "",
+                "type": "path",
+                "description": "Field name"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/builtin-licensefields/update"
+        },
+        {
+          "info": {
+            "name": "Delete a builtin license field override for a given app and named field.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/builtin-license-field/:field_name",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "field_name",
+                "value": "",
+                "type": "path",
+                "description": "Field name"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/builtin-licensefields/delete"
+        },
+        {
+          "info": {
+            "name": "List builtin license fields for a given appId, with overrides applied.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/builtin-license-fields",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/license/create"
+        },
+        {
+          "info": {
+            "name": "Delete all of the builtin license field overrides for a given app and revert to the builtin defaults.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/builtin-license-fields",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/builtin-licensefields/delete"
+        },
+        {
+          "info": {
+            "name": "Export customer instances for an app as CSV or JSON.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/customer_instances",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "sortColumn",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "sortDesc",
+                "value": "",
+                "type": "query",
+                "description": "Sort descending"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format to export: csv or json"
+              },
+              {
+                "name": "customerIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated array of customer ids"
+              },
+              {
+                "name": "IncludeArchived",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Query",
+                "value": "",
+                "type": "query",
+                "description": "Customer-level filters"
+              },
+              {
+                "name": "IncludeActive",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "IncludeInactive",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "IncludeArchivedCustomers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "LicenseType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ChannelName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "AdoptionRateFilter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "IncludeArchivedInstances",
+                "value": "",
+                "type": "query",
+                "description": "Instance-level filters"
+              }
+            ]
+          },
+          "docs": "Generate and return a report of all customer instances for a specific app, in either CSV or JSON format.\nIncludes instance metadata and supports filtering by customer IDs and archived status.\n\nRequired RBAC Policy: kots/app/[:appid]/read (app-level gate; results are also\nfiltered per-customer by kots/app/[:appid]/license/[:licenseid]/read)"
+        },
+        {
+          "info": {
+            "name": "Get customer report in CSV format.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/customers_csv",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "sortColumn",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "sortDesc",
+                "value": "",
+                "type": "query",
+                "description": "Sort descending"
+              },
+              {
+                "name": "customerName",
+                "value": "",
+                "type": "query",
+                "description": "filter by customer name"
+              }
+            ]
+          },
+          "docs": "Generate and return a CSV report of all customers for a specific app, including metadata and instance information.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read"
+        },
+        {
+          "info": {
+            "name": "Get instance events in JSON format.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/events",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "customerIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated array of customer ids"
+              },
+              {
+                "name": "instanceIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "eventTypes",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get instance events in JSON format."
+        },
+        {
+          "info": {
+            "name": "Lists all registry images for an app by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/images",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/image/list"
+        },
+        {
+          "info": {
+            "name": "Deletes registry images for an app by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/images/delete",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/image/delete"
+        },
+        {
+          "info": {
+            "name": "Create a license field for a given app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/license-field",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/licensefields/create"
+        },
+        {
+          "info": {
+            "name": "Update a license field for a given appId and licenseFieldName.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/license-field/:license_field_name",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "license_field_name",
+                "value": "",
+                "type": "path",
+                "description": "Field name"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/licensefields/update"
+        },
+        {
+          "info": {
+            "name": "Delete a field for a given app and named field.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/app/:app_id/license-field/:license_field_name",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "license_field_name",
+                "value": "",
+                "type": "path",
+                "description": "Field name"
+              },
+              {
+                "name": "preserve_fields",
+                "value": "",
+                "type": "query",
+                "description": "Field name"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/licensefields/delete"
+        },
+        {
+          "info": {
+            "name": "List license fields for a given appId.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/license-fields",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/licensefields/read"
+        },
+        {
+          "info": {
+            "name": "Rename the app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/rename",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/update"
+        },
+        {
+          "info": {
+            "name": "Get app security center settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/security-center-settings",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Get the security center configuration settings for the specified app.\n\nRequired RBAC Policy: kots/app/[:appid]/read"
+        },
+        {
+          "info": {
+            "name": "Update app security center settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/security-center-settings",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Update the security center configuration settings for the specified app.\n\nRequired RBAC Policy: kots/app/[:appid]/update"
+        },
+        {
+          "info": {
+            "name": "Update app trial signup setting.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/trial-signup",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Enable or disable trial signup for the specified app.\n\nRequired RBAC Policy: kots/app/[:appid]/update"
+        },
+        {
+          "info": {
+            "name": "Get app trial signup settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/trial-signup-settings",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Get the trial signup configuration settings for the specified app.\n\nRequired RBAC Policy: kots/app/[:appid]/read"
+        },
+        {
+          "info": {
+            "name": "Update app trial signup settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/app/:app_id/trial-signup-settings",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Update the trial signup configuration settings for the specified app.\n\nRequired RBAC Policy: kots/app/[:appid]/update"
+        },
+        {
+          "info": {
+            "name": "List apps for a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/apps"
+          },
+          "docs": "Return a list of all apps accessible to the authenticated team, including their metadata and associated channels.\nOptionally, channels can be excluded from the response using the excludeChannels query parameter.\n\nRequired RBAC Policy: kots/app/[:appid]/read and kots/app/[:appid]/channel/[:channelid]/read"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

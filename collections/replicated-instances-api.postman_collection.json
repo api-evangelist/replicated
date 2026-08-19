@@ -1,0 +1,4119 @@
+{
+  "item": [
+    {
+      "id": "14903fc0-d53f-4bc4-9a82-1d4655801949",
+      "name": "instances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8de1a813-080a-4212-b029-4096a96ab1de",
+          "name": "Get running images for an instance.",
+          "request": {
+            "name": "Get running images for an instance.",
+            "description": {
+              "content": "Required RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                ":app_id",
+                "customer",
+                ":customer_id",
+                "instance",
+                ":instance_id",
+                "running-images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ClusterID",
+                  "value": "<string>",
+                  "description": "Optional cluster identifier to disambiguate instance_id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) App identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instance_id",
+                  "description": "(Required) Instance identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customer_id",
+                  "description": "(Required) Customer identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f2ef967c-b504-4e3a-b51c-cd5dd376a033",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "running-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"running_images\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a43609f-3280-4861-b849-e4f4b4e1a90f",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "running-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "070b32b6-fa3f-4944-8672-f5449b2487ef",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "running-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48f71d3c-2d12-4256-b351-c86e3304b1f0",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "running-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3272825-f62c-46dd-b1f6-b75982317c43",
+          "name": "Get security scan summaries for an instance.",
+          "request": {
+            "name": "Get security scan summaries for an instance.",
+            "description": {
+              "content": "Retrieve security scan summaries for all images reported by a specific instance.\nThe response contains scan summaries in the same shape as the channel-based endpoint.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                ":app_id",
+                "customer",
+                ":customer_id",
+                "instance",
+                ":instance_id",
+                "scan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ClusterID",
+                  "value": "<string>",
+                  "description": "Optional cluster identifier to disambiguate instance_id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) App identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customer_id",
+                  "description": "(Required) Customer identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instance_id",
+                  "description": "(Required) Instance identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4f1c6f1a-b341-4b0e-8b08-8cebacea5302",
+              "name": "GetCustomerInstanceScanResponse contains the security scan summaries for the instance images.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scans\": [\n    {\n      \"digest\": \"string\",\n      \"digest_first_seen_at\": \"string\",\n      \"image_size_bytes\": 5739,\n      \"input\": \"string\",\n      \"installation_phase\": \"string\",\n      \"last_scanned_at\": \"string\",\n      \"not_found\": true,\n      \"result\": {\n        \"counts\": {\n          \"critical\": 7544,\n          \"high\": 493,\n          \"low\": 6801,\n          \"medium\": 8267,\n          \"total\": 4733\n        },\n        \"created_at\": \"string\",\n        \"critical\": {\n          \"key_0\": \"string\"\n        },\n        \"descriptor\": {\n          \"name\": \"string\",\n          \"version\": \"string\"\n        },\n        \"fixed_counts\": {\n          \"critical\": 9377,\n          \"high\": 2640,\n          \"low\": 3087,\n          \"medium\": 4951,\n          \"total\": 8949\n        },\n        \"high\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"low\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"medium\": {\n          \"key_0\": \"string\"\n        },\n        \"vulnerability_details\": [\n          {\n            \"artifact_name\": \"string\",\n            \"artifact_type\": \"string\",\n            \"artifact_version\": \"string\",\n            \"cve\": \"string\",\n            \"description\": \"string\",\n            \"epss_percentile\": 1082.197491399851,\n            \"fix_state\": \"string\",\n            \"fix_versions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"risk\": 3142.7235074858727,\n            \"severity\": \"string\"\n          },\n          {\n            \"artifact_name\": \"string\",\n            \"artifact_type\": \"string\",\n            \"artifact_version\": \"string\",\n            \"cve\": \"string\",\n            \"description\": \"string\",\n            \"epss_percentile\": 3566.508035264766,\n            \"fix_state\": \"string\",\n            \"fix_versions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"risk\": 4704.320966690414,\n            \"severity\": \"string\"\n          }\n        ]\n      },\n      \"sbom_status\": \"string\",\n      \"sbom_status_message\": \"string\",\n      \"sbom_status_updated_at\": \"string\",\n      \"scan_status\": \"string\",\n      \"scan_status_message\": \"string\",\n      \"scan_status_updated_at\": \"string\",\n      \"source_type\": \"string\",\n      \"sources\": [\n        {\n          \"chart_name\": \"string\",\n          \"is_installer_only\": false,\n          \"resource_kind\": \"string\",\n          \"resource_name\": \"string\",\n          \"resource_namespace\": \"string\"\n        },\n        {\n          \"chart_name\": \"string\",\n          \"is_installer_only\": false,\n          \"resource_kind\": \"string\",\n          \"resource_name\": \"string\",\n          \"resource_namespace\": \"string\"\n        }\n      ]\n    },\n    {\n      \"digest\": \"string\",\n      \"digest_first_seen_at\": \"string\",\n      \"image_size_bytes\": 4079,\n      \"input\": \"string\",\n      \"installation_phase\": \"string\",\n      \"last_scanned_at\": \"string\",\n      \"not_found\": false,\n      \"result\": {\n        \"counts\": {\n          \"critical\": 8055,\n          \"high\": 3427,\n          \"low\": 9529,\n          \"medium\": 924,\n          \"total\": 1075\n        },\n        \"created_at\": \"string\",\n        \"critical\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"descriptor\": {\n          \"name\": \"string\",\n          \"version\": \"string\"\n        },\n        \"fixed_counts\": {\n          \"critical\": 6423,\n          \"high\": 2815,\n          \"low\": 1439,\n          \"medium\": 7143,\n          \"total\": 818\n        },\n        \"high\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"low\": {\n          \"key_0\": \"string\"\n        },\n        \"medium\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"vulnerability_details\": [\n          {\n            \"artifact_name\": \"string\",\n            \"artifact_type\": \"string\",\n            \"artifact_version\": \"string\",\n            \"cve\": \"string\",\n            \"description\": \"string\",\n            \"epss_percentile\": 5079.26595860993,\n            \"fix_state\": \"string\",\n            \"fix_versions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"risk\": 4323.32361319534,\n            \"severity\": \"string\"\n          },\n          {\n            \"artifact_name\": \"string\",\n            \"artifact_type\": \"string\",\n            \"artifact_version\": \"string\",\n            \"cve\": \"string\",\n            \"description\": \"string\",\n            \"epss_percentile\": 3213.4700006815187,\n            \"fix_state\": \"string\",\n            \"fix_versions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"risk\": 8692.68680840788,\n            \"severity\": \"string\"\n          }\n        ]\n      },\n      \"sbom_status\": \"string\",\n      \"sbom_status_message\": \"string\",\n      \"sbom_status_updated_at\": \"string\",\n      \"scan_status\": \"string\",\n      \"scan_status_message\": \"string\",\n      \"scan_status_updated_at\": \"string\",\n      \"source_type\": \"string\",\n      \"sources\": [\n        {\n          \"chart_name\": \"string\",\n          \"is_installer_only\": true,\n          \"resource_kind\": \"string\",\n          \"resource_name\": \"string\",\n          \"resource_namespace\": \"string\"\n        },\n        {\n          \"chart_name\": \"string\",\n          \"is_installer_only\": false,\n          \"resource_kind\": \"string\",\n          \"resource_name\": \"string\",\n          \"resource_namespace\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87d9e75f-3bea-4e1d-87ae-e0104b5bafe4",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48e281c9-da83-4c3d-b9e4-9348aa3c6c10",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30a31915-bd64-4a65-a90a-19038199fe8d",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64babfad-314c-474c-bf61-3ad4d3e4b7b4",
+          "name": "Trigger a security scan for an instance image.",
+          "request": {
+            "name": "Trigger a security scan for an instance image.",
+            "description": {
+              "content": "Sends a request to SecureBuild to scan a specific image from a customer instance.\nThis is typically used when no SBOM exists for an image.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                ":app_id",
+                "customer",
+                ":customer_id",
+                "instance",
+                ":instance_id",
+                "scan",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) App identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customer_id",
+                  "description": "(Required) Customer identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instance_id",
+                  "description": "(Required) Instance identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"image_name\": \"<string>\",\n  \"image_digest\": \"<string>\",\n  \"cluster_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b2ceb455-1f13-47a6-9018-b9cbdf42923a",
+              "name": "TriggerCustomerInstanceScanResponse contains the response for triggering a scan",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "scan",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image_name\": \"<string>\",\n  \"image_digest\": \"<string>\",\n  \"cluster_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a512e8bc-427f-4607-8f65-52e58b069730",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "scan",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image_name\": \"<string>\",\n  \"image_digest\": \"<string>\",\n  \"cluster_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "700c4237-cb12-4e5c-b565-c523bdd43692",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "scan",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image_name\": \"<string>\",\n  \"image_digest\": \"<string>\",\n  \"cluster_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "376673aa-342d-40e6-a8e3-061cb7967807",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "scan",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image_name\": \"<string>\",\n  \"image_digest\": \"<string>\",\n  \"cluster_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7cd0840-6099-40a1-85a5-42269f1c996f",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "scan",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image_name\": \"<string>\",\n  \"image_digest\": \"<string>\",\n  \"cluster_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8430f8c-c7fc-4907-8207-3ef07861eb7d",
+          "name": "Get tags for a instance.",
+          "request": {
+            "name": "Get tags for a instance.",
+            "description": {
+              "content": "Retrieve the tags associated with a specific customer instance, allowing teams to view metadata or categorization applied to that instance.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                ":app_id",
+                "customer",
+                ":customer_id",
+                "instance",
+                ":instance_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ClusterID",
+                  "value": "<string>",
+                  "description": "Optional cluster identifier to disambiguate instance_id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) App identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instance_id",
+                  "description": "(Required) Instance identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customer_id",
+                  "description": "(Required) Customer identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5a4e1e19-04c0-4e8c-a167-c64809bbae6a",
+              "name": "GetCustomerInstanceTagsResponse contains the response to update a instance tags",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"tags\": [\n    {\n      \"instanceId\": \"string\",\n      \"key\": \"string\",\n      \"origin\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"instanceId\": \"string\",\n      \"key\": \"string\",\n      \"origin\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8dc0ed2-016f-4ee6-b4f6-060505c6e160",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89b46738-5ba1-4227-ba58-7f0a3350461e",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42330e68-3fb5-43ac-80a1-583df74b6f5b",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d1d8b75-6412-4000-b80f-e28fce4fa52b",
+          "name": "Create or update the tags for an instance.",
+          "request": {
+            "name": "Create or update the tags for an instance.",
+            "description": {
+              "content": "Create or update tags for a specific customer instance.\nTags can be used for categorization, filtering, or metadata. Keys with empty values will remove the tag.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                ":app_id",
+                "customer",
+                ":customer_id",
+                "instance",
+                ":instance_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) App identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instance_id",
+                  "description": "(Required) Instance identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customer_id",
+                  "description": "(Required) Customer identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cluster_id\": \"<string>\",\n  \"tags\": [\n    {\n      \"instanceId\": \"<string>\",\n      \"key\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"instanceId\": \"<string>\",\n      \"key\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69b05da9-dfc6-4857-98fc-82bfb77f5b0f",
+              "name": "UpdateCustomerInstanceTagsResponse contains the response to update a instance tags",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cluster_id\": \"<string>\",\n  \"tags\": [\n    {\n      \"instanceId\": \"<string>\",\n      \"key\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"instanceId\": \"<string>\",\n      \"key\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customerInstance\": {\n    \"active\": true,\n    \"appStatus\": \"string\",\n    \"client\": \"string\",\n    \"cloud\": \"string\",\n    \"clusterId\": \"string\",\n    \"createdAt\": \"1954-01-06T03:19:53.117Z\",\n    \"embeddedClusterVersion\": \"string\",\n    \"instanceId\": \"string\",\n    \"isAirgap\": true,\n    \"isArchived\": true,\n    \"isDummyInstance\": false,\n    \"isEmbeddedCluster\": false,\n    \"isKurl\": false,\n    \"k8sVersion\": \"string\",\n    \"kotsVersion\": \"string\",\n    \"kurlNodeCountReady\": 3114,\n    \"kurlNodeCountTotal\": 9152,\n    \"lastActive\": \"2011-01-20T01:59:58.845Z\",\n    \"licenseId\": \"string\",\n    \"replicatedSdkVersion\": \"string\",\n    \"securitySummary\": {\n      \"imageCount\": 9999,\n      \"lastScannedAt\": \"1962-09-03T11:13:55.846Z\",\n      \"vulnerabilityCounts\": {\n        \"critical\": 5099,\n        \"high\": 208,\n        \"low\": 2962,\n        \"medium\": 4269,\n        \"total\": 8501\n      }\n    },\n    \"serviceAccountId\": \"string\",\n    \"tags\": [\n      {\n        \"instanceId\": \"<string>\",\n        \"key\": \"<string>\",\n        \"origin\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"instanceId\": \"<string>\",\n        \"key\": \"<string>\",\n        \"origin\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"versionHistory\": [\n      {\n        \"clusterId\": \"string\",\n        \"downstreamChannelId\": \"string\",\n        \"downstreamReleaseSequence\": 3916,\n        \"instanceId\": \"string\",\n        \"intervalLast\": \"2022-08-07T05:32:09.403Z\",\n        \"intervalStart\": \"1994-05-15T14:41:27.739Z\",\n        \"nativeHelmCount\": 4305,\n        \"replHelmCount\": 2679,\n        \"versionLabel\": \"string\"\n      },\n      {\n        \"clusterId\": \"string\",\n        \"downstreamChannelId\": \"string\",\n        \"downstreamReleaseSequence\": 2111,\n        \"instanceId\": \"string\",\n        \"intervalLast\": \"1964-03-14T09:11:18.023Z\",\n        \"intervalStart\": \"1962-03-11T14:26:41.533Z\",\n        \"nativeHelmCount\": 7810,\n        \"replHelmCount\": 1444,\n        \"versionLabel\": \"string\"\n      }\n    ]\n  },\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64555d38-bb43-4171-a124-0aee5e09fa54",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cluster_id\": \"<string>\",\n  \"tags\": [\n    {\n      \"instanceId\": \"<string>\",\n      \"key\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"instanceId\": \"<string>\",\n      \"key\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e7d48db-6231-4ddf-b9a0-8e04863c7dd9",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cluster_id\": \"<string>\",\n  \"tags\": [\n    {\n      \"instanceId\": \"<string>\",\n      \"key\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"instanceId\": \"<string>\",\n      \"key\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1289e512-a20a-4977-9cce-b26c5ebe66ec",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instance",
+                    ":instance_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cluster_id\": \"<string>\",\n  \"tags\": [\n    {\n      \"instanceId\": \"<string>\",\n      \"key\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"instanceId\": \"<string>\",\n      \"key\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29f57dd1-5198-4b72-8881-c76543eb1a04",
+          "name": "List customer instances.",
+          "request": {
+            "name": "List customer instances.",
+            "description": {
+              "content": "Return a list of all instances associated with a specific customer and app, including instance metadata and status.\nUseful for tracking deployments and usage per customer.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                ":app_id",
+                "customer",
+                ":customer_id",
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customer_id",
+                  "description": "(Required) Customer identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) App identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "92f19be1-26a5-450c-9aa5-3f2eb8d45390",
+              "name": "ListCustomerInstancesResponse contains the JSON instances list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"instances\": [\n    {\n      \"active\": true,\n      \"appStatus\": \"string\",\n      \"client\": \"string\",\n      \"cloud\": \"string\",\n      \"clusterId\": \"string\",\n      \"createdAt\": \"2025-12-09T11:22:38.462Z\",\n      \"embeddedClusterVersion\": \"string\",\n      \"instanceId\": \"string\",\n      \"isAirgap\": true,\n      \"isArchived\": false,\n      \"isDummyInstance\": false,\n      \"isEmbeddedCluster\": false,\n      \"isKurl\": true,\n      \"k8sVersion\": \"string\",\n      \"kotsVersion\": \"string\",\n      \"kurlNodeCountReady\": 8275,\n      \"kurlNodeCountTotal\": 7834,\n      \"lastActive\": \"1993-11-19T10:49:58.544Z\",\n      \"licenseId\": \"string\",\n      \"replicatedSdkVersion\": \"string\",\n      \"securitySummary\": {\n        \"imageCount\": 6568,\n        \"lastScannedAt\": \"1987-02-24T20:57:32.048Z\",\n        \"vulnerabilityCounts\": {\n          \"critical\": 7928,\n          \"high\": 1097,\n          \"low\": 3340,\n          \"medium\": 7887,\n          \"total\": 432\n        }\n      },\n      \"serviceAccountId\": \"string\",\n      \"tags\": [\n        {\n          \"instanceId\": \"<string>\",\n          \"key\": \"<string>\",\n          \"origin\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"instanceId\": \"<string>\",\n          \"key\": \"<string>\",\n          \"origin\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"versionHistory\": [\n        {\n          \"clusterId\": \"string\",\n          \"downstreamChannelId\": \"string\",\n          \"downstreamReleaseSequence\": 6639,\n          \"instanceId\": \"string\",\n          \"intervalLast\": \"2023-06-11T10:03:09.388Z\",\n          \"intervalStart\": \"1971-05-23T13:36:21.029Z\",\n          \"nativeHelmCount\": 383,\n          \"replHelmCount\": 6924,\n          \"versionLabel\": \"string\"\n        },\n        {\n          \"clusterId\": \"string\",\n          \"downstreamChannelId\": \"string\",\n          \"downstreamReleaseSequence\": 7337,\n          \"instanceId\": \"string\",\n          \"intervalLast\": \"1961-10-04T08:31:10.916Z\",\n          \"intervalStart\": \"1963-07-10T20:11:26.836Z\",\n          \"nativeHelmCount\": 7850,\n          \"replHelmCount\": 8567,\n          \"versionLabel\": \"string\"\n        }\n      ]\n    },\n    {\n      \"active\": false,\n      \"appStatus\": \"string\",\n      \"client\": \"string\",\n      \"cloud\": \"string\",\n      \"clusterId\": \"string\",\n      \"createdAt\": \"1971-10-17T10:13:37.828Z\",\n      \"embeddedClusterVersion\": \"string\",\n      \"instanceId\": \"string\",\n      \"isAirgap\": false,\n      \"isArchived\": false,\n      \"isDummyInstance\": false,\n      \"isEmbeddedCluster\": false,\n      \"isKurl\": false,\n      \"k8sVersion\": \"string\",\n      \"kotsVersion\": \"string\",\n      \"kurlNodeCountReady\": 2702,\n      \"kurlNodeCountTotal\": 6005,\n      \"lastActive\": \"1951-08-29T01:06:40.391Z\",\n      \"licenseId\": \"string\",\n      \"replicatedSdkVersion\": \"string\",\n      \"securitySummary\": {\n        \"imageCount\": 4292,\n        \"lastScannedAt\": \"1973-06-24T08:22:22.289Z\",\n        \"vulnerabilityCounts\": {\n          \"critical\": 1176,\n          \"high\": 574,\n          \"low\": 3983,\n          \"medium\": 38,\n          \"total\": 2666\n        }\n      },\n      \"serviceAccountId\": \"string\",\n      \"tags\": [\n        {\n          \"instanceId\": \"<string>\",\n          \"key\": \"<string>\",\n          \"origin\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"instanceId\": \"<string>\",\n          \"key\": \"<string>\",\n          \"origin\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"versionHistory\": [\n        {\n          \"clusterId\": \"string\",\n          \"downstreamChannelId\": \"string\",\n          \"downstreamReleaseSequence\": 2606,\n          \"instanceId\": \"string\",\n          \"intervalLast\": \"1977-02-12T22:39:43.516Z\",\n          \"intervalStart\": \"2023-05-30T00:58:56.674Z\",\n          \"nativeHelmCount\": 4368,\n          \"replHelmCount\": 6884,\n          \"versionLabel\": \"string\"\n        },\n        {\n          \"clusterId\": \"string\",\n          \"downstreamChannelId\": \"string\",\n          \"downstreamReleaseSequence\": 1849,\n          \"instanceId\": \"string\",\n          \"intervalLast\": \"1947-03-17T12:28:00.227Z\",\n          \"intervalStart\": \"2008-07-07T08:35:34.159Z\",\n          \"nativeHelmCount\": 3803,\n          \"replHelmCount\": 2645,\n          \"versionLabel\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93a31703-f382-4bd2-8a8d-321296a46865",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "932e011f-b75f-44fa-aaa0-0e91d9eda709",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d45da89b-090b-4beb-a818-0040b7099dd5",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57f5e417-b015-4447-b6ef-c13ddbf72eb5",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "customer",
+                    ":customer_id",
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer_id",
+                      "description": "(Required) Customer identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a3b75b7-5a53-470e-a3f0-74128471afe1",
+          "name": "Get the instance tag schema for an app.",
+          "request": {
+            "name": "Get the instance tag schema for an app.",
+            "description": {
+              "content": "Returns a map of distinct tag keys to their distinct values across all instances belonging to the app.\n\nRequired RBAC Policy: kots/app/[:appid]/read",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                ":app_id",
+                "instance-tag-schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) App identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2de1f681-64e7-4b77-ab99-42d9bfe5acbc",
+              "name": "GetInstanceTagSchemaResponse contains the tag schema response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instance-tag-schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"tags\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0251c31a-f886-4351-a521-984ecf95a40a",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instance-tag-schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab99baba-b3b2-46e6-80f4-b38b66f85dac",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instance-tag-schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0567869d-5944-4196-a7ee-dd15d43bd1be",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instance-tag-schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "569e62ca-e872-499c-bbe4-4c990181cbd8",
+          "name": "Get tags for multiple instances.",
+          "request": {
+            "name": "Get tags for multiple instances.",
+            "description": {
+              "content": "Accepts a list of instance IDs and returns their tags in a single response.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/read",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                ":app_id",
+                "instance-tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) App identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clusterIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"instanceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ef7cf5a-de3c-4987-9dcd-10a549b4ad01",
+              "name": "GetCustomerInstancesTagsBulkResponse contains the bulk tags response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instance-tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clusterIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"instanceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"results\": [\n    {\n      \"clusterId\": \"string\",\n      \"instanceId\": \"string\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"origin\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"origin\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"clusterId\": \"string\",\n      \"instanceId\": \"string\",\n      \"tags\": [\n        {\n          \"key\": \"string\",\n          \"origin\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"origin\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cede1639-874f-48dc-89b9-b1e02617b82d",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instance-tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clusterIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"instanceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34fad162-a366-4b32-88c6-a6583d92108f",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instance-tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clusterIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"instanceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bb002d5-b823-4729-be51-c6872d3fc850",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instance-tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clusterIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"instanceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afee512d-9459-4089-b63e-17fdf5d2f653",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instance-tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clusterIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"instanceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0a28cfa-9007-4dae-b9f3-5e2951bca168",
+          "name": "Batch archive customer instances.",
+          "request": {
+            "name": "Batch archive customer instances.",
+            "description": {
+              "content": "Archives multiple customer instances in a single request. Only development,\nairgap, or inactive instances are eligible. Instances that cannot be archived\n(e.g., active production instances or instances the caller lacks permission\nfor) are skipped and returned in the skipped array with a reason.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                ":app_id",
+                "instances",
+                "archive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) App identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instances\": [\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    },\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "270b2984-862f-4bee-8da5-3b4c9a13baae",
+              "name": "BatchArchiveCustomerInstancesResponse contains the bulk archive response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instances",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instances\": [\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    },\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"archived\": 1324,\n  \"error\": \"string\",\n  \"skipped\": [\n    {\n      \"clusterId\": \"string\",\n      \"instanceId\": \"string\",\n      \"licenseId\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"clusterId\": \"string\",\n      \"instanceId\": \"string\",\n      \"licenseId\": \"string\",\n      \"reason\": \"string\"\n    }\n  ],\n  \"total\": 8425\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52719ee3-62e1-43b1-9785-75474d52a1ac",
+              "name": "Returned on bad input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instances",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instances\": [\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    },\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37d006fb-6b9e-44a8-88d9-996a937ecd41",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instances",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instances\": [\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    },\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c539ee3-556a-4db4-b713-36735def6ff8",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instances",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instances\": [\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    },\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "366518a4-c17b-412a-bb89-56f9860db70e",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    ":app_id",
+                    "instances",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) App identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instances\": [\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    },\n    {\n      \"clusterId\": \"<string>\",\n      \"instanceId\": \"<string>\",\n      \"licenseId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54053a29-d570-4cca-9298-f4e0e22ea737",
+          "name": "Archive an instance.",
+          "request": {
+            "name": "Archive an instance.",
+            "description": {
+              "content": "Deactivate a customer instance, making it inactive and unavailable for future use.\nOnly development, airgap, or inactive instances can be archived.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instance",
+                ":instance_id",
+                "archive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ClusterID",
+                  "value": "<string>",
+                  "description": "Optional cluster identifier to disambiguate instance_id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instance_id",
+                  "description": "(Required) Instance identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "06ebe017-7dd3-4d4f-8bcc-6a8793e37163",
+              "name": "ArchiveCustomerInstanceResponse contains the response to archive an instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instance",
+                    ":instance_id",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customerInstance\": {\n    \"active\": true,\n    \"appStatus\": \"string\",\n    \"client\": \"string\",\n    \"cloud\": \"string\",\n    \"clusterId\": \"string\",\n    \"createdAt\": \"2001-12-26T16:53:37.157Z\",\n    \"embeddedClusterVersion\": \"string\",\n    \"instanceId\": \"string\",\n    \"isAirgap\": false,\n    \"isArchived\": true,\n    \"isDummyInstance\": false,\n    \"isEmbeddedCluster\": true,\n    \"isKurl\": false,\n    \"k8sVersion\": \"string\",\n    \"kotsVersion\": \"string\",\n    \"kurlNodeCountReady\": 3303,\n    \"kurlNodeCountTotal\": 5301,\n    \"lastActive\": \"1968-07-25T05:18:17.717Z\",\n    \"licenseId\": \"string\",\n    \"replicatedSdkVersion\": \"string\",\n    \"securitySummary\": {\n      \"imageCount\": 6087,\n      \"lastScannedAt\": \"1947-05-20T13:32:54.219Z\",\n      \"vulnerabilityCounts\": {\n        \"critical\": 6553,\n        \"high\": 7944,\n        \"low\": 5941,\n        \"medium\": 6849,\n        \"total\": 792\n      }\n    },\n    \"serviceAccountId\": \"string\",\n    \"tags\": [\n      {\n        \"instanceId\": \"<string>\",\n        \"key\": \"<string>\",\n        \"origin\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"instanceId\": \"<string>\",\n        \"key\": \"<string>\",\n        \"origin\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"versionHistory\": [\n      {\n        \"clusterId\": \"string\",\n        \"downstreamChannelId\": \"string\",\n        \"downstreamReleaseSequence\": 460,\n        \"instanceId\": \"string\",\n        \"intervalLast\": \"1951-04-16T13:26:05.128Z\",\n        \"intervalStart\": \"1963-08-17T15:19:09.350Z\",\n        \"nativeHelmCount\": 8034,\n        \"replHelmCount\": 2215,\n        \"versionLabel\": \"string\"\n      },\n      {\n        \"clusterId\": \"string\",\n        \"downstreamChannelId\": \"string\",\n        \"downstreamReleaseSequence\": 788,\n        \"instanceId\": \"string\",\n        \"intervalLast\": \"2010-06-18T15:34:11.596Z\",\n        \"intervalStart\": \"1950-02-07T13:31:44.947Z\",\n        \"nativeHelmCount\": 3024,\n        \"replHelmCount\": 5880,\n        \"versionLabel\": \"string\"\n      }\n    ]\n  },\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31c5ce14-0e52-4515-82c0-cc53b4649ecd",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instance",
+                    ":instance_id",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec4710b2-6a26-43bf-8c16-b6716521952c",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instance",
+                    ":instance_id",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0e22bed-9d85-4b8c-a4cd-5785f2e242eb",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instance",
+                    ":instance_id",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d7632f8-b7af-4ebc-9f11-57fc879f3c2c",
+          "name": "Unarchive an instance.",
+          "request": {
+            "name": "Unarchive an instance.",
+            "description": {
+              "content": "Restore a previously archived customer instance, making it active and available for use again.\n\nRequired RBAC Policy: kots/app/[:appid]/license/[:licenseid]/update",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instance",
+                ":instance_id",
+                "unarchive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ClusterID",
+                  "value": "<string>",
+                  "description": "Optional cluster identifier to disambiguate instance_id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instance_id",
+                  "description": "(Required) Instance identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c71296a4-1549-4dbd-a7cd-55730e42deaa",
+              "name": "UnarchiveCustomerInstanceResponse contains the response to unarchive an instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instance",
+                    ":instance_id",
+                    "unarchive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customerInstance\": {\n    \"active\": true,\n    \"appStatus\": \"string\",\n    \"client\": \"string\",\n    \"cloud\": \"string\",\n    \"clusterId\": \"string\",\n    \"createdAt\": \"2001-12-26T16:53:37.157Z\",\n    \"embeddedClusterVersion\": \"string\",\n    \"instanceId\": \"string\",\n    \"isAirgap\": false,\n    \"isArchived\": true,\n    \"isDummyInstance\": false,\n    \"isEmbeddedCluster\": true,\n    \"isKurl\": false,\n    \"k8sVersion\": \"string\",\n    \"kotsVersion\": \"string\",\n    \"kurlNodeCountReady\": 3303,\n    \"kurlNodeCountTotal\": 5301,\n    \"lastActive\": \"1968-07-25T05:18:17.717Z\",\n    \"licenseId\": \"string\",\n    \"replicatedSdkVersion\": \"string\",\n    \"securitySummary\": {\n      \"imageCount\": 6087,\n      \"lastScannedAt\": \"1947-05-20T13:32:54.219Z\",\n      \"vulnerabilityCounts\": {\n        \"critical\": 6553,\n        \"high\": 7944,\n        \"low\": 5941,\n        \"medium\": 6849,\n        \"total\": 792\n      }\n    },\n    \"serviceAccountId\": \"string\",\n    \"tags\": [\n      {\n        \"instanceId\": \"<string>\",\n        \"key\": \"<string>\",\n        \"origin\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"instanceId\": \"<string>\",\n        \"key\": \"<string>\",\n        \"origin\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"versionHistory\": [\n      {\n        \"clusterId\": \"string\",\n        \"downstreamChannelId\": \"string\",\n        \"downstreamReleaseSequence\": 460,\n        \"instanceId\": \"string\",\n        \"intervalLast\": \"1951-04-16T13:26:05.128Z\",\n        \"intervalStart\": \"1963-08-17T15:19:09.350Z\",\n        \"nativeHelmCount\": 8034,\n        \"replHelmCount\": 2215,\n        \"versionLabel\": \"string\"\n      },\n      {\n        \"clusterId\": \"string\",\n        \"downstreamChannelId\": \"string\",\n        \"downstreamReleaseSequence\": 788,\n        \"instanceId\": \"string\",\n        \"intervalLast\": \"2010-06-18T15:34:11.596Z\",\n        \"intervalStart\": \"1950-02-07T13:31:44.947Z\",\n        \"nativeHelmCount\": 3024,\n        \"replHelmCount\": 5880,\n        \"versionLabel\": \"string\"\n      }\n    ]\n  },\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "390a3b74-6521-4d63-baa3-4689c43f267d",
+              "name": "Return if the caller is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instance",
+                    ":instance_id",
+                    "unarchive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d1bed26-ea01-46f6-aede-86f15a555762",
+              "name": "Returned if the caller does not have the needed permission",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instance",
+                    ":instance_id",
+                    "unarchive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"messageCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6c6499e-d6f6-42e2-bc3c-2476db350a57",
+              "name": "Returned on resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instance",
+                    ":instance_id",
+                    "unarchive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ClusterID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance_id",
+                      "description": "(Required) Instance identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.replicated.com/vendor/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "02ff2f24-df7d-4ee8-93dd-dc5dbccfc040",
+    "name": "Vendor API V3 apps instances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage enterprise portal users, install options, branding, documentation, email templates, and access control.\n\nContact Support:\n Name: Replicated, Inc.\n Email: info@replicated.com",
+      "type": "text/plain"
+    }
+  }
+}

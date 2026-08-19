@@ -1,0 +1,218 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vendor API V3 apps team API",
+    "version": "3.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "team",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists all registry images for an app by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/app/:app_id/images",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/image/list"
+        },
+        {
+          "info": {
+            "name": "Deletes registry images for an app by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/app/:app_id/images/delete",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: kots/app/[:appid]/image/delete"
+        },
+        {
+          "info": {
+            "name": "Get the current team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/team"
+          },
+          "docs": "Required RBAC Policy: team/read"
+        },
+        {
+          "info": {
+            "name": "Set or clear the team's default application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/team/default-app"
+          },
+          "docs": "Required RBAC Policy: team/default-app/update"
+        },
+        {
+          "info": {
+            "name": "Create a pending team invite.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/team/invite"
+          },
+          "docs": "Creates a new pending invite for the team.\n\nRequired RBAC Policy: team/member/create"
+        },
+        {
+          "info": {
+            "name": "Delete a pending team invite.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/team/invite/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "The email of the invite to delete"
+              }
+            ]
+          },
+          "docs": "Deletes the pending invite with the given email.\n\nRequired RBAC Policy: team/member/delete"
+        },
+        {
+          "info": {
+            "name": "Update a pending team invite.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/team/invite/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the pending invite to update"
+              }
+            ]
+          },
+          "docs": "Updates the pending invite with the given ID.\n\nRequired RBAC Policy: team/member/update"
+        },
+        {
+          "info": {
+            "name": "Get a team member.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/team/member/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the team member to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieves the team member with the given ID.\n\nRequired RBAC Policy: team/member/read"
+        },
+        {
+          "info": {
+            "name": "List team members.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/team/members",
+            "params": [
+              {
+                "name": "includeInvites",
+                "value": "",
+                "type": "query",
+                "description": "When set to true, pending invites will be included in the results. Default is false."
+              }
+            ]
+          },
+          "docs": "Return a list of all team members, with optional inclusion of pending invites.\nMembers are sorted by email address.\n\nRequired RBAC Policy: team/member/list"
+        },
+        {
+          "info": {
+            "name": "Remove a service account from a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/team/serviceaccount"
+          },
+          "docs": "Required RBAC Policy: team/serviceaccount/delete"
+        },
+        {
+          "info": {
+            "name": "List service accounts for a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/team/serviceaccounts"
+          },
+          "docs": "Required RBAC Policy: team/serviceaccount/list"
+        },
+        {
+          "info": {
+            "name": "Create a service account for a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/team/serviceaccounts",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name is the name of the service account to create."
+              },
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "query",
+                "description": "PolicyID is the ID of the policy to assign to the service account."
+              },
+              {
+                "name": "permissions",
+                "value": "",
+                "type": "query",
+                "description": "Permissions is whether the service account is read-only or not. Any value besides \"read-only\" will be treated as \"read-write\".\nOptional."
+              }
+            ]
+          },
+          "docs": "Required RBAC Policy: team/serviceaccount/create"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
