@@ -51,6 +51,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Application
+  tags_raw:
   - apps
   properties:
   - type: OpenAPI
@@ -64,7 +66,8 @@ apis:
   description: The channelReleases API from Replicated — 7 operation(s) for channelreleases.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
-  tags:
+  tags: []
+  tags_raw:
   - channelReleases
   properties:
   - type: OpenAPI
@@ -79,6 +82,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Channels
+  tags_raw:
   - channels
   properties:
   - type: OpenAPI
@@ -92,7 +97,8 @@ apis:
   description: The clusterAddons API from Replicated — 3 operation(s) for clusteraddons.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
-  tags:
+  tags: []
+  tags_raw:
   - clusterAddons
   properties:
   - type: OpenAPI
@@ -107,6 +113,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Cluster
+  tags_raw:
   - clusters
   properties:
   - type: OpenAPI
@@ -135,6 +143,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Customers
+  tags_raw:
   - customers
   properties:
   - type: OpenAPI
@@ -149,6 +159,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Custom Hostnames
+  tags_raw:
   - customHostnames
   properties:
   - type: OpenAPI
@@ -162,7 +174,8 @@ apis:
   description: The enterprisePortal API from Replicated — 27 operation(s) for enterpriseportal.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
-  tags:
+  tags: []
+  tags_raw:
   - enterprisePortal
   properties:
   - type: OpenAPI
@@ -176,7 +189,8 @@ apis:
   description: The externalRegistries API from Replicated — 6 operation(s) for externalregistries.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
-  tags:
+  tags: []
+  tags_raw:
   - externalRegistries
   properties:
   - type: OpenAPI
@@ -191,6 +205,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Instances
+  tags_raw:
   - instances
   properties:
   - type: OpenAPI
@@ -205,6 +221,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Networks
+  tags_raw:
   - networks
   properties:
   - type: OpenAPI
@@ -219,6 +237,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Notification
+  tags_raw:
   - notifications
   properties:
   - type: OpenAPI
@@ -233,6 +253,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Policy
+  tags_raw:
   - policy
   properties:
   - type: OpenAPI
@@ -247,6 +269,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Registry
+  tags_raw:
   - registry
   properties:
   - type: OpenAPI
@@ -261,6 +285,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Releases
+  tags_raw:
   - releases
   properties:
   - type: OpenAPI
@@ -274,7 +300,8 @@ apis:
   description: The supportBundle API from Replicated — 14 operation(s) for supportbundle.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
-  tags:
+  tags: []
+  tags_raw:
   - supportBundle
   properties:
   - type: OpenAPI
@@ -289,6 +316,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Team
+  tags_raw:
   - team
   properties:
   - type: OpenAPI
@@ -303,6 +332,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - Telemetry
+  tags_raw:
   - telemetry
   properties:
   - type: OpenAPI
@@ -317,6 +348,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - User
+  tags_raw:
   - user
   properties:
   - type: OpenAPI
@@ -345,6 +378,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - VMs
+  tags_raw:
   - vms
   properties:
   - type: OpenAPI
