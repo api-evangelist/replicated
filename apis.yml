@@ -125,7 +125,7 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
-  - clusters
+  - Cluster
   tags_raw:
   - clusters
   properties:
@@ -170,7 +170,8 @@ apis:
   description: The customHostnames API from Replicated — 4 operation(s) for customhostnames.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
-  tags: []
+  tags:
+  - Custom Hostnames
   tags_raw:
   - customHostnames
   properties:
@@ -232,7 +233,7 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
-  - networks
+  - Networks
   tags_raw:
   - networks
   properties:
@@ -296,7 +297,7 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
-  - releases
+  - Releases
   tags_raw:
   - releases
   properties:
