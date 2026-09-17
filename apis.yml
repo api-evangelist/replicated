@@ -166,22 +166,6 @@ apis:
     url: authentication/replicated-authentication.yml
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
-- aid: replicated:replicated-customhostnames-api
-  name: Replicated customHostnames API
-  description: The customHostnames API from Replicated — 4 operation(s) for customhostnames.
-  humanURL: https://docs.replicated.com/reference/vendor-api-using
-  baseURL: https://api.replicated.com/vendor/v3
-  tags:
-  - Custom Hostnames
-  tags_raw:
-  - customHostnames
-  properties:
-  - type: OpenAPI
-    url: openapi/replicated-customhostnames-api-openapi.yml
-  - type: Authentication
-    url: authentication/replicated-authentication.yml
-  - type: APIReference
-    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-enterpriseportal-api
   name: Replicated enterprisePortal API
   description: The enterprisePortal API from Replicated — 27 operation(s) for enterpriseportal.
@@ -308,21 +292,6 @@ apis:
     url: authentication/replicated-authentication.yml
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
-- aid: replicated:replicated-supportbundle-api
-  name: Replicated supportBundle API
-  description: The supportBundle API from Replicated — 14 operation(s) for supportbundle.
-  humanURL: https://docs.replicated.com/reference/vendor-api-using
-  baseURL: https://api.replicated.com/vendor/v3
-  tags: []
-  tags_raw:
-  - supportBundle
-  properties:
-  - type: OpenAPI
-    url: openapi/replicated-supportbundle-api-openapi.yml
-  - type: Authentication
-    url: authentication/replicated-authentication.yml
-  - type: APIReference
-    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-team-api
   name: Replicated team API
   description: The team API from Replicated — 11 operation(s) for team.
@@ -386,17 +355,43 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-vms-api
-  name: Replicated vms API
+  name: Replicated Vms API
   description: The vms API from Replicated — 8 operation(s) for vms.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
-  - VMs
-  tags_raw:
   - vms
   properties:
   - type: OpenAPI
     url: openapi/replicated-vms-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-custom-hostnames-api
+  name: Replicated Custom Hostnames API
+  description: The Custom Hostnames API from Replicated — 4 operation(s) for custom hostnames.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - Custom Hostnames
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-custom-hostnames-api-openapi.yml
+  - type: Authentication
+    url: authentication/replicated-authentication.yml
+  - type: APIReference
+    url: https://replicated-vendor-api.readme.io/v3/reference/createapp
+- aid: replicated:replicated-support-bundle-api
+  name: Replicated support Bundle API
+  description: The support Bundle API from Replicated — 14 operation(s) for support bundle.
+  humanURL: https://docs.replicated.com/reference/vendor-api-using
+  baseURL: https://api.replicated.com/vendor/v3
+  tags:
+  - support Bundle
+  properties:
+  - type: OpenAPI
+    url: openapi/replicated-support-bundle-api-openapi.yml
   - type: Authentication
     url: authentication/replicated-authentication.yml
   - type: APIReference
