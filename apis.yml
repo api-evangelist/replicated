@@ -360,6 +360,8 @@ apis:
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
   tags:
+  - VMs
+  tags_raw:
   - vms
   properties:
   - type: OpenAPI
