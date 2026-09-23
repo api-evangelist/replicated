@@ -1,20 +1,14 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: Manage enterprise portal users, install options, branding, documentation, email templates, and access control.
-  title: Vendor API V3 apps cmx API
+  title: Vendor API V3 Cmx API
   contact:
     name: Replicated, Inc.
     url: http://www.replicated.com/
     email: info@replicated.com
   version: 3.0.0
-host: api.replicated.com
-basePath: /vendor/v3
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/json
+servers:
+- url: https://api.replicated.com/vendor/v3
 tags:
 - name: cmx
 paths:
@@ -23,194 +17,193 @@ paths:
       security:
       - api_key: []
       description: List CMX usage history for both VMs and clusters.
-      produces:
-      - application/json
-      schemes:
-      - https
       tags:
       - cmx
-      summary: List CMX usage history.
+      summary: List CMX usage history
       operationId: listCMXHistory
       parameters:
-      - type: integer
-        format: int64
-        default: 20
-        x-go-name: PageSize
+      - x-go-name: PageSize
         description: Page size
         name: pageSize
         in: query
-      - type: integer
-        format: int64
-        x-go-name: CurrentPage
+        schema:
+          type: integer
+          format: int64
+          default: 20
+      - x-go-name: CurrentPage
         description: Current page
         name: currentPage
         in: query
-      - type: string
-        x-go-name: SortColumn
+        schema:
+          type: integer
+          format: int64
+      - x-go-name: SortColumn
         description: Sort column
         name: sortColumn
         in: query
-      - type: boolean
-        x-go-name: SortDesc
+        schema:
+          type: string
+      - x-go-name: SortDesc
         description: Sort descending
         name: sortDesc
         in: query
-      - type: string
-        x-go-name: StartTimeStr
+        schema:
+          type: boolean
+      - x-go-name: StartTimeStr
         description: Specify a start time in the format "YYYY-MM-DDTHH:MM:SSZ".
         name: start-time
         in: query
-      - type: string
-        x-go-name: EndTimeStr
+        schema:
+          type: string
+      - x-go-name: EndTimeStr
         description: Specify an end time in the format "YYYY-MM-DDTHH:MM:SSZ".
         name: end-time
         in: query
-      - type: string
-        x-go-name: ActorFilter
+        schema:
+          type: string
+      - x-go-name: ActorFilter
         description: Filter history by actor type or name, e.g. "user" or "Replicated CLI".
         name: actor-filter
         in: query
-      - type: string
-        x-go-name: TagFilter
+        schema:
+          type: string
+      - x-go-name: TagFilter
         description: Filter history by tag, e.g. "tag1=value1".
         name: tag-filter
         in: query
-      - type: string
-        x-go-name: TagSortKey
+        schema:
+          type: string
+      - x-go-name: TagSortKey
         description: 'Sort history by a specific key, e.g. "terminated_at" would sort by
 
           termination time.'
         name: tag-sort-key
         in: query
-      - enum:
-        - kubernetes
-        - vm
-        type: string
-        x-go-name: DistributionType
+        schema:
+          type: string
+      - x-go-name: DistributionType
         description: Filter by distribution type
         name: distribution-type
         in: query
-      - type: boolean
-        x-go-name: TotalOnly
+        schema:
+          type: string
+          enum:
+          - kubernetes
+          - vm
+      - x-go-name: TotalOnly
         description: Only return the total count of items.  Supports filtering using other parameters.
         name: count-only
         in: query
+        schema:
+          type: boolean
       responses:
         '200':
-          $ref: '#/responses/listCMXHistoryResponse'
+          $ref: '#/components/responses/listCMXHistoryResponse'
         '400':
-          $ref: '#/responses/responseErrBadRequest'
+          $ref: '#/components/responses/responseErrBadRequest'
         '401':
-          $ref: '#/responses/responseErrUnauthorized'
+          $ref: '#/components/responses/responseErrUnauthorized'
         '403':
-          $ref: '#/responses/responseErrForbidden'
+          $ref: '#/components/responses/responseErrForbidden'
         '404':
-          $ref: '#/responses/responseErrNotFound'
+          $ref: '#/components/responses/responseErrNotFound'
+      servers:
+      - url: https://api.replicated.com/vendor/v3
   /cmx/quotas:
     get:
       security:
       - api_key: []
-      produces:
-      - application/json
-      schemes:
-      - https
       tags:
       - cmx
-      summary: List CMX quotas.
+      summary: List CMX quotas
       operationId: listCMXQuotas
       responses:
         '200':
-          $ref: '#/responses/listCMXQuotasResponse'
+          $ref: '#/components/responses/listCMXQuotasResponse'
         '400':
-          $ref: '#/responses/responseErrBadRequest'
+          $ref: '#/components/responses/responseErrBadRequest'
         '401':
-          $ref: '#/responses/responseErrUnauthorized'
+          $ref: '#/components/responses/responseErrUnauthorized'
         '403':
-          $ref: '#/responses/responseErrForbidden'
+          $ref: '#/components/responses/responseErrForbidden'
         '404':
-          $ref: '#/responses/responseErrNotFound'
+          $ref: '#/components/responses/responseErrNotFound'
+      servers:
+      - url: https://api.replicated.com/vendor/v3
   /cmx/stats:
     get:
       security:
       - api_key: []
       description: 'Required RBAC Policy: kots/cluster/list'
-      produces:
-      - application/json
-      schemes:
-      - https
       tags:
       - cmx
-      summary: Get CMX usage stats.
+      summary: Get CMX usage stats
       operationId: getCMXStats
       responses:
         '200':
-          $ref: '#/responses/getCMXStatsResponse'
+          $ref: '#/components/responses/getCMXStatsResponse'
         '400':
-          $ref: '#/responses/responseErrBadRequest'
+          $ref: '#/components/responses/responseErrBadRequest'
         '401':
-          $ref: '#/responses/responseErrUnauthorized'
+          $ref: '#/components/responses/responseErrUnauthorized'
         '403':
-          $ref: '#/responses/responseErrForbidden'
+          $ref: '#/components/responses/responseErrForbidden'
         '404':
-          $ref: '#/responses/responseErrNotFound'
+          $ref: '#/components/responses/responseErrNotFound'
+      servers:
+      - url: https://api.replicated.com/vendor/v3
   /cmx/user/public-keys:
     get:
       security:
       - api_key: []
       description: Returns all SSH public keys associated with the authenticated user in their team.
-      produces:
-      - application/json
-      schemes:
-      - https
       tags:
       - cmx
-      summary: Get public keys for the authenticated user.
+      summary: Get public keys for the authenticated user
       operationId: getUserPublicKeys
       responses:
         '200':
-          $ref: '#/responses/getUserPublicKeysResponse'
+          $ref: '#/components/responses/getUserPublicKeysResponse'
         '400':
-          $ref: '#/responses/responseErrBadRequest'
+          $ref: '#/components/responses/responseErrBadRequest'
         '401':
-          $ref: '#/responses/responseErrUnauthorized'
+          $ref: '#/components/responses/responseErrUnauthorized'
+      servers:
+      - url: https://api.replicated.com/vendor/v3
     post:
       security:
       - api_key: []
       description: Adds an SSH public key associated with the authenticated user in their team.
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      schemes:
-      - https
       tags:
       - cmx
-      summary: Add a public key for the authenticated user.
+      summary: Add a public key for the authenticated user
       operationId: addUserPublicKey
-      parameters:
-      - name: Body
-        in: body
-        schema:
-          type: object
-          required:
-          - public_key
-          - user_id
-          properties:
-            public_key:
-              description: SSH public key to add
-              type: string
-              x-go-name: PublicKey
-            user_id:
-              description: GitHub username or identifier for the public key
-              type: string
-              x-go-name: UserID
       responses:
         '201':
-          $ref: '#/responses/addUserPublicKeyResponse'
+          $ref: '#/components/responses/addUserPublicKeyResponse'
         '400':
-          $ref: '#/responses/responseErrBadRequest'
+          $ref: '#/components/responses/responseErrBadRequest'
         '401':
-          $ref: '#/responses/responseErrUnauthorized'
+          $ref: '#/components/responses/responseErrUnauthorized'
+      servers:
+      - url: https://api.replicated.com/vendor/v3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - public_key
+              - user_id
+              properties:
+                public_key:
+                  description: SSH public key to add
+                  type: string
+                  x-go-name: PublicKey
+                user_id:
+                  description: GitHub username or identifier for the public key
+                  type: string
+                  x-go-name: UserID
   /cmx/user/public-keys/{user_id}/{fingerprint}:
     delete:
       security:
@@ -218,349 +211,370 @@ paths:
       description: 'Deletes an SSH public key associated with the authenticated user in their team.
 
         Synced keys (from GitHub) cannot be deleted.'
-      produces:
-      - application/json
-      schemes:
-      - https
       tags:
       - cmx
-      summary: Delete a public key for the authenticated user.
+      summary: Delete a public key for the authenticated user
       operationId: deleteUserPublicKey
       parameters:
-      - type: string
-        description: The user ID (GitHub username or identifier) associated with the public key
+      - description: The user ID (GitHub username or identifier) associated with the public key
         name: user_id
         in: path
         required: true
-      - type: string
-        description: The SHA256 fingerprint of the public key to delete
+        schema:
+          type: string
+      - description: The SHA256 fingerprint of the public key to delete
         name: fingerprint
         in: path
         required: true
+        schema:
+          type: string
       responses:
         '200':
-          $ref: '#/responses/deleteUserPublicKeyResponse'
+          $ref: '#/components/responses/deleteUserPublicKeyResponse'
         '400':
-          $ref: '#/responses/responseErrBadRequest'
+          $ref: '#/components/responses/responseErrBadRequest'
         '401':
-          $ref: '#/responses/responseErrUnauthorized'
+          $ref: '#/components/responses/responseErrUnauthorized'
         '404':
-          $ref: '#/responses/responseErrNotFound'
-definitions:
-  Tag:
-    type: object
-    properties:
-      key:
-        type: string
-        x-go-name: Key
-      value:
-        type: string
-        x-go-name: Value
-    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
-  CMXQuota:
-    type: object
-    properties:
-      current_value:
-        type: integer
-        format: int64
-        x-go-name: CurrentValue
-      default_value:
-        type: integer
-        format: int64
-        x-go-name: DefaultValue
-      in_use:
-        type: integer
-        format: int64
-        x-go-name: InUse
-      name:
-        type: string
-        x-go-name: Name
-      queued:
-        type: integer
-        format: int64
-        x-go-name: Queued
-      unit:
-        type: string
-        x-go-name: Unit
-    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cmx
-  UserPublicKeyResponse:
-    type: object
-    title: UserPublicKeyResponse represents a public key in the response.
-    properties:
-      fingerprint:
-        type: string
-        x-go-name: Fingerprint
-      is_synced:
-        type: boolean
-        x-go-name: IsSynced
-      public_key:
-        type: string
-        x-go-name: PublicKey
-      user_id:
-        type: string
-        x-go-name: UserID
-    x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cmx
-  Actor:
-    type: object
-    properties:
-      description:
-        type: string
-        x-go-name: Description
-      id:
-        type: string
-        x-go-name: ID
-      link:
-        type: string
-        x-go-name: Link
-      timestamp:
-        type: string
-        format: date-time
-        x-go-name: Timestamp
-      type:
-        type: string
-        x-go-name: Type
-    x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
-  CMXHistory:
-    description: Any non-historical fields have been omitted.
-    type: object
-    title: CMXHistory represents shared fields of history for various DistributionTypes.
-    properties:
-      actor:
-        $ref: '#/definitions/Actor'
-      assigned_at:
-        type: string
-        format: date-time
-        x-go-name: AssignedAt
-      created_at:
-        type: string
-        format: date-time
-        x-go-name: CreatedAt
-      credits_per_hour:
-        type: integer
-        format: int64
-        x-go-name: CreditsPerHour
-      disk_gib:
-        type: integer
-        format: int64
-        x-go-name: DiskGiB
-      distribution:
-        type: string
-        x-go-name: Distribution
-      distribution_type:
-        $ref: '#/definitions/DistributionType'
-      duration:
-        type: integer
-        format: int64
-        x-go-name: Duration
-      expires_at:
-        type: string
-        format: date-time
-        x-go-name: ExpiresAt
-      flat_fee:
-        type: integer
-        format: int64
-        x-go-name: FlatFee
-      guid:
-        type: string
-        x-go-name: GUID
-      has_network_report:
-        type: boolean
-        x-go-name: HasNetworkReport
-      id:
-        type: string
-        x-go-name: ShortID
-      instance_type:
-        type: string
-        x-go-name: InstanceType
-      minutes_billed:
-        type: integer
-        format: int64
-        x-go-name: MinutesBilled
-      name:
-        type: string
-        x-go-name: Name
-      network_id:
-        type: string
-        x-go-name: NetworkID
-      node_groups:
-        type: integer
-        format: int64
-        x-go-name: NodeGroupCount
-      nodes:
-        type: integer
-        format: int64
-        x-go-name: ClusterNodeCount
-      running_at:
-        type: string
-        format: date-time
-        x-go-name: RunningAt
-      status:
-        type: string
-        x-go-name: Status
-      tags:
-        type: array
-        items:
-          $ref: '#/definitions/Tag'
-        x-go-name: Tags
-      team_id:
-        type: string
-        x-go-name: TeamID
-      terminated_at:
-        type: string
-        format: date-time
-        x-go-name: TerminatedAt
-      total_credits:
-        type: integer
-        format: int64
-        x-go-name: TotalCredits
-      ttl:
-        type: string
-        x-go-name: TTL
-      version:
-        type: string
-        x-go-name: Version
-    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
-  DistributionType:
-    type: string
-    x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
-responses:
-  deleteUserPublicKeyResponse:
-    description: DeleteUserPublicKeyResponse contains the response for deleting a user public key.
-    schema:
+          $ref: '#/components/responses/responseErrNotFound'
+      servers:
+      - url: https://api.replicated.com/vendor/v3
+components:
+  schemas:
+    DistributionType:
+      type: string
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+    CMXQuota:
       type: object
       properties:
-        error:
+        current_value:
+          type: integer
+          format: int64
+          x-go-name: CurrentValue
+        default_value:
+          type: integer
+          format: int64
+          x-go-name: DefaultValue
+        in_use:
+          type: integer
+          format: int64
+          x-go-name: InUse
+        name:
           type: string
-          x-go-name: Error
-        success:
+          x-go-name: Name
+        queued:
+          type: integer
+          format: int64
+          x-go-name: Queued
+        unit:
+          type: string
+          x-go-name: Unit
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cmx
+    UserPublicKeyResponse:
+      type: object
+      title: UserPublicKeyResponse represents a public key in the response.
+      properties:
+        fingerprint:
+          type: string
+          x-go-name: Fingerprint
+        is_synced:
           type: boolean
-          x-go-name: Success
-  getCMXStatsResponse:
-    description: GetCMXStatsResponse contains the response to get CMX stats.
-    schema:
-      type: object
-      properties:
-        cluster_count:
-          description: Total number of clusters.
-          type: integer
-          format: int64
-          x-go-name: ClusterCount
-        cost:
-          description: Total cost of all clusters and VMs in cents.
-          type: integer
-          format: int64
-          x-go-name: Cost
-        credit_balance:
-          description: Total remaining credit balance in cents.
-          type: integer
-          format: int64
-          x-go-name: CreditBalance
-        error:
-          type: string
-          x-go-name: Error
-        usage_minutes:
-          description: Total number of usage minutes across clusters and VMs.
-          type: integer
-          format: int64
-          x-go-name: UsageMinutes
-        vm_count:
-          description: Total number of VMs.
-          type: integer
-          format: int64
-          x-go-name: VMCount
-  responseErrUnauthorized:
-    description: Return if the caller is not authorized
-    schema:
-      type: object
-      properties:
-        message:
-          type: string
-          x-go-name: Message
-  listCMXQuotasResponse:
-    description: ListCMXQuotasResponse contains the response to list CMX quotas
-    schema:
-      type: object
-      properties:
-        cmx_quotas:
-          type: array
-          items:
-            $ref: '#/definitions/CMXQuota'
-          x-go-name: CMXQuotas
-  responseErrNotFound:
-    description: Returned on resource not found
-    schema:
-      type: object
-      properties:
-        message:
-          type: string
-          x-go-name: Message
-  responseErrBadRequest:
-    description: Returned on bad input
-    schema:
-      type: object
-      properties:
-        error_code:
-          description: Error code if available
-          type: string
-          x-go-name: ErrorCode
-        message:
-          description: Error message text if available
-          type: string
-          x-go-name: Message
-  addUserPublicKeyResponse:
-    description: AddUserPublicKeyResponse contains the response for adding a user public key.
-    schema:
-      type: object
-      properties:
-        error:
-          type: string
-          x-go-name: Error
+          x-go-name: IsSynced
         public_key:
-          $ref: '#/definitions/UserPublicKeyResponse'
-  responseErrForbidden:
-    description: Returned if the caller does not have the needed permission
-    schema:
+          type: string
+          x-go-name: PublicKey
+        user_id:
+          type: string
+          x-go-name: UserID
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cmx
+    CMXHistory:
+      description: Any non-historical fields have been omitted.
       type: object
+      title: CMXHistory represents shared fields of history for various DistributionTypes.
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              x-go-name: Message
-            messageCode:
-              type: string
-              x-go-name: MessageCode
-          x-go-name: Error
-  listCMXHistoryResponse:
-    description: ListCMXHistoryResponse contains the response to listing CMX history
-    schema:
-      type: object
-      properties:
-        history:
-          type: array
-          items:
-            $ref: '#/definitions/CMXHistory'
-          x-go-name: History
-        total:
+        actor:
+          $ref: '#/components/schemas/Actor'
+        assigned_at:
+          type: string
+          format: date-time
+          x-go-name: AssignedAt
+        created_at:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        credits_per_hour:
           type: integer
           format: int64
-          x-go-name: Total
-  getUserPublicKeysResponse:
-    description: GetUserPublicKeysResponse contains the response for getting user public keys.
-    schema:
-      type: object
-      properties:
-        error:
+          x-go-name: CreditsPerHour
+        disk_gib:
+          type: integer
+          format: int64
+          x-go-name: DiskGiB
+        distribution:
           type: string
-          x-go-name: Error
-        public_keys:
+          x-go-name: Distribution
+        distribution_type:
+          $ref: '#/components/schemas/DistributionType'
+        duration:
+          type: integer
+          format: int64
+          x-go-name: Duration
+        expires_at:
+          type: string
+          format: date-time
+          x-go-name: ExpiresAt
+        flat_fee:
+          type: integer
+          format: int64
+          x-go-name: FlatFee
+        guid:
+          type: string
+          x-go-name: GUID
+        has_network_report:
+          type: boolean
+          x-go-name: HasNetworkReport
+        id:
+          type: string
+          x-go-name: ShortID
+        instance_type:
+          type: string
+          x-go-name: InstanceType
+        minutes_billed:
+          type: integer
+          format: int64
+          x-go-name: MinutesBilled
+        name:
+          type: string
+          x-go-name: Name
+        network_id:
+          type: string
+          x-go-name: NetworkID
+        node_groups:
+          type: integer
+          format: int64
+          x-go-name: NodeGroupCount
+        nodes:
+          type: integer
+          format: int64
+          x-go-name: ClusterNodeCount
+        running_at:
+          type: string
+          format: date-time
+          x-go-name: RunningAt
+        status:
+          type: string
+          x-go-name: Status
+        tags:
           type: array
           items:
-            $ref: '#/definitions/UserPublicKeyResponse'
-          x-go-name: PublicKeys
-securityDefinitions:
-  api_key:
-    type: apiKey
-    name: Authorization
-    in: header
+            $ref: '#/components/schemas/Tag'
+          x-go-name: Tags
+        team_id:
+          type: string
+          x-go-name: TeamID
+        terminated_at:
+          type: string
+          format: date-time
+          x-go-name: TerminatedAt
+        total_credits:
+          type: integer
+          format: int64
+          x-go-name: TotalCredits
+        ttl:
+          type: string
+          x-go-name: TTL
+        version:
+          type: string
+          x-go-name: Version
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+    Tag:
+      type: object
+      properties:
+        key:
+          type: string
+          x-go-name: Key
+        value:
+          type: string
+          x-go-name: Value
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+    Actor:
+      type: object
+      properties:
+        description:
+          type: string
+          x-go-name: Description
+        id:
+          type: string
+          x-go-name: ID
+        link:
+          type: string
+          x-go-name: Link
+        timestamp:
+          type: string
+          format: date-time
+          x-go-name: Timestamp
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+  responses:
+    getUserPublicKeysResponse:
+      description: GetUserPublicKeysResponse contains the response for getting user public keys.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              public_keys:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserPublicKeyResponse'
+                x-go-name: PublicKeys
+    getCMXStatsResponse:
+      description: GetCMXStatsResponse contains the response to get CMX stats.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cluster_count:
+                description: Total number of clusters.
+                type: integer
+                format: int64
+                x-go-name: ClusterCount
+              cost:
+                description: Total cost of all clusters and VMs in cents.
+                type: integer
+                format: int64
+                x-go-name: Cost
+              credit_balance:
+                description: Total remaining credit balance in cents.
+                type: integer
+                format: int64
+                x-go-name: CreditBalance
+              error:
+                type: string
+                x-go-name: Error
+              usage_minutes:
+                description: Total number of usage minutes across clusters and VMs.
+                type: integer
+                format: int64
+                x-go-name: UsageMinutes
+              vm_count:
+                description: Total number of VMs.
+                type: integer
+                format: int64
+                x-go-name: VMCount
+    listCMXQuotasResponse:
+      description: ListCMXQuotasResponse contains the response to list CMX quotas
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cmx_quotas:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CMXQuota'
+                x-go-name: CMXQuotas
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    addUserPublicKeyResponse:
+      description: AddUserPublicKeyResponse contains the response for adding a user public key.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              public_key:
+                $ref: '#/components/schemas/UserPublicKeyResponse'
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
+    listCMXHistoryResponse:
+      description: ListCMXHistoryResponse contains the response to listing CMX history
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              history:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CMXHistory'
+                x-go-name: History
+              total:
+                type: integer
+                format: int64
+                x-go-name: Total
+    deleteUserPublicKeyResponse:
+      description: DeleteUserPublicKeyResponse contains the response for deleting a user public key.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              success:
+                type: boolean
+                x-go-name: Success
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: Authorization
+      in: header

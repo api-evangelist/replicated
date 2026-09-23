@@ -1,0 +1,26 @@
+# Front Door AI Index — replicated — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: replicated
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: replicated.com
+  final_host: www.replicated.com
+  ownership: own
+  owner: replicated
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 18
+  host_score: 18
+  density: 9.01
+  words: 1997
+  tiers:
+    agentic: 0
+    core: 18
+    model: 0
+  ambiguous: 0
+  top_terms:
+    AI: 16
+    ML: 2
