@@ -28,7 +28,7 @@
     "replicated-vms-api-openapi.yml"
   ],
   "archived": [
-    "deleted 3 superseded output(s) from the previous generation"
+    "deleted 2 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -57,8 +57,8 @@
     "replicated-vendor-api-v3-openapi-original.json: declared missing tag: user",
     "replicated-vendor-api-v3-openapi-original.json: declared missing tag: vmAddons",
     "replicated-vendor-api-v3-openapi-original.json: declared missing tag: vms",
-    "superseded outputs removed: replicated-custom-hostnames-api-openapi.yml, replicated-support-bundle-api-openapi.yml, replicated-v-ms-api-openapi.yml",
-    "apis.yml register: written (+3 apis, 22 total)"
+    "superseded outputs removed: replicated-custom-hostnames-api-openapi.yml, replicated-support-bundle-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 22 total)"
   ],
   "skipped": [
     "replicated-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -81,7 +81,7 @@
     "replicated-team-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "replicated-telemetry-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "replicated-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "replicated-v-ms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "replicated-vmaddons-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+    "replicated-vmaddons-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "replicated-vms-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }

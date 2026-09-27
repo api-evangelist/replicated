@@ -59,7 +59,7 @@ tags:
 - Licensing
 apis:
 - aid: replicated:replicated-apps-api
-  name: Replicated apps API
+  name: Replicated Apps API
   description: The apps API from Replicated — 17 operation(s) for apps.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -75,7 +75,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-channelreleases-api
-  name: Replicated channelReleases API
+  name: Replicated Channel Releases API
   description: The channelReleases API from Replicated — 7 operation(s) for channelreleases.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -90,7 +90,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-channels-api
-  name: Replicated channels API
+  name: Replicated Channels API
   description: The channels API from Replicated — 7 operation(s) for channels.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -106,7 +106,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-clusteraddons-api
-  name: Replicated clusterAddons API
+  name: Replicated Cluster Addons API
   description: The clusterAddons API from Replicated — 3 operation(s) for clusteraddons.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -121,7 +121,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-clusters-api
-  name: Replicated clusters API
+  name: Replicated Clusters API
   description: The clusters API from Replicated — 18 operation(s) for clusters.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -137,7 +137,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-cmx-api
-  name: Replicated cmx API
+  name: Replicated Cmx API
   description: The cmx API from Replicated — 5 operation(s) for cmx.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -151,7 +151,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-customers-api
-  name: Replicated customers API
+  name: Replicated Customers API
   description: The customers API from Replicated — 11 operation(s) for customers.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -167,7 +167,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-enterpriseportal-api
-  name: Replicated enterprisePortal API
+  name: Replicated Enterprise Portal API
   description: The enterprisePortal API from Replicated — 27 operation(s) for enterpriseportal.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -182,7 +182,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-externalregistries-api
-  name: Replicated externalRegistries API
+  name: Replicated External Registries API
   description: The externalRegistries API from Replicated — 6 operation(s) for externalregistries.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -197,7 +197,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-instances-api
-  name: Replicated instances API
+  name: Replicated Instances API
   description: The instances API from Replicated — 10 operation(s) for instances.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -213,7 +213,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-networks-api
-  name: Replicated networks API
+  name: Replicated Networks API
   description: The networks API from Replicated — 3 operation(s) for networks.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -229,7 +229,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-notifications-api
-  name: Replicated notifications API
+  name: Replicated Notifications API
   description: The notifications API from Replicated — 10 operation(s) for notifications.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -245,7 +245,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-policy-api
-  name: Replicated policy API
+  name: Replicated Policy API
   description: The policy API from Replicated — 3 operation(s) for policy.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -261,7 +261,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-registry-api
-  name: Replicated registry API
+  name: Replicated Registry API
   description: The registry API from Replicated — 1 operation(s) for registry.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -277,7 +277,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-releases-api
-  name: Replicated releases API
+  name: Replicated Releases API
   description: The releases API from Replicated — 13 operation(s) for releases.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -293,7 +293,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-team-api
-  name: Replicated team API
+  name: Replicated Team API
   description: The team API from Replicated — 11 operation(s) for team.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -309,7 +309,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-telemetry-api
-  name: Replicated telemetry API
+  name: Replicated Telemetry API
   description: The telemetry API from Replicated — 3 operation(s) for telemetry.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3
@@ -325,7 +325,7 @@ apis:
   - type: APIReference
     url: https://replicated-vendor-api.readme.io/v3/reference/createapp
 - aid: replicated:replicated-user-api
-  name: Replicated user API
+  name: Replicated User API
   description: The user API from Replicated — 2 operation(s) for user.
   humanURL: https://docs.replicated.com/reference/vendor-api-using
   baseURL: https://api.replicated.com/vendor/v3

@@ -697,103 +697,481 @@ paths:
                     $ref: '#/components/schemas/IncreaseQuotaRequest'
                   x-go-name: Requests
 components:
+  responses:
+    createClusterDryRunResponse:
+      description: CreateClusterDryRunResponse contains the response to a dry run of creating a cluster
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: '#/components/schemas/CreateClusterError'
+              total_cost:
+                type: integer
+                format: int64
+                x-go-name: TotalCost
+              ttl:
+                type: string
+                x-go-name: TTL
+    deleteClusterResponse:
+      description: DeleteClusterResponse contains the response to delete a cluster
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+    updateClusterTTLErrorResponse:
+      description: UpdateClusterTTLErrorResponse contains error information
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    increaseClusterQuotaErrorResponse:
+      description: IncreaseClusterQuotaErrorResponse contains the errors returned when increasing cluster quota
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+    updateClusterTTLResponse:
+      description: UpdateClusterTTLResponse contains the response to update a cluster ttl
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cluster:
+                $ref: '#/components/schemas/Cluster'
+              error:
+                type: string
+                x-go-name: Error
+    increaseClusterQuotaResponse:
+      description: IncreaseClusterQuotaResponse contains the response to increase cluster quota
+      content:
+        application/json:
+          schema:
+            type: object
+    createClusterPortResponse:
+      description: CreateClusterPortResponse contains the response to a create cluster port request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              addon:
+                $ref: '#/components/schemas/ClusterAddon'
+              port:
+                $ref: '#/components/schemas/ClusterPort'
+    createClusterResponse:
+      description: CreateClusterResponse contains the response to create a cluster
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cluster:
+                $ref: '#/components/schemas/Cluster'
+    updateClusterNodegroupResponse:
+      description: UpdateClusterNodegroupResponse contains the response to update a cluster nodegroup
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cluster:
+                $ref: '#/components/schemas/Cluster'
+              error:
+                type: string
+                x-go-name: Error
+    upgradeClusterResponse:
+      description: UpgradeClusterResponse contains the response to upgrade a cluster
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cluster:
+                $ref: '#/components/schemas/Cluster'
+    getClusterKubeconfigResponse:
+      description: GetClusterKubeconfigResponse contains the response to get a cluster kubeconfig
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              kubeconfig:
+                type: array
+                items:
+                  type: integer
+                  format: uint8
+                x-go-name: Kubeconfig
+    getClusterResponse:
+      description: GetClusterResponse contains the response to get cluster details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cluster:
+                $ref: '#/components/schemas/Cluster'
+              error:
+                type: string
+                x-go-name: Error
+    listClusterQuotasResponse:
+      description: ListClusterQuotasResponse contains the response to list cluster quotas
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cluster_quotas:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClusterQuota'
+                x-go-name: ClusterQuotas
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
+    upgradeClusterValidationErrorResponse:
+      description: UpgradeClusterValidationErrorResponse contains a bad request response when upgrading a cluster
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    getClusterStatsResponse:
+      description: GetClusterStatsResponse contains the response to get clusters stats
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cluster_count:
+                description: Total number of clusters.
+                type: integer
+                format: int64
+                x-go-name: ClusterCount
+              cost:
+                description: Total cost of all clusters in cents.
+                type: integer
+                format: int64
+                x-go-name: Cost
+              credit_balance:
+                description: Total remaining credit balance in cents.
+                type: integer
+                format: int64
+                x-go-name: CreditBalance
+              error:
+                type: string
+                x-go-name: Error
+              node_minutes:
+                description: Total number of node minutes.
+                type: integer
+                format: int64
+                x-go-name: NodeMinutes
+    updateClusterTagsResponse:
+      description: UpdateClusterTagsResponse contains the response to update a cluster tags
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cluster:
+                $ref: '#/components/schemas/Cluster'
+              error:
+                type: string
+                x-go-name: Error
+    createClusterErrorResponse:
+      description: CreateClusterErrorResponse contains error information
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateClusterError'
+    updateClusterNodegroupErrorResponse:
+      description: updateClusterNodegroupErrorResponse contains error information
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+              validationError:
+                $ref: '#/components/schemas/ValidationError'
+    increaseClusterCreditsResponse:
+      description: IncreaseClusterCreditsResponse contains the response to increase cluster credits
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              checkout_url:
+                type: string
+                x-go-name: CheckoutURL
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    listClustersResponse:
+      description: ListClustersResponse contains the response to list clusters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              clusters:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cluster'
+                x-go-name: Clusters
+              error:
+                type: string
+                x-go-name: Error
+              totalClusters:
+                type: integer
+                format: int64
+                x-go-name: TotalClusters
+    listClusterUsageResponse:
+      description: ListClusterUsageResponse contains the response to list cluster usage
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              clusterUsageDetails:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClusterDetail'
+                x-go-name: ClusterUsageDetails
+              error:
+                type: string
+                x-go-name: Error
+    increaseClusterCreditsErrorResponse:
+      description: IncreaseClusterCreditsErrorResponse contains the errors returned when increasing cluster credits
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+    deleteClusterPortResponse:
+      description: DeleteClusterPortResponse contains the response to a delete cluster port request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              addons:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClusterAddon'
+                x-go-name: Addons
+              ports:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClusterPort'
+                x-go-name: Ports
+    listClusterPortsResponse:
+      description: ListClusterPortsResponse contains the response to a list cluster [prts] request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              addons:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClusterAddon'
+                x-go-name: Addons
+              ports:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClusterPort'
+                x-go-name: Ports
+    listClusterVersionsResponse:
+      description: ListClusterVersionsResponse contains the response to list clusters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cluster-versions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SupportedDistributionAndVersions'
+                x-go-name: Clusters
+              error:
+                type: string
+                x-go-name: Error
+    getClusterFiltersResponse:
+      description: GetClusterFiltersResponse contains the response to get clusters filters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              earliest_cluster_date_days_ago:
+                type: integer
+                format: int64
+                x-go-name: EarliestClusterDateDaysAgo
+              max_cost:
+                type: integer
+                format: int64
+                x-go-name: MaxCost
+              max_duration_minutes:
+                type: integer
+                format: int64
+                x-go-name: MaxDurationMinutes
+              max_node_groups:
+                type: integer
+                format: int64
+                x-go-name: MaxNodeGroups
+              max_nodes:
+                type: integer
+                format: int64
+                x-go-name: MaxNodes
+              max_ttl_minutes:
+                type: integer
+                format: int64
+                x-go-name: MaxTTLMinutes
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
   schemas:
-    ClusterExposedPort:
+    SupportedVersion:
       type: object
       properties:
-        exposed_port:
+        nodes_max:
           type: integer
           format: int64
-          x-go-name: ExposedPort
-        protocol:
-          $ref: '#/components/schemas/PortProtocol'
+          x-go-name: NodesMax
+        version:
+          type: string
+          x-go-name: Version
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    ClusterAddon:
+    CreateClusterParametersBody:
       type: object
       properties:
-        cluster_guid:
-          type: string
-          x-go-name: ClusterGUID
-        cluster_id:
-          type: string
-          x-go-name: ClusterShortID
-        created_at:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        guid:
-          type: string
-          x-go-name: GUID
-        id:
-          type: string
-          x-go-name: ShortID
-        object_store:
-          $ref: '#/components/schemas/ClusterAddonObjectStore'
-        port:
-          $ref: '#/components/schemas/ClusterAddonPort'
-        ready_at:
-          type: string
-          format: date-time
-          x-go-name: ReadyAt
-        status:
-          $ref: '#/components/schemas/ClusterAddonStatus'
-        terminated_at:
-          type: string
-          format: date-time
-          x-go-name: TerminatedAt
-        total_credits:
-          type: integer
-          format: int64
-          x-go-name: TotalCredits
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    ClusterNode:
-      type: object
-      properties:
-        join_command:
-          type: string
-          x-go-name: JoinCommand
-        network_id:
-          description: Used by vxlan nodes
-          type: string
-          x-go-name: NetworkID
-        network_public_ips:
+        additional_node_groups:
           type: array
           items:
-            type: string
-          x-go-name: NetworkPublicIPs
-        node_group_id:
-          type: string
-          x-go-name: NodeGroupID
-        node_index:
+            $ref: '#/components/schemas/CreateNodeGroupParameters'
+          x-go-name: AdditionalNodeGroups
+        default_node_group:
+          $ref: '#/components/schemas/CreateNodeGroupParameters'
+        disk_gib:
           type: integer
           format: int64
-          x-go-name: Index
-        node_type:
-          $ref: '#/components/schemas/NodeType'
-        ssh_endpoint:
+          x-go-name: DiskGiB
+        instance_type:
+          description: 'following params are deprecated but remain to support cli versions <= 0.72.0
+
+            this handler will construct everything into DefaultNodeGroup and AdditionalNodeGroups
+
+            in the Bind method'
           type: string
-          x-go-name: SSHEndpoint
-        ssh_key:
+          x-go-name: InstanceType
+        ip_family:
           type: string
-          x-go-name: SSHKey
-        ssh_port:
+          x-go-name: IPFamily
+        kubernetes_distribution:
+          type: string
+          x-go-name: KubernetesDistribution
+        kubernetes_version:
+          type: string
+          x-go-name: KubernetesVersion
+        license_id:
+          type: string
+          x-go-name: LicenseID
+        max_node_count:
           type: integer
           format: int64
-          x-go-name: SSHPort
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    NodeType:
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    IncreaseQuotaRequest:
-      type: object
-      properties:
+          x-go-name: MaxNodeCount
+        min_node_count:
+          type: integer
+          format: int64
+          x-go-name: MinNodeCount
         name:
           type: string
           x-go-name: Name
-        requested_value:
+        network_policy:
+          type: string
+          x-go-name: NetworkPolicy
+        node_count:
           type: integer
           format: int64
-          x-go-name: RequestedValue
+          x-go-name: NodeCount
+        node_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateNodeGroupParameters'
+          x-go-name: NodeGroups
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+          x-go-name: Tags
+        ttl:
+          type: string
+          x-go-name: TTL
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
     ClusterDistributionStatus:
       type: object
@@ -811,85 +1189,114 @@ components:
           type: string
           x-go-name: Versions
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    CreateClusterError:
+    Cluster:
       type: object
       properties:
-        maxAKS:
-          type: integer
-          format: int64
-          x-go-name: MaxAKS
-        maxDiskGiB:
-          type: integer
-          format: int64
-          x-go-name: MaxDiskGiB
-        maxEKS:
-          type: integer
-          format: int64
-          x-go-name: MaxEKS
-        maxGKE:
-          type: integer
-          format: int64
-          x-go-name: MaxGKE
-        maxMemoryGiB:
-          type: integer
-          format: int64
-          x-go-name: MaxMemoryGiB
-        maxOKE:
-          type: integer
-          format: int64
-          x-go-name: MaxOKE
-        maxVCPUs:
-          type: integer
-          format: int64
-          x-go-name: MaxVCPUs
-        message:
+        actor:
+          $ref: '#/components/schemas/Actor'
+        addons:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClusterAddon'
+          x-go-name: Addons
+        assigned_at:
           type: string
-          x-go-name: Message
-        validationError:
-          $ref: '#/components/schemas/ValidationError'
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
-    ClusterAddonStatus:
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    ClusterPort:
-      type: object
-      properties:
-        addon_guid:
-          type: string
-          x-go-name: AddonGUID
-        addon_id:
-          type: string
-          x-go-name: AddonShortID
-        cluster_guid:
-          type: string
-          x-go-name: ClusterGUID
-        cluster_id:
-          type: string
-          x-go-name: ClusterShortID
+          format: date-time
+          x-go-name: AssignedAt
+        cluster_node:
+          $ref: '#/components/schemas/ClusterNode'
         created_at:
           type: string
           format: date-time
           x-go-name: CreatedAt
-        exposed_ports:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClusterExposedPort'
-          x-go-name: ExposedPorts
-        hostname:
-          type: string
-          x-go-name: Hostname
-        is_wildcard:
-          type: boolean
-          x-go-name: IsWildcard
-        port_name:
-          type: string
-          x-go-name: PortName
-        state:
-          $ref: '#/components/schemas/ClusterAddonStatus'
-        upstream_port:
+        credits_per_hour_per_cluster:
           type: integer
           format: int64
-          x-go-name: UpstreamPort
+          x-go-name: CreditsPerHourPerCluster
+        distribution:
+          type: string
+          x-go-name: Distribution
+        expires_at:
+          type: string
+          format: date-time
+          x-go-name: ExpiresAt
+        flat_fee:
+          type: integer
+          format: int64
+          x-go-name: FlatFee
+        guid:
+          type: string
+          x-go-name: GUID
+        id:
+          type: string
+          x-go-name: ShortID
+        installer_url:
+          type: string
+          x-go-name: InstallerURL
+        ip_family:
+          type: string
+          x-go-name: IPFamily
+        kubernetes_distribution:
+          type: string
+          x-go-name: KubernetesDistribution
+        kubernetes_version:
+          type: string
+          x-go-name: KubernetesVersion
+        last_scheduling_status:
+          type: string
+          x-go-name: LastSchedulingStatus
+        license_id:
+          type: string
+          x-go-name: LicenseID
+        name:
+          type: string
+          x-go-name: Name
+        network_id:
+          type: string
+          x-go-name: NetworkID
+        node_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeGroup'
+          x-go-name: NodeGroups
+        running_at:
+          type: string
+          format: date-time
+          x-go-name: RunningAt
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+          x-go-name: Tags
+        team_id:
+          type: string
+          x-go-name: TeamID
+        total_credits:
+          type: integer
+          format: int64
+          x-go-name: TotalCredits
+        ttl:
+          type: string
+          x-go-name: TTL
+        version:
+          type: string
+          x-go-name: Version
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+    ValidationError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+          x-go-name: Errors
+        supported_distributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportedDistributionAndVersions'
+          x-go-name: SupportedDistributions
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
     SupportedDistributionAndVersions:
       type: object
@@ -1015,111 +1422,72 @@ components:
           format: int64
           x-go-name: TotalCredits
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    SupportedVersion:
+    CreateClusterError:
       type: object
       properties:
-        nodes_max:
+        maxAKS:
           type: integer
           format: int64
-          x-go-name: NodesMax
-        version:
+          x-go-name: MaxAKS
+        maxDiskGiB:
+          type: integer
+          format: int64
+          x-go-name: MaxDiskGiB
+        maxEKS:
+          type: integer
+          format: int64
+          x-go-name: MaxEKS
+        maxGKE:
+          type: integer
+          format: int64
+          x-go-name: MaxGKE
+        maxMemoryGiB:
+          type: integer
+          format: int64
+          x-go-name: MaxMemoryGiB
+        maxOKE:
+          type: integer
+          format: int64
+          x-go-name: MaxOKE
+        maxVCPUs:
+          type: integer
+          format: int64
+          x-go-name: MaxVCPUs
+        message:
           type: string
-          x-go-name: Version
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    Cluster:
+          x-go-name: Message
+        validationError:
+          $ref: '#/components/schemas/ValidationError'
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
+    Actor:
       type: object
       properties:
-        actor:
-          $ref: '#/components/schemas/Actor'
-        addons:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClusterAddon'
-          x-go-name: Addons
-        assigned_at:
+        description:
           type: string
-          format: date-time
-          x-go-name: AssignedAt
-        cluster_node:
-          $ref: '#/components/schemas/ClusterNode'
-        created_at:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        credits_per_hour_per_cluster:
-          type: integer
-          format: int64
-          x-go-name: CreditsPerHourPerCluster
-        distribution:
-          type: string
-          x-go-name: Distribution
-        expires_at:
-          type: string
-          format: date-time
-          x-go-name: ExpiresAt
-        flat_fee:
-          type: integer
-          format: int64
-          x-go-name: FlatFee
-        guid:
-          type: string
-          x-go-name: GUID
+          x-go-name: Description
         id:
           type: string
-          x-go-name: ShortID
-        installer_url:
+          x-go-name: ID
+        link:
           type: string
-          x-go-name: InstallerURL
-        ip_family:
-          type: string
-          x-go-name: IPFamily
-        kubernetes_distribution:
-          type: string
-          x-go-name: KubernetesDistribution
-        kubernetes_version:
-          type: string
-          x-go-name: KubernetesVersion
-        last_scheduling_status:
-          type: string
-          x-go-name: LastSchedulingStatus
-        license_id:
-          type: string
-          x-go-name: LicenseID
-        name:
-          type: string
-          x-go-name: Name
-        network_id:
-          type: string
-          x-go-name: NetworkID
-        node_groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/NodeGroup'
-          x-go-name: NodeGroups
-        running_at:
+          x-go-name: Link
+        timestamp:
           type: string
           format: date-time
-          x-go-name: RunningAt
-        status:
-          $ref: '#/components/schemas/ClusterStatus'
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-          x-go-name: Tags
-        team_id:
+          x-go-name: Timestamp
+        type:
           type: string
-          x-go-name: TeamID
-        total_credits:
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+    ClusterExposedPort:
+      type: object
+      properties:
+        exposed_port:
           type: integer
           format: int64
-          x-go-name: TotalCredits
-        ttl:
-          type: string
-          x-go-name: TTL
-        version:
-          type: string
-          x-go-name: Version
+          x-go-name: ExposedPort
+        protocol:
+          $ref: '#/components/schemas/PortProtocol'
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
     ClusterAddonPort:
       type: object
@@ -1147,111 +1515,12 @@ components:
           format: int64
           x-go-name: UpstreamPort
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    ClusterAddonObjectStore:
-      type: object
-      properties:
-        bucket_name:
-          type: string
-          x-go-name: BucketName
-        bucket_prefix:
-          type: string
-          x-go-name: BucketPrefix
-        service_account_name:
-          type: string
-          x-go-name: ServiceAccountName
-        service_account_name_read_only:
-          type: string
-          x-go-name: ServiceAccountNameReadOnly
-        service_account_namespace:
-          type: string
-          x-go-name: ServiceAccountNamespace
+    NodeType:
+      type: string
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
     ClusterStatus:
       type: string
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    ValidationError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
-          x-go-name: Errors
-        supported_distributions:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupportedDistributionAndVersions'
-          x-go-name: SupportedDistributions
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    PortProtocol:
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
-    CreateClusterParametersBody:
-      type: object
-      properties:
-        additional_node_groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateNodeGroupParameters'
-          x-go-name: AdditionalNodeGroups
-        default_node_group:
-          $ref: '#/components/schemas/CreateNodeGroupParameters'
-        disk_gib:
-          type: integer
-          format: int64
-          x-go-name: DiskGiB
-        instance_type:
-          description: 'following params are deprecated but remain to support cli versions <= 0.72.0
-
-            this handler will construct everything into DefaultNodeGroup and AdditionalNodeGroups
-
-            in the Bind method'
-          type: string
-          x-go-name: InstanceType
-        ip_family:
-          type: string
-          x-go-name: IPFamily
-        kubernetes_distribution:
-          type: string
-          x-go-name: KubernetesDistribution
-        kubernetes_version:
-          type: string
-          x-go-name: KubernetesVersion
-        license_id:
-          type: string
-          x-go-name: LicenseID
-        max_node_count:
-          type: integer
-          format: int64
-          x-go-name: MaxNodeCount
-        min_node_count:
-          type: integer
-          format: int64
-          x-go-name: MinNodeCount
-        name:
-          type: string
-          x-go-name: Name
-        network_policy:
-          type: string
-          x-go-name: NetworkPolicy
-        node_count:
-          type: integer
-          format: int64
-          x-go-name: NodeCount
-        node_groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateNodeGroupParameters'
-          x-go-name: NodeGroups
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-          x-go-name: Tags
-        ttl:
-          type: string
-          x-go-name: TTL
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
     ClusterQuota:
       type: object
       properties:
@@ -1278,6 +1547,149 @@ components:
           type: string
           x-go-name: Unit
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
+    ClusterNode:
+      type: object
+      properties:
+        join_command:
+          type: string
+          x-go-name: JoinCommand
+        network_id:
+          description: Used by vxlan nodes
+          type: string
+          x-go-name: NetworkID
+        network_public_ips:
+          type: array
+          items:
+            type: string
+          x-go-name: NetworkPublicIPs
+        node_group_id:
+          type: string
+          x-go-name: NodeGroupID
+        node_index:
+          type: integer
+          format: int64
+          x-go-name: Index
+        node_type:
+          $ref: '#/components/schemas/NodeType'
+        ssh_endpoint:
+          type: string
+          x-go-name: SSHEndpoint
+        ssh_key:
+          type: string
+          x-go-name: SSHKey
+        ssh_port:
+          type: integer
+          format: int64
+          x-go-name: SSHPort
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+    ClusterAddonObjectStore:
+      type: object
+      properties:
+        bucket_name:
+          type: string
+          x-go-name: BucketName
+        bucket_prefix:
+          type: string
+          x-go-name: BucketPrefix
+        service_account_name:
+          type: string
+          x-go-name: ServiceAccountName
+        service_account_name_read_only:
+          type: string
+          x-go-name: ServiceAccountNameReadOnly
+        service_account_namespace:
+          type: string
+          x-go-name: ServiceAccountNamespace
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+    ClusterAddon:
+      type: object
+      properties:
+        cluster_guid:
+          type: string
+          x-go-name: ClusterGUID
+        cluster_id:
+          type: string
+          x-go-name: ClusterShortID
+        created_at:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        guid:
+          type: string
+          x-go-name: GUID
+        id:
+          type: string
+          x-go-name: ShortID
+        object_store:
+          $ref: '#/components/schemas/ClusterAddonObjectStore'
+        port:
+          $ref: '#/components/schemas/ClusterAddonPort'
+        ready_at:
+          type: string
+          format: date-time
+          x-go-name: ReadyAt
+        status:
+          $ref: '#/components/schemas/ClusterAddonStatus'
+        terminated_at:
+          type: string
+          format: date-time
+          x-go-name: TerminatedAt
+        total_credits:
+          type: integer
+          format: int64
+          x-go-name: TotalCredits
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+    IncreaseQuotaRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+        requested_value:
+          type: integer
+          format: int64
+          x-go-name: RequestedValue
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
+    ClusterPort:
+      type: object
+      properties:
+        addon_guid:
+          type: string
+          x-go-name: AddonGUID
+        addon_id:
+          type: string
+          x-go-name: AddonShortID
+        cluster_guid:
+          type: string
+          x-go-name: ClusterGUID
+        cluster_id:
+          type: string
+          x-go-name: ClusterShortID
+        created_at:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        exposed_ports:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClusterExposedPort'
+          x-go-name: ExposedPorts
+        hostname:
+          type: string
+          x-go-name: Hostname
+        is_wildcard:
+          type: boolean
+          x-go-name: IsWildcard
+        port_name:
+          type: string
+          x-go-name: PortName
+        state:
+          $ref: '#/components/schemas/ClusterAddonStatus'
+        upstream_port:
+          type: integer
+          format: int64
+          x-go-name: UpstreamPort
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
     CreateNodeGroupParameters:
       type: object
       properties:
@@ -1304,6 +1716,9 @@ components:
           format: int64
           x-go-name: NodeCount
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/cluster
+    ClusterAddonStatus:
+      type: string
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
     Tag:
       type: object
       properties:
@@ -1314,424 +1729,9 @@ components:
           type: string
           x-go-name: Value
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
-    Actor:
-      type: object
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        id:
-          type: string
-          x-go-name: ID
-        link:
-          type: string
-          x-go-name: Link
-        timestamp:
-          type: string
-          format: date-time
-          x-go-name: Timestamp
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
-  responses:
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    increaseClusterCreditsErrorResponse:
-      description: IncreaseClusterCreditsErrorResponse contains the errors returned when increasing cluster credits
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-    deleteClusterPortResponse:
-      description: DeleteClusterPortResponse contains the response to a delete cluster port request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              addons:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClusterAddon'
-                x-go-name: Addons
-              ports:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClusterPort'
-                x-go-name: Ports
-    upgradeClusterValidationErrorResponse:
-      description: UpgradeClusterValidationErrorResponse contains a bad request response when upgrading a cluster
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ValidationError'
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    updateClusterTTLErrorResponse:
-      description: UpdateClusterTTLErrorResponse contains error information
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    increaseClusterQuotaResponse:
-      description: IncreaseClusterQuotaResponse contains the response to increase cluster quota
-      content:
-        application/json:
-          schema:
-            type: object
-    listClusterVersionsResponse:
-      description: ListClusterVersionsResponse contains the response to list clusters
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              cluster-versions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SupportedDistributionAndVersions'
-                x-go-name: Clusters
-              error:
-                type: string
-                x-go-name: Error
-    createClusterDryRunResponse:
-      description: CreateClusterDryRunResponse contains the response to a dry run of creating a cluster
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                $ref: '#/components/schemas/CreateClusterError'
-              total_cost:
-                type: integer
-                format: int64
-                x-go-name: TotalCost
-              ttl:
-                type: string
-                x-go-name: TTL
-    getClusterStatsResponse:
-      description: GetClusterStatsResponse contains the response to get clusters stats
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              cluster_count:
-                description: Total number of clusters.
-                type: integer
-                format: int64
-                x-go-name: ClusterCount
-              cost:
-                description: Total cost of all clusters in cents.
-                type: integer
-                format: int64
-                x-go-name: Cost
-              credit_balance:
-                description: Total remaining credit balance in cents.
-                type: integer
-                format: int64
-                x-go-name: CreditBalance
-              error:
-                type: string
-                x-go-name: Error
-              node_minutes:
-                description: Total number of node minutes.
-                type: integer
-                format: int64
-                x-go-name: NodeMinutes
-    createClusterResponse:
-      description: CreateClusterResponse contains the response to create a cluster
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              cluster:
-                $ref: '#/components/schemas/Cluster'
-    updateClusterTTLResponse:
-      description: UpdateClusterTTLResponse contains the response to update a cluster ttl
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              cluster:
-                $ref: '#/components/schemas/Cluster'
-              error:
-                type: string
-                x-go-name: Error
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
-    createClusterErrorResponse:
-      description: CreateClusterErrorResponse contains error information
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateClusterError'
-    increaseClusterCreditsResponse:
-      description: IncreaseClusterCreditsResponse contains the response to increase cluster credits
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              checkout_url:
-                type: string
-                x-go-name: CheckoutURL
-    deleteClusterResponse:
-      description: DeleteClusterResponse contains the response to delete a cluster
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-    increaseClusterQuotaErrorResponse:
-      description: IncreaseClusterQuotaErrorResponse contains the errors returned when increasing cluster quota
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-    listClustersResponse:
-      description: ListClustersResponse contains the response to list clusters
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              clusters:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Cluster'
-                x-go-name: Clusters
-              error:
-                type: string
-                x-go-name: Error
-              totalClusters:
-                type: integer
-                format: int64
-                x-go-name: TotalClusters
-    listClusterPortsResponse:
-      description: ListClusterPortsResponse contains the response to a list cluster [prts] request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              addons:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClusterAddon'
-                x-go-name: Addons
-              ports:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClusterPort'
-                x-go-name: Ports
-    updateClusterNodegroupResponse:
-      description: UpdateClusterNodegroupResponse contains the response to update a cluster nodegroup
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              cluster:
-                $ref: '#/components/schemas/Cluster'
-              error:
-                type: string
-                x-go-name: Error
-    getClusterKubeconfigResponse:
-      description: GetClusterKubeconfigResponse contains the response to get a cluster kubeconfig
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              kubeconfig:
-                type: array
-                items:
-                  type: integer
-                  format: uint8
-                x-go-name: Kubeconfig
-    createClusterPortResponse:
-      description: CreateClusterPortResponse contains the response to a create cluster port request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              addon:
-                $ref: '#/components/schemas/ClusterAddon'
-              port:
-                $ref: '#/components/schemas/ClusterPort'
-    getClusterResponse:
-      description: GetClusterResponse contains the response to get cluster details
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              cluster:
-                $ref: '#/components/schemas/Cluster'
-              error:
-                type: string
-                x-go-name: Error
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    listClusterUsageResponse:
-      description: ListClusterUsageResponse contains the response to list cluster usage
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              clusterUsageDetails:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClusterDetail'
-                x-go-name: ClusterUsageDetails
-              error:
-                type: string
-                x-go-name: Error
-    updateClusterNodegroupErrorResponse:
-      description: updateClusterNodegroupErrorResponse contains error information
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-              validationError:
-                $ref: '#/components/schemas/ValidationError'
-    upgradeClusterResponse:
-      description: UpgradeClusterResponse contains the response to upgrade a cluster
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              cluster:
-                $ref: '#/components/schemas/Cluster'
-    updateClusterTagsResponse:
-      description: UpdateClusterTagsResponse contains the response to update a cluster tags
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              cluster:
-                $ref: '#/components/schemas/Cluster'
-              error:
-                type: string
-                x-go-name: Error
-    getClusterFiltersResponse:
-      description: GetClusterFiltersResponse contains the response to get clusters filters
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              earliest_cluster_date_days_ago:
-                type: integer
-                format: int64
-                x-go-name: EarliestClusterDateDaysAgo
-              max_cost:
-                type: integer
-                format: int64
-                x-go-name: MaxCost
-              max_duration_minutes:
-                type: integer
-                format: int64
-                x-go-name: MaxDurationMinutes
-              max_node_groups:
-                type: integer
-                format: int64
-                x-go-name: MaxNodeGroups
-              max_nodes:
-                type: integer
-                format: int64
-                x-go-name: MaxNodes
-              max_ttl_minutes:
-                type: integer
-                format: int64
-                x-go-name: MaxTTLMinutes
-    listClusterQuotasResponse:
-      description: ListClusterQuotasResponse contains the response to list cluster quotas
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              cluster_quotas:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClusterQuota'
-                x-go-name: ClusterQuotas
+    PortProtocol:
+      type: string
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
   securitySchemes:
     api_key:
       type: apiKey

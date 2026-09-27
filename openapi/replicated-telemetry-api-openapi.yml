@@ -202,6 +202,16 @@ paths:
         required: true
 components:
   responses:
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     cliTelemetryErrorResponse:
       description: CliTelemetryErrorResponse represents the response from recording an error
       content:
@@ -214,16 +224,6 @@ components:
                 type: string
                 x-go-name: Status
                 example: ok
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
     cliTelemetryStatsResponse:
       description: CliTelemetryStatsResponse represents the response from recording stats
       content:
@@ -236,18 +236,6 @@ components:
                 type: string
                 x-go-name: Status
                 example: ok
-    cliTelemetryEventResponse:
-      description: CliTelemetryEventResponse represents the response from creating a telemetry event
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              event_id:
-                description: Unique identifier for the event (UUID format)
-                type: string
-                x-go-name: EventID
-                example: 550e8400-e29b-41d4-a716-446655440000
     responseErrBadRequest:
       description: Returned on bad input
       content:
@@ -263,6 +251,18 @@ components:
                 description: Error message text if available
                 type: string
                 x-go-name: Message
+    cliTelemetryEventResponse:
+      description: CliTelemetryEventResponse represents the response from creating a telemetry event
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              event_id:
+                description: Unique identifier for the event (UUID format)
+                type: string
+                x-go-name: EventID
+                example: 550e8400-e29b-41d4-a716-446655440000
   securitySchemes:
     api_key:
       type: apiKey

@@ -1089,108 +1089,6 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   schemas:
-    InstallationTypeKurl:
-      type: object
-      properties:
-        installerVersion:
-          type: string
-          x-go-name: InstallerVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    TrialSignupSettings:
-      type: object
-      properties:
-        appId:
-          type: string
-          x-go-name: AppID
-        createdAt:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        customSignupFields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomSignupFieldDefinition'
-          x-go-name: CustomSignupFields
-        defaultChannelId:
-          type: string
-          x-go-name: DefaultChannelID
-        domainFilterDomains:
-          type: array
-          items:
-            type: string
-          x-go-name: DomainFilterDomains
-        domainFilterMode:
-          type: string
-          x-go-name: DomainFilterMode
-        domainFilterUseDefaultBlocklist:
-          type: boolean
-          x-go-name: DomainFilterUseDefaultBlock
-        embeddedClusterEnabled:
-          type: boolean
-          x-go-name: EmbeddedClusterEnabled
-        expirationDays:
-          type: integer
-          format: int64
-          x-go-name: ExpirationDays
-        helmInstallEnabled:
-          type: boolean
-          x-go-name: HelmInstallEnabled
-        isHelmAirgapEnabled:
-          type: boolean
-          x-go-name: IsHelmAirgapEnabled
-        licenseType:
-          type: string
-          x-go-name: LicenseType
-        supportBundleUploadEnabled:
-          type: boolean
-          x-go-name: SupportBundleUploadEnabled
-        termsAndConditionsUrl:
-          type: string
-          x-go-name: TermsAndConditionsURL
-        updatedAt:
-          type: string
-          format: date-time
-          x-go-name: UpdatedAt
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models
-    InstallerTypeKotsConfig:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-          x-go-name: APIVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    CustomSignupFieldDefinition:
-      type: object
-      properties:
-        key:
-          type: string
-          x-go-name: Key
-        label:
-          type: string
-          x-go-name: Label
-        placeholder:
-          type: string
-          x-go-name: Placeholder
-        required:
-          type: boolean
-          x-go-name: Required
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models
-    InstallerTypeEmbeddedCluster:
-      type: object
-      properties:
-        proxyRegistryDomain:
-          type: string
-          x-go-name: ProxyRegistryDomain
-        replicatedAppDomain:
-          type: string
-          x-go-name: ReplicatedAppDomain
-        replicatedRegistryDomain:
-          type: string
-          x-go-name: ReplicatedRegistryDomain
-        version:
-          type: string
-          x-go-name: InstallerVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
     Channel:
       type: object
       properties:
@@ -1332,6 +1230,68 @@ components:
           format: date-time
           x-go-name: Updated
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    GitHubRef:
+      type: object
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    LintExpression:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+        path:
+          type: string
+          x-go-name: Path
+        rule:
+          type: string
+          x-go-name: Rule
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/release
+    HelmUnavailableResource:
+      type: object
+      properties:
+        filePath:
+          type: string
+          x-go-name: FilePath
+        identifier:
+          type: string
+          x-go-name: Identifier
+        kind:
+          type: string
+          x-go-name: Kind
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypeHelm:
+      type: object
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    HelmInstallabilityIssue:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/HelmUnavailableResource'
+          x-go-name: Resources
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    CustomHostnameOverrides:
+      type: object
+      properties:
+        downloadPortal:
+          $ref: '#/components/schemas/CustomHostnameOverride'
+        proxy:
+          $ref: '#/components/schemas/CustomHostnameOverride'
+        registry:
+          $ref: '#/components/schemas/CustomHostnameOverride'
+        replicatedApp:
+          $ref: '#/components/schemas/CustomHostnameOverride'
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
     VulnCounts:
       type: object
       properties:
@@ -1356,6 +1316,349 @@ components:
           format: int64
           x-go-name: Total
       x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+    CustomSignupFieldDefinition:
+      type: object
+      properties:
+        key:
+          type: string
+          x-go-name: Key
+        label:
+          type: string
+          x-go-name: Label
+        placeholder:
+          type: string
+          x-go-name: Placeholder
+        required:
+          type: boolean
+          x-go-name: Required
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models
+    InstallerTypeKotsConfig:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          x-go-name: APIVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    Actor:
+      type: object
+      properties:
+        description:
+          type: string
+          x-go-name: Description
+        id:
+          type: string
+          x-go-name: ID
+        link:
+          type: string
+          x-go-name: Link
+        timestamp:
+          type: string
+          format: date-time
+          x-go-name: Timestamp
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+    CustomerAdoption:
+      type: object
+      properties:
+        channelId:
+          type: string
+          x-go-name: ChannelID
+        count:
+          type: integer
+          format: int64
+          x-go-name: Count
+        percent:
+          type: number
+          format: double
+          x-go-name: Percent
+        releaseSequence:
+          type: integer
+          format: int64
+          x-go-name: ReleaseSequence
+        semver:
+          type: string
+          x-go-name: Semver
+        totalOnChannel:
+          type: integer
+          format: int64
+          x-go-name: TotalOnChannel
+        versionsFromLatest:
+          type: integer
+          format: int64
+          x-go-name: VersionsFromLatest
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
+    EntitlementField:
+      type: object
+      properties:
+        default:
+          type: string
+          x-go-name: Default
+        enumOptions:
+          type: array
+          items:
+            type: string
+          x-go-name: EnumOptions
+        hidden:
+          type: boolean
+          x-go-name: Hidden
+        name:
+          type: string
+          x-go-name: Name
+        required:
+          type: boolean
+          x-go-name: Required
+        title:
+          type: string
+          x-go-name: Title
+        type:
+          $ref: '#/components/schemas/EntitlementValueType'
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+    ExtraLintRules:
+      type: object
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypeReplicatedSDK:
+      type: object
+      properties:
+        sdkVersion:
+          type: string
+          x-go-name: SDKVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypePreflight:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          x-go-name: APIVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypeSupportBundle:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          x-go-name: APIVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    AppWithChannels:
+      type: object
+      properties:
+        activeEnterprisePortalTemplate:
+          type: string
+          x-go-name: ActiveEnterprisePortalTemplate
+        askAiEnabled:
+          type: boolean
+          x-go-name: AskAiEnabled
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Channel'
+          x-go-name: Channels
+        created:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        defaultFromEmail:
+          type: string
+          x-go-name: DefaultFromEmail
+        description:
+          type: string
+          x-go-name: Description
+        downloadPortalFqdnOverride:
+          type: string
+          x-go-name: DownloadPortalFQDNOverride
+        emailVerifiedAt:
+          type: string
+          format: date-time
+          x-go-name: EmailVerifiedAt
+        hideSupportBundleUploadEnabled:
+          type: boolean
+          x-go-name: HideSupportBundleUploadEnabled
+        iconUrl:
+          type: string
+          x-go-name: IconURL
+        id:
+          type: string
+          x-go-name: ID
+        isArchived:
+          type: boolean
+          x-go-name: IsArchived
+        isKotsApp:
+          type: boolean
+          x-go-name: IsKotsApp
+        name:
+          type: string
+          x-go-name: Name
+        publicKeyPem:
+          type: string
+          x-go-name: PublicKeyPEM
+        renamedAt:
+          type: string
+          format: date-time
+          x-go-name: RenamedAt
+        securityCenterEnabled:
+          type: boolean
+          x-go-name: SecurityCenterEnabled
+        slug:
+          type: string
+          x-go-name: Slug
+        supportBundleUploadEnabled:
+          type: boolean
+          x-go-name: SupportBundleUploadEnabled
+        teamId:
+          type: string
+          x-go-name: TeamID
+        trialSignupEnabled:
+          type: boolean
+          x-go-name: TrialSignupEnabled
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/apps
+    InstallerTypeEmbeddedCluster:
+      type: object
+      properties:
+        proxyRegistryDomain:
+          type: string
+          x-go-name: ProxyRegistryDomain
+        replicatedAppDomain:
+          type: string
+          x-go-name: ReplicatedAppDomain
+        replicatedRegistryDomain:
+          type: string
+          x-go-name: ReplicatedRegistryDomain
+        version:
+          type: string
+          x-go-name: InstallerVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    ImageVulnCounts:
+      type: object
+      properties:
+        counts:
+          $ref: '#/components/schemas/VulnCounts'
+        digest:
+          type: string
+          x-go-name: Digest
+        digest_first_seen_at:
+          type: string
+          x-go-name: DigestFirstSeenAt
+        image_size_bytes:
+          type: integer
+          format: int64
+          x-go-name: ImageSizeBytes
+        input:
+          type: string
+          x-go-name: Input
+        installation_phase:
+          description: 'InstallationPhase indicates the Embedded Cluster phase for the image ("", "online", or "airgap").
+
+            Application images have the phase "".
+
+            Infrastructure images used for Embedded Cluster in both online and airgap have the phase "online" or "airgap".
+
+            Infrastructure images used for Embedded Cluster only in airgap have the phase "airgap".'
+          type: string
+          x-go-name: InstallationPhase
+        last_scanned_at:
+          type: string
+          x-go-name: LastScannedAt
+        not_found:
+          type: boolean
+          x-go-name: NotFound
+        sbom_status:
+          description: SBOM status tracking
+          type: string
+          x-go-name: SBOMStatus
+        sbom_status_message:
+          type: string
+          x-go-name: SBOMStatusMessage
+        sbom_status_updated_at:
+          type: string
+          x-go-name: SBOMStatusUpdatedAt
+        scan_status:
+          description: Scan status tracking
+          type: string
+          x-go-name: ScanStatus
+        scan_status_message:
+          type: string
+          x-go-name: ScanStatusMessage
+        scan_status_updated_at:
+          type: string
+          x-go-name: ScanStatusUpdatedAt
+        scanned_images:
+          description: Scan completeness tracking
+          type: integer
+          format: int64
+          x-go-name: ScannedImages
+        total_images:
+          type: integer
+          format: int64
+          x-go-name: TotalImages
+      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+    LintResult:
+      type: object
+      properties:
+        isLintingComplete:
+          type: boolean
+          x-go-name: IsLintingComplete
+        lintExpressions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LintExpression'
+          x-go-name: LintExpressions
+      x-go-package: github.com/replicatedhq/vandoor/pkg/lint
+    TrialSignupSettings:
+      type: object
+      properties:
+        appId:
+          type: string
+          x-go-name: AppID
+        createdAt:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        customSignupFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomSignupFieldDefinition'
+          x-go-name: CustomSignupFields
+        defaultChannelId:
+          type: string
+          x-go-name: DefaultChannelID
+        domainFilterDomains:
+          type: array
+          items:
+            type: string
+          x-go-name: DomainFilterDomains
+        domainFilterMode:
+          type: string
+          x-go-name: DomainFilterMode
+        domainFilterUseDefaultBlocklist:
+          type: boolean
+          x-go-name: DomainFilterUseDefaultBlock
+        embeddedClusterEnabled:
+          type: boolean
+          x-go-name: EmbeddedClusterEnabled
+        expirationDays:
+          type: integer
+          format: int64
+          x-go-name: ExpirationDays
+        helmInstallEnabled:
+          type: boolean
+          x-go-name: HelmInstallEnabled
+        isHelmAirgapEnabled:
+          type: boolean
+          x-go-name: IsHelmAirgapEnabled
+        licenseType:
+          type: string
+          x-go-name: LicenseType
+        supportBundleUploadEnabled:
+          type: boolean
+          x-go-name: SupportBundleUploadEnabled
+        termsAndConditionsUrl:
+          type: string
+          x-go-name: TermsAndConditionsURL
+        updatedAt:
+          type: string
+          format: date-time
+          x-go-name: UpdatedAt
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models
     BuiltInDefaultLicenseField:
       type: object
       properties:
@@ -1383,49 +1686,12 @@ components:
           type: string
           x-go-name: Value
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/app/types
-    LintExpression:
+    CustomHostnameOverride:
       type: object
       properties:
-        message:
+        hostname:
           type: string
-          x-go-name: Message
-        path:
-          type: string
-          x-go-name: Path
-        rule:
-          type: string
-          x-go-name: Rule
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/release
-    InstallationTypes:
-      type: object
-      properties:
-        embeddedCluster:
-          $ref: '#/components/schemas/InstallerTypeEmbeddedCluster'
-        helm:
-          $ref: '#/components/schemas/InstallerTypeHelm'
-        helmInstallabilityIssue:
-          $ref: '#/components/schemas/HelmInstallabilityIssue'
-        kots:
-          $ref: '#/components/schemas/InstallerTypeKots'
-        kotsConfig:
-          $ref: '#/components/schemas/InstallerTypeKotsConfig'
-        kurl:
-          $ref: '#/components/schemas/InstallationTypeKurl'
-        preflight:
-          $ref: '#/components/schemas/InstallerTypePreflight'
-        replicatedSDK:
-          $ref: '#/components/schemas/InstallerTypeReplicatedSDK'
-        supportBundle:
-          $ref: '#/components/schemas/InstallerTypeSupportBundle'
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    GitHubRef:
-      type: object
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    ExtraLintRules:
-      type: object
+          x-go-name: Hostname
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
     KotsChannelRelease:
       type: object
@@ -1534,72 +1800,6 @@ components:
         updatedBy:
           $ref: '#/components/schemas/Actor'
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    HelmUnavailableResource:
-      type: object
-      properties:
-        filePath:
-          type: string
-          x-go-name: FilePath
-        identifier:
-          type: string
-          x-go-name: Identifier
-        kind:
-          type: string
-          x-go-name: Kind
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    Actor:
-      type: object
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        id:
-          type: string
-          x-go-name: ID
-        link:
-          type: string
-          x-go-name: Link
-        timestamp:
-          type: string
-          format: date-time
-          x-go-name: Timestamp
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
-    CustomerAdoption:
-      type: object
-      properties:
-        channelId:
-          type: string
-          x-go-name: ChannelID
-        count:
-          type: integer
-          format: int64
-          x-go-name: Count
-        percent:
-          type: number
-          format: double
-          x-go-name: Percent
-        releaseSequence:
-          type: integer
-          format: int64
-          x-go-name: ReleaseSequence
-        semver:
-          type: string
-          x-go-name: Semver
-        totalOnChannel:
-          type: integer
-          format: int64
-          x-go-name: TotalOnChannel
-        versionsFromLatest:
-          type: integer
-          format: int64
-          x-go-name: VersionsFromLatest
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
     InstallerTypeKots:
       type: object
       properties:
@@ -1610,6 +1810,51 @@ components:
           type: string
           x-go-name: TargetKotsVersion
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallationTypeKurl:
+      type: object
+      properties:
+        installerVersion:
+          type: string
+          x-go-name: InstallerVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallationTypes:
+      type: object
+      properties:
+        embeddedCluster:
+          $ref: '#/components/schemas/InstallerTypeEmbeddedCluster'
+        helm:
+          $ref: '#/components/schemas/InstallerTypeHelm'
+        helmInstallabilityIssue:
+          $ref: '#/components/schemas/HelmInstallabilityIssue'
+        kots:
+          $ref: '#/components/schemas/InstallerTypeKots'
+        kotsConfig:
+          $ref: '#/components/schemas/InstallerTypeKotsConfig'
+        kurl:
+          $ref: '#/components/schemas/InstallationTypeKurl'
+        preflight:
+          $ref: '#/components/schemas/InstallerTypePreflight'
+        replicatedSDK:
+          $ref: '#/components/schemas/InstallerTypeReplicatedSDK'
+        supportBundle:
+          $ref: '#/components/schemas/InstallerTypeSupportBundle'
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    TotalActiveInactiveCustomers:
+      type: object
+      properties:
+        activeCustomers:
+          type: integer
+          format: int64
+          x-go-name: ActiveCustomers
+        inactiveCustomers:
+          type: integer
+          format: int64
+          x-go-name: InactiveCustomers
+        totalCustomers:
+          type: integer
+          format: int64
+          x-go-name: TotalCustomers
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
     Image:
       type: object
       properties:
@@ -1622,100 +1867,9 @@ components:
             type: string
           x-go-name: Versions
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/images
-    InstallerTypeHelm:
-      type: object
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    AppWithChannels:
-      type: object
-      properties:
-        activeEnterprisePortalTemplate:
-          type: string
-          x-go-name: ActiveEnterprisePortalTemplate
-        askAiEnabled:
-          type: boolean
-          x-go-name: AskAiEnabled
-        channels:
-          type: array
-          items:
-            $ref: '#/components/schemas/Channel'
-          x-go-name: Channels
-        created:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        defaultFromEmail:
-          type: string
-          x-go-name: DefaultFromEmail
-        description:
-          type: string
-          x-go-name: Description
-        downloadPortalFqdnOverride:
-          type: string
-          x-go-name: DownloadPortalFQDNOverride
-        emailVerifiedAt:
-          type: string
-          format: date-time
-          x-go-name: EmailVerifiedAt
-        hideSupportBundleUploadEnabled:
-          type: boolean
-          x-go-name: HideSupportBundleUploadEnabled
-        iconUrl:
-          type: string
-          x-go-name: IconURL
-        id:
-          type: string
-          x-go-name: ID
-        isArchived:
-          type: boolean
-          x-go-name: IsArchived
-        isKotsApp:
-          type: boolean
-          x-go-name: IsKotsApp
-        name:
-          type: string
-          x-go-name: Name
-        publicKeyPem:
-          type: string
-          x-go-name: PublicKeyPEM
-        renamedAt:
-          type: string
-          format: date-time
-          x-go-name: RenamedAt
-        securityCenterEnabled:
-          type: boolean
-          x-go-name: SecurityCenterEnabled
-        slug:
-          type: string
-          x-go-name: Slug
-        supportBundleUploadEnabled:
-          type: boolean
-          x-go-name: SupportBundleUploadEnabled
-        teamId:
-          type: string
-          x-go-name: TeamID
-        trialSignupEnabled:
-          type: boolean
-          x-go-name: TrialSignupEnabled
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/apps
-    CustomHostnameOverrides:
-      type: object
-      properties:
-        downloadPortal:
-          $ref: '#/components/schemas/CustomHostnameOverride'
-        proxy:
-          $ref: '#/components/schemas/CustomHostnameOverride'
-        registry:
-          $ref: '#/components/schemas/CustomHostnameOverride'
-        replicatedApp:
-          $ref: '#/components/schemas/CustomHostnameOverride'
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallerTypePreflight:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-          x-go-name: APIVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    EntitlementValueType:
+      type: string
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
     HelmChart:
       type: object
       properties:
@@ -1739,163 +1893,7 @@ components:
           format: int64
           x-go-name: Weight
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    EntitlementValueType:
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
-    HelmInstallabilityIssue:
-      type: object
-      properties:
-        message:
-          type: string
-          x-go-name: Message
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/HelmUnavailableResource'
-          x-go-name: Resources
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    EntitlementField:
-      type: object
-      properties:
-        default:
-          type: string
-          x-go-name: Default
-        enumOptions:
-          type: array
-          items:
-            type: string
-          x-go-name: EnumOptions
-        hidden:
-          type: boolean
-          x-go-name: Hidden
-        name:
-          type: string
-          x-go-name: Name
-        required:
-          type: boolean
-          x-go-name: Required
-        title:
-          type: string
-          x-go-name: Title
-        type:
-          $ref: '#/components/schemas/EntitlementValueType'
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
-    LintResult:
-      type: object
-      properties:
-        isLintingComplete:
-          type: boolean
-          x-go-name: IsLintingComplete
-        lintExpressions:
-          type: array
-          items:
-            $ref: '#/components/schemas/LintExpression'
-          x-go-name: LintExpressions
-      x-go-package: github.com/replicatedhq/vandoor/pkg/lint
-    CustomHostnameOverride:
-      type: object
-      properties:
-        hostname:
-          type: string
-          x-go-name: Hostname
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallerTypeReplicatedSDK:
-      type: object
-      properties:
-        sdkVersion:
-          type: string
-          x-go-name: SDKVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    ImageVulnCounts:
-      type: object
-      properties:
-        counts:
-          $ref: '#/components/schemas/VulnCounts'
-        digest:
-          type: string
-          x-go-name: Digest
-        digest_first_seen_at:
-          type: string
-          x-go-name: DigestFirstSeenAt
-        image_size_bytes:
-          type: integer
-          format: int64
-          x-go-name: ImageSizeBytes
-        input:
-          type: string
-          x-go-name: Input
-        installation_phase:
-          description: 'InstallationPhase indicates the Embedded Cluster phase for the image ("", "online", or "airgap").
-
-            Application images have the phase "".
-
-            Infrastructure images used for Embedded Cluster in both online and airgap have the phase "online" or "airgap".
-
-            Infrastructure images used for Embedded Cluster only in airgap have the phase "airgap".'
-          type: string
-          x-go-name: InstallationPhase
-        last_scanned_at:
-          type: string
-          x-go-name: LastScannedAt
-        not_found:
-          type: boolean
-          x-go-name: NotFound
-        sbom_status:
-          description: SBOM status tracking
-          type: string
-          x-go-name: SBOMStatus
-        sbom_status_message:
-          type: string
-          x-go-name: SBOMStatusMessage
-        sbom_status_updated_at:
-          type: string
-          x-go-name: SBOMStatusUpdatedAt
-        scan_status:
-          description: Scan status tracking
-          type: string
-          x-go-name: ScanStatus
-        scan_status_message:
-          type: string
-          x-go-name: ScanStatusMessage
-        scan_status_updated_at:
-          type: string
-          x-go-name: ScanStatusUpdatedAt
-        scanned_images:
-          description: Scan completeness tracking
-          type: integer
-          format: int64
-          x-go-name: ScannedImages
-        total_images:
-          type: integer
-          format: int64
-          x-go-name: TotalImages
-      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
-    InstallerTypeSupportBundle:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-          x-go-name: APIVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    TotalActiveInactiveCustomers:
-      type: object
-      properties:
-        activeCustomers:
-          type: integer
-          format: int64
-          x-go-name: ActiveCustomers
-        inactiveCustomers:
-          type: integer
-          format: int64
-          x-go-name: InactiveCustomers
-        totalCustomers:
-          type: integer
-          format: int64
-          x-go-name: TotalCustomers
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
   responses:
-    responseOk:
-      description: On success
     getAppResponse:
       description: GetAppResponse represents an app.
       content:
@@ -1905,40 +1903,39 @@ components:
             properties:
               app:
                 $ref: '#/components/schemas/AppWithChannels'
-    listAppCustomerInstancesResponse:
-      description: ListAppCustomerInstancesResponse contains the list of customers
-      headers:
-        ContentDisposition:
-          description: 'Required: true
-
-            In: header'
-          schema:
-            type: string
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
+    listBuiltinLicenseFieldsResponse:
+      description: ListBuiltinLicenseFieldsResponse contains the list of builtin license fields, with overrides applied
       content:
         application/json:
           schema:
             type: object
             properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    editLicenseFieldResponse:
-      description: EditLicenseFieldResponse contains the license fields
+              builtin_license_fields:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BuiltInDefaultLicenseField'
+                x-go-name: BuiltinLicenseFields
+    responseErrTooManyRequests:
+      description: Return if the caller is being rate limited
+    deleteLicenseFieldResponse:
+      description: DeleteLicenseFieldResponse contains the response from deleting a license field
+    responseErrBadRequest:
+      description: Returned on bad input
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/EntitlementField'
-    responseNoContent:
-      description: On success, no payload returned
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
+    responseOk:
+      description: On success
     listAppsResponse:
       description: ListAppsResponse contains the JSON apps list
       content:
@@ -1951,16 +1948,22 @@ components:
                 items:
                   $ref: '#/components/schemas/AppWithChannels'
                 x-go-name: Apps
-    getSecurityCenterSettingsResponse:
-      description: SecurityCenterSettingsResponse contains the security center settings for an app
+    editLicenseFieldResponse:
+      description: EditLicenseFieldResponse contains the license fields
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EntitlementField'
+    responseErrNotFound:
+      description: Returned on resource not found
       content:
         application/json:
           schema:
             type: object
             properties:
-              enabled:
-                type: boolean
-                x-go-name: Enabled
+              message:
+                type: string
+                x-go-name: Message
     listAppInstanceEventsResponse:
       description: ListAppInstanceEventsResponse contains the list of instance events
       content:
@@ -1994,8 +1997,8 @@ components:
                 reportedAt:
                   type: string
                   x-go-name: ReportedAt
-    responseErrTooManyRequests:
-      description: Return if the caller is being rate limited
+    responseNoContent:
+      description: On success, no payload returned
     setBuiltinLicenseFieldOverrideResponse:
       description: SetBuiltinLicenseFieldOverrideResponse contains the response of the builtin license field override
       content:
@@ -2005,26 +2008,6 @@ components:
             properties:
               builtin_license_field:
                 $ref: '#/components/schemas/BuiltInDefaultLicenseField'
-    listBuiltinLicenseFieldsResponse:
-      description: ListBuiltinLicenseFieldsResponse contains the list of builtin license fields, with overrides applied
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              builtin_license_fields:
-                type: array
-                items:
-                  $ref: '#/components/schemas/BuiltInDefaultLicenseField'
-                x-go-name: BuiltinLicenseFields
-    deleteLicenseFieldResponse:
-      description: DeleteLicenseFieldResponse contains the response from deleting a license field
-    createLicenseFieldResponse:
-      description: CreateLicenseFieldResponse contains the response of all license fields
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/EntitlementField'
     listAppCustomersCsvResponse:
       description: ListAppCustomersCsvResponse contains the list of customers
       headers:
@@ -2034,6 +2017,22 @@ components:
             In: header'
           schema:
             type: string
+    createLicenseFieldResponse:
+      description: CreateLicenseFieldResponse contains the response of all license fields
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EntitlementField'
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     getTrialSignupSettingsResponse:
       description: TrialSignupSettingsResponse contains the trial signup settings for an app
       content:
@@ -2043,6 +2042,33 @@ components:
             properties:
               settings:
                 $ref: '#/components/schemas/TrialSignupSettings'
+    listAppCustomerInstancesResponse:
+      description: ListAppCustomerInstancesResponse contains the list of customers
+      headers:
+        ContentDisposition:
+          description: 'Required: true
+
+            In: header'
+          schema:
+            type: string
+    getSecurityCenterSettingsResponse:
+      description: SecurityCenterSettingsResponse contains the security center settings for an app
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+                x-go-name: Enabled
+    listLicenseFieldsResponse:
+      description: ListLicenseFieldsResponse contains the list of license fields
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/EntitlementField'
     listImagesResponse:
       description: ListImagesResponse represents a list of images.
       content:
@@ -2055,49 +2081,23 @@ components:
                 items:
                   $ref: '#/components/schemas/Image'
                 x-go-name: Images
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
       content:
         application/json:
           schema:
             type: object
             properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
-    listLicenseFieldsResponse:
-      description: ListLicenseFieldsResponse contains the list of license fields
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/EntitlementField'
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
   securitySchemes:
     api_key:
       type: apiKey

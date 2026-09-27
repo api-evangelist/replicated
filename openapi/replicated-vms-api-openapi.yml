@@ -309,248 +309,7 @@ paths:
       servers:
       - url: https://api.replicated.com/vendor/v3
 components:
-  responses:
-    updateVMTTLResponse:
-      description: UpdateVMTTLResponse contains the response to update a VM ttl
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              vm:
-                $ref: '#/components/schemas/VM'
-    updateVMTagsResponse:
-      description: UpdateVMTagsResponse contains the response to update a vm tags
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              vm:
-                $ref: '#/components/schemas/VM'
-    listVMPortsResponse:
-      description: ListVMPortsResponse contains the response to a list vm [prts] request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              addons:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VMAddon'
-                x-go-name: Addons
-              ports:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VMPort'
-                x-go-name: Ports
-    createVMPortResponse:
-      description: CreateVMPortResponse contains the response to a create vm port request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              addon:
-                $ref: '#/components/schemas/VMAddon'
-              port:
-                $ref: '#/components/schemas/VMPort'
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    listVMsResponse:
-      description: ListVMsResponse contains the response to list vms
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              totalVMs:
-                type: integer
-                format: int64
-                x-go-name: TotalVMs
-              vms:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VM'
-                x-go-name: VMs
-    getVMResponse:
-      description: GetVMResponse contains the response to get vm details
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              vm:
-                $ref: '#/components/schemas/VM'
-    createVMResponse:
-      description: CreateVMResponse contains the response to create a vm
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              vms:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VM'
-                x-go-name: VMs
-    listVMVersionsResponse:
-      description: ListVMVersionsResponse contains the response to list clusters
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              vm-versions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VMSupportedDistributionAndVersions'
-                x-go-name: VMs
-    createVMDryRunResponse:
-      description: CreateVMDryRunResponse contains the response to a dry run of creating a vm
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                $ref: '#/components/schemas/CreateVMError'
-              total_cost:
-                type: integer
-                format: int64
-                x-go-name: TotalCost
-              ttl:
-                type: string
-                x-go-name: TTL
-    deleteVMResponse:
-      description: DeleteVMResponse contains the response to delete a vm
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-    createVMErrorResponse:
-      description: CreateVMErrorResponse contains error information
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateVMError'
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    updateVMTTLErrorResponse:
-      description: UpdateVMTTLErrorResponse contains error information
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
   schemas:
-    VMAddon:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        guid:
-          type: string
-          x-go-name: GUID
-        id:
-          type: string
-          x-go-name: ShortID
-        port:
-          $ref: '#/components/schemas/VMAddonPort'
-        ready_at:
-          type: string
-          format: date-time
-          x-go-name: ReadyAt
-        status:
-          $ref: '#/components/schemas/VMAddonStatus'
-        terminated_at:
-          type: string
-          format: date-time
-          x-go-name: TerminatedAt
-        total_credits:
-          type: integer
-          format: int64
-          x-go-name: TotalCredits
-        vm_guid:
-          type: string
-          x-go-name: VMGUID
-        vm_id:
-          type: string
-          x-go-name: VMShortID
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
     VMExposedPort:
       type: object
       properties:
@@ -560,6 +319,131 @@ components:
           x-go-name: ExposedPort
         protocol:
           $ref: '#/components/schemas/PortProtocol'
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    VMValidationError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+          x-go-name: Errors
+        supported_distributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/VMSupportedDistributionAndVersions'
+          x-go-name: SupportedDistributions
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    VMStatus:
+      type: string
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    CreateVMError:
+      type: object
+      properties:
+        maxDiskGiB:
+          type: integer
+          format: int64
+          x-go-name: MaxDiskGiB
+        maxMemoryGiB:
+          type: integer
+          format: int64
+          x-go-name: MaxMemoryGiB
+        maxVCPUs:
+          type: integer
+          format: int64
+          x-go-name: MaxVCPUs
+        message:
+          type: string
+          x-go-name: Message
+        validationError:
+          $ref: '#/components/schemas/VMValidationError'
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/vm
+    VMSupportedDistributionAndVersions:
+      type: object
+      properties:
+        instance_type_details:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/InstanceTypeSpec'
+          x-go-name: InstanceTypeDetails
+        instance_types:
+          type: array
+          items:
+            type: string
+          x-go-name: InstanceTypes
+        short_name:
+          type: string
+          x-go-name: ShortName
+        status:
+          $ref: '#/components/schemas/VMDistributionStatus'
+        version_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/VMSupportedVersion'
+          x-go-name: VersionDetails
+        versions:
+          type: array
+          items:
+            type: string
+          x-go-name: Versions
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    Actor:
+      type: object
+      properties:
+        description:
+          type: string
+          x-go-name: Description
+        id:
+          type: string
+          x-go-name: ID
+        link:
+          type: string
+          x-go-name: Link
+        timestamp:
+          type: string
+          format: date-time
+          x-go-name: Timestamp
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+    VMDistributionStatus:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          x-go-name: Enabled
+        status:
+          type: string
+          x-go-name: Status
+        status_message:
+          type: string
+          x-go-name: StatusMessage
+        versions:
+          type: string
+          x-go-name: Versions
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    VMSupportedVersion:
+      type: object
+      properties:
+        version:
+          type: string
+          x-go-name: Version
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    InstanceTypeSpec:
+      type: object
+      properties:
+        memory_gib:
+          type: integer
+          format: int64
+          x-go-name: MemoryGiB
+        vcpus:
+          type: integer
+          format: int64
+          x-go-name: VCPUs
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+    VMAddonStatus:
+      type: string
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
     VM:
       type: object
@@ -654,110 +538,6 @@ components:
           type: string
           x-go-name: Version
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    VMDistributionStatus:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          x-go-name: Enabled
-        status:
-          type: string
-          x-go-name: Status
-        status_message:
-          type: string
-          x-go-name: StatusMessage
-        versions:
-          type: string
-          x-go-name: Versions
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    VMStatus:
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    VMValidationError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
-          x-go-name: Errors
-        supported_distributions:
-          type: array
-          items:
-            $ref: '#/components/schemas/VMSupportedDistributionAndVersions'
-          x-go-name: SupportedDistributions
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    Actor:
-      type: object
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        id:
-          type: string
-          x-go-name: ID
-        link:
-          type: string
-          x-go-name: Link
-        timestamp:
-          type: string
-          format: date-time
-          x-go-name: Timestamp
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
-    CreateVMError:
-      type: object
-      properties:
-        maxDiskGiB:
-          type: integer
-          format: int64
-          x-go-name: MaxDiskGiB
-        maxMemoryGiB:
-          type: integer
-          format: int64
-          x-go-name: MaxMemoryGiB
-        maxVCPUs:
-          type: integer
-          format: int64
-          x-go-name: MaxVCPUs
-        message:
-          type: string
-          x-go-name: Message
-        validationError:
-          $ref: '#/components/schemas/VMValidationError'
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/vm
-    VMSupportedVersion:
-      type: object
-      properties:
-        version:
-          type: string
-          x-go-name: Version
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    VMAddonPort:
-      type: object
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-        protocol_http:
-          type: boolean
-          x-go-name: ProtocolHTTP
-        protocol_https:
-          type: boolean
-          x-go-name: ProtocolHTTPS
-        protocol_ws:
-          type: boolean
-          x-go-name: ProtocolWS
-        protocol_wss:
-          type: boolean
-          x-go-name: ProtocolWSS
-        upstream_port:
-          type: integer
-          format: int64
-          x-go-name: UpstreamPort
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
     CreateVMParametersBody:
       type: object
       properties:
@@ -835,37 +615,64 @@ components:
           type: string
           x-go-name: Version
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/vm
-    VMAddonStatus:
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    VMSupportedDistributionAndVersions:
+    VMAddon:
       type: object
       properties:
-        instance_type_details:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/InstanceTypeSpec'
-          x-go-name: InstanceTypeDetails
-        instance_types:
-          type: array
-          items:
-            type: string
-          x-go-name: InstanceTypes
-        short_name:
+        created_at:
           type: string
-          x-go-name: ShortName
+          format: date-time
+          x-go-name: CreatedAt
+        guid:
+          type: string
+          x-go-name: GUID
+        id:
+          type: string
+          x-go-name: ShortID
+        port:
+          $ref: '#/components/schemas/VMAddonPort'
+        ready_at:
+          type: string
+          format: date-time
+          x-go-name: ReadyAt
         status:
-          $ref: '#/components/schemas/VMDistributionStatus'
-        version_details:
-          type: array
-          items:
-            $ref: '#/components/schemas/VMSupportedVersion'
-          x-go-name: VersionDetails
-        versions:
-          type: array
-          items:
-            type: string
-          x-go-name: Versions
+          $ref: '#/components/schemas/VMAddonStatus'
+        terminated_at:
+          type: string
+          format: date-time
+          x-go-name: TerminatedAt
+        total_credits:
+          type: integer
+          format: int64
+          x-go-name: TotalCredits
+        vm_guid:
+          type: string
+          x-go-name: VMGUID
+        vm_id:
+          type: string
+          x-go-name: VMShortID
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    VMAddonPort:
+      type: object
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+        protocol_http:
+          type: boolean
+          x-go-name: ProtocolHTTP
+        protocol_https:
+          type: boolean
+          x-go-name: ProtocolHTTPS
+        protocol_ws:
+          type: boolean
+          x-go-name: ProtocolWS
+        protocol_wss:
+          type: boolean
+          x-go-name: ProtocolWSS
+        upstream_port:
+          type: integer
+          format: int64
+          x-go-name: UpstreamPort
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
     VMPort:
       type: object
@@ -904,21 +711,6 @@ components:
           type: string
           x-go-name: VMShortID
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    PortProtocol:
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
-    InstanceTypeSpec:
-      type: object
-      properties:
-        memory_gib:
-          type: integer
-          format: int64
-          x-go-name: MemoryGiB
-        vcpus:
-          type: integer
-          format: int64
-          x-go-name: VCPUs
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
     Tag:
       type: object
       properties:
@@ -929,6 +721,214 @@ components:
           type: string
           x-go-name: Value
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+    PortProtocol:
+      type: string
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+  responses:
+    updateVMTTLErrorResponse:
+      description: UpdateVMTTLErrorResponse contains error information
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    createVMResponse:
+      description: CreateVMResponse contains the response to create a vm
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              vms:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VM'
+                x-go-name: VMs
+    deleteVMResponse:
+      description: DeleteVMResponse contains the response to delete a vm
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+    createVMDryRunResponse:
+      description: CreateVMDryRunResponse contains the response to a dry run of creating a vm
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: '#/components/schemas/CreateVMError'
+              total_cost:
+                type: integer
+                format: int64
+                x-go-name: TotalCost
+              ttl:
+                type: string
+                x-go-name: TTL
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    listVMsResponse:
+      description: ListVMsResponse contains the response to list vms
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              totalVMs:
+                type: integer
+                format: int64
+                x-go-name: TotalVMs
+              vms:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VM'
+                x-go-name: VMs
+    createVMErrorResponse:
+      description: CreateVMErrorResponse contains error information
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateVMError'
+    listVMPortsResponse:
+      description: ListVMPortsResponse contains the response to a list vm [prts] request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              addons:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VMAddon'
+                x-go-name: Addons
+              ports:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VMPort'
+                x-go-name: Ports
+    updateVMTagsResponse:
+      description: UpdateVMTagsResponse contains the response to update a vm tags
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              vm:
+                $ref: '#/components/schemas/VM'
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    createVMPortResponse:
+      description: CreateVMPortResponse contains the response to a create vm port request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              addon:
+                $ref: '#/components/schemas/VMAddon'
+              port:
+                $ref: '#/components/schemas/VMPort'
+    updateVMTTLResponse:
+      description: UpdateVMTTLResponse contains the response to update a VM ttl
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              vm:
+                $ref: '#/components/schemas/VM'
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
+    getVMResponse:
+      description: GetVMResponse contains the response to get vm details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              vm:
+                $ref: '#/components/schemas/VM'
+    listVMVersionsResponse:
+      description: ListVMVersionsResponse contains the response to list clusters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              vm-versions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VMSupportedDistributionAndVersions'
+                x-go-name: VMs
   securitySchemes:
     api_key:
       type: apiKey

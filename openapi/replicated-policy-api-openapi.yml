@@ -188,6 +188,27 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
+    responseNoContent:
+      description: On success, no payload returned
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    createPolicyResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              policy:
+                $ref: '#/components/schemas/Policy'
     getPolicyResponse:
       description: ''
       content:
@@ -197,8 +218,44 @@ components:
             properties:
               policy:
                 $ref: '#/components/schemas/Policy'
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
+    listPoliciesResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              policies:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Policy'
+                x-go-name: Policies
+    updatePolicyResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              policy:
+                $ref: '#/components/schemas/Policy'
+    responseErrNotFound:
+      description: Returned on resource not found
       content:
         application/json:
           schema:
@@ -224,63 +281,6 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
-    responseNoContent:
-      description: On success, no payload returned
-    updatePolicyResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              policy:
-                $ref: '#/components/schemas/Policy'
-    createPolicyResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              policy:
-                $ref: '#/components/schemas/Policy'
-    listPoliciesResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              policies:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Policy'
-                x-go-name: Policies
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
   schemas:
     Policy:
       type: object

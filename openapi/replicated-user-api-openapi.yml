@@ -87,14 +87,8 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
-    listUserApiTokensResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/ApiToken'
+    responseNoContent:
+      description: On success, no payload returned
     responseErrUnauthorized:
       description: Return if the caller is not authorized
       content:
@@ -105,25 +99,14 @@ components:
               message:
                 type: string
                 x-go-name: Message
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
+    listUserApiTokensResponse:
+      description: ''
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    responseNoContent:
-      description: On success, no payload returned
+            type: array
+            items:
+              $ref: '#/components/schemas/ApiToken'
     responseErrBadRequest:
       description: Returned on bad input
       content:
@@ -145,24 +128,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiToken'
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
   schemas:
-    RemoveApiTokenRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/replicatedhq/vandoor/pkg/schema
-    CreateUserApiTokenRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-        read_only:
-          type: boolean
-          x-go-name: ReadOnly
-      x-go-package: github.com/replicatedhq/vandoor/pkg/schema
     ApiToken:
       type: object
       properties:
@@ -180,6 +163,23 @@ components:
           type: boolean
           x-go-name: ReadOnly
       x-go-package: github.com/replicatedhq/vandoor/pkg/models
+    RemoveApiTokenRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/replicatedhq/vandoor/pkg/schema
+    CreateUserApiTokenRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+        read_only:
+          type: boolean
+          x-go-name: ReadOnly
+      x-go-package: github.com/replicatedhq/vandoor/pkg/schema
   securitySchemes:
     api_key:
       type: apiKey

@@ -506,129 +506,6 @@ paths:
         required: true
 components:
   schemas:
-    CustomHeaderInput:
-      description: CustomHeaderInput represents a custom HTTP header provided by the user (name + plaintext value)
-      type: object
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-        value:
-          type: string
-          x-go-name: Value
-      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
-    EventTypeResponse:
-      description: EventTypeResponse represents the JSON response for an event type
-      type: object
-      properties:
-        category:
-          type: string
-          x-go-name: Category
-        description:
-          type: string
-          x-go-name: Description
-        displayName:
-          type: string
-          x-go-name: DisplayName
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterField'
-          x-go-name: Filters
-        key:
-          type: string
-          x-go-name: Key
-        webhookPayloadFormat:
-          type: array
-          items:
-            $ref: '#/components/schemas/PayloadField'
-          x-go-name: WebhookPayloadFormat
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/notifications
-    SearchNotificationEventTypesResponse:
-      description: SearchNotificationEventTypesResponse is the response for searching event types
-      type: object
-      properties:
-        eventTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventTypeResponse'
-          x-go-name: EventTypes
-        total:
-          type: integer
-          format: int64
-          x-go-name: Total
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/notifications
-    PayloadField:
-      description: Fields are returned as an ordered slice to preserve display order in the UI.
-      type: object
-      title: PayloadField describes a single field in the webhook payload's "data" object.
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        key:
-          type: string
-          x-go-name: Key
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/events
-    FilterField:
-      description: FilterField represents a filter field for an event type
-      type: object
-      properties:
-        key:
-          type: string
-          x-go-name: Key
-        label:
-          type: string
-          x-go-name: Label
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/Option'
-          x-go-name: Options
-        placeholder:
-          type: string
-          x-go-name: Placeholder
-        required:
-          type: boolean
-          x-go-name: Required
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/events
-    TestWebhookResponseBody:
-      description: TestWebhookResponseBody contains the result of a webhook test
-      type: object
-      properties:
-        durationMs:
-          type: integer
-          format: int64
-          x-go-name: DurationMs
-        error:
-          type: string
-          x-go-name: Error
-        statusCode:
-          type: integer
-          format: int64
-          x-go-name: StatusCode
-        success:
-          type: boolean
-          x-go-name: Success
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/notifications
-    NotificationEventConfig:
-      description: NotificationEventConfig represents an event configuration within a subscription
-      type: object
-      properties:
-        eventType:
-          type: string
-          x-go-name: EventType
-        filters:
-          type: object
-          additionalProperties: {}
-          x-go-name: Filters
-      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
     NotificationSubscription:
       description: NotificationSubscription represents a notification subscription
       type: object
@@ -695,6 +572,69 @@ components:
           type: string
           x-go-name: WebhookURL
       x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
+    CustomHeaderMasked:
+      description: CustomHeaderMasked represents a custom HTTP header with its value masked for API responses
+      type: object
+      properties:
+        maskedValue:
+          type: string
+          x-go-name: MaskedValue
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
+    Option:
+      description: Option represents an option for select/multiselect fields
+      type: object
+      properties:
+        appId:
+          type: string
+          x-go-name: AppID
+        label:
+          type: string
+          x-go-name: Label
+        metricType:
+          type: string
+          x-go-name: MetricType
+        value:
+          type: string
+          x-go-name: Value
+      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/events
+    PayloadField:
+      description: Fields are returned as an ordered slice to preserve display order in the UI.
+      type: object
+      title: PayloadField describes a single field in the webhook payload's "data" object.
+      properties:
+        description:
+          type: string
+          x-go-name: Description
+        key:
+          type: string
+          x-go-name: Key
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/events
+    Actor:
+      type: object
+      properties:
+        description:
+          type: string
+          x-go-name: Description
+        id:
+          type: string
+          x-go-name: ID
+        link:
+          type: string
+          x-go-name: Link
+        timestamp:
+          type: string
+          format: date-time
+          x-go-name: Timestamp
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
     NotificationEventAttempt:
       description: NotificationEventAttempt represents a delivery attempt for a notification event
       type: object
@@ -736,17 +676,58 @@ components:
           type: boolean
           x-go-name: Success
       x-go-package: github.com/replicatedhq/vandoor/pkg/notifications
-    CustomHeaderMasked:
-      description: CustomHeaderMasked represents a custom HTTP header with its value masked for API responses
+    EventTypeResponse:
+      description: EventTypeResponse represents the JSON response for an event type
       type: object
       properties:
-        maskedValue:
+        category:
           type: string
-          x-go-name: MaskedValue
-        name:
+          x-go-name: Category
+        description:
           type: string
-          x-go-name: Name
-      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
+          x-go-name: Description
+        displayName:
+          type: string
+          x-go-name: DisplayName
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterField'
+          x-go-name: Filters
+        key:
+          type: string
+          x-go-name: Key
+        webhookPayloadFormat:
+          type: array
+          items:
+            $ref: '#/components/schemas/PayloadField'
+          x-go-name: WebhookPayloadFormat
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/notifications
+    FilterField:
+      description: FilterField represents a filter field for an event type
+      type: object
+      properties:
+        key:
+          type: string
+          x-go-name: Key
+        label:
+          type: string
+          x-go-name: Label
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/Option'
+          x-go-name: Options
+        placeholder:
+          type: string
+          x-go-name: Placeholder
+        required:
+          type: boolean
+          x-go-name: Required
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/events
     NotificationEventWithAttempts:
       description: NotificationEventWithAttempts includes event details and all delivery attempts
       type: object
@@ -798,43 +779,6 @@ components:
           type: string
           x-go-name: NotificationSubscriptionID
       x-go-package: github.com/replicatedhq/vandoor/pkg/notifications
-    Option:
-      description: Option represents an option for select/multiselect fields
-      type: object
-      properties:
-        appId:
-          type: string
-          x-go-name: AppID
-        label:
-          type: string
-          x-go-name: Label
-        metricType:
-          type: string
-          x-go-name: MetricType
-        value:
-          type: string
-          x-go-name: Value
-      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/events
-    Actor:
-      type: object
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        id:
-          type: string
-          x-go-name: ID
-        link:
-          type: string
-          x-go-name: Link
-        timestamp:
-          type: string
-          format: date-time
-          x-go-name: Timestamp
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
     TeamNotificationEventWithAttempts:
       description: 'TeamNotificationEventWithAttempts includes notification event details, attempts, and subscription metadata
 
@@ -896,35 +840,69 @@ components:
           type: string
           x-go-name: NotificationSubscriptionID
       x-go-package: github.com/replicatedhq/vandoor/pkg/notifications
+    CustomHeaderInput:
+      description: CustomHeaderInput represents a custom HTTP header provided by the user (name + plaintext value)
+      type: object
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+        value:
+          type: string
+          x-go-name: Value
+      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
+    TestWebhookResponseBody:
+      description: TestWebhookResponseBody contains the result of a webhook test
+      type: object
+      properties:
+        durationMs:
+          type: integer
+          format: int64
+          x-go-name: DurationMs
+        error:
+          type: string
+          x-go-name: Error
+        statusCode:
+          type: integer
+          format: int64
+          x-go-name: StatusCode
+        success:
+          type: boolean
+          x-go-name: Success
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/notifications
+    NotificationEventConfig:
+      description: NotificationEventConfig represents an event configuration within a subscription
+      type: object
+      properties:
+        eventType:
+          type: string
+          x-go-name: EventType
+        filters:
+          type: object
+          additionalProperties: {}
+          x-go-name: Filters
+      x-go-package: github.com/replicatedhq/vandoor/pkg/notifications/types
+    SearchNotificationEventTypesResponse:
+      description: SearchNotificationEventTypesResponse is the response for searching event types
+      type: object
+      properties:
+        eventTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventTypeResponse'
+          x-go-name: EventTypes
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/notifications
   responses:
-    responseOk:
-      description: On success
-    responseErrNotFound:
-      description: Returned on resource not found
+    updateNotificationSubscription:
+      description: UpdateNotificationSubscriptionResponse contains the updated notification subscription
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    listNotificationSubscriptions:
-      description: ListNotificationSubscriptionsResponse contains a list of notification subscriptions
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              subscriptions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/NotificationSubscription'
-                x-go-name: Subscriptions
-              totalCount:
-                type: integer
-                format: int64
-                x-go-name: TotalCount
+            $ref: '#/components/schemas/NotificationSubscription'
     listNotificationEventsResponse:
       description: ListNotificationEventsResponse contains the JSON response for listing notification events.
       content:
@@ -941,43 +919,18 @@ components:
                 type: integer
                 format: int64
                 x-go-name: TotalCount
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
+    getNotificationSubscription:
+      description: GetNotificationSubscriptionResponse contains a single notification subscription
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    responseNoContent:
-      description: On success, no payload returned
-    listNotificationSubscriptionEvents:
-      description: ListNotificationSubscriptionEventsResponse contains the notification events
+            $ref: '#/components/schemas/NotificationSubscription'
+    createNotificationSubscription:
+      description: CreateNotificationSubscriptionResponse contains the created notification subscription
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              events:
-                type: array
-                items:
-                  $ref: '#/components/schemas/NotificationEventWithAttempts'
-                x-go-name: Events
-    searchNotificationEventTypesResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SearchNotificationEventTypesResponse'
+            $ref: '#/components/schemas/NotificationSubscription'
     responseErrBadRequest:
       description: Returned on bad input
       content:
@@ -993,24 +946,6 @@ components:
                 description: Error message text if available
                 type: string
                 x-go-name: Message
-    getNotificationSubscription:
-      description: GetNotificationSubscriptionResponse contains a single notification subscription
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotificationSubscription'
-    createNotificationSubscription:
-      description: CreateNotificationSubscriptionResponse contains the created notification subscription
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotificationSubscription'
-    testWebhookResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TestWebhookResponseBody'
     resendVerificationEmail:
       description: ResendVerificationEmailResponse indicates success or failure
       content:
@@ -1024,12 +959,26 @@ components:
               success:
                 type: boolean
                 x-go-name: Success
-    updateNotificationSubscription:
-      description: UpdateNotificationSubscriptionResponse contains the updated notification subscription
+    responseOk:
+      description: On success
+    responseErrNotFound:
+      description: Returned on resource not found
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/NotificationSubscription'
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    searchNotificationEventTypesResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SearchNotificationEventTypesResponse'
+    responseNoContent:
+      description: On success, no payload returned
     verifyEmail:
       description: VerifyEmailResponse indicates success or failure
       content:
@@ -1053,6 +1002,57 @@ components:
               message:
                 type: string
                 x-go-name: Message
+    testWebhookResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TestWebhookResponseBody'
+    listNotificationSubscriptionEvents:
+      description: ListNotificationSubscriptionEventsResponse contains the notification events
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              events:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NotificationEventWithAttempts'
+                x-go-name: Events
+    listNotificationSubscriptions:
+      description: ListNotificationSubscriptionsResponse contains a list of notification subscriptions
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              subscriptions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NotificationSubscription'
+                x-go-name: Subscriptions
+              totalCount:
+                type: integer
+                format: int64
+                x-go-name: TotalCount
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
   securitySchemes:
     api_key:
       type: apiKey

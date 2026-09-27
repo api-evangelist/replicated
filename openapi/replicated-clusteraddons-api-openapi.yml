@@ -120,44 +120,85 @@ paths:
       servers:
       - url: https://api.replicated.com/vendor/v3
 components:
+  responses:
+    responseNoContent:
+      description: On success, no payload returned
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    listClusterAddonsResponse:
+      description: ListClusterAddonsResponse contains the response to a list clusters addons request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              addons:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClusterAddon'
+                x-go-name: Addons
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
+    createClusterAddonObjectStoreResponse:
+      description: CreateClusterAddonObjectStoreResponse contains the response to a create cluster object store addon request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              addon:
+                $ref: '#/components/schemas/ClusterAddon'
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
   schemas:
-    ClusterAddon:
-      type: object
-      properties:
-        cluster_guid:
-          type: string
-          x-go-name: ClusterGUID
-        cluster_id:
-          type: string
-          x-go-name: ClusterShortID
-        created_at:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        guid:
-          type: string
-          x-go-name: GUID
-        id:
-          type: string
-          x-go-name: ShortID
-        object_store:
-          $ref: '#/components/schemas/ClusterAddonObjectStore'
-        port:
-          $ref: '#/components/schemas/ClusterAddonPort'
-        ready_at:
-          type: string
-          format: date-time
-          x-go-name: ReadyAt
-        status:
-          $ref: '#/components/schemas/ClusterAddonStatus'
-        terminated_at:
-          type: string
-          format: date-time
-          x-go-name: TerminatedAt
-        total_credits:
-          type: integer
-          format: int64
-          x-go-name: TotalCredits
+    ClusterAddonStatus:
+      type: string
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
     ClusterAddonPort:
       type: object
@@ -204,85 +245,44 @@ components:
           type: string
           x-go-name: ServiceAccountNamespace
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    ClusterAddonStatus:
-      type: string
+    ClusterAddon:
+      type: object
+      properties:
+        cluster_guid:
+          type: string
+          x-go-name: ClusterGUID
+        cluster_id:
+          type: string
+          x-go-name: ClusterShortID
+        created_at:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        guid:
+          type: string
+          x-go-name: GUID
+        id:
+          type: string
+          x-go-name: ShortID
+        object_store:
+          $ref: '#/components/schemas/ClusterAddonObjectStore'
+        port:
+          $ref: '#/components/schemas/ClusterAddonPort'
+        ready_at:
+          type: string
+          format: date-time
+          x-go-name: ReadyAt
+        status:
+          $ref: '#/components/schemas/ClusterAddonStatus'
+        terminated_at:
+          type: string
+          format: date-time
+          x-go-name: TerminatedAt
+        total_credits:
+          type: integer
+          format: int64
+          x-go-name: TotalCredits
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-  responses:
-    listClusterAddonsResponse:
-      description: ListClusterAddonsResponse contains the response to a list clusters addons request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              addons:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClusterAddon'
-                x-go-name: Addons
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    responseNoContent:
-      description: On success, no payload returned
-    createClusterAddonObjectStoreResponse:
-      description: CreateClusterAddonObjectStoreResponse contains the response to a create cluster object store addon request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              addon:
-                $ref: '#/components/schemas/ClusterAddon'
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
   securitySchemes:
     api_key:
       type: apiKey
