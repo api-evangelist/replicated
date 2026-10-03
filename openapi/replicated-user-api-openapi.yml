@@ -87,18 +87,6 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
-    responseNoContent:
-      description: On success, no payload returned
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
     listUserApiTokensResponse:
       description: ''
       content:
@@ -107,27 +95,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/ApiToken'
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
-    createUserApiTokenResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiToken'
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -145,6 +112,39 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
+    createUserApiTokenResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiToken'
+    responseNoContent:
+      description: On success, no payload returned
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
   schemas:
     ApiToken:
       type: object

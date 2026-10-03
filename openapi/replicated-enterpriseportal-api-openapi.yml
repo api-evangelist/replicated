@@ -1817,201 +1817,506 @@ paths:
       servers:
       - url: https://api.replicated.com/vendor/v3
 components:
+  responses:
+    dismissContentVersionNoticeResponse:
+      description: 'DismissContentVersionNoticeResponse contains the response from dismissing a
+
+        content version notice.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                description: True when the notice was dismissed
+                type: boolean
+                x-go-name: Success
+    listFailedLoginAttemptsResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              attempts:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FailedLoginAttempt'
+                x-go-name: Attempts
+              total:
+                type: integer
+                format: int64
+                x-go-name: Total
+    listEnterprisePortalInstancesResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              instances:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Instance'
+                x-go-name: Instances
+              total:
+                type: integer
+                format: int64
+                x-go-name: Total
+    listCustomerAllowedDomainsResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              allowedDomains:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AllowedDomain'
+                x-go-name: AllowedDomains
+    getEnterprisePortalStatusResponse:
+      description: GetEnterprisePortalStatusResponse represents the status of the enterprise portal.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                x-go-name: Status
+    getEnterprisePortalSettingsResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              settings:
+                $ref: '#/components/schemas/EnterprisePortalSettings'
+    createContentVersionPinResponse:
+      description: 'CreateContentVersionPinResponse contains the response from creating a
+
+        content version pin.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              version:
+                $ref: '#/components/schemas/ContentVersion'
+    responseNoContent:
+      description: On success, no payload returned
+    listInstallAttemptsResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              install_attempts:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InstallAttempt'
+                x-go-name: InstallAttempts
+              total:
+                type: integer
+                format: int64
+                x-go-name: Total
+    getEnterprisePortalBrandingResponse:
+      description: GetEnterprisePortalBrandingResponse represents the branding for the enterprise portal.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              activeEnterprisePortalTemplate:
+                type: string
+                x-go-name: ActiveEnterprisePortalTemplate
+              branding:
+                type: string
+                x-go-name: Branding
+    updateEnterprisePortalAccessResponse:
+      description: UpdateEnterprisePortalAccessResponse represents the access settings response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              auto_invite_to_ep_on_create:
+                type: boolean
+                x-go-name: AutoInviteToEpOnCreate
+              download_portal_disabled:
+                type: boolean
+                x-go-name: DownloadPortalDisabled
+    inviteEnterprisePortalCustomerUserResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              invite:
+                $ref: '#/components/schemas/CustomerInvite'
+    deleteContentVersionResponse:
+      description: 'DeleteContentVersionResponse contains the response from deleting a content
+
+        version.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                description: True when the version was deleted
+                type: boolean
+                x-go-name: Success
+    getPortalFeaturesResponse:
+      description: PortalFeaturesResponse holds the current state of all portal feature toggles for an app.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              askAiEnabled:
+                description: Whether the Ask AI assistant is enabled in the Enterprise Portal.
+                type: boolean
+                x-go-name: AskAiEnabled
+              supportBundleUploadEnabled:
+                description: Whether support bundle upload is enabled in the Enterprise Portal.
+                type: boolean
+                x-go-name: SupportBundleUploadEnabled
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    createEnterprisePortalSystemUserLoginResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              login_url:
+                description: A fully-qualified login URL to open in a new tab
+                type: string
+                x-go-name: LoginURL
+              nonce:
+                description: The nonce that can be used with the EP verify endpoint
+                type: string
+                x-go-name: Nonce
+    getInstallOptionsResponse:
+      description: GetInstallOptionsResponse contains the response from getting install options.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              admin_console_url:
+                type: string
+                x-go-name: AdminConsoleURL
+              assets_downloaded_at:
+                description: New fields for tracking installation progress
+                type: string
+                format: date-time
+                x-go-name: AssetsDownloadedAt
+              browser_install_completed_at:
+                type: string
+                format: date-time
+                x-go-name: BrowserInstallCompletedAt
+              channel_id:
+                type: string
+                x-go-name: ChannelID
+              channel_release_sequence:
+                type: integer
+                format: int64
+                x-go-name: ChannelSequence
+              customer_email:
+                type: string
+                x-go-name: CustomerEmail
+              customer_id:
+                type: string
+                x-go-name: CustomerID
+              id:
+                type: string
+                x-go-name: ID
+              images_pulled_at:
+                type: string
+                format: date-time
+                x-go-name: ImagesPulledAt
+              install_type:
+                type: string
+                x-go-name: InstallType
+              installation_completed_at:
+                type: string
+                format: date-time
+                x-go-name: InstallationCompletedAt
+              instance_id:
+                type: string
+                x-go-name: InstanceID
+              instance_name:
+                type: string
+                x-go-name: InstanceName
+              instructions:
+                $ref: '#/components/schemas/InstallInstructionsResponse'
+              is_multi_node:
+                type: boolean
+                x-go-name: IsMultiNode
+              kubernetes_distribution:
+                type: string
+                x-go-name: KubernetesDistribution
+              license_id:
+                type: string
+                x-go-name: LicenseID
+              network_availability:
+                type: string
+                x-go-name: NetworkAvailability
+              os_distro:
+                type: string
+                x-go-name: OSDistro
+              os_version:
+                type: string
+                x-go-name: OSVersion
+              registry_authenticated_at:
+                type: string
+                format: date-time
+                x-go-name: RegistryAuthenticatedAt
+              registry_availability:
+                type: string
+                x-go-name: RegistryAvailability
+              service_account_id:
+                type: string
+                x-go-name: ServiceAccountID
+              service_account_token:
+                type: string
+                x-go-name: ServiceAccountToken
+              started_at:
+                type: string
+                format: date-time
+                x-go-name: StartedAt
+              status:
+                type: string
+                x-go-name: Status
+              version:
+                type: string
+                x-go-name: VersionLabel
+    updateContentSettingsResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              settings:
+                $ref: '#/components/schemas/ContentSettings'
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
+    listEnterprisePortalServiceAccountsResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              service_accounts:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceAccount'
+                x-go-name: ServiceAccounts
+              total:
+                type: integer
+                format: int64
+                x-go-name: Total
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
+    updateDocumentationResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+    createInstallOptionsResponse:
+      description: CreateInstallOptionsResponse contains the response from creating install options.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              install_options:
+                $ref: '#/components/schemas/CustomerInstallOptions'
+              instructions:
+                $ref: '#/components/schemas/InstallInstructionsResponse'
+              service_account:
+                $ref: '#/components/schemas/ServiceAccount'
+    getDocumentationResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              documentation:
+                $ref: '#/components/schemas/Documentation'
+    listEnterprisePortalEmailHistoryResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              emails:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmailHistoryItem'
+                x-go-name: Emails
+              total:
+                type: integer
+                format: int64
+                x-go-name: Total
+    createCustomerAllowedDomainResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              allowedDomain:
+                $ref: '#/components/schemas/AllowedDomain'
+    listUpdateAttemptsResponse:
+      description: ListUpdateAttemptsResponse is the response body for listing update attempts
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              update_attempts:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UpdateAttempt'
+                x-go-name: UpdateAttempts
+    updateEnterprisePortalSettingsResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              settings:
+                $ref: '#/components/schemas/EnterprisePortalSettings'
+    getUpdateInstructionsResponse:
+      description: GetUpdateInstructionsResponse contains the response from getting update instructions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateInstructionsResponse'
+    patchInstallOptionsResponse:
+      description: PatchInstallOptionsResponse contains the response from patching install options.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              install_options:
+                $ref: '#/components/schemas/CustomerInstallOptions'
+              instructions:
+                $ref: '#/components/schemas/InstallInstructionsResponse'
+              service_account:
+                $ref: '#/components/schemas/ServiceAccount'
+    acknowledgeContentTemplateUpdatesResponse:
+      description: 'AcknowledgeContentTemplateUpdatesResponse contains the response from
+
+        acknowledging upstream content template updates.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              acknowledged_through_at:
+                description: Template update watermark after acknowledgement
+                type: string
+                format: date-time
+                x-go-name: AcknowledgedThroughAt
+    listEnterprisePortalCustomerUsersResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              total:
+                type: integer
+                format: int64
+                x-go-name: Total
+              users:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerUser'
+                x-go-name: Users
+    getEnterprisePortalAccessResponse:
+      description: GetEnterprisePortalAccessResponse represents the access settings response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              auto_invite_to_ep_on_create:
+                type: boolean
+                x-go-name: AutoInviteToEpOnCreate
+              download_portal_disabled:
+                type: boolean
+                x-go-name: DownloadPortalDisabled
   schemas:
-    Instance:
+    ContentSettings:
       type: object
       properties:
-        appStatus:
-          type: string
-          x-go-name: AppStatus
-        channelId:
-          type: string
-          x-go-name: ChannelID
-        channelSequence:
-          type: integer
-          format: int64
-          x-go-name: ChannelSequence
-        clusterId:
-          type: string
-          x-go-name: ClusterID
-        embeddedClusterId:
-          type: string
-          x-go-name: EmbeddedClusterID
-        embeddedClusterVersion:
-          type: string
-          x-go-name: EmbeddedClusterVersion
-        firstCheckin:
-          type: string
-          format: date-time
-          x-go-name: FirstCheckin
-        firstReadyAt:
-          type: string
-          format: date-time
-          x-go-name: FirstReadyAt
-        id:
-          type: string
-          x-go-name: ID
-        installType:
-          description: 'InstallType is the canonical observed install type, derived once
-
-            server-side from the instance''s identity signals: one of "linux"
-
-            (embedded cluster), "kurl", "kots", or "helm". Clients read this
-
-            directly instead of re-deriving; collapse to a binary install method
-
-            with installType == "helm" ? "helm" : "linux" where needed.'
-          type: string
-          x-go-name: InstallType
-        isAirgap:
+        hide_unmatched_content_versions:
           type: boolean
-          x-go-name: IsAirgap
-        k8sDistribution:
-          type: string
-          x-go-name: K8sDistribution
-        k8sVersion:
-          type: string
-          x-go-name: K8sVersion
-        kotsInstallId:
-          type: string
-          x-go-name: KotsInstallID
-        kurlInstallId:
-          type: string
-          x-go-name: KurlInstallID
-        lastCheckin:
-          type: string
-          format: date-time
-          x-go-name: LastCheckin
-        releaseSequence:
-          type: integer
-          format: int64
-          x-go-name: ReleaseSequence
-        resourceStates:
-          type: array
-          items:
-            $ref: '#/components/schemas/InstanceResourceState'
-          x-go-name: ResourceStates
-        serviceAccountId:
-          type: string
-          x-go-name: ServiceAccountID
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/InstanceTag'
-          x-go-name: Tags
-        versionLabel:
-          type: string
-          x-go-name: VersionLabel
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
-    CustomerUser:
-      type: object
-      properties:
-        appId:
-          type: string
-          x-go-name: AppID
-        customerId:
-          type: string
-          x-go-name: CustomerID
-        customerName:
-          type: string
-          x-go-name: CustomerName
-        emailAddress:
-          type: string
-          x-go-name: EmailAddress
-        firstAccessedAt:
-          type: string
-          format: date-time
-          x-go-name: FirstAccessedAt
-        id:
-          type: string
-          x-go-name: ID
-        invitedAt:
-          type: string
-          x-go-name: InvitedAt
-        lastAccessedAt:
-          type: string
-          format: date-time
-          x-go-name: LastAccessedAt
-        pendingInvite:
-          type: boolean
-          x-go-name: PendingInvite
-        role:
-          type: string
-          x-go-name: Role
-        viewCount:
-          type: integer
-          format: int64
-          x-go-name: ViewCount
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
-    InstallStepResponse:
-      type: object
-      title: InstallStepResponse represents a single step in the installation process.
-      properties:
-        commands:
-          description: List of shell commands to execute (one per entry)
-          type: array
-          items:
-            type: string
-          x-go-name: Commands
-        description:
-          description: 'Optional detailed description
-
-            The contents of this field may change.'
-          type: string
-          x-go-name: Description
-        download_url:
-          description: Optional browser download URL (for airgap installs)
-          type: string
-          x-go-name: DownloadURL
-        downloads:
-          description: Browser-downloadable artifacts associated with this step
-          type: array
-          items:
-            $ref: '#/components/schemas/ArtifactDownloadResponse'
-          x-go-name: Downloads
-        step_name:
-          description: Machine-readable step identifier (e.g., "download_assets")
-          type: string
-          x-go-name: StepName
-        step_number:
-          description: Sequential step number (e.g., 2, 3, 4)
-          type: integer
-          format: int64
-          x-go-name: StepNumber
-        title:
-          description: 'Human-readable step title (e.g., "Download the installation assets")
-
-            The contents of this field may change. For a persistent identifier, use the StepName field.'
-          type: string
-          x-go-name: Title
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
-    FailedLoginAttempt:
-      description: FailedLoginAttempt represents a failed login attempt record
-      type: object
-      properties:
-        app_id:
-          type: string
-          x-go-name: AppID
-        created_at:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        email_address:
-          type: string
-          x-go-name: EmailAddress
-        id:
-          type: string
-          x-go-name: ID
-        ip_address:
-          type: string
-          x-go-name: IPAddress
-        login_url:
-          type: string
-          x-go-name: LoginURL
-        team_id:
-          type: string
-          x-go-name: TeamID
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
+          x-go-name: HideUnmatchedContentVersions
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/enterprise_portal
     ContentVersion:
       type: object
       properties:
@@ -2049,112 +2354,6 @@ components:
           format: date-time
           x-go-name: UpdatedAt
       x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
-    InstallInstructionsResponse:
-      type: object
-      title: InstallInstructionsResponse represents the complete set of installation instructions for a given install id.
-      properties:
-        context:
-          description: MDX context with all template variables
-          x-go-name: Context
-        format:
-          description: Version format ("basic" for legacy JSON, "mdx" for custom instructions)
-          type: string
-          x-go-name: Format
-        install_type:
-          description: Installation type ("linux", "helm", or "embedded-cluster")
-          type: string
-          x-go-name: InstallType
-        mdx_template:
-          description: 'MDX format fields (only present when format == "mdx")
-
-            MDX template content'
-          type: string
-          x-go-name: MDXTemplate
-        renderer_version:
-          description: Renderer version for frontend compatibility
-          type: integer
-          format: int64
-          x-go-name: RendererVersion
-        steps:
-          description: 'Sequential list of installation steps (legacy format only)
-
-            Note that the number and order will vary based on the install type and the install options themselves.'
-          type: array
-          items:
-            $ref: '#/components/schemas/InstallStepResponse'
-          x-go-name: Steps
-        title:
-          description: Overall installation title (legacy format only)
-          type: string
-          x-go-name: Title
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
-    Documentation:
-      type: object
-      properties:
-        embedded_cluster_install_url:
-          type: string
-          x-go-name: EmbeddedClusterInstallURL
-        embedded_cluster_post_install:
-          type: string
-          x-go-name: EmbeddedClusterPostInstall
-        embedded_cluster_pre_install:
-          type: string
-          x-go-name: EmbeddedClusterPreInstall
-        helm_install_url:
-          type: string
-          x-go-name: HelmInstallURL
-        helm_post_install:
-          type: string
-          x-go-name: HelmPostInstall
-        helm_pre_install:
-          type: string
-          x-go-name: HelmPreInstall
-        kots_install_url:
-          type: string
-          x-go-name: KOTSInstallURL
-        kurl_install_url:
-          type: string
-          x-go-name: KURLInstallURL
-        values_override_url:
-          type: string
-          x-go-name: ValuesOverrideURL
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
-    CustomerInvite:
-      type: object
-      properties:
-        appId:
-          type: string
-          x-go-name: AppID
-        appSlug:
-          type: string
-          x-go-name: AppSlug
-        createdAt:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        customerId:
-          type: string
-          x-go-name: CustomerID
-        customerName:
-          type: string
-          x-go-name: CustomerName
-        emailAddress:
-          type: string
-          x-go-name: EmailAddress
-        expireAt:
-          type: string
-          format: date-time
-          x-go-name: ExpireAt
-        id:
-          type: string
-          x-go-name: ID
-        inviteNonce:
-          type: string
-          x-go-name: Nonce
-        teamId:
-          type: string
-          x-go-name: TeamID
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
     InstanceTag:
       type: object
       properties:
@@ -2171,49 +2370,33 @@ components:
           type: string
           x-go-name: Value
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
-    InstanceResourceState:
+    FailedLoginAttempt:
+      description: FailedLoginAttempt represents a failed login attempt record
       type: object
       properties:
-        kind:
+        app_id:
           type: string
-          x-go-name: Kind
-        name:
+          x-go-name: AppID
+        created_at:
           type: string
-          x-go-name: Name
-        namespace:
+          format: date-time
+          x-go-name: CreatedAt
+        email_address:
           type: string
-          x-go-name: Namespace
-        state:
-          type: string
-          x-go-name: State
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
-    ArtifactDownloadResponse:
-      description: 'ArtifactDownloadResponse describes a browser-downloadable artifact exposed
-
-        alongside generated install instructions.'
-      type: object
-      properties:
-        filename:
-          type: string
-          x-go-name: Filename
-        href:
-          type: string
-          x-go-name: Href
+          x-go-name: EmailAddress
         id:
           type: string
           x-go-name: ID
-        kind:
+        ip_address:
           type: string
-          x-go-name: Kind
-        label:
+          x-go-name: IPAddress
+        login_url:
           type: string
-          x-go-name: Label
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-          x-go-name: Metadata
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+          x-go-name: LoginURL
+        team_id:
+          type: string
+          x-go-name: TeamID
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
     UpdateInstructionsResponse:
       type: object
       title: UpdateInstructionsResponse represents the complete set of update instructions for a given install id.
@@ -2253,12 +2436,60 @@ components:
           type: string
           x-go-name: Title
       x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
-    EnterprisePortalSettings:
+    ServiceAccount:
+      type: object
+      title: ServiceAccount represents a modified user on a team paired with an API token.
+      properties:
+        accountName:
+          type: string
+          x-go-name: AccountName
+        createdAt:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        customerId:
+          type: string
+          x-go-name: CustomerID
+        emailAddress:
+          type: string
+          x-go-name: EmailAddress
+        id:
+          type: string
+          x-go-name: ID
+        isRevoked:
+          type: boolean
+          x-go-name: IsRevoked
+        lastUsedAt:
+          type: string
+          format: date-time
+          x-go-name: LastUsedAt
+        token:
+          type: string
+          x-go-name: Token
+        tokenRegeneratedAt:
+          type: string
+          format: date-time
+          x-go-name: TokenRegeneratedAt
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+    InstanceResourceState:
       type: object
       properties:
-        allowedDomainsEnabled:
-          type: boolean
-          x-go-name: AllowedDomainsEnabled
+        kind:
+          type: string
+          x-go-name: Kind
+        name:
+          type: string
+          x-go-name: Name
+        namespace:
+          type: string
+          x-go-name: Namespace
+        state:
+          type: string
+          x-go-name: State
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+    AllowedDomain:
+      type: object
+      properties:
         appId:
           type: string
           x-go-name: AppID
@@ -2269,60 +2500,16 @@ components:
         customerId:
           type: string
           x-go-name: CustomerID
-        portalVersion:
+        domain:
           type: string
-          x-go-name: PortalVersion
+          x-go-name: Domain
+        id:
+          type: string
+          x-go-name: ID
         teamId:
           type: string
           x-go-name: TeamID
-        updatedAt:
-          type: string
-          format: date-time
-          x-go-name: UpdatedAt
       x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
-    EmailHistoryItem:
-      description: EmailHistoryItem represents an email with its latest status for display
-      type: object
-      properties:
-        bounceType:
-          type: string
-          x-go-name: BounceType
-        customerId:
-          type: string
-          x-go-name: CustomerID
-        customerName:
-          type: string
-          x-go-name: CustomerName
-        emailType:
-          type: string
-          x-go-name: EmailType
-        fromEmail:
-          type: string
-          x-go-name: FromEmail
-        latestEventAt:
-          type: string
-          format: date-time
-          x-go-name: LatestEventAt
-        latestStatus:
-          type: string
-          x-go-name: LatestStatus
-        messageId:
-          type: string
-          x-go-name: MessageID
-        sentAt:
-          type: string
-          format: date-time
-          x-go-name: SentAt
-        subject:
-          type: string
-          x-go-name: Subject
-        templateName:
-          type: string
-          x-go-name: TemplateName
-        toEmail:
-          type: string
-          x-go-name: ToEmail
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
     InstallAttempt:
       description: InstallAttempt extends CustomerInstallOptions with calculated or joined fields to represent an installation attempt
       type: object
@@ -2441,70 +2628,32 @@ components:
           type: string
           x-go-name: VersionLabel
       x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
-    ContentSettings:
+    ArtifactDownloadResponse:
+      description: 'ArtifactDownloadResponse describes a browser-downloadable artifact exposed
+
+        alongside generated install instructions.'
       type: object
       properties:
-        hide_unmatched_content_versions:
-          type: boolean
-          x-go-name: HideUnmatchedContentVersions
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/enterprise_portal
-    AllowedDomain:
-      type: object
-      properties:
-        appId:
+        filename:
           type: string
-          x-go-name: AppID
-        createdAt:
+          x-go-name: Filename
+        href:
           type: string
-          format: date-time
-          x-go-name: CreatedAt
-        customerId:
-          type: string
-          x-go-name: CustomerID
-        domain:
-          type: string
-          x-go-name: Domain
+          x-go-name: Href
         id:
           type: string
           x-go-name: ID
-        teamId:
+        kind:
           type: string
-          x-go-name: TeamID
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
-    ServiceAccount:
-      type: object
-      title: ServiceAccount represents a modified user on a team paired with an API token.
-      properties:
-        accountName:
+          x-go-name: Kind
+        label:
           type: string
-          x-go-name: AccountName
-        createdAt:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        customerId:
-          type: string
-          x-go-name: CustomerID
-        emailAddress:
-          type: string
-          x-go-name: EmailAddress
-        id:
-          type: string
-          x-go-name: ID
-        isRevoked:
-          type: boolean
-          x-go-name: IsRevoked
-        lastUsedAt:
-          type: string
-          format: date-time
-          x-go-name: LastUsedAt
-        token:
-          type: string
-          x-go-name: Token
-        tokenRegeneratedAt:
-          type: string
-          format: date-time
-          x-go-name: TokenRegeneratedAt
+          x-go-name: Label
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          x-go-name: Metadata
       x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
     CustomerInstallOptions:
       type: object
@@ -2677,498 +2826,349 @@ components:
           format: date-time
           x-go-name: UpdateCompletedAt
       x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
-  responses:
-    updateEnterprisePortalAccessResponse:
-      description: UpdateEnterprisePortalAccessResponse represents the access settings response
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              auto_invite_to_ep_on_create:
-                type: boolean
-                x-go-name: AutoInviteToEpOnCreate
-              download_portal_disabled:
-                type: boolean
-                x-go-name: DownloadPortalDisabled
-    listEnterprisePortalServiceAccountsResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              service_accounts:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ServiceAccount'
-                x-go-name: ServiceAccounts
-              total:
-                type: integer
-                format: int64
-                x-go-name: Total
-    listEnterprisePortalCustomerUsersResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              total:
-                type: integer
-                format: int64
-                x-go-name: Total
-              users:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CustomerUser'
-                x-go-name: Users
-    getInstallOptionsResponse:
-      description: GetInstallOptionsResponse contains the response from getting install options.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              admin_console_url:
-                type: string
-                x-go-name: AdminConsoleURL
-              assets_downloaded_at:
-                description: New fields for tracking installation progress
-                type: string
-                format: date-time
-                x-go-name: AssetsDownloadedAt
-              browser_install_completed_at:
-                type: string
-                format: date-time
-                x-go-name: BrowserInstallCompletedAt
-              channel_id:
-                type: string
-                x-go-name: ChannelID
-              channel_release_sequence:
-                type: integer
-                format: int64
-                x-go-name: ChannelSequence
-              customer_email:
-                type: string
-                x-go-name: CustomerEmail
-              customer_id:
-                type: string
-                x-go-name: CustomerID
-              id:
-                type: string
-                x-go-name: ID
-              images_pulled_at:
-                type: string
-                format: date-time
-                x-go-name: ImagesPulledAt
-              install_type:
-                type: string
-                x-go-name: InstallType
-              installation_completed_at:
-                type: string
-                format: date-time
-                x-go-name: InstallationCompletedAt
-              instance_id:
-                type: string
-                x-go-name: InstanceID
-              instance_name:
-                type: string
-                x-go-name: InstanceName
-              instructions:
-                $ref: '#/components/schemas/InstallInstructionsResponse'
-              is_multi_node:
-                type: boolean
-                x-go-name: IsMultiNode
-              kubernetes_distribution:
-                type: string
-                x-go-name: KubernetesDistribution
-              license_id:
-                type: string
-                x-go-name: LicenseID
-              network_availability:
-                type: string
-                x-go-name: NetworkAvailability
-              os_distro:
-                type: string
-                x-go-name: OSDistro
-              os_version:
-                type: string
-                x-go-name: OSVersion
-              registry_authenticated_at:
-                type: string
-                format: date-time
-                x-go-name: RegistryAuthenticatedAt
-              registry_availability:
-                type: string
-                x-go-name: RegistryAvailability
-              service_account_id:
-                type: string
-                x-go-name: ServiceAccountID
-              service_account_token:
-                type: string
-                x-go-name: ServiceAccountToken
-              started_at:
-                type: string
-                format: date-time
-                x-go-name: StartedAt
-              status:
-                type: string
-                x-go-name: Status
-              version:
-                type: string
-                x-go-name: VersionLabel
-    patchInstallOptionsResponse:
-      description: PatchInstallOptionsResponse contains the response from patching install options.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              install_options:
-                $ref: '#/components/schemas/CustomerInstallOptions'
-              instructions:
-                $ref: '#/components/schemas/InstallInstructionsResponse'
-              service_account:
-                $ref: '#/components/schemas/ServiceAccount'
-    dismissContentVersionNoticeResponse:
-      description: 'DismissContentVersionNoticeResponse contains the response from dismissing a
+    EnterprisePortalSettings:
+      type: object
+      properties:
+        allowedDomainsEnabled:
+          type: boolean
+          x-go-name: AllowedDomainsEnabled
+        appId:
+          type: string
+          x-go-name: AppID
+        createdAt:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        customerId:
+          type: string
+          x-go-name: CustomerID
+        portalVersion:
+          type: string
+          x-go-name: PortalVersion
+        teamId:
+          type: string
+          x-go-name: TeamID
+        updatedAt:
+          type: string
+          format: date-time
+          x-go-name: UpdatedAt
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+    Documentation:
+      type: object
+      properties:
+        embedded_cluster_install_url:
+          type: string
+          x-go-name: EmbeddedClusterInstallURL
+        embedded_cluster_post_install:
+          type: string
+          x-go-name: EmbeddedClusterPostInstall
+        embedded_cluster_pre_install:
+          type: string
+          x-go-name: EmbeddedClusterPreInstall
+        helm_install_url:
+          type: string
+          x-go-name: HelmInstallURL
+        helm_post_install:
+          type: string
+          x-go-name: HelmPostInstall
+        helm_pre_install:
+          type: string
+          x-go-name: HelmPreInstall
+        kots_install_url:
+          type: string
+          x-go-name: KOTSInstallURL
+        kurl_install_url:
+          type: string
+          x-go-name: KURLInstallURL
+        values_override_url:
+          type: string
+          x-go-name: ValuesOverrideURL
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
+    EmailHistoryItem:
+      description: EmailHistoryItem represents an email with its latest status for display
+      type: object
+      properties:
+        bounceType:
+          type: string
+          x-go-name: BounceType
+        customerId:
+          type: string
+          x-go-name: CustomerID
+        customerName:
+          type: string
+          x-go-name: CustomerName
+        emailType:
+          type: string
+          x-go-name: EmailType
+        fromEmail:
+          type: string
+          x-go-name: FromEmail
+        latestEventAt:
+          type: string
+          format: date-time
+          x-go-name: LatestEventAt
+        latestStatus:
+          type: string
+          x-go-name: LatestStatus
+        messageId:
+          type: string
+          x-go-name: MessageID
+        sentAt:
+          type: string
+          format: date-time
+          x-go-name: SentAt
+        subject:
+          type: string
+          x-go-name: Subject
+        templateName:
+          type: string
+          x-go-name: TemplateName
+        toEmail:
+          type: string
+          x-go-name: ToEmail
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal
+    Instance:
+      type: object
+      properties:
+        appStatus:
+          type: string
+          x-go-name: AppStatus
+        channelId:
+          type: string
+          x-go-name: ChannelID
+        channelSequence:
+          type: integer
+          format: int64
+          x-go-name: ChannelSequence
+        clusterId:
+          type: string
+          x-go-name: ClusterID
+        embeddedClusterId:
+          type: string
+          x-go-name: EmbeddedClusterID
+        embeddedClusterVersion:
+          type: string
+          x-go-name: EmbeddedClusterVersion
+        firstCheckin:
+          type: string
+          format: date-time
+          x-go-name: FirstCheckin
+        firstReadyAt:
+          type: string
+          format: date-time
+          x-go-name: FirstReadyAt
+        id:
+          type: string
+          x-go-name: ID
+        installType:
+          description: 'InstallType is the canonical observed install type, derived once
 
-        content version notice.'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                description: True when the notice was dismissed
-                type: boolean
-                x-go-name: Success
-    createInstallOptionsResponse:
-      description: CreateInstallOptionsResponse contains the response from creating install options.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              install_options:
-                $ref: '#/components/schemas/CustomerInstallOptions'
-              instructions:
-                $ref: '#/components/schemas/InstallInstructionsResponse'
-              service_account:
-                $ref: '#/components/schemas/ServiceAccount'
-    updateEnterprisePortalSettingsResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              settings:
-                $ref: '#/components/schemas/EnterprisePortalSettings'
-    deleteContentVersionResponse:
-      description: 'DeleteContentVersionResponse contains the response from deleting a content
+            server-side from the instance''s identity signals: one of "linux"
 
-        version.'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                description: True when the version was deleted
-                type: boolean
-                x-go-name: Success
-    createCustomerAllowedDomainResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              allowedDomain:
-                $ref: '#/components/schemas/AllowedDomain'
-    listUpdateAttemptsResponse:
-      description: ListUpdateAttemptsResponse is the response body for listing update attempts
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              update_attempts:
-                type: array
-                items:
-                  $ref: '#/components/schemas/UpdateAttempt'
-                x-go-name: UpdateAttempts
-    acknowledgeContentTemplateUpdatesResponse:
-      description: 'AcknowledgeContentTemplateUpdatesResponse contains the response from
+            (embedded cluster), "kurl", "kots", or "helm". Clients read this
 
-        acknowledging upstream content template updates.'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              acknowledged_through_at:
-                description: Template update watermark after acknowledgement
-                type: string
-                format: date-time
-                x-go-name: AcknowledgedThroughAt
-    inviteEnterprisePortalCustomerUserResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              invite:
-                $ref: '#/components/schemas/CustomerInvite'
-    createEnterprisePortalSystemUserLoginResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              login_url:
-                description: A fully-qualified login URL to open in a new tab
-                type: string
-                x-go-name: LoginURL
-              nonce:
-                description: The nonce that can be used with the EP verify endpoint
-                type: string
-                x-go-name: Nonce
-    getEnterprisePortalBrandingResponse:
-      description: GetEnterprisePortalBrandingResponse represents the branding for the enterprise portal.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              activeEnterprisePortalTemplate:
-                type: string
-                x-go-name: ActiveEnterprisePortalTemplate
-              branding:
-                type: string
-                x-go-name: Branding
-    getEnterprisePortalSettingsResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              settings:
-                $ref: '#/components/schemas/EnterprisePortalSettings'
-    listFailedLoginAttemptsResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              attempts:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FailedLoginAttempt'
-                x-go-name: Attempts
-              total:
-                type: integer
-                format: int64
-                x-go-name: Total
-    getDocumentationResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              documentation:
-                $ref: '#/components/schemas/Documentation'
-    listEnterprisePortalEmailHistoryResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              emails:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EmailHistoryItem'
-                x-go-name: Emails
-              total:
-                type: integer
-                format: int64
-                x-go-name: Total
-    listEnterprisePortalInstancesResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              instances:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Instance'
-                x-go-name: Instances
-              total:
-                type: integer
-                format: int64
-                x-go-name: Total
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
-    listInstallAttemptsResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              install_attempts:
-                type: array
-                items:
-                  $ref: '#/components/schemas/InstallAttempt'
-                x-go-name: InstallAttempts
-              total:
-                type: integer
-                format: int64
-                x-go-name: Total
-    createContentVersionPinResponse:
-      description: 'CreateContentVersionPinResponse contains the response from creating a
+            directly instead of re-deriving; collapse to a binary install method
 
-        content version pin.'
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              version:
-                $ref: '#/components/schemas/ContentVersion'
-    responseNoContent:
-      description: On success, no payload returned
-    updateContentSettingsResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              settings:
-                $ref: '#/components/schemas/ContentSettings'
-    getUpdateInstructionsResponse:
-      description: GetUpdateInstructionsResponse contains the response from getting update instructions.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateInstructionsResponse'
-    getEnterprisePortalAccessResponse:
-      description: GetEnterprisePortalAccessResponse represents the access settings response
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              auto_invite_to_ep_on_create:
-                type: boolean
-                x-go-name: AutoInviteToEpOnCreate
-              download_portal_disabled:
-                type: boolean
-                x-go-name: DownloadPortalDisabled
-    listCustomerAllowedDomainsResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              allowedDomains:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AllowedDomain'
-                x-go-name: AllowedDomains
-    getPortalFeaturesResponse:
-      description: PortalFeaturesResponse holds the current state of all portal feature toggles for an app.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              askAiEnabled:
-                description: Whether the Ask AI assistant is enabled in the Enterprise Portal.
-                type: boolean
-                x-go-name: AskAiEnabled
-              supportBundleUploadEnabled:
-                description: Whether support bundle upload is enabled in the Enterprise Portal.
-                type: boolean
-                x-go-name: SupportBundleUploadEnabled
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    getEnterprisePortalStatusResponse:
-      description: GetEnterprisePortalStatusResponse represents the status of the enterprise portal.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                x-go-name: Status
-    updateDocumentationResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
+            with installType == "helm" ? "helm" : "linux" where needed.'
+          type: string
+          x-go-name: InstallType
+        isAirgap:
+          type: boolean
+          x-go-name: IsAirgap
+        k8sDistribution:
+          type: string
+          x-go-name: K8sDistribution
+        k8sVersion:
+          type: string
+          x-go-name: K8sVersion
+        kotsInstallId:
+          type: string
+          x-go-name: KotsInstallID
+        kurlInstallId:
+          type: string
+          x-go-name: KurlInstallID
+        lastCheckin:
+          type: string
+          format: date-time
+          x-go-name: LastCheckin
+        releaseSequence:
+          type: integer
+          format: int64
+          x-go-name: ReleaseSequence
+        resourceStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstanceResourceState'
+          x-go-name: ResourceStates
+        serviceAccountId:
+          type: string
+          x-go-name: ServiceAccountID
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstanceTag'
+          x-go-name: Tags
+        versionLabel:
+          type: string
+          x-go-name: VersionLabel
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+    CustomerInvite:
+      type: object
+      properties:
+        appId:
+          type: string
+          x-go-name: AppID
+        appSlug:
+          type: string
+          x-go-name: AppSlug
+        createdAt:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        customerId:
+          type: string
+          x-go-name: CustomerID
+        customerName:
+          type: string
+          x-go-name: CustomerName
+        emailAddress:
+          type: string
+          x-go-name: EmailAddress
+        expireAt:
+          type: string
+          format: date-time
+          x-go-name: ExpireAt
+        id:
+          type: string
+          x-go-name: ID
+        inviteNonce:
+          type: string
+          x-go-name: Nonce
+        teamId:
+          type: string
+          x-go-name: TeamID
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+    CustomerUser:
+      type: object
+      properties:
+        appId:
+          type: string
+          x-go-name: AppID
+        customerId:
+          type: string
+          x-go-name: CustomerID
+        customerName:
+          type: string
+          x-go-name: CustomerName
+        emailAddress:
+          type: string
+          x-go-name: EmailAddress
+        firstAccessedAt:
+          type: string
+          format: date-time
+          x-go-name: FirstAccessedAt
+        id:
+          type: string
+          x-go-name: ID
+        invitedAt:
+          type: string
+          x-go-name: InvitedAt
+        lastAccessedAt:
+          type: string
+          format: date-time
+          x-go-name: LastAccessedAt
+        pendingInvite:
+          type: boolean
+          x-go-name: PendingInvite
+        role:
+          type: string
+          x-go-name: Role
+        viewCount:
+          type: integer
+          format: int64
+          x-go-name: ViewCount
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+    InstallInstructionsResponse:
+      type: object
+      title: InstallInstructionsResponse represents the complete set of installation instructions for a given install id.
+      properties:
+        context:
+          description: MDX context with all template variables
+          x-go-name: Context
+        format:
+          description: Version format ("basic" for legacy JSON, "mdx" for custom instructions)
+          type: string
+          x-go-name: Format
+        install_type:
+          description: Installation type ("linux", "helm", or "embedded-cluster")
+          type: string
+          x-go-name: InstallType
+        mdx_template:
+          description: 'MDX format fields (only present when format == "mdx")
+
+            MDX template content'
+          type: string
+          x-go-name: MDXTemplate
+        renderer_version:
+          description: Renderer version for frontend compatibility
+          type: integer
+          format: int64
+          x-go-name: RendererVersion
+        steps:
+          description: 'Sequential list of installation steps (legacy format only)
+
+            Note that the number and order will vary based on the install type and the install options themselves.'
+          type: array
+          items:
+            $ref: '#/components/schemas/InstallStepResponse'
+          x-go-name: Steps
+        title:
+          description: Overall installation title (legacy format only)
+          type: string
+          x-go-name: Title
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+    InstallStepResponse:
+      type: object
+      title: InstallStepResponse represents a single step in the installation process.
+      properties:
+        commands:
+          description: List of shell commands to execute (one per entry)
+          type: array
+          items:
+            type: string
+          x-go-name: Commands
+        description:
+          description: 'Optional detailed description
+
+            The contents of this field may change.'
+          type: string
+          x-go-name: Description
+        download_url:
+          description: Optional browser download URL (for airgap installs)
+          type: string
+          x-go-name: DownloadURL
+        downloads:
+          description: Browser-downloadable artifacts associated with this step
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtifactDownloadResponse'
+          x-go-name: Downloads
+        step_name:
+          description: Machine-readable step identifier (e.g., "download_assets")
+          type: string
+          x-go-name: StepName
+        step_number:
+          description: Sequential step number (e.g., 2, 3, 4)
+          type: integer
+          format: int64
+          x-go-name: StepNumber
+        title:
+          description: 'Human-readable step title (e.g., "Download the installation assets")
+
+            The contents of this field may change. For a persistent identifier, use the StepName field.'
+          type: string
+          x-go-name: Title
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
   securitySchemes:
     api_key:
       type: apiKey

@@ -530,6 +530,67 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
+    unarchiveCustomerInstanceResponse:
+      description: UnarchiveCustomerInstanceResponse contains the response to unarchive an instance
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customerInstance:
+                $ref: '#/components/schemas/CustomerInstance'
+              error:
+                type: string
+                x-go-name: Error
+    archiveCustomerInstanceResponse:
+      description: ArchiveCustomerInstanceResponse contains the response to archive an instance
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customerInstance:
+                $ref: '#/components/schemas/CustomerInstance'
+              error:
+                type: string
+                x-go-name: Error
+    listCustomerInstancesResponse:
+      description: ListCustomerInstancesResponse contains the JSON instances list
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              instances:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerInstance'
+                x-go-name: Instances
+    getCustomerInstanceScan:
+      description: GetCustomerInstanceScanResponse contains the security scan summaries for the instance images.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              scans:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecurityScanWrapper'
+                x-go-name: Scans
+    triggerCustomerInstanceScan:
+      description: TriggerCustomerInstanceScanResponse contains the response for triggering a scan
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+              success:
+                type: boolean
+                x-go-name: Success
     getCustomerInstanceRunningImagesResponse:
       description: ''
       content:
@@ -547,20 +608,8 @@ components:
                   items:
                     type: string
                 x-go-name: RunningImages
-    unarchiveCustomerInstanceResponse:
-      description: UnarchiveCustomerInstanceResponse contains the response to unarchive an instance
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              customerInstance:
-                $ref: '#/components/schemas/CustomerInstance'
-              error:
-                type: string
-                x-go-name: Error
-    getInstanceTagSchemaResponse:
-      description: GetInstanceTagSchemaResponse contains the tag schema response
+    getCustomerInstanceTagsResponse:
+      description: GetCustomerInstanceTagsResponse contains the response to update a instance tags
       content:
         application/json:
           schema:
@@ -570,12 +619,27 @@ components:
                 type: string
                 x-go-name: Error
               tags:
-                type: object
-                additionalProperties:
-                  type: array
-                  items:
-                    type: string
-                x-go-name: Tags
+                $ref: '#/components/schemas/InstanceTags'
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     responseErrBadRequest:
       description: Returned on bad input
       content:
@@ -591,65 +655,23 @@ components:
                 description: Error message text if available
                 type: string
                 x-go-name: Message
-    listCustomerInstancesResponse:
-      description: ListCustomerInstancesResponse contains the JSON instances list
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
       content:
         application/json:
           schema:
             type: object
             properties:
-              instances:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CustomerInstance'
-                x-go-name: Instances
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    updateCustomerInstanceTagsResponse:
-      description: UpdateCustomerInstanceTagsResponse contains the response to update a instance tags
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              customerInstance:
-                $ref: '#/components/schemas/CustomerInstance'
               error:
-                type: string
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
                 x-go-name: Error
-    triggerCustomerInstanceScan:
-      description: TriggerCustomerInstanceScanResponse contains the response for triggering a scan
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-              success:
-                type: boolean
-                x-go-name: Success
-    getCustomerInstanceScan:
-      description: GetCustomerInstanceScanResponse contains the security scan summaries for the instance images.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              scans:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SecurityScanWrapper'
-                x-go-name: Scans
     getCustomerInstancesTagsBulkResponse:
       description: GetCustomerInstancesTagsBulkResponse contains the bulk tags response
       content:
@@ -677,6 +699,23 @@ components:
                         $ref: '#/components/schemas/InstanceTagDTO'
                       x-go-name: Tags
                 x-go-name: Results
+    getInstanceTagSchemaResponse:
+      description: GetInstanceTagSchemaResponse contains the tag schema response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              tags:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+                x-go-name: Tags
     batchArchiveCustomerInstancesResponse:
       description: BatchArchiveCustomerInstancesResponse contains the bulk archive response.
       content:
@@ -700,18 +739,8 @@ components:
                 type: integer
                 format: int64
                 x-go-name: Total
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    archiveCustomerInstanceResponse:
-      description: ArchiveCustomerInstanceResponse contains the response to archive an instance
+    updateCustomerInstanceTagsResponse:
+      description: UpdateCustomerInstanceTagsResponse contains the response to update a instance tags
       content:
         application/json:
           schema:
@@ -722,59 +751,60 @@ components:
               error:
                 type: string
                 x-go-name: Error
-    getCustomerInstanceTagsResponse:
-      description: GetCustomerInstanceTagsResponse contains the response to update a instance tags
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              tags:
-                $ref: '#/components/schemas/InstanceTags'
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
   schemas:
-    VulnCounts:
+    InstanceTag:
       type: object
       properties:
-        critical:
-          type: integer
-          format: int64
-          x-go-name: Critical
-        high:
-          type: integer
-          format: int64
-          x-go-name: High
-        low:
-          type: integer
-          format: int64
-          x-go-name: Low
-        medium:
-          type: integer
-          format: int64
-          x-go-name: Medium
-        total:
-          type: integer
-          format: int64
-          x-go-name: Total
+        instanceId:
+          type: string
+          x-go-name: InstanceId
+        key:
+          type: string
+          x-go-name: Key
+        origin:
+          type: string
+          x-go-name: Origin
+        value:
+          type: string
+          x-go-name: Value
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
+    VulnDetail:
+      type: object
+      properties:
+        artifact_name:
+          type: string
+          x-go-name: ArtifactName
+        artifact_type:
+          type: string
+          x-go-name: ArtifactType
+        artifact_version:
+          type: string
+          x-go-name: ArtifactVersion
+        cve:
+          type: string
+          x-go-name: CVE
+        description:
+          type: string
+          x-go-name: Description
+        epss_percentile:
+          type: number
+          format: double
+          x-go-name: EpssPercentile
+        fix_state:
+          type: string
+          x-go-name: FixState
+        fix_versions:
+          type: array
+          items:
+            type: string
+          x-go-name: FixVersions
+        risk:
+          type: number
+          format: double
+          x-go-name: Risk
+        severity:
+          type: string
+          x-go-name: Severity
       x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
     SecurityScanInfo:
       type: object
@@ -814,51 +844,183 @@ components:
             $ref: '#/components/schemas/VulnDetail'
           x-go-name: VulnerabilityDetails
       x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
-    SkippedInstance:
+    CustomerInstanceVersionHistory:
       type: object
       properties:
         clusterId:
           type: string
           x-go-name: ClusterID
+        downstreamChannelId:
+          type: string
+          x-go-name: DownstreamChannelID
+        downstreamReleaseSequence:
+          type: integer
+          format: int64
+          x-go-name: DownstreamReleaseSequence
         instanceId:
           type: string
           x-go-name: InstanceID
-        licenseId:
+        intervalLast:
           type: string
-          x-go-name: LicenseID
-        reason:
+          format: date-time
+          x-go-name: IntervalLast
+        intervalStart:
           type: string
-          x-go-name: Reason
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
-    InstanceTag:
-      type: object
-      properties:
-        instanceId:
+          format: date-time
+          x-go-name: IntervalStart
+        nativeHelmCount:
+          type: integer
+          format: int32
+          x-go-name: NativeHelmCount
+        replHelmCount:
+          type: integer
+          format: int32
+          x-go-name: ReplHelmCount
+        versionLabel:
           type: string
-          x-go-name: InstanceId
-        key:
-          type: string
-          x-go-name: Key
-        origin:
-          type: string
-          x-go-name: Origin
-        value:
-          type: string
-          x-go-name: Value
+          x-go-name: VersionLabel
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
-    BatchArchiveInstance:
+    ImageSource:
       type: object
       properties:
-        clusterId:
+        chart_name:
+          type: string
+          x-go-name: ChartName
+        is_installer_only:
+          type: boolean
+          x-go-name: IsInstallerOnly
+        resource_kind:
+          type: string
+          x-go-name: ResourceKind
+        resource_name:
+          type: string
+          x-go-name: ResourceName
+        resource_namespace:
+          type: string
+          x-go-name: ResourceNamespace
+      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+    SecurityScanWrapper:
+      type: object
+      properties:
+        digest:
+          type: string
+          x-go-name: Digest
+        digest_first_seen_at:
+          type: string
+          x-go-name: DigestFirstSeenAt
+        image_size_bytes:
+          type: integer
+          format: int64
+          x-go-name: ImageSizeBytes
+        input:
+          type: string
+          x-go-name: Input
+        installation_phase:
+          description: 'InstallationPhase indicates the Embedded Cluster phase for the image ("", "online", or "airgap").
+
+            Application images have the phase "".
+
+            Infrastructure images used for Embedded Cluster in both online and airgap have the phase "online" or "airgap".
+
+            Infrastructure images used for Embedded Cluster only in airgap have the phase "airgap".'
+          type: string
+          x-go-name: InstallationPhase
+        last_scanned_at:
+          type: string
+          x-go-name: LastScannedAt
+        not_found:
+          type: boolean
+          x-go-name: NotFound
+        result:
+          $ref: '#/components/schemas/SecurityScanInfo'
+        sbom_status:
+          description: SBOM status tracking
+          type: string
+          x-go-name: SBOMStatus
+        sbom_status_message:
+          type: string
+          x-go-name: SBOMStatusMessage
+        sbom_status_updated_at:
+          type: string
+          x-go-name: SBOMStatusUpdatedAt
+        scan_status:
+          description: Scan status tracking
+          type: string
+          x-go-name: ScanStatus
+        scan_status_message:
+          type: string
+          x-go-name: ScanStatusMessage
+        scan_status_updated_at:
+          type: string
+          x-go-name: ScanStatusUpdatedAt
+        source_type:
+          $ref: '#/components/schemas/SourceType'
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageSource'
+          x-go-name: Sources
+      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+    ScannerDescriptor:
+      type: object
+      title: ScannerDescriptor captures the scanner metadata (e.g., Grype version).
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+        version:
+          type: string
+          x-go-name: Version
+      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+    VulnCounts:
+      type: object
+      properties:
+        critical:
+          type: integer
+          format: int64
+          x-go-name: Critical
+        high:
+          type: integer
+          format: int64
+          x-go-name: High
+        low:
+          type: integer
+          format: int64
+          x-go-name: Low
+        medium:
+          type: integer
+          format: int64
+          x-go-name: Medium
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+    TriggerCustomerInstanceScanBody:
+      description: TriggerCustomerInstanceScanBody contains the body parameters for triggering a scan
+      type: object
+      required:
+      - image_name
+      - image_digest
+      properties:
+        cluster_id:
+          description: Optional cluster identifier to disambiguate instance_id
           type: string
           x-go-name: ClusterID
-        instanceId:
+        image_digest:
+          description: Image digest to scan
           type: string
-          x-go-name: InstanceID
-        licenseId:
+          x-go-name: ImageDigest
+        image_name:
+          description: Image name to scan
           type: string
-          x-go-name: LicenseID
+          x-go-name: ImageName
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
+    InstanceTags:
+      type: array
+      items:
+        $ref: '#/components/schemas/InstanceTag'
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
     CustomerInstance:
       type: object
       properties:
@@ -939,194 +1101,19 @@ components:
             $ref: '#/components/schemas/CustomerInstanceVersionHistory'
           x-go-name: VersionHistory
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
-    SecurityScanWrapper:
-      type: object
-      properties:
-        digest:
-          type: string
-          x-go-name: Digest
-        digest_first_seen_at:
-          type: string
-          x-go-name: DigestFirstSeenAt
-        image_size_bytes:
-          type: integer
-          format: int64
-          x-go-name: ImageSizeBytes
-        input:
-          type: string
-          x-go-name: Input
-        installation_phase:
-          description: 'InstallationPhase indicates the Embedded Cluster phase for the image ("", "online", or "airgap").
-
-            Application images have the phase "".
-
-            Infrastructure images used for Embedded Cluster in both online and airgap have the phase "online" or "airgap".
-
-            Infrastructure images used for Embedded Cluster only in airgap have the phase "airgap".'
-          type: string
-          x-go-name: InstallationPhase
-        last_scanned_at:
-          type: string
-          x-go-name: LastScannedAt
-        not_found:
-          type: boolean
-          x-go-name: NotFound
-        result:
-          $ref: '#/components/schemas/SecurityScanInfo'
-        sbom_status:
-          description: SBOM status tracking
-          type: string
-          x-go-name: SBOMStatus
-        sbom_status_message:
-          type: string
-          x-go-name: SBOMStatusMessage
-        sbom_status_updated_at:
-          type: string
-          x-go-name: SBOMStatusUpdatedAt
-        scan_status:
-          description: Scan status tracking
-          type: string
-          x-go-name: ScanStatus
-        scan_status_message:
-          type: string
-          x-go-name: ScanStatusMessage
-        scan_status_updated_at:
-          type: string
-          x-go-name: ScanStatusUpdatedAt
-        source_type:
-          $ref: '#/components/schemas/SourceType'
-        sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImageSource'
-          x-go-name: Sources
-      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
-    TriggerCustomerInstanceScanBody:
-      description: TriggerCustomerInstanceScanBody contains the body parameters for triggering a scan
-      type: object
-      required:
-      - image_name
-      - image_digest
-      properties:
-        cluster_id:
-          description: Optional cluster identifier to disambiguate instance_id
-          type: string
-          x-go-name: ClusterID
-        image_digest:
-          description: Image digest to scan
-          type: string
-          x-go-name: ImageDigest
-        image_name:
-          description: Image name to scan
-          type: string
-          x-go-name: ImageName
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
-    ImageSource:
-      type: object
-      properties:
-        chart_name:
-          type: string
-          x-go-name: ChartName
-        is_installer_only:
-          type: boolean
-          x-go-name: IsInstallerOnly
-        resource_kind:
-          type: string
-          x-go-name: ResourceKind
-        resource_name:
-          type: string
-          x-go-name: ResourceName
-        resource_namespace:
-          type: string
-          x-go-name: ResourceNamespace
-      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
-    CustomerInstanceVersionHistory:
+    BatchArchiveInstance:
       type: object
       properties:
         clusterId:
           type: string
           x-go-name: ClusterID
-        downstreamChannelId:
-          type: string
-          x-go-name: DownstreamChannelID
-        downstreamReleaseSequence:
-          type: integer
-          format: int64
-          x-go-name: DownstreamReleaseSequence
         instanceId:
           type: string
           x-go-name: InstanceID
-        intervalLast:
+        licenseId:
           type: string
-          format: date-time
-          x-go-name: IntervalLast
-        intervalStart:
-          type: string
-          format: date-time
-          x-go-name: IntervalStart
-        nativeHelmCount:
-          type: integer
-          format: int32
-          x-go-name: NativeHelmCount
-        replHelmCount:
-          type: integer
-          format: int32
-          x-go-name: ReplHelmCount
-        versionLabel:
-          type: string
-          x-go-name: VersionLabel
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
-    VulnDetail:
-      type: object
-      properties:
-        artifact_name:
-          type: string
-          x-go-name: ArtifactName
-        artifact_type:
-          type: string
-          x-go-name: ArtifactType
-        artifact_version:
-          type: string
-          x-go-name: ArtifactVersion
-        cve:
-          type: string
-          x-go-name: CVE
-        description:
-          type: string
-          x-go-name: Description
-        epss_percentile:
-          type: number
-          format: double
-          x-go-name: EpssPercentile
-        fix_state:
-          type: string
-          x-go-name: FixState
-        fix_versions:
-          type: array
-          items:
-            type: string
-          x-go-name: FixVersions
-        risk:
-          type: number
-          format: double
-          x-go-name: Risk
-        severity:
-          type: string
-          x-go-name: Severity
-      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
-    InstanceTags:
-      type: array
-      items:
-        $ref: '#/components/schemas/InstanceTag'
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/types
-    SourceType:
-      description: 'SourceType classifies an image as either a Replicated platform image or a
-
-        vendor application image, so that consumers can distinguish vulnerabilities in
-
-        Replicated-shipped components from vulnerabilities in the vendor''s own images.'
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+          x-go-name: LicenseID
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
     InstanceSecuritySummary:
       description: InstanceSecuritySummary represents aggregated security information for an instance
       type: object
@@ -1142,17 +1129,22 @@ components:
         vulnerabilityCounts:
           $ref: '#/components/schemas/VulnCounts'
       x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
-    ScannerDescriptor:
+    SkippedInstance:
       type: object
-      title: ScannerDescriptor captures the scanner metadata (e.g., Grype version).
       properties:
-        name:
+        clusterId:
           type: string
-          x-go-name: Name
-        version:
+          x-go-name: ClusterID
+        instanceId:
           type: string
-          x-go-name: Version
-      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+          x-go-name: InstanceID
+        licenseId:
+          type: string
+          x-go-name: LicenseID
+        reason:
+          type: string
+          x-go-name: Reason
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
     InstanceTagDTO:
       description: InstanceTagDTO is a response-only shape without instanceId
       type: object
@@ -1167,6 +1159,14 @@ components:
           type: string
           x-go-name: Value
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/customers
+    SourceType:
+      description: 'SourceType classifies an image as either a Replicated platform image or a
+
+        vendor application image, so that consumers can distinguish vulnerabilities in
+
+        Replicated-shipped components from vulnerabilities in the vendor''s own images.'
+      type: string
+      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
   securitySchemes:
     api_key:
       type: apiKey

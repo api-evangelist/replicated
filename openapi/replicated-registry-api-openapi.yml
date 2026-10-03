@@ -53,6 +53,21 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
     responseErrUnauthorized:
       description: Return if the caller is not authorized
       content:
@@ -80,21 +95,6 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
     getRegistryEgressSummaryResponse:
       description: GetEgressSummaryResponse contains registry egress summary totals.
       content:

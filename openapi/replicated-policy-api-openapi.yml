@@ -188,6 +188,23 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
     responseNoContent:
       description: On success, no payload returned
     responseErrUnauthorized:
@@ -200,15 +217,6 @@ components:
               message:
                 type: string
                 x-go-name: Message
-    createPolicyResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              policy:
-                $ref: '#/components/schemas/Policy'
     getPolicyResponse:
       description: ''
       content:
@@ -218,6 +226,25 @@ components:
             properties:
               policy:
                 $ref: '#/components/schemas/Policy'
+    updatePolicyResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              policy:
+                $ref: '#/components/schemas/Policy'
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     responseErrBadRequest:
       description: Returned on bad input
       content:
@@ -245,7 +272,7 @@ components:
                 items:
                   $ref: '#/components/schemas/Policy'
                 x-go-name: Policies
-    updatePolicyResponse:
+    createPolicyResponse:
       description: ''
       content:
         application/json:
@@ -254,33 +281,6 @@ components:
             properties:
               policy:
                 $ref: '#/components/schemas/Policy'
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
   schemas:
     Policy:
       type: object

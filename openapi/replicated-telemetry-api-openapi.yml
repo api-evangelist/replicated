@@ -202,6 +202,18 @@ paths:
         required: true
 components:
   responses:
+    cliTelemetryEventResponse:
+      description: CliTelemetryEventResponse represents the response from creating a telemetry event
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              event_id:
+                description: Unique identifier for the event (UUID format)
+                type: string
+                x-go-name: EventID
+                example: 550e8400-e29b-41d4-a716-446655440000
     responseErrUnauthorized:
       description: Return if the caller is not authorized
       content:
@@ -251,18 +263,6 @@ components:
                 description: Error message text if available
                 type: string
                 x-go-name: Message
-    cliTelemetryEventResponse:
-      description: CliTelemetryEventResponse represents the response from creating a telemetry event
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              event_id:
-                description: Unique identifier for the event (UUID format)
-                type: string
-                x-go-name: EventID
-                example: 550e8400-e29b-41d4-a716-446655440000
   securitySchemes:
     api_key:
       type: apiKey

@@ -322,8 +322,34 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
-    responseNoContent:
-      description: On success, no payload returned
+    createExternalRegistryResponse:
+      description: CreateExternalRegistryResponse represents an external registry.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              external_registry:
+                $ref: '#/components/schemas/ExternalRegistry'
+    getECRIAMConfigResponse:
+      description: GetECRIAMConfigResponse contains the team OIDC configuration.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              audience:
+                type: string
+                x-go-name: Audience
+              issuer_url:
+                type: string
+                x-go-name: IssuerURL
+              subject_type:
+                type: string
+                x-go-name: SubjectType
+              thumbprint:
+                type: string
+                x-go-name: Thumbprint
     externalRegistryLogsResponse:
       description: ExternalRegistryLogsResponse contains the JSON external registry logs
       content:
@@ -336,16 +362,34 @@ components:
                 items:
                   $ref: '#/components/schemas/ExternalRegistryLog'
                 x-go-name: Logs
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
       content:
         application/json:
           schema:
             type: object
             properties:
-              message:
-                type: string
-                x-go-name: Message
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
+    updateExternalRegistryResponse:
+      description: UpdateExternalRegistryResponse represents an updated external registry.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              external_registry:
+                $ref: '#/components/schemas/ExternalRegistry'
+    responseNoContent:
+      description: On success, no payload returned
     listExternalRegistriesResponse:
       description: ListExternalRegistriesResponse contains the JSON external registries list
       content:
@@ -370,6 +414,16 @@ components:
                 items:
                   $ref: '#/components/schemas/ExternalRegistry'
                 x-go-name: UnavailableRegistries
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     testExternalRegistryResponse:
       description: TestExternalRegistriesResponse contains the JSON external registries test
       content:
@@ -384,15 +438,16 @@ components:
                 type: integer
                 format: int64
                 x-go-name: Status
-    createExternalRegistryResponse:
-      description: CreateExternalRegistryResponse represents an external registry.
+    responseErrNotFound:
+      description: Returned on resource not found
       content:
         application/json:
           schema:
             type: object
             properties:
-              external_registry:
-                $ref: '#/components/schemas/ExternalRegistry'
+              message:
+                type: string
+                x-go-name: Message
     responseErrBadRequest:
       description: Returned on bad input
       content:
@@ -408,61 +463,6 @@ components:
                 description: Error message text if available
                 type: string
                 x-go-name: Message
-    updateExternalRegistryResponse:
-      description: UpdateExternalRegistryResponse represents an updated external registry.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              external_registry:
-                $ref: '#/components/schemas/ExternalRegistry'
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    getECRIAMConfigResponse:
-      description: GetECRIAMConfigResponse contains the team OIDC configuration.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              audience:
-                type: string
-                x-go-name: Audience
-              issuer_url:
-                type: string
-                x-go-name: IssuerURL
-              subject_type:
-                type: string
-                x-go-name: SubjectType
-              thumbprint:
-                type: string
-                x-go-name: Thumbprint
   schemas:
     ExternalRegistryLog:
       type: object

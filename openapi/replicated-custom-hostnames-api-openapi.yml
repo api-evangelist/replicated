@@ -233,135 +233,15 @@ paths:
       servers:
       - url: https://api.replicated.com/vendor/v3
 components:
-  responses:
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    deleteCustomHostnameResponse:
-      description: DeleteCustomHostnameResponse contains whether or not the request was successful
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                x-go-name: Success
-    listCustomHostnamesResponse:
-      description: ListCustomHostnamesResponse contains the JSON custom hostnames list
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              downloadPortal:
-                type: array
-                items:
-                  $ref: '#/components/schemas/KotsAppCustomHostname'
-                x-go-name: DownloadPortal
-              proxy:
-                type: array
-                items:
-                  $ref: '#/components/schemas/KotsAppCustomHostname'
-                x-go-name: Proxy
-              registry:
-                type: array
-                items:
-                  $ref: '#/components/schemas/KotsAppCustomHostname'
-                x-go-name: Registry
-              replicatedApp:
-                type: array
-                items:
-                  $ref: '#/components/schemas/KotsAppCustomHostname'
-                x-go-name: ReplicatedApp
-    unsetDefaultHostnameResponse:
-      description: UnsetDefaultHostnameResponse contains whether or not the request was successful
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                x-go-name: Success
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    createCustomHostnameResponse:
-      description: CreateCustomHostnameResponse contains whether or not the request was successful
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                x-go-name: Success
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    setDefaultHostnameResponse:
-      description: SetDefaultHostnameResponse contains whether or not the request was successful
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                x-go-name: Success
   schemas:
-    UnsetDefaultHostnameParams:
+    DeleteCustomHostnameParams:
       type: object
       properties:
         hostname:
           type: string
           x-go-name: Hostname
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
-    CreateCustomHostnameParams:
+    SetDefaultHostnameParams:
       type: object
       properties:
         hostname:
@@ -438,20 +318,140 @@ components:
             type: string
           x-go-name: VerificationErrors
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customhostname
-    SetDefaultHostnameParams:
+    CreateCustomHostnameParams:
       type: object
       properties:
         hostname:
           type: string
           x-go-name: Hostname
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
-    DeleteCustomHostnameParams:
+    UnsetDefaultHostnameParams:
       type: object
       properties:
         hostname:
           type: string
           x-go-name: Hostname
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
+  responses:
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
+    createCustomHostnameResponse:
+      description: CreateCustomHostnameResponse contains whether or not the request was successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                x-go-name: Success
+    listCustomHostnamesResponse:
+      description: ListCustomHostnamesResponse contains the JSON custom hostnames list
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              downloadPortal:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KotsAppCustomHostname'
+                x-go-name: DownloadPortal
+              proxy:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KotsAppCustomHostname'
+                x-go-name: Proxy
+              registry:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KotsAppCustomHostname'
+                x-go-name: Registry
+              replicatedApp:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KotsAppCustomHostname'
+                x-go-name: ReplicatedApp
+    unsetDefaultHostnameResponse:
+      description: UnsetDefaultHostnameResponse contains whether or not the request was successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                x-go-name: Success
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    deleteCustomHostnameResponse:
+      description: DeleteCustomHostnameResponse contains whether or not the request was successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                x-go-name: Success
+    setDefaultHostnameResponse:
+      description: SetDefaultHostnameResponse contains whether or not the request was successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                x-go-name: Success
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
   securitySchemes:
     api_key:
       type: apiKey

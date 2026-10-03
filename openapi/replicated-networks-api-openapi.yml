@@ -173,16 +173,18 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
+    updateNetworkResponse:
+      description: UpdateNetworkResponse contains the response to update a network
       content:
         application/json:
           schema:
             type: object
             properties:
-              message:
+              error:
                 type: string
-                x-go-name: Message
+                x-go-name: Error
+              network:
+                $ref: '#/components/schemas/Network'
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -200,18 +202,6 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
-    updateNetworkResponse:
-      description: UpdateNetworkResponse contains the response to update a network
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              network:
-                $ref: '#/components/schemas/Network'
     getNetworkResponse:
       description: GetNetworkResponse contains the response to get network details
       content:
@@ -243,6 +233,26 @@ components:
                 type: integer
                 format: int64
                 x-go-name: TotalNetworks
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     responseErrBadRequest:
       description: Returned on bad input
       content:
@@ -256,16 +266,6 @@ components:
                 x-go-name: ErrorCode
               message:
                 description: Error message text if available
-                type: string
-                x-go-name: Message
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
                 type: string
                 x-go-name: Message
     updateNetworkErrorResponse:

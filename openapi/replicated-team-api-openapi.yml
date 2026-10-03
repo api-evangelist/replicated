@@ -409,6 +409,68 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
+    responseOk:
+      description: On success
+    responseNoContent:
+      description: On success, no payload returned
+    updateDefaultAppResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              default_app_id:
+                type: string
+                x-go-name: DefaultAppID
+              id:
+                type: string
+                x-go-name: ID
+    createTeamServiceAccountResponse:
+      description: CreateTeamServiceAccountResponse contains the created service account and its access token.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              access_token:
+                description: AccessToken is the access token for the created service account.
+                type: string
+                x-go-name: AccessToken
+              service_account:
+                $ref: '#/components/schemas/ServiceAccount'
+    listImagesResponse:
+      description: ListImagesResponse represents a list of images.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              images:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+                x-go-name: Images
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     getTeamMemberResponse:
       description: ''
       content:
@@ -430,94 +492,6 @@ components:
                 description: Error message text if available
                 type: string
                 x-go-name: Message
-    getTeamResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Team'
-    responseOk:
-      description: On success
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    listTeamMembersResponse:
-      description: ListTeamMembersResponse contains the JSON team members list
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              members:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VendorTeamMember'
-                x-go-name: Members
-    responseNoContent:
-      description: On success, no payload returned
-    updateDefaultAppResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              default_app_id:
-                type: string
-                x-go-name: DefaultAppID
-              id:
-                type: string
-                x-go-name: ID
-    listServiceAccountsResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/ServiceAccount'
-    createTeamServiceAccountResponse:
-      description: CreateTeamServiceAccountResponse contains the created service account and its access token.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              access_token:
-                description: AccessToken is the access token for the created service account.
-                type: string
-                x-go-name: AccessToken
-              service_account:
-                $ref: '#/components/schemas/ServiceAccount'
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    listImagesResponse:
-      description: ListImagesResponse represents a list of images.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              images:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Image'
-                x-go-name: Images
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -535,28 +509,33 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
+    getTeamResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Team'
+    listTeamMembersResponse:
+      description: ListTeamMembersResponse contains the JSON team members list
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              members:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendorTeamMember'
+                x-go-name: Members
+    listServiceAccountsResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ServiceAccount'
   schemas:
-    ComplexityRequirements:
-      type: object
-      properties:
-        digit:
-          type: integer
-          format: int64
-          x-go-name: Digit
-        min:
-          type: integer
-          format: int64
-          x-go-name: Min
-        special:
-          description: 'Current data is like this: {"min":12,"upperLower":6,"digit":2,"special":2}'
-          type: integer
-          format: int64
-          x-go-name: Special
-        upperLower:
-          type: integer
-          format: int64
-          x-go-name: UpperLower
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models
     VendorTeamMember:
       description: VendorTeamMember represents a team member in the vendor API
       type: object
@@ -606,6 +585,72 @@ components:
           type: string
           x-go-name: PolicyID
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/v1/team
+    ServiceAccount:
+      type: object
+      title: ServiceAccount represents a modified user on a team paired with an API token.
+      properties:
+        accountName:
+          type: string
+          x-go-name: AccountName
+        createdAt:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        customerId:
+          type: string
+          x-go-name: CustomerID
+        emailAddress:
+          type: string
+          x-go-name: EmailAddress
+        id:
+          type: string
+          x-go-name: ID
+        isRevoked:
+          type: boolean
+          x-go-name: IsRevoked
+        lastUsedAt:
+          type: string
+          format: date-time
+          x-go-name: LastUsedAt
+        token:
+          type: string
+          x-go-name: Token
+        tokenRegeneratedAt:
+          type: string
+          format: date-time
+          x-go-name: TokenRegeneratedAt
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
+    User:
+      type: object
+      title: User is an account on a team.
+      properties:
+        email:
+          type: string
+          x-go-name: Email
+        first_name:
+          type: string
+          x-go-name: FirstName
+        id:
+          type: string
+          x-go-name: ID
+        is_replicated_system_user:
+          type: boolean
+          x-go-name: IsReplicatedSystemUser
+        is_two_factor_enabled:
+          type: boolean
+          x-go-name: IsTwoFactorEnabled
+        last_name:
+          type: string
+          x-go-name: LastName
+        policy_ids:
+          type: array
+          items:
+            type: string
+          x-go-name: PolicyIDs
+        team_id:
+          type: string
+          x-go-name: TeamID
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models
     UpdateTeamMemberRequest:
       type: object
       properties:
@@ -613,6 +658,18 @@ components:
           type: string
           x-go-name: PolicyID
       x-go-package: github.com/replicatedhq/vandoor/pkg/schema
+    Image:
+      type: object
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+        versions:
+          type: array
+          items:
+            type: string
+          x-go-name: Versions
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/images
     Team:
       type: object
       properties:
@@ -678,83 +735,26 @@ components:
           type: string
           x-go-name: SAMLLanding
       x-go-package: github.com/replicatedhq/vandoor/pkg/models
-    ServiceAccount:
-      type: object
-      title: ServiceAccount represents a modified user on a team paired with an API token.
-      properties:
-        accountName:
-          type: string
-          x-go-name: AccountName
-        createdAt:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        customerId:
-          type: string
-          x-go-name: CustomerID
-        emailAddress:
-          type: string
-          x-go-name: EmailAddress
-        id:
-          type: string
-          x-go-name: ID
-        isRevoked:
-          type: boolean
-          x-go-name: IsRevoked
-        lastUsedAt:
-          type: string
-          format: date-time
-          x-go-name: LastUsedAt
-        token:
-          type: string
-          x-go-name: Token
-        tokenRegeneratedAt:
-          type: string
-          format: date-time
-          x-go-name: TokenRegeneratedAt
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
-    Image:
+    ComplexityRequirements:
       type: object
       properties:
-        name:
-          type: string
-          x-go-name: Name
-        versions:
-          type: array
-          items:
-            type: string
-          x-go-name: Versions
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/images
-    User:
-      type: object
-      title: User is an account on a team.
-      properties:
-        email:
-          type: string
-          x-go-name: Email
-        first_name:
-          type: string
-          x-go-name: FirstName
-        id:
-          type: string
-          x-go-name: ID
-        is_replicated_system_user:
-          type: boolean
-          x-go-name: IsReplicatedSystemUser
-        is_two_factor_enabled:
-          type: boolean
-          x-go-name: IsTwoFactorEnabled
-        last_name:
-          type: string
-          x-go-name: LastName
-        policy_ids:
-          type: array
-          items:
-            type: string
-          x-go-name: PolicyIDs
-        team_id:
-          type: string
-          x-go-name: TeamID
+        digit:
+          type: integer
+          format: int64
+          x-go-name: Digit
+        min:
+          type: integer
+          format: int64
+          x-go-name: Min
+        special:
+          description: 'Current data is like this: {"min":12,"upperLower":6,"digit":2,"special":2}'
+          type: integer
+          format: int64
+          x-go-name: Special
+        upperLower:
+          type: integer
+          format: int64
+          x-go-name: UpperLower
       x-go-package: github.com/replicatedhq/vandoor/pkg/models
   securitySchemes:
     api_key:
