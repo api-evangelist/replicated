@@ -1,0 +1,79 @@
+slug: replicated
+provider: Replicated
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Clusters
+  spec_file: replicated-clusters-api-openapi.yml
+  capability_id: BC-4210.20
+  capability_id_l1: BC-4210
+  capability_name: Environment Management
+  confidence: 0.8
+  evidence: '"POST /cluster  createCluster  Create a test cluster"; "GET /cluster/{cluster_id}/kubeconfig  getClusterKubeconfig  Get
+    the kubeconfig for a test cluster"'
+  reason: Provisioning, sizing, exposing ports on and tearing down ephemeral test clusters is exactly
+    provisioning and stewardship of non-production environments used for integration and pre-production
+    testing (Environment Management).
+- tag: Policy
+  spec_file: replicated-policy-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: GET /policies listPolicies 'List RBAC policies'; POST /policy 'Create a RBAC policy'
+  reason: Explicitly RBAC policy CRUD, which is access control administration (Identity & Access Management),
+    not corporate policy lifecycle management.
+- tag: Releases
+  spec_file: replicated-releases-api-openapi.yml
+  capability_id: BC-4210.30
+  capability_id_l1: BC-4210
+  capability_name: Release Engineering Management
+  confidence: 0.8
+  evidence: POST /app/{app_id}/release createRelease 'Create a new release'; 'Promote a release'; 'Demote
+    a channel release'; schemas LintResult, KotsChannelRelease
+  reason: Creating, drafting, versioning, linting, promoting and demoting application releases across
+    channels is release engineering discipline for the software product.
+- tag: Telemetry
+  spec_file: replicated-telemetry-api-openapi.yml
+  capability_id: BC-4280.10
+  capability_id_l1: BC-4280
+  capability_name: Product Telemetry Instrumentation
+  confidence: 0.76
+  evidence: POST /cli/telemetry/event postCliTelemetryEvent 'Record CLI command execution event'; 'Record
+    CLI error details'
+  reason: Endpoints ingest product usage events and error/stat records from the CLI client runtime, which
+    is product telemetry instrumentation rather than service observability of the vendor's own infrastructure.
+- tag: Notifications
+  spec_file: replicated-notifications-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: '''Create a new notification subscription.'', ''List team notification delivery events'',
+    ''Test a webhook endpoint by sending a sample payload'''
+  reason: Subscription CRUD plus event types, delivery attempts, retry and webhook testing is the lifecycle
+    of outbound webhook/event subscriptions and delivery reliability, not marketing or customer communications.
+- tag: Customers
+  spec_file: replicated-customers-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.7
+  evidence: '"GET /customer-entitlements/{customer_id}  getCustomerEntitlements  Get customer entitlements";
+    "GET /app/{app_id}/customer/{customer_id}/license-download  downloadLicense  Download a customer license
+    file as YAML"; "GET /app/{app_id}/enterprise-portal/trials  listPendingTrials  List all trial signups
+    for an app"'
+  reason: Customer records here are license/entitlement containers — create, update, archive customers,
+    read entitlements, issue licenses and track trial signups. That is the commercial entitlement and
+    subscription lifecycle for the distributed software, so L1 Subscription Lifecycle Management; no single
+    L2 dominates (entitlement design, provisioning and termination are all present).
