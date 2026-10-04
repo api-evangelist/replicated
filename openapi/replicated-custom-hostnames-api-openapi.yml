@@ -234,14 +234,7 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   schemas:
-    DeleteCustomHostnameParams:
-      type: object
-      properties:
-        hostname:
-          type: string
-          x-go-name: Hostname
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
-    SetDefaultHostnameParams:
+    CreateCustomHostnameParams:
       type: object
       properties:
         hostname:
@@ -318,13 +311,6 @@ components:
             type: string
           x-go-name: VerificationErrors
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customhostname
-    CreateCustomHostnameParams:
-      type: object
-      properties:
-        hostname:
-          type: string
-          x-go-name: Hostname
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
     UnsetDefaultHostnameParams:
       type: object
       properties:
@@ -332,7 +318,71 @@ components:
           type: string
           x-go-name: Hostname
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
+    DeleteCustomHostnameParams:
+      type: object
+      properties:
+        hostname:
+          type: string
+          x-go-name: Hostname
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
+    SetDefaultHostnameParams:
+      type: object
+      properties:
+        hostname:
+          type: string
+          x-go-name: Hostname
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/custom_hostnames
   responses:
+    createCustomHostnameResponse:
+      description: CreateCustomHostnameResponse contains whether or not the request was successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                x-go-name: Success
+    setDefaultHostnameResponse:
+      description: SetDefaultHostnameResponse contains whether or not the request was successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                x-go-name: Success
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    deleteCustomHostnameResponse:
+      description: DeleteCustomHostnameResponse contains whether or not the request was successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                x-go-name: Success
+    unsetDefaultHostnameResponse:
+      description: UnsetDefaultHostnameResponse contains whether or not the request was successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                x-go-name: Success
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -350,16 +400,6 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
-    createCustomHostnameResponse:
-      description: CreateCustomHostnameResponse contains whether or not the request was successful
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                x-go-name: Success
     listCustomHostnamesResponse:
       description: ListCustomHostnamesResponse contains the JSON custom hostnames list
       content:
@@ -387,48 +427,8 @@ components:
                 items:
                   $ref: '#/components/schemas/KotsAppCustomHostname'
                 x-go-name: ReplicatedApp
-    unsetDefaultHostnameResponse:
-      description: UnsetDefaultHostnameResponse contains whether or not the request was successful
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                x-go-name: Success
     responseErrUnauthorized:
       description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    deleteCustomHostnameResponse:
-      description: DeleteCustomHostnameResponse contains whether or not the request was successful
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                x-go-name: Success
-    setDefaultHostnameResponse:
-      description: SetDefaultHostnameResponse contains whether or not the request was successful
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                x-go-name: Success
-    responseErrNotFound:
-      description: Returned on resource not found
       content:
         application/json:
           schema:

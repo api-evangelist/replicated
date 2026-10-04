@@ -309,289 +309,212 @@ paths:
       servers:
       - url: https://api.replicated.com/vendor/v3
 components:
+  responses:
+    updateVMTagsResponse:
+      description: UpdateVMTagsResponse contains the response to update a vm tags
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              vm:
+                $ref: '#/components/schemas/VM'
+    createVMErrorResponse:
+      description: CreateVMErrorResponse contains error information
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateVMError'
+    createVMPortResponse:
+      description: CreateVMPortResponse contains the response to a create vm port request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              addon:
+                $ref: '#/components/schemas/VMAddon'
+              port:
+                $ref: '#/components/schemas/VMPort'
+    createVMDryRunResponse:
+      description: CreateVMDryRunResponse contains the response to a dry run of creating a vm
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: '#/components/schemas/CreateVMError'
+              total_cost:
+                type: integer
+                format: int64
+                x-go-name: TotalCost
+              ttl:
+                type: string
+                x-go-name: TTL
+    updateVMTTLResponse:
+      description: UpdateVMTTLResponse contains the response to update a VM ttl
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              vm:
+                $ref: '#/components/schemas/VM'
+    createVMResponse:
+      description: CreateVMResponse contains the response to create a vm
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              vms:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VM'
+                x-go-name: VMs
+    getVMResponse:
+      description: GetVMResponse contains the response to get vm details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              vm:
+                $ref: '#/components/schemas/VM'
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    listVMPortsResponse:
+      description: ListVMPortsResponse contains the response to a list vm [prts] request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              addons:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VMAddon'
+                x-go-name: Addons
+              ports:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VMPort'
+                x-go-name: Ports
+    listVMVersionsResponse:
+      description: ListVMVersionsResponse contains the response to list clusters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              vm-versions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VMSupportedDistributionAndVersions'
+                x-go-name: VMs
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    deleteVMResponse:
+      description: DeleteVMResponse contains the response to delete a vm
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+    updateVMTTLErrorResponse:
+      description: UpdateVMTTLErrorResponse contains error information
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
+    listVMsResponse:
+      description: ListVMsResponse contains the response to list vms
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              totalVMs:
+                type: integer
+                format: int64
+                x-go-name: TotalVMs
+              vms:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VM'
+                x-go-name: VMs
   schemas:
-    VMValidationError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
-          x-go-name: Errors
-        supported_distributions:
-          type: array
-          items:
-            $ref: '#/components/schemas/VMSupportedDistributionAndVersions'
-          x-go-name: SupportedDistributions
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    VMSupportedVersion:
-      type: object
-      properties:
-        version:
-          type: string
-          x-go-name: Version
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    VMSupportedDistributionAndVersions:
-      type: object
-      properties:
-        instance_type_details:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/InstanceTypeSpec'
-          x-go-name: InstanceTypeDetails
-        instance_types:
-          type: array
-          items:
-            type: string
-          x-go-name: InstanceTypes
-        short_name:
-          type: string
-          x-go-name: ShortName
-        status:
-          $ref: '#/components/schemas/VMDistributionStatus'
-        version_details:
-          type: array
-          items:
-            $ref: '#/components/schemas/VMSupportedVersion'
-          x-go-name: VersionDetails
-        versions:
-          type: array
-          items:
-            type: string
-          x-go-name: Versions
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    PortProtocol:
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
-    VMAddonStatus:
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    VMStatus:
-      type: string
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    VMExposedPort:
-      type: object
-      properties:
-        exposed_port:
-          type: integer
-          format: int64
-          x-go-name: ExposedPort
-        protocol:
-          $ref: '#/components/schemas/PortProtocol'
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    Tag:
-      type: object
-      properties:
-        key:
-          type: string
-          x-go-name: Key
-        value:
-          type: string
-          x-go-name: Value
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
-    CreateVMParametersBody:
-      type: object
-      properties:
-        anthropic_api_key:
-          description: OpenClaw VM credentials — required when Distribution == "openclaw"
-          type: string
-          x-go-name: AnthropicAPIKey
-        count:
-          type: integer
-          format: int64
-          x-go-name: Count
-        disk_gib:
-          type: integer
-          format: int64
-          x-go-name: DiskGiB
-        distribution:
-          type: string
-          x-go-name: Distribution
-        instance_type:
-          type: string
-          x-go-name: InstanceType
-        name:
-          type: string
-          x-go-name: Name
-        network_id:
-          type: string
-          x-go-name: NetworkID
-        network_policy:
-          type: string
-          x-go-name: NetworkPolicy
-        overlayfs:
-          description: 'Overlayfs enables overlay filesystem management for the VM rootfs on the host.
-
-            Gated by the cmx_overlayfs feature flag.'
-          type: boolean
-          x-go-name: Overlayfs
-        public_keys:
-          type: array
-          items:
-            type: string
-          x-go-name: PublicKeys
-        rbac_policy_id:
-          description: 'RBACPolicyID is the ID of an existing RBAC policy to assign to the VM.
-
-            When set, OIDC client credentials are generated and injected into the VM via
-
-            the Firecracker metadata service (MMDS), enabling the replicated CLI inside
-
-            the VM to authenticate with vendor-api automatically.'
-          type: string
-          x-go-name: RBACPolicyID
-        replicated_api_key:
-          description: 'ReplicatedAPIKey is a vendor-api token for the replicated CLI inside the VM.
-
-            Required for openclaw VMs when rbac_policy_id is not set. Mutually exclusive
-
-            with rbac_policy_id — exactly one must be provided for openclaw VMs.'
-          type: string
-          x-go-name: ReplicatedAPIKey
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-          x-go-name: Tags
-        telegram_bot_token:
-          type: string
-          x-go-name: TelegramBotToken
-        telegram_user_id:
-          type: string
-          x-go-name: TelegramUserID
-        ttl:
-          type: string
-          x-go-name: TTL
-        version:
-          type: string
-          x-go-name: Version
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/vm
-    VMPort:
-      type: object
-      properties:
-        addon_guid:
-          type: string
-          x-go-name: AddonGUID
-        addon_id:
-          type: string
-          x-go-name: AddonShortID
-        created_at:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        exposed_ports:
-          type: array
-          items:
-            $ref: '#/components/schemas/VMExposedPort'
-          x-go-name: ExposedPorts
-        hostname:
-          type: string
-          x-go-name: Hostname
-        port_name:
-          type: string
-          x-go-name: PortName
-        state:
-          $ref: '#/components/schemas/VMAddonStatus'
-        upstream_port:
-          type: integer
-          format: int64
-          x-go-name: UpstreamPort
-        vm_guid:
-          type: string
-          x-go-name: VMGUID
-        vm_id:
-          type: string
-          x-go-name: VMShortID
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    InstanceTypeSpec:
-      type: object
-      properties:
-        memory_gib:
-          type: integer
-          format: int64
-          x-go-name: MemoryGiB
-        vcpus:
-          type: integer
-          format: int64
-          x-go-name: VCPUs
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
-    CreateVMError:
-      type: object
-      properties:
-        maxDiskGiB:
-          type: integer
-          format: int64
-          x-go-name: MaxDiskGiB
-        maxMemoryGiB:
-          type: integer
-          format: int64
-          x-go-name: MaxMemoryGiB
-        maxVCPUs:
-          type: integer
-          format: int64
-          x-go-name: MaxVCPUs
-        message:
-          type: string
-          x-go-name: Message
-        validationError:
-          $ref: '#/components/schemas/VMValidationError'
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/vm
-    Actor:
-      type: object
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        id:
-          type: string
-          x-go-name: ID
-        link:
-          type: string
-          x-go-name: Link
-        timestamp:
-          type: string
-          format: date-time
-          x-go-name: Timestamp
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
-    VMAddon:
-      type: object
-      properties:
-        created_at:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        guid:
-          type: string
-          x-go-name: GUID
-        id:
-          type: string
-          x-go-name: ShortID
-        port:
-          $ref: '#/components/schemas/VMAddonPort'
-        ready_at:
-          type: string
-          format: date-time
-          x-go-name: ReadyAt
-        status:
-          $ref: '#/components/schemas/VMAddonStatus'
-        terminated_at:
-          type: string
-          format: date-time
-          x-go-name: TerminatedAt
-        total_credits:
-          type: integer
-          format: int64
-          x-go-name: TotalCredits
-        vm_guid:
-          type: string
-          x-go-name: VMGUID
-        vm_id:
-          type: string
-          x-go-name: VMShortID
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
     VM:
       type: object
       properties:
@@ -685,6 +608,215 @@ components:
           type: string
           x-go-name: Version
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    VMSupportedDistributionAndVersions:
+      type: object
+      properties:
+        instance_type_details:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/InstanceTypeSpec'
+          x-go-name: InstanceTypeDetails
+        instance_types:
+          type: array
+          items:
+            type: string
+          x-go-name: InstanceTypes
+        short_name:
+          type: string
+          x-go-name: ShortName
+        status:
+          $ref: '#/components/schemas/VMDistributionStatus'
+        version_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/VMSupportedVersion'
+          x-go-name: VersionDetails
+        versions:
+          type: array
+          items:
+            type: string
+          x-go-name: Versions
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    Actor:
+      type: object
+      properties:
+        description:
+          type: string
+          x-go-name: Description
+        id:
+          type: string
+          x-go-name: ID
+        link:
+          type: string
+          x-go-name: Link
+        timestamp:
+          type: string
+          format: date-time
+          x-go-name: Timestamp
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+    CreateVMError:
+      type: object
+      properties:
+        maxDiskGiB:
+          type: integer
+          format: int64
+          x-go-name: MaxDiskGiB
+        maxMemoryGiB:
+          type: integer
+          format: int64
+          x-go-name: MaxMemoryGiB
+        maxVCPUs:
+          type: integer
+          format: int64
+          x-go-name: MaxVCPUs
+        message:
+          type: string
+          x-go-name: Message
+        validationError:
+          $ref: '#/components/schemas/VMValidationError'
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/vm
+    VMValidationError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+          x-go-name: Errors
+        supported_distributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/VMSupportedDistributionAndVersions'
+          x-go-name: SupportedDistributions
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    VMStatus:
+      type: string
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    VMPort:
+      type: object
+      properties:
+        addon_guid:
+          type: string
+          x-go-name: AddonGUID
+        addon_id:
+          type: string
+          x-go-name: AddonShortID
+        created_at:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        exposed_ports:
+          type: array
+          items:
+            $ref: '#/components/schemas/VMExposedPort'
+          x-go-name: ExposedPorts
+        hostname:
+          type: string
+          x-go-name: Hostname
+        port_name:
+          type: string
+          x-go-name: PortName
+        state:
+          $ref: '#/components/schemas/VMAddonStatus'
+        upstream_port:
+          type: integer
+          format: int64
+          x-go-name: UpstreamPort
+        vm_guid:
+          type: string
+          x-go-name: VMGUID
+        vm_id:
+          type: string
+          x-go-name: VMShortID
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    VMExposedPort:
+      type: object
+      properties:
+        exposed_port:
+          type: integer
+          format: int64
+          x-go-name: ExposedPort
+        protocol:
+          $ref: '#/components/schemas/PortProtocol'
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    PortProtocol:
+      type: string
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+    VMAddon:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        guid:
+          type: string
+          x-go-name: GUID
+        id:
+          type: string
+          x-go-name: ShortID
+        port:
+          $ref: '#/components/schemas/VMAddonPort'
+        ready_at:
+          type: string
+          format: date-time
+          x-go-name: ReadyAt
+        status:
+          $ref: '#/components/schemas/VMAddonStatus'
+        terminated_at:
+          type: string
+          format: date-time
+          x-go-name: TerminatedAt
+        total_credits:
+          type: integer
+          format: int64
+          x-go-name: TotalCredits
+        vm_guid:
+          type: string
+          x-go-name: VMGUID
+        vm_id:
+          type: string
+          x-go-name: VMShortID
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    VMDistributionStatus:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          x-go-name: Enabled
+        status:
+          type: string
+          x-go-name: Status
+        status_message:
+          type: string
+          x-go-name: StatusMessage
+        versions:
+          type: string
+          x-go-name: Versions
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    VMAddonStatus:
+      type: string
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
+    Tag:
+      type: object
+      properties:
+        key:
+          type: string
+          x-go-name: Key
+        value:
+          type: string
+          x-go-name: Value
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
+    VMSupportedVersion:
+      type: object
+      properties:
+        version:
+          type: string
+          x-go-name: Version
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
     VMAddonPort:
       type: object
       properties:
@@ -708,227 +840,95 @@ components:
           format: int64
           x-go-name: UpstreamPort
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-    VMDistributionStatus:
+    CreateVMParametersBody:
       type: object
       properties:
-        enabled:
+        anthropic_api_key:
+          description: OpenClaw VM credentials — required when Distribution == "openclaw"
+          type: string
+          x-go-name: AnthropicAPIKey
+        count:
+          type: integer
+          format: int64
+          x-go-name: Count
+        disk_gib:
+          type: integer
+          format: int64
+          x-go-name: DiskGiB
+        distribution:
+          type: string
+          x-go-name: Distribution
+        instance_type:
+          type: string
+          x-go-name: InstanceType
+        name:
+          type: string
+          x-go-name: Name
+        network_id:
+          type: string
+          x-go-name: NetworkID
+        network_policy:
+          type: string
+          x-go-name: NetworkPolicy
+        overlayfs:
+          description: 'Overlayfs enables overlay filesystem management for the VM rootfs on the host.
+
+            Gated by the cmx_overlayfs feature flag.'
           type: boolean
-          x-go-name: Enabled
-        status:
+          x-go-name: Overlayfs
+        public_keys:
+          type: array
+          items:
+            type: string
+          x-go-name: PublicKeys
+        rbac_policy_id:
+          description: 'RBACPolicyID is the ID of an existing RBAC policy to assign to the VM.
+
+            When set, OIDC client credentials are generated and injected into the VM via
+
+            the Firecracker metadata service (MMDS), enabling the replicated CLI inside
+
+            the VM to authenticate with vendor-api automatically.'
           type: string
-          x-go-name: Status
-        status_message:
+          x-go-name: RBACPolicyID
+        replicated_api_key:
+          description: 'ReplicatedAPIKey is a vendor-api token for the replicated CLI inside the VM.
+
+            Required for openclaw VMs when rbac_policy_id is not set. Mutually exclusive
+
+            with rbac_policy_id — exactly one must be provided for openclaw VMs.'
           type: string
-          x-go-name: StatusMessage
-        versions:
+          x-go-name: ReplicatedAPIKey
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+          x-go-name: Tags
+        telegram_bot_token:
           type: string
-          x-go-name: Versions
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/vm/types
-  responses:
-    updateVMTTLResponse:
-      description: UpdateVMTTLResponse contains the response to update a VM ttl
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              vm:
-                $ref: '#/components/schemas/VM'
-    deleteVMResponse:
-      description: DeleteVMResponse contains the response to delete a vm
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-    updateVMTTLErrorResponse:
-      description: UpdateVMTTLErrorResponse contains error information
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    createVMPortResponse:
-      description: CreateVMPortResponse contains the response to a create vm port request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              addon:
-                $ref: '#/components/schemas/VMAddon'
-              port:
-                $ref: '#/components/schemas/VMPort'
-    listVMVersionsResponse:
-      description: ListVMVersionsResponse contains the response to list clusters
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              vm-versions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VMSupportedDistributionAndVersions'
-                x-go-name: VMs
-    listVMPortsResponse:
-      description: ListVMPortsResponse contains the response to a list vm [prts] request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              addons:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VMAddon'
-                x-go-name: Addons
-              ports:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VMPort'
-                x-go-name: Ports
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
-    createVMResponse:
-      description: CreateVMResponse contains the response to create a vm
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              vms:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VM'
-                x-go-name: VMs
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    createVMDryRunResponse:
-      description: CreateVMDryRunResponse contains the response to a dry run of creating a vm
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                $ref: '#/components/schemas/CreateVMError'
-              total_cost:
-                type: integer
-                format: int64
-                x-go-name: TotalCost
-              ttl:
-                type: string
-                x-go-name: TTL
-    updateVMTagsResponse:
-      description: UpdateVMTagsResponse contains the response to update a vm tags
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              vm:
-                $ref: '#/components/schemas/VM'
-    createVMErrorResponse:
-      description: CreateVMErrorResponse contains error information
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateVMError'
-    listVMsResponse:
-      description: ListVMsResponse contains the response to list vms
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              totalVMs:
-                type: integer
-                format: int64
-                x-go-name: TotalVMs
-              vms:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VM'
-                x-go-name: VMs
-    getVMResponse:
-      description: GetVMResponse contains the response to get vm details
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              vm:
-                $ref: '#/components/schemas/VM'
+          x-go-name: TelegramBotToken
+        telegram_user_id:
+          type: string
+          x-go-name: TelegramUserID
+        ttl:
+          type: string
+          x-go-name: TTL
+        version:
+          type: string
+          x-go-name: Version
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/vm
+    InstanceTypeSpec:
+      type: object
+      properties:
+        memory_gib:
+          type: integer
+          format: int64
+          x-go-name: MemoryGiB
+        vcpus:
+          type: integer
+          format: int64
+          x-go-name: VCPUs
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cmx/types
   securitySchemes:
     api_key:
       type: apiKey

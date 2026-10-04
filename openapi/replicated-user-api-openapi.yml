@@ -95,6 +95,8 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/ApiToken'
+    responseNoContent:
+      description: On success, no payload returned
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -118,8 +120,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiToken'
-    responseNoContent:
-      description: On success, no payload returned
     responseErrUnauthorized:
       description: Return if the caller is not authorized
       content:
@@ -163,13 +163,6 @@ components:
           type: boolean
           x-go-name: ReadOnly
       x-go-package: github.com/replicatedhq/vandoor/pkg/models
-    RemoveApiTokenRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/replicatedhq/vandoor/pkg/schema
     CreateUserApiTokenRequest:
       type: object
       properties:
@@ -179,6 +172,13 @@ components:
         read_only:
           type: boolean
           x-go-name: ReadOnly
+      x-go-package: github.com/replicatedhq/vandoor/pkg/schema
+    RemoveApiTokenRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          x-go-name: Name
       x-go-package: github.com/replicatedhq/vandoor/pkg/schema
   securitySchemes:
     api_key:

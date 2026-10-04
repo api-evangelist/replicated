@@ -53,31 +53,6 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -95,6 +70,31 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
     getRegistryEgressSummaryResponse:
       description: GetEgressSummaryResponse contains registry egress summary totals.
       content:

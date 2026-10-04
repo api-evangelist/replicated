@@ -402,6 +402,155 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   schemas:
+    ImageVulnCounts:
+      type: object
+      properties:
+        counts:
+          $ref: '#/components/schemas/VulnCounts'
+        digest:
+          type: string
+          x-go-name: Digest
+        digest_first_seen_at:
+          type: string
+          x-go-name: DigestFirstSeenAt
+        image_size_bytes:
+          type: integer
+          format: int64
+          x-go-name: ImageSizeBytes
+        input:
+          type: string
+          x-go-name: Input
+        installation_phase:
+          description: 'InstallationPhase indicates the Embedded Cluster phase for the image ("", "online", or "airgap").
+
+            Application images have the phase "".
+
+            Infrastructure images used for Embedded Cluster in both online and airgap have the phase "online" or "airgap".
+
+            Infrastructure images used for Embedded Cluster only in airgap have the phase "airgap".'
+          type: string
+          x-go-name: InstallationPhase
+        last_scanned_at:
+          type: string
+          x-go-name: LastScannedAt
+        not_found:
+          type: boolean
+          x-go-name: NotFound
+        sbom_status:
+          description: SBOM status tracking
+          type: string
+          x-go-name: SBOMStatus
+        sbom_status_message:
+          type: string
+          x-go-name: SBOMStatusMessage
+        sbom_status_updated_at:
+          type: string
+          x-go-name: SBOMStatusUpdatedAt
+        scan_status:
+          description: Scan status tracking
+          type: string
+          x-go-name: ScanStatus
+        scan_status_message:
+          type: string
+          x-go-name: ScanStatusMessage
+        scan_status_updated_at:
+          type: string
+          x-go-name: ScanStatusUpdatedAt
+        scanned_images:
+          description: Scan completeness tracking
+          type: integer
+          format: int64
+          x-go-name: ScannedImages
+        total_images:
+          type: integer
+          format: int64
+          x-go-name: TotalImages
+      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+    InstallerTypePreflight:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          x-go-name: APIVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    LintExpression:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+        path:
+          type: string
+          x-go-name: Path
+        rule:
+          type: string
+          x-go-name: Rule
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/release
+    HelmUnavailableResource:
+      type: object
+      properties:
+        filePath:
+          type: string
+          x-go-name: FilePath
+        identifier:
+          type: string
+          x-go-name: Identifier
+        kind:
+          type: string
+          x-go-name: Kind
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    Actor:
+      type: object
+      properties:
+        description:
+          type: string
+          x-go-name: Description
+        id:
+          type: string
+          x-go-name: ID
+        link:
+          type: string
+          x-go-name: Link
+        timestamp:
+          type: string
+          format: date-time
+          x-go-name: Timestamp
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+    InstallerTypeEmbeddedCluster:
+      type: object
+      properties:
+        proxyRegistryDomain:
+          type: string
+          x-go-name: ProxyRegistryDomain
+        replicatedAppDomain:
+          type: string
+          x-go-name: ReplicatedAppDomain
+        replicatedRegistryDomain:
+          type: string
+          x-go-name: ReplicatedRegistryDomain
+        version:
+          type: string
+          x-go-name: InstallerVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypeKotsConfig:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          x-go-name: APIVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypeHelm:
+      type: object
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
     InstallationTypes:
       type: object
       properties:
@@ -424,30 +573,54 @@ components:
         supportBundle:
           $ref: '#/components/schemas/InstallerTypeSupportBundle'
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallerTypePreflight:
+    VulnCounts:
       type: object
       properties:
-        apiVersion:
-          type: string
-          x-go-name: APIVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallerTypeKots:
+        critical:
+          type: integer
+          format: int64
+          x-go-name: Critical
+        high:
+          type: integer
+          format: int64
+          x-go-name: High
+        low:
+          type: integer
+          format: int64
+          x-go-name: Low
+        medium:
+          type: integer
+          format: int64
+          x-go-name: Medium
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+    HelmInstallabilityIssue:
       type: object
       properties:
-        minKotsVersion:
+        message:
           type: string
-          x-go-name: MinKotsVersion
-        targetKotsVersion:
-          type: string
-          x-go-name: TargetKotsVersion
+          x-go-name: Message
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/HelmUnavailableResource'
+          x-go-name: Resources
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallationTypeKurl:
+    LintResult:
       type: object
       properties:
-        installerVersion:
-          type: string
-          x-go-name: InstallerVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+        isLintingComplete:
+          type: boolean
+          x-go-name: IsLintingComplete
+        lintExpressions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LintExpression'
+          x-go-name: LintExpressions
+      x-go-package: github.com/replicatedhq/vandoor/pkg/lint
     KotsChannelRelease:
       type: object
       properties:
@@ -555,154 +728,6 @@ components:
         updatedBy:
           $ref: '#/components/schemas/Actor'
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    ImageVulnCounts:
-      type: object
-      properties:
-        counts:
-          $ref: '#/components/schemas/VulnCounts'
-        digest:
-          type: string
-          x-go-name: Digest
-        digest_first_seen_at:
-          type: string
-          x-go-name: DigestFirstSeenAt
-        image_size_bytes:
-          type: integer
-          format: int64
-          x-go-name: ImageSizeBytes
-        input:
-          type: string
-          x-go-name: Input
-        installation_phase:
-          description: 'InstallationPhase indicates the Embedded Cluster phase for the image ("", "online", or "airgap").
-
-            Application images have the phase "".
-
-            Infrastructure images used for Embedded Cluster in both online and airgap have the phase "online" or "airgap".
-
-            Infrastructure images used for Embedded Cluster only in airgap have the phase "airgap".'
-          type: string
-          x-go-name: InstallationPhase
-        last_scanned_at:
-          type: string
-          x-go-name: LastScannedAt
-        not_found:
-          type: boolean
-          x-go-name: NotFound
-        sbom_status:
-          description: SBOM status tracking
-          type: string
-          x-go-name: SBOMStatus
-        sbom_status_message:
-          type: string
-          x-go-name: SBOMStatusMessage
-        sbom_status_updated_at:
-          type: string
-          x-go-name: SBOMStatusUpdatedAt
-        scan_status:
-          description: Scan status tracking
-          type: string
-          x-go-name: ScanStatus
-        scan_status_message:
-          type: string
-          x-go-name: ScanStatusMessage
-        scan_status_updated_at:
-          type: string
-          x-go-name: ScanStatusUpdatedAt
-        scanned_images:
-          description: Scan completeness tracking
-          type: integer
-          format: int64
-          x-go-name: ScannedImages
-        total_images:
-          type: integer
-          format: int64
-          x-go-name: TotalImages
-      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
-    LintResult:
-      type: object
-      properties:
-        isLintingComplete:
-          type: boolean
-          x-go-name: IsLintingComplete
-        lintExpressions:
-          type: array
-          items:
-            $ref: '#/components/schemas/LintExpression'
-          x-go-name: LintExpressions
-      x-go-package: github.com/replicatedhq/vandoor/pkg/lint
-    InstallerTypeKotsConfig:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-          x-go-name: APIVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    VulnCounts:
-      type: object
-      properties:
-        critical:
-          type: integer
-          format: int64
-          x-go-name: Critical
-        high:
-          type: integer
-          format: int64
-          x-go-name: High
-        low:
-          type: integer
-          format: int64
-          x-go-name: Low
-        medium:
-          type: integer
-          format: int64
-          x-go-name: Medium
-        total:
-          type: integer
-          format: int64
-          x-go-name: Total
-      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
-    ChannelReleaseInstallCommands:
-      type: object
-      properties:
-        embeddedClusterInstallCommand:
-          type: string
-          x-go-name: EmbeddedClusterInstallCommand
-        existingClusterInstallCommand:
-          type: string
-          x-go-name: ExistingClusterInstallCommand
-      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/releases
-    LintExpression:
-      type: object
-      properties:
-        message:
-          type: string
-          x-go-name: Message
-        path:
-          type: string
-          x-go-name: Path
-        rule:
-          type: string
-          x-go-name: Rule
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/release
-    InstallerTypeHelm:
-      type: object
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    HelmInstallabilityIssue:
-      type: object
-      properties:
-        message:
-          type: string
-          x-go-name: Message
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/HelmUnavailableResource'
-          x-go-name: Resources
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
     AirgapBuildSummary:
       type: object
       title: AirgapBuildSummary is a lightweight snapshot of a channel-release's airgap build state.
@@ -741,21 +766,22 @@ components:
           type: string
           x-go-name: APIVersion
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallerTypeEmbeddedCluster:
+    InstallationTypeKurl:
       type: object
       properties:
-        proxyRegistryDomain:
-          type: string
-          x-go-name: ProxyRegistryDomain
-        replicatedAppDomain:
-          type: string
-          x-go-name: ReplicatedAppDomain
-        replicatedRegistryDomain:
-          type: string
-          x-go-name: ReplicatedRegistryDomain
-        version:
+        installerVersion:
           type: string
           x-go-name: InstallerVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypeKots:
+      type: object
+      properties:
+        minKotsVersion:
+          type: string
+          x-go-name: MinKotsVersion
+        targetKotsVersion:
+          type: string
+          x-go-name: TargetKotsVersion
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
     InstallerTypeReplicatedSDK:
       type: object
@@ -764,42 +790,16 @@ components:
           type: string
           x-go-name: SDKVersion
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    HelmUnavailableResource:
+    ChannelReleaseInstallCommands:
       type: object
       properties:
-        filePath:
+        embeddedClusterInstallCommand:
           type: string
-          x-go-name: FilePath
-        identifier:
+          x-go-name: EmbeddedClusterInstallCommand
+        existingClusterInstallCommand:
           type: string
-          x-go-name: Identifier
-        kind:
-          type: string
-          x-go-name: Kind
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    Actor:
-      type: object
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        id:
-          type: string
-          x-go-name: ID
-        link:
-          type: string
-          x-go-name: Link
-        timestamp:
-          type: string
-          format: date-time
-          x-go-name: Timestamp
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
+          x-go-name: ExistingClusterInstallCommand
+      x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/releases
   responses:
     channelReleaseAirgapCancelResponse:
       description: ChannelReleaseAirgapCancelResponse contains empty JSON object
@@ -807,6 +807,42 @@ components:
         application/json:
           schema:
             type: object
+    channelReleaseAirgapBundleURLResponse:
+      description: ChannelReleaseAirgapBundleURLResponse contains the airgap bundle download URL
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+                x-go-name: URL
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
+    getChannelReleaseInstallCommandsResponse:
+      description: GetChannelReleaseInstallCommandsResponse contains the JSON channel release install commands
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              commands:
+                $ref: '#/components/schemas/ChannelReleaseInstallCommands'
     responseErrUnauthorized:
       description: Return if the caller is not authorized
       content:
@@ -817,6 +853,21 @@ components:
               message:
                 type: string
                 x-go-name: Message
+    updateChannelRelease:
+      description: UpdateChannelReleaseResponse contains the release properties
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              release:
+                $ref: '#/components/schemas/KotsChannelRelease'
+    channelReleaseAirgapBuildResponse:
+      description: ChannelReleaseAirgapBuildResponse contains empty JSON object
+      content:
+        application/json:
+          schema:
+            type: object
     responseErrNotFound:
       description: Returned on resource not found
       content:
@@ -842,41 +893,6 @@ components:
                 description: Error message text if available
                 type: string
                 x-go-name: Message
-    getChannelReleaseInstallCommandsResponse:
-      description: GetChannelReleaseInstallCommandsResponse contains the JSON channel release install commands
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              commands:
-                $ref: '#/components/schemas/ChannelReleaseInstallCommands'
-    updateChannelRelease:
-      description: UpdateChannelReleaseResponse contains the release properties
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              release:
-                $ref: '#/components/schemas/KotsChannelRelease'
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
     listChannelReleasesResponse:
       description: ListChannelReleasesResponse contains the JSON channel releases list
       content:
@@ -893,22 +909,6 @@ components:
                 items:
                   $ref: '#/components/schemas/KotsChannelRelease'
                 x-go-name: Releases
-    channelReleaseAirgapBuildResponse:
-      description: ChannelReleaseAirgapBuildResponse contains empty JSON object
-      content:
-        application/json:
-          schema:
-            type: object
-    channelReleaseAirgapBundleURLResponse:
-      description: ChannelReleaseAirgapBundleURLResponse contains the airgap bundle download URL
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              url:
-                type: string
-                x-go-name: URL
     channelReleaseAirgapStatusResponse:
       description: ChannelReleaseAirgapStatusResponse contains the airgap build status
       content:

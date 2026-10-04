@@ -409,10 +409,6 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
-    responseOk:
-      description: On success
-    responseNoContent:
-      description: On success, no payload returned
     updateDefaultAppResponse:
       description: ''
       content:
@@ -439,59 +435,16 @@ components:
                 x-go-name: AccessToken
               service_account:
                 $ref: '#/components/schemas/ServiceAccount'
-    listImagesResponse:
-      description: ListImagesResponse represents a list of images.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              images:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Image'
-                x-go-name: Images
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    getTeamMemberResponse:
+    getTeamResponse:
       description: ''
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/User'
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
+            $ref: '#/components/schemas/Team'
+    responseOk:
+      description: On success
+    responseNoContent:
+      description: On success, no payload returned
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -509,12 +462,44 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
-    getTeamResponse:
+    getTeamMemberResponse:
       description: ''
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Team'
+            $ref: '#/components/schemas/User'
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    listImagesResponse:
+      description: ListImagesResponse represents a list of images.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              images:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+                x-go-name: Images
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     listTeamMembersResponse:
       description: ListTeamMembersResponse contains the JSON team members list
       content:
@@ -527,6 +512,21 @@ components:
                 items:
                   $ref: '#/components/schemas/VendorTeamMember'
                 x-go-name: Members
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
     listServiceAccountsResponse:
       description: ''
       content:
@@ -536,6 +536,41 @@ components:
             items:
               $ref: '#/components/schemas/ServiceAccount'
   schemas:
+    ServiceAccount:
+      type: object
+      title: ServiceAccount represents a modified user on a team paired with an API token.
+      properties:
+        accountName:
+          type: string
+          x-go-name: AccountName
+        createdAt:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        customerId:
+          type: string
+          x-go-name: CustomerID
+        emailAddress:
+          type: string
+          x-go-name: EmailAddress
+        id:
+          type: string
+          x-go-name: ID
+        isRevoked:
+          type: boolean
+          x-go-name: IsRevoked
+        lastUsedAt:
+          type: string
+          format: date-time
+          x-go-name: LastUsedAt
+        token:
+          type: string
+          x-go-name: Token
+        tokenRegeneratedAt:
+          type: string
+          format: date-time
+          x-go-name: TokenRegeneratedAt
+      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
     VendorTeamMember:
       description: VendorTeamMember represents a team member in the vendor API
       type: object
@@ -585,79 +620,6 @@ components:
           type: string
           x-go-name: PolicyID
       x-go-package: github.com/replicatedhq/vandoor/handlers/vendor-api/replv3/v1/team
-    ServiceAccount:
-      type: object
-      title: ServiceAccount represents a modified user on a team paired with an API token.
-      properties:
-        accountName:
-          type: string
-          x-go-name: AccountName
-        createdAt:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        customerId:
-          type: string
-          x-go-name: CustomerID
-        emailAddress:
-          type: string
-          x-go-name: EmailAddress
-        id:
-          type: string
-          x-go-name: ID
-        isRevoked:
-          type: boolean
-          x-go-name: IsRevoked
-        lastUsedAt:
-          type: string
-          format: date-time
-          x-go-name: LastUsedAt
-        token:
-          type: string
-          x-go-name: Token
-        tokenRegeneratedAt:
-          type: string
-          format: date-time
-          x-go-name: TokenRegeneratedAt
-      x-go-package: github.com/replicatedhq/vandoor/pkg/enterprise-portal/types
-    User:
-      type: object
-      title: User is an account on a team.
-      properties:
-        email:
-          type: string
-          x-go-name: Email
-        first_name:
-          type: string
-          x-go-name: FirstName
-        id:
-          type: string
-          x-go-name: ID
-        is_replicated_system_user:
-          type: boolean
-          x-go-name: IsReplicatedSystemUser
-        is_two_factor_enabled:
-          type: boolean
-          x-go-name: IsTwoFactorEnabled
-        last_name:
-          type: string
-          x-go-name: LastName
-        policy_ids:
-          type: array
-          items:
-            type: string
-          x-go-name: PolicyIDs
-        team_id:
-          type: string
-          x-go-name: TeamID
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models
-    UpdateTeamMemberRequest:
-      type: object
-      properties:
-        policy_id:
-          type: string
-          x-go-name: PolicyID
-      x-go-package: github.com/replicatedhq/vandoor/pkg/schema
     Image:
       type: object
       properties:
@@ -735,6 +697,44 @@ components:
           type: string
           x-go-name: SAMLLanding
       x-go-package: github.com/replicatedhq/vandoor/pkg/models
+    User:
+      type: object
+      title: User is an account on a team.
+      properties:
+        email:
+          type: string
+          x-go-name: Email
+        first_name:
+          type: string
+          x-go-name: FirstName
+        id:
+          type: string
+          x-go-name: ID
+        is_replicated_system_user:
+          type: boolean
+          x-go-name: IsReplicatedSystemUser
+        is_two_factor_enabled:
+          type: boolean
+          x-go-name: IsTwoFactorEnabled
+        last_name:
+          type: string
+          x-go-name: LastName
+        policy_ids:
+          type: array
+          items:
+            type: string
+          x-go-name: PolicyIDs
+        team_id:
+          type: string
+          x-go-name: TeamID
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models
+    UpdateTeamMemberRequest:
+      type: object
+      properties:
+        policy_id:
+          type: string
+          x-go-name: PolicyID
+      x-go-package: github.com/replicatedhq/vandoor/pkg/schema
     ComplexityRequirements:
       type: object
       properties:

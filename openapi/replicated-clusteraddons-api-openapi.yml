@@ -121,6 +121,51 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   schemas:
+    ClusterAddonPort:
+      type: object
+      properties:
+        is_wildcard:
+          type: boolean
+          x-go-name: IsWildcard
+        name:
+          type: string
+          x-go-name: Name
+        protocol_http:
+          type: boolean
+          x-go-name: ProtocolHTTP
+        protocol_https:
+          type: boolean
+          x-go-name: ProtocolHTTPS
+        protocol_ws:
+          type: boolean
+          x-go-name: ProtocolWS
+        protocol_wss:
+          type: boolean
+          x-go-name: ProtocolWSS
+        upstream_port:
+          type: integer
+          format: int64
+          x-go-name: UpstreamPort
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
+    ClusterAddonObjectStore:
+      type: object
+      properties:
+        bucket_name:
+          type: string
+          x-go-name: BucketName
+        bucket_prefix:
+          type: string
+          x-go-name: BucketPrefix
+        service_account_name:
+          type: string
+          x-go-name: ServiceAccountName
+        service_account_name_read_only:
+          type: string
+          x-go-name: ServiceAccountNameReadOnly
+        service_account_namespace:
+          type: string
+          x-go-name: ServiceAccountNamespace
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
     ClusterAddon:
       type: object
       properties:
@@ -159,55 +204,34 @@ components:
           format: int64
           x-go-name: TotalCredits
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    ClusterAddonPort:
-      type: object
-      properties:
-        is_wildcard:
-          type: boolean
-          x-go-name: IsWildcard
-        name:
-          type: string
-          x-go-name: Name
-        protocol_http:
-          type: boolean
-          x-go-name: ProtocolHTTP
-        protocol_https:
-          type: boolean
-          x-go-name: ProtocolHTTPS
-        protocol_ws:
-          type: boolean
-          x-go-name: ProtocolWS
-        protocol_wss:
-          type: boolean
-          x-go-name: ProtocolWSS
-        upstream_port:
-          type: integer
-          format: int64
-          x-go-name: UpstreamPort
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
     ClusterAddonStatus:
       type: string
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
-    ClusterAddonObjectStore:
-      type: object
-      properties:
-        bucket_name:
-          type: string
-          x-go-name: BucketName
-        bucket_prefix:
-          type: string
-          x-go-name: BucketPrefix
-        service_account_name:
-          type: string
-          x-go-name: ServiceAccountName
-        service_account_name_read_only:
-          type: string
-          x-go-name: ServiceAccountNameReadOnly
-        service_account_namespace:
-          type: string
-          x-go-name: ServiceAccountNamespace
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/cluster/types
   responses:
+    listClusterAddonsResponse:
+      description: ListClusterAddonsResponse contains the response to a list clusters addons request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              addons:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClusterAddon'
+                x-go-name: Addons
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseNoContent:
+      description: On success, no payload returned
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -234,32 +258,8 @@ components:
             properties:
               addon:
                 $ref: '#/components/schemas/ClusterAddon'
-    responseNoContent:
-      description: On success, no payload returned
     responseErrUnauthorized:
       description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    listClusterAddonsResponse:
-      description: ListClusterAddonsResponse contains the response to a list clusters addons request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              addons:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClusterAddon'
-                x-go-name: Addons
-    responseErrNotFound:
-      description: Returned on resource not found
       content:
         application/json:
           schema:

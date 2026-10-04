@@ -322,8 +322,8 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
-    createExternalRegistryResponse:
-      description: CreateExternalRegistryResponse represents an external registry.
+    updateExternalRegistryResponse:
+      description: UpdateExternalRegistryResponse represents an updated external registry.
       content:
         application/json:
           schema:
@@ -350,6 +350,16 @@ components:
               thumbprint:
                 type: string
                 x-go-name: Thumbprint
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     externalRegistryLogsResponse:
       description: ExternalRegistryLogsResponse contains the JSON external registry logs
       content:
@@ -362,6 +372,8 @@ components:
                 items:
                   $ref: '#/components/schemas/ExternalRegistryLog'
                 x-go-name: Logs
+    responseNoContent:
+      description: On success, no payload returned
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -379,8 +391,32 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
-    updateExternalRegistryResponse:
-      description: UpdateExternalRegistryResponse represents an updated external registry.
+    testExternalRegistryResponse:
+      description: TestExternalRegistriesResponse contains the JSON external registries test
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              status:
+                type: integer
+                format: int64
+                x-go-name: Status
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    createExternalRegistryResponse:
+      description: CreateExternalRegistryResponse represents an external registry.
       content:
         application/json:
           schema:
@@ -388,8 +424,21 @@ components:
             properties:
               external_registry:
                 $ref: '#/components/schemas/ExternalRegistry'
-    responseNoContent:
-      description: On success, no payload returned
+    responseErrBadRequest:
+      description: Returned on bad input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error code if available
+                type: string
+                x-go-name: ErrorCode
+              message:
+                description: Error message text if available
+                type: string
+                x-go-name: Message
     listExternalRegistriesResponse:
       description: ListExternalRegistriesResponse contains the JSON external registries list
       content:
@@ -414,89 +463,7 @@ components:
                 items:
                   $ref: '#/components/schemas/ExternalRegistry'
                 x-go-name: UnavailableRegistries
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    testExternalRegistryResponse:
-      description: TestExternalRegistriesResponse contains the JSON external registries test
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              status:
-                type: integer
-                format: int64
-                x-go-name: Status
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseErrBadRequest:
-      description: Returned on bad input
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error code if available
-                type: string
-                x-go-name: ErrorCode
-              message:
-                description: Error message text if available
-                type: string
-                x-go-name: Message
   schemas:
-    ExternalRegistryLog:
-      type: object
-      properties:
-        action:
-          type: string
-          x-go-name: Action
-        createdAt:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        customerName:
-          type: string
-          x-go-name: CustomerName
-        endpoint:
-          type: string
-          x-go-name: Endpoint
-        image:
-          type: string
-          x-go-name: Image
-        isSuccess:
-          type: boolean
-          x-go-name: IsSuccess
-        slug:
-          type: string
-          x-go-name: Slug
-        statusCode:
-          type: integer
-          format: int64
-          x-go-name: StatusCode
-        tag:
-          type: string
-          x-go-name: Tag
-      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/kots
     ExternalRegistry:
       type: object
       properties:
@@ -534,6 +501,39 @@ components:
         username:
           type: string
           x-go-name: Username
+      x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/kots
+    ExternalRegistryLog:
+      type: object
+      properties:
+        action:
+          type: string
+          x-go-name: Action
+        createdAt:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        customerName:
+          type: string
+          x-go-name: CustomerName
+        endpoint:
+          type: string
+          x-go-name: Endpoint
+        image:
+          type: string
+          x-go-name: Image
+        isSuccess:
+          type: boolean
+          x-go-name: IsSuccess
+        slug:
+          type: string
+          x-go-name: Slug
+        statusCode:
+          type: integer
+          format: int64
+          x-go-name: StatusCode
+        tag:
+          type: string
+          x-go-name: Tag
       x-go-package: github.com/replicatedhq/vandoor/pkg/vendor-api/kots
   securitySchemes:
     api_key:
