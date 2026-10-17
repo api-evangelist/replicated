@@ -51,6 +51,18 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
+    responseNoContent:
+      description: On success, no payload returned
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     responseErrNotFound:
       description: Returned on resource not found
       content:
@@ -61,8 +73,6 @@ components:
               message:
                 type: string
                 x-go-name: Message
-    responseNoContent:
-      description: On success, no payload returned
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -80,16 +90,6 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
     responseErrBadRequest:
       description: Returned on bad input
       content:

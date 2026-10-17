@@ -87,6 +87,24 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
+    responseNoContent:
+      description: On success, no payload returned
+    createUserApiTokenResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiToken'
+    responseErrUnauthorized:
+      description: Return if the caller is not authorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
     listUserApiTokensResponse:
       description: ''
       content:
@@ -95,8 +113,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/ApiToken'
-    responseNoContent:
-      description: On success, no payload returned
     responseErrForbidden:
       description: Returned if the caller does not have the needed permission
       content:
@@ -114,22 +130,6 @@ components:
                     type: string
                     x-go-name: MessageCode
                 x-go-name: Error
-    createUserApiTokenResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiToken'
-    responseErrUnauthorized:
-      description: Return if the caller is not authorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
     responseErrBadRequest:
       description: Returned on bad input
       content:
@@ -163,6 +163,13 @@ components:
           type: boolean
           x-go-name: ReadOnly
       x-go-package: github.com/replicatedhq/vandoor/pkg/models
+    RemoveApiTokenRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/replicatedhq/vandoor/pkg/schema
     CreateUserApiTokenRequest:
       type: object
       properties:
@@ -172,13 +179,6 @@ components:
         read_only:
           type: boolean
           x-go-name: ReadOnly
-      x-go-package: github.com/replicatedhq/vandoor/pkg/schema
-    RemoveApiTokenRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          x-go-name: Name
       x-go-package: github.com/replicatedhq/vandoor/pkg/schema
   securitySchemes:
     api_key:

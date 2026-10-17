@@ -187,7 +187,49 @@ paths:
       servers:
       - url: https://api.replicated.com/vendor/v3
 components:
+  schemas:
+    Policy:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        definition:
+          type: string
+          x-go-name: Definition
+        description:
+          type: string
+          x-go-name: Description
+        id:
+          type: string
+          x-go-name: ID
+        modifiedAt:
+          type: string
+          format: date-time
+          x-go-name: ModifiedAt
+        name:
+          type: string
+          x-go-name: Name
+        readOnly:
+          type: boolean
+          x-go-name: ReadOnly
+        teamId:
+          type: string
+          x-go-name: TeamID
+      x-go-package: github.com/replicatedhq/vandoor/pkg/models
   responses:
+    responseNoContent:
+      description: On success, no payload returned
+    updatePolicyResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              policy:
+                $ref: '#/components/schemas/Policy'
     getPolicyResponse:
       description: ''
       content:
@@ -197,36 +239,7 @@ components:
             properties:
               policy:
                 $ref: '#/components/schemas/Policy'
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    responseNoContent:
-      description: On success, no payload returned
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    updatePolicyResponse:
+    createPolicyResponse:
       description: ''
       content:
         application/json:
@@ -260,6 +273,33 @@ components:
                 description: Error message text if available
                 type: string
                 x-go-name: Message
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
     listPoliciesResponse:
       description: ''
       content:
@@ -272,46 +312,6 @@ components:
                 items:
                   $ref: '#/components/schemas/Policy'
                 x-go-name: Policies
-    createPolicyResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              policy:
-                $ref: '#/components/schemas/Policy'
-  schemas:
-    Policy:
-      type: object
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        definition:
-          type: string
-          x-go-name: Definition
-        description:
-          type: string
-          x-go-name: Description
-        id:
-          type: string
-          x-go-name: ID
-        modifiedAt:
-          type: string
-          format: date-time
-          x-go-name: ModifiedAt
-        name:
-          type: string
-          x-go-name: Name
-        readOnly:
-          type: boolean
-          x-go-name: ReadOnly
-        teamId:
-          type: string
-          x-go-name: TeamID
-      x-go-package: github.com/replicatedhq/vandoor/pkg/models
   securitySchemes:
     api_key:
       type: apiKey

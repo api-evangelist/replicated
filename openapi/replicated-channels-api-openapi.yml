@@ -667,12 +667,71 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   schemas:
-    InstallerTypePreflight:
+    VersionAdoption:
       type: object
       properties:
-        apiVersion:
+        instanceCount:
+          type: integer
+          format: int64
+          x-go-name: InstanceCount
+        versionLabel:
           type: string
-          x-go-name: APIVersion
+          x-go-name: VersionLabel
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallationTypeKurl:
+      type: object
+      properties:
+        installerVersion:
+          type: string
+          x-go-name: InstallerVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypeHelm:
+      type: object
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    TotalActiveInactiveCustomers:
+      type: object
+      properties:
+        activeCustomers:
+          type: integer
+          format: int64
+          x-go-name: ActiveCustomers
+        inactiveCustomers:
+          type: integer
+          format: int64
+          x-go-name: InactiveCustomers
+        totalCustomers:
+          type: integer
+          format: int64
+          x-go-name: TotalCustomers
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
+    InstallationTypes:
+      type: object
+      properties:
+        embeddedCluster:
+          $ref: '#/components/schemas/InstallerTypeEmbeddedCluster'
+        helm:
+          $ref: '#/components/schemas/InstallerTypeHelm'
+        helmInstallabilityIssue:
+          $ref: '#/components/schemas/HelmInstallabilityIssue'
+        kots:
+          $ref: '#/components/schemas/InstallerTypeKots'
+        kotsConfig:
+          $ref: '#/components/schemas/InstallerTypeKotsConfig'
+        kurl:
+          $ref: '#/components/schemas/InstallationTypeKurl'
+        preflight:
+          $ref: '#/components/schemas/InstallerTypePreflight'
+        replicatedSDK:
+          $ref: '#/components/schemas/InstallerTypeReplicatedSDK'
+        supportBundle:
+          $ref: '#/components/schemas/InstallerTypeSupportBundle'
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    CustomHostnameOverride:
+      type: object
+      properties:
+        hostname:
+          type: string
+          x-go-name: Hostname
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
     LintExpression:
       type: object
@@ -690,34 +749,78 @@ components:
           type: string
           x-go-name: Type
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/release
-    CustomHostnameOverrides:
+    InstallerTypeKots:
       type: object
       properties:
-        downloadPortal:
-          $ref: '#/components/schemas/CustomHostnameOverride'
-        proxy:
-          $ref: '#/components/schemas/CustomHostnameOverride'
-        registry:
-          $ref: '#/components/schemas/CustomHostnameOverride'
-        replicatedApp:
-          $ref: '#/components/schemas/CustomHostnameOverride'
+        minKotsVersion:
+          type: string
+          x-go-name: MinKotsVersion
+        targetKotsVersion:
+          type: string
+          x-go-name: TargetKotsVersion
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    HelmUnavailableResource:
+    ExtraLintRules:
+      type: object
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypeEmbeddedCluster:
       type: object
       properties:
-        filePath:
+        proxyRegistryDomain:
           type: string
-          x-go-name: FilePath
-        identifier:
+          x-go-name: ProxyRegistryDomain
+        replicatedAppDomain:
           type: string
-          x-go-name: Identifier
-        kind:
+          x-go-name: ReplicatedAppDomain
+        replicatedRegistryDomain:
           type: string
-          x-go-name: Kind
-        name:
+          x-go-name: ReplicatedRegistryDomain
+        version:
           type: string
-          x-go-name: Name
+          x-go-name: InstallerVersion
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypePreflight:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          x-go-name: APIVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    VulnCounts:
+      type: object
+      properties:
+        critical:
+          type: integer
+          format: int64
+          x-go-name: Critical
+        high:
+          type: integer
+          format: int64
+          x-go-name: High
+        low:
+          type: integer
+          format: int64
+          x-go-name: Low
+        medium:
+          type: integer
+          format: int64
+          x-go-name: Medium
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+    LintResult:
+      type: object
+      properties:
+        isLintingComplete:
+          type: boolean
+          x-go-name: IsLintingComplete
+        lintExpressions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LintExpression'
+          x-go-name: LintExpressions
+      x-go-package: github.com/replicatedhq/vandoor/pkg/lint
     Actor:
       type: object
       properties:
@@ -738,25 +841,185 @@ components:
           type: string
           x-go-name: Type
       x-go-package: github.com/replicatedhq/vandoor/pkg/models/types
-    GitHubRef:
-      type: object
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallerTypeEmbeddedCluster:
+    HelmInstallabilityIssue:
       type: object
       properties:
+        message:
+          type: string
+          x-go-name: Message
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/HelmUnavailableResource'
+          x-go-name: Resources
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    KotsChannelRelease:
+      type: object
+      properties:
+        airgapBuildError:
+          type: string
+          x-go-name: AirgapBuildError
+        airgapBuildStatus:
+          type: string
+          x-go-name: AirgapBuildStatus
+        airgapBundleImages:
+          type: array
+          items:
+            type: string
+          x-go-name: AirgapBundleImages
+        channelIcon:
+          type: string
+          x-go-name: ChannelIcon
+        channelId:
+          type: string
+          x-go-name: ChannelID
+        channelName:
+          type: string
+          x-go-name: ChannelName
+        channelSequence:
+          type: integer
+          format: int64
+          x-go-name: ChannelSequence
+        created:
+          type: string
+          format: date-time
+          x-go-name: Created
+        createdBy:
+          $ref: '#/components/schemas/Actor'
+        customResourceError:
+          type: string
+          x-go-name: CustomResourceError
+        customResourceWarnings:
+          type: array
+          items:
+            type: string
+          x-go-name: CustomResourceWarnings
+        demotedAt:
+          type: string
+          format: date-time
+          x-go-name: DemotedAt
+        embeddedClusterVersion:
+          type: string
+          x-go-name: EmbeddedClusterVersion
+        hasECInstaller:
+          type: boolean
+          x-go-name: HasECInstaller
+        hasKurlInstaller:
+          type: boolean
+          x-go-name: HasKurlInstaller
+        imageSecurityInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageVulnCounts'
+          x-go-name: ImageSecurityInfo
+        imageSecuritySums:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ImageVulnCounts'
+          x-go-name: ImageSecuritySums
+        installationTypes:
+          $ref: '#/components/schemas/InstallationTypes'
+        isDemoted:
+          type: boolean
+          x-go-name: IsDemoted
+        isRequired:
+          type: boolean
+          x-go-name: IsRequired
+        kurlInstallerID:
+          type: string
+          x-go-name: KurlInstallerID
+        lintResult:
+          $ref: '#/components/schemas/LintResult'
         proxyRegistryDomain:
           type: string
           x-go-name: ProxyRegistryDomain
-        replicatedAppDomain:
+        registrySecret:
           type: string
-          x-go-name: ReplicatedAppDomain
+          x-go-name: RegistrySecret
+        releaseNotes:
+          type: string
+          x-go-name: ReleaseNotes
+        releasedAt:
+          type: string
+          format: date-time
+          x-go-name: ReleasedAt
         replicatedRegistryDomain:
           type: string
           x-go-name: ReplicatedRegistryDomain
+        semver:
+          type: string
+          x-go-name: Semver
+        sequence:
+          type: integer
+          format: int64
+          x-go-name: Sequence
+        updated:
+          type: string
+          format: date-time
+          x-go-name: Updated
+        updatedBy:
+          $ref: '#/components/schemas/Actor'
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    HelmChart:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        hasPreflightSpec:
+          type: boolean
+          x-go-name: HasPreflightSpec
+        isKotsInstallerOnly:
+          type: boolean
+          x-go-name: IsKotsInstallerOnly
+        name:
+          type: string
+          x-go-name: Name
         version:
           type: string
-          x-go-name: InstallerVersion
+          x-go-name: Version
+        weight:
+          type: integer
+          format: int64
+          x-go-name: Weight
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypeSupportBundle:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+          x-go-name: APIVersion
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    CustomerAdoption:
+      type: object
+      properties:
+        channelId:
+          type: string
+          x-go-name: ChannelID
+        count:
+          type: integer
+          format: int64
+          x-go-name: Count
+        percent:
+          type: number
+          format: double
+          x-go-name: Percent
+        releaseSequence:
+          type: integer
+          format: int64
+          x-go-name: ReleaseSequence
+        semver:
+          type: string
+          x-go-name: Semver
+        totalOnChannel:
+          type: integer
+          format: int64
+          x-go-name: TotalOnChannel
+        versionsFromLatest:
+          type: integer
+          format: int64
+          x-go-name: VersionsFromLatest
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
     Channel:
       type: object
       properties:
@@ -898,49 +1161,43 @@ components:
           format: date-time
           x-go-name: Updated
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstanceTrends:
+    HelmUnavailableResource:
       type: object
       properties:
-        activeInstancesBefore:
-          type: integer
-          format: int64
-          x-go-name: ActiveInstancesBefore
-        activeInstancesToday:
-          type: integer
-          format: int64
-          x-go-name: ActiveInstancesToday
-        completedUpgradesPreviousPeriod:
-          type: integer
-          format: int64
-          x-go-name: CompletedUpgradesPreviousPeriod
-        completedUpgradesThisPeriod:
-          type: integer
-          format: int64
-          x-go-name: CompletedUpgradesThisPeriod
-        lastThreeVersionsPercentageBefore:
-          type: number
-          format: double
-          x-go-name: LastThreeVersionsPercentageBefore
-        lastThreeVersionsPercentageToday:
-          type: number
-          format: double
-          x-go-name: LastThreeVersionsPercentageToday
-        medianInstanceAgeBefore:
-          type: integer
-          format: int64
-          x-go-name: MedianInstanceAgeBefore
-        medianInstanceAgeToday:
-          type: integer
-          format: int64
-          x-go-name: MedianInstanceAgeToday
-        uniqueVersionsBefore:
-          type: integer
-          format: int64
-          x-go-name: UniqueVersionsBefore
-        uniqueVersionsToday:
-          type: integer
-          format: int64
-          x-go-name: UniqueVersionsToday
+        filePath:
+          type: string
+          x-go-name: FilePath
+        identifier:
+          type: string
+          x-go-name: Identifier
+        kind:
+          type: string
+          x-go-name: Kind
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    CustomHostnameOverrides:
+      type: object
+      properties:
+        downloadPortal:
+          $ref: '#/components/schemas/CustomHostnameOverride'
+        proxy:
+          $ref: '#/components/schemas/CustomHostnameOverride'
+        registry:
+          $ref: '#/components/schemas/CustomHostnameOverride'
+        replicatedApp:
+          $ref: '#/components/schemas/CustomHostnameOverride'
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    GitHubRef:
+      type: object
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
+    InstallerTypeReplicatedSDK:
+      type: object
+      properties:
+        sdkVersion:
+          type: string
+          x-go-name: SDKVersion
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
     InstallerTypeKotsConfig:
       type: object
@@ -948,108 +1205,6 @@ components:
         apiVersion:
           type: string
           x-go-name: APIVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallerTypeHelm:
-      type: object
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallationTypes:
-      type: object
-      properties:
-        embeddedCluster:
-          $ref: '#/components/schemas/InstallerTypeEmbeddedCluster'
-        helm:
-          $ref: '#/components/schemas/InstallerTypeHelm'
-        helmInstallabilityIssue:
-          $ref: '#/components/schemas/HelmInstallabilityIssue'
-        kots:
-          $ref: '#/components/schemas/InstallerTypeKots'
-        kotsConfig:
-          $ref: '#/components/schemas/InstallerTypeKotsConfig'
-        kurl:
-          $ref: '#/components/schemas/InstallationTypeKurl'
-        preflight:
-          $ref: '#/components/schemas/InstallerTypePreflight'
-        replicatedSDK:
-          $ref: '#/components/schemas/InstallerTypeReplicatedSDK'
-        supportBundle:
-          $ref: '#/components/schemas/InstallerTypeSupportBundle'
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    VersionAdoption:
-      type: object
-      properties:
-        instanceCount:
-          type: integer
-          format: int64
-          x-go-name: InstanceCount
-        versionLabel:
-          type: string
-          x-go-name: VersionLabel
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    HelmChart:
-      type: object
-      properties:
-        error:
-          type: string
-          x-go-name: Error
-        hasPreflightSpec:
-          type: boolean
-          x-go-name: HasPreflightSpec
-        isKotsInstallerOnly:
-          type: boolean
-          x-go-name: IsKotsInstallerOnly
-        name:
-          type: string
-          x-go-name: Name
-        version:
-          type: string
-          x-go-name: Version
-        weight:
-          type: integer
-          format: int64
-          x-go-name: Weight
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    VulnCounts:
-      type: object
-      properties:
-        critical:
-          type: integer
-          format: int64
-          x-go-name: Critical
-        high:
-          type: integer
-          format: int64
-          x-go-name: High
-        low:
-          type: integer
-          format: int64
-          x-go-name: Low
-        medium:
-          type: integer
-          format: int64
-          x-go-name: Medium
-        total:
-          type: integer
-          format: int64
-          x-go-name: Total
-      x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
-    TotalActiveInactiveCustomers:
-      type: object
-      properties:
-        activeCustomers:
-          type: integer
-          format: int64
-          x-go-name: ActiveCustomers
-        inactiveCustomers:
-          type: integer
-          format: int64
-          x-go-name: InactiveCustomers
-        totalCustomers:
-          type: integer
-          format: int64
-          x-go-name: TotalCustomers
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
-    ExtraLintRules:
-      type: object
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
     VersionAdoptionReport:
       type: object
@@ -1064,205 +1219,6 @@ components:
             $ref: '#/components/schemas/VersionAdoption'
           x-go-name: Versions
       x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    HelmInstallabilityIssue:
-      type: object
-      properties:
-        message:
-          type: string
-          x-go-name: Message
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/HelmUnavailableResource'
-          x-go-name: Resources
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    LintResult:
-      type: object
-      properties:
-        isLintingComplete:
-          type: boolean
-          x-go-name: IsLintingComplete
-        lintExpressions:
-          type: array
-          items:
-            $ref: '#/components/schemas/LintExpression'
-          x-go-name: LintExpressions
-      x-go-package: github.com/replicatedhq/vandoor/pkg/lint
-    KotsChannelRelease:
-      type: object
-      properties:
-        airgapBuildError:
-          type: string
-          x-go-name: AirgapBuildError
-        airgapBuildStatus:
-          type: string
-          x-go-name: AirgapBuildStatus
-        airgapBundleImages:
-          type: array
-          items:
-            type: string
-          x-go-name: AirgapBundleImages
-        channelIcon:
-          type: string
-          x-go-name: ChannelIcon
-        channelId:
-          type: string
-          x-go-name: ChannelID
-        channelName:
-          type: string
-          x-go-name: ChannelName
-        channelSequence:
-          type: integer
-          format: int64
-          x-go-name: ChannelSequence
-        created:
-          type: string
-          format: date-time
-          x-go-name: Created
-        createdBy:
-          $ref: '#/components/schemas/Actor'
-        customResourceError:
-          type: string
-          x-go-name: CustomResourceError
-        customResourceWarnings:
-          type: array
-          items:
-            type: string
-          x-go-name: CustomResourceWarnings
-        demotedAt:
-          type: string
-          format: date-time
-          x-go-name: DemotedAt
-        embeddedClusterVersion:
-          type: string
-          x-go-name: EmbeddedClusterVersion
-        hasECInstaller:
-          type: boolean
-          x-go-name: HasECInstaller
-        hasKurlInstaller:
-          type: boolean
-          x-go-name: HasKurlInstaller
-        imageSecurityInfo:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImageVulnCounts'
-          x-go-name: ImageSecurityInfo
-        imageSecuritySums:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ImageVulnCounts'
-          x-go-name: ImageSecuritySums
-        installationTypes:
-          $ref: '#/components/schemas/InstallationTypes'
-        isDemoted:
-          type: boolean
-          x-go-name: IsDemoted
-        isRequired:
-          type: boolean
-          x-go-name: IsRequired
-        kurlInstallerID:
-          type: string
-          x-go-name: KurlInstallerID
-        lintResult:
-          $ref: '#/components/schemas/LintResult'
-        proxyRegistryDomain:
-          type: string
-          x-go-name: ProxyRegistryDomain
-        registrySecret:
-          type: string
-          x-go-name: RegistrySecret
-        releaseNotes:
-          type: string
-          x-go-name: ReleaseNotes
-        releasedAt:
-          type: string
-          format: date-time
-          x-go-name: ReleasedAt
-        replicatedRegistryDomain:
-          type: string
-          x-go-name: ReplicatedRegistryDomain
-        semver:
-          type: string
-          x-go-name: Semver
-        sequence:
-          type: integer
-          format: int64
-          x-go-name: Sequence
-        updated:
-          type: string
-          format: date-time
-          x-go-name: Updated
-        updatedBy:
-          $ref: '#/components/schemas/Actor'
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallerTypeSupportBundle:
-      type: object
-      properties:
-        apiVersion:
-          type: string
-          x-go-name: APIVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    CustomHostnameOverride:
-      type: object
-      properties:
-        hostname:
-          type: string
-          x-go-name: Hostname
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallationTypeKurl:
-      type: object
-      properties:
-        installerVersion:
-          type: string
-          x-go-name: InstallerVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallerTypeKots:
-      type: object
-      properties:
-        minKotsVersion:
-          type: string
-          x-go-name: MinKotsVersion
-        targetKotsVersion:
-          type: string
-          x-go-name: TargetKotsVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    InstallerTypeReplicatedSDK:
-      type: object
-      properties:
-        sdkVersion:
-          type: string
-          x-go-name: SDKVersion
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
-    CustomerAdoption:
-      type: object
-      properties:
-        channelId:
-          type: string
-          x-go-name: ChannelID
-        count:
-          type: integer
-          format: int64
-          x-go-name: Count
-        percent:
-          type: number
-          format: double
-          x-go-name: Percent
-        releaseSequence:
-          type: integer
-          format: int64
-          x-go-name: ReleaseSequence
-        semver:
-          type: string
-          x-go-name: Semver
-        totalOnChannel:
-          type: integer
-          format: int64
-          x-go-name: TotalOnChannel
-        versionsFromLatest:
-          type: integer
-          format: int64
-          x-go-name: VersionsFromLatest
-      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/customer/sharedtypes
     ImageVulnCounts:
       type: object
       properties:
@@ -1327,38 +1283,51 @@ components:
           format: int64
           x-go-name: TotalImages
       x-go-package: github.com/replicatedhq/vandoor/pkg/securebuild/types
+    InstanceTrends:
+      type: object
+      properties:
+        activeInstancesBefore:
+          type: integer
+          format: int64
+          x-go-name: ActiveInstancesBefore
+        activeInstancesToday:
+          type: integer
+          format: int64
+          x-go-name: ActiveInstancesToday
+        completedUpgradesPreviousPeriod:
+          type: integer
+          format: int64
+          x-go-name: CompletedUpgradesPreviousPeriod
+        completedUpgradesThisPeriod:
+          type: integer
+          format: int64
+          x-go-name: CompletedUpgradesThisPeriod
+        lastThreeVersionsPercentageBefore:
+          type: number
+          format: double
+          x-go-name: LastThreeVersionsPercentageBefore
+        lastThreeVersionsPercentageToday:
+          type: number
+          format: double
+          x-go-name: LastThreeVersionsPercentageToday
+        medianInstanceAgeBefore:
+          type: integer
+          format: int64
+          x-go-name: MedianInstanceAgeBefore
+        medianInstanceAgeToday:
+          type: integer
+          format: int64
+          x-go-name: MedianInstanceAgeToday
+        uniqueVersionsBefore:
+          type: integer
+          format: int64
+          x-go-name: UniqueVersionsBefore
+        uniqueVersionsToday:
+          type: integer
+          format: int64
+          x-go-name: UniqueVersionsToday
+      x-go-package: github.com/replicatedhq/vandoor/pkg/kots/channel/types
   responses:
-    responseOk:
-      description: On success
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    getChannelAdoptionReportResponse:
-      description: GetChannelAdoptionReportResponse represents channel adoption report.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              report:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VersionAdoptionReport'
-                x-go-name: Report
     responseErrUnauthorized:
       description: Return if the caller is not authorized
       content:
@@ -1385,6 +1354,34 @@ components:
                 type: integer
                 format: int64
                 x-go-name: TotalCount
+    getChannelResponse:
+      description: GetChannelResponse represents a channel.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              channel:
+                $ref: '#/components/schemas/Channel'
+    responseOk:
+      description: On success
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
     responseErrNotFound:
       description: Returned on resource not found
       content:
@@ -1395,6 +1392,27 @@ components:
               message:
                 type: string
                 x-go-name: Message
+    getChannelAdoptionReportResponse:
+      description: GetChannelAdoptionReportResponse represents channel adoption report.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              report:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VersionAdoptionReport'
+                x-go-name: Report
+    getChannelInstanceTrendsResponse:
+      description: GetChannelInstanceTrendsResponse represents instance trends.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              instanceTrends:
+                $ref: '#/components/schemas/InstanceTrends'
     responseErrBadRequest:
       description: Returned on bad input
       content:
@@ -1410,24 +1428,6 @@ components:
                 description: Error message text if available
                 type: string
                 x-go-name: Message
-    getChannelResponse:
-      description: GetChannelResponse represents a channel.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              channel:
-                $ref: '#/components/schemas/Channel'
-    getChannelInstanceTrendsResponse:
-      description: GetChannelInstanceTrendsResponse represents instance trends.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              instanceTrends:
-                $ref: '#/components/schemas/InstanceTrends'
   securitySchemes:
     api_key:
       type: apiKey

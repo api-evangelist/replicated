@@ -322,6 +322,46 @@ paths:
       - url: https://api.replicated.com/vendor/v3
 components:
   responses:
+    testExternalRegistryResponse:
+      description: TestExternalRegistriesResponse contains the JSON external registries test
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                x-go-name: Error
+              status:
+                type: integer
+                format: int64
+                x-go-name: Status
+    responseNoContent:
+      description: On success, no payload returned
+    listExternalRegistriesResponse:
+      description: ListExternalRegistriesResponse contains the JSON external registries list
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              available_registries:
+                description: Available registries (only present when app_id query parameter is provided)
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalRegistry'
+                x-go-name: AvailableRegistries
+              external_registries:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalRegistry'
+                x-go-name: ExternalRegistries
+              unavailable_registries:
+                description: Unavailable registries (only present when app_id query parameter is provided)
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalRegistry'
+                x-go-name: UnavailableRegistries
     updateExternalRegistryResponse:
       description: UpdateExternalRegistryResponse represents an updated external registry.
       content:
@@ -350,61 +390,6 @@ components:
               thumbprint:
                 type: string
                 x-go-name: Thumbprint
-    responseErrNotFound:
-      description: Returned on resource not found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    externalRegistryLogsResponse:
-      description: ExternalRegistryLogsResponse contains the JSON external registry logs
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              logs:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExternalRegistryLog'
-                x-go-name: Logs
-    responseNoContent:
-      description: On success, no payload returned
-    responseErrForbidden:
-      description: Returned if the caller does not have the needed permission
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    x-go-name: Message
-                  messageCode:
-                    type: string
-                    x-go-name: MessageCode
-                x-go-name: Error
-    testExternalRegistryResponse:
-      description: TestExternalRegistriesResponse contains the JSON external registries test
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-                x-go-name: Error
-              status:
-                type: integer
-                format: int64
-                x-go-name: Status
     responseErrUnauthorized:
       description: Return if the caller is not authorized
       content:
@@ -424,6 +409,45 @@ components:
             properties:
               external_registry:
                 $ref: '#/components/schemas/ExternalRegistry'
+    externalRegistryLogsResponse:
+      description: ExternalRegistryLogsResponse contains the JSON external registry logs
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              logs:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalRegistryLog'
+                x-go-name: Logs
+    responseErrNotFound:
+      description: Returned on resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    responseErrForbidden:
+      description: Returned if the caller does not have the needed permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-go-name: Message
+                  messageCode:
+                    type: string
+                    x-go-name: MessageCode
+                x-go-name: Error
     responseErrBadRequest:
       description: Returned on bad input
       content:
@@ -439,30 +463,6 @@ components:
                 description: Error message text if available
                 type: string
                 x-go-name: Message
-    listExternalRegistriesResponse:
-      description: ListExternalRegistriesResponse contains the JSON external registries list
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              available_registries:
-                description: Available registries (only present when app_id query parameter is provided)
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExternalRegistry'
-                x-go-name: AvailableRegistries
-              external_registries:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExternalRegistry'
-                x-go-name: ExternalRegistries
-              unavailable_registries:
-                description: Unavailable registries (only present when app_id query parameter is provided)
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExternalRegistry'
-                x-go-name: UnavailableRegistries
   schemas:
     ExternalRegistry:
       type: object
